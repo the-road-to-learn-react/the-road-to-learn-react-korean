@@ -1,46 +1,46 @@
-# Foreword
+# 서문
 
-The Road to learn React teaches you the fundamentals of React. You will build a real world application along the way in plain React without complicated tooling. Everything from project setup to deployment on a server will be explained. The book comes with additional referenced reading material and exercises with each chapter. After reading the book, you will be able to build your own applications in React. The material is kept up to date by me, Robin Wieruch, and the community.
+'리액트 배움의 길(The Road to Learn React)'은 기초적인 리액트를 지도하고자 한다. 복잡한 도구없이 아주 평범한 리액트 방식으로 실제 응용 프로그램을 구축할 수 있다. 이 책은 프로젝트 시작부터 서버 배포까지 모든 내용을 다룬다. 각 장 마다 연습문제와 참고 자료가 수록되어 있다. 이 책을 마쳤다면 리액트에서 나만의 응용 프로그램을 만들어 볼 수 있을 것이다. 필자인 로빈 위어크(Robin Wieruch)와 커뮤니티가 이 책의 최신 콘텐츠를 유지 및 관리하고 있다.
 
-In the Road to learn React, I want to offer a foundation before you start to dive into the broader React ecosystem. It has less tooling and less external state management, but a lot of information around React. It explains general concepts, patterns and best practices in a real world React application.
+초보자들이 광범위한 리액트 생태계로 뛰어들기 전, '리액트 배움의 길'를 통해 기본적인 내용을 충실히 학습을 하길 바란다. 본 책에서는 많은 도구를 사용하거나 외부 상태 관리 도구들 다루지 않지만, 실제 리액트 앱 개발 환경에서 사용하고 있는 패턴과 모범 사례를 설명했다.
 
-You will learn to build your own Hacker News application. It covers real world features like pagination, client-side caching and interactions like searching and sorting. Additionally you will transition from JavaScript ES5 to JavaScript ES6 along the way. I hope this book captures my enthusiasm for React and JavaScript and helps you to get started.
+이 책은 해커 뉴스 애플리케이션을 개발 과정을 다뤘다. 페이지네이션,  클라이언트 캐싱, 검색과 정렬 등 실제 기능을 다룬다. 자바스크립트 ES5 사용자들은 자바스크립트 ES6으로 버전으로 전환하게 될 것이다. 이 책을 읽는 독자들이 리액트와 자바스크립트 개발에 열정을 발견하고 입문할 수 있도록 도움이 되길 바란다.
 
 {pagebreak}
 
-# Testimonials
+# 추천사
 
-**[Muhammad Kashif](https://twitter.com/appsdevpk/status/848625244956901376):** "The Road to Learn React is a unique book that I recommend to any student or professional interested in learning react basics to advanced level. It is packed with insightful tips and techniques that are hard to find elsewhere, and remarkably thorough in its use of examples and references to sample problems, i have 17 years of experience in web and desktop app development, and before reading this book i was having trouble in learning react, but this book works like magic."
+**[무하마드 카쉬프(Muhammad Kashif)](https://twitter.com/appsdevpk/status/848625244956901376):** "리액트 배움의 길은 입문자부터 전문가에 이르기까지 관심있는 학생, 전문가 모두가 읽을 수 있는 책이다. 다른 곳에서 얻을 수 없는 통찰과 기술을 만날 수 있다. 문제 해결을 위한 참고자료와 예제가 구성 또한 완벽하다. 지난 17년 간 웹과 데스크톱 응용 프로그램 개발 분야에 있었던 나 조차 리액트에 처음 입문할 때 어려움을 겪었다. 이 책은 마법과도 같다."
 
-**[Andre Vargas](https://twitter.com/andrevar66/status/853789166987038720):** "The Road to Learn React by Robin Wieruch is such an awesome book! Most of what I learned about React and even ES6 was through it!"
+**[안드레아 배가스(Andre Vargas)](https://twitter.com/andrevar66/status/853789166987038720):** "로빈 위어크의 리액트 배움의 길은 놀라움 그 자체이다! 리액트와 ES6 대부분을 이 책을 통해 배웠다!"
 
-**[Nicholas Hunt-Walker, Instructor of Python at a Seattle Coding School](https://twitter.com/nhuntwalker/status/845730837823840256):** "This is one of the most well-written & informative coding books I've ever worked through. A solid React & ES6 introduction."
+**[니콜라스 헌터-워커(Nicholas Hunt-Walker), 시애틀 코딩 스쿨 강사](https://twitter.com/nhuntwalker/status/845730837823840256):** "이제껏 봤던 코딩 책 중 가장 훌륭한 책이다. 리액트와 & ES의 정수를 느낄 수 있다."
 
-**[Austin Green](https://twitter.com/AustinGreen/status/845321540627521536):** "Thanks, really loved the book. Perfect blend to learn React, ES6, and higher level programming concepts."
+**[어스틴 그린(Austin Green)](https://twitter.com/AustinGreen/status/845321540627521536):** "더할 나위없이 좋다. 리액트, ES6, 고급 프로그래밍 개념까지 모든 것을 갖춘 책."
 
-**[Nicole Ferguson](https://twitter.com/nicoleffe/status/833488391148822528):** "I'm doing Robin's Road to Learn React course this weekend & I almost feel guilty for having so much fun."
+**[니콜라스 퍼그순(Nicole Ferguson)](https://twitter.com/nicoleffe/status/833488391148822528):** "주말 내내 이 책을 봤다. 너무 재밌어서 양심의 가책을 느낄 정도다."
 
-**[Karan](https://twitter.com/kvss1992/status/889197346344493056):** "Just finished your Road to React. Best book for a beginner in the world of React and JS. Elegant exposure to ES. Kudos! :)"
+**[카란(Karan)](https://twitter.com/kvss1992/status/889197346344493056):** "방금 이 책을 끝냈다. 리액트와 자바스크립트 입문자들을 위한 최고의 책이다. 우아하다! :)"
 
 **[Eric Priou](https://twitter.com/erixtekila/status/840875459730657283):** "The Road to learn React by Robin Wieruch is a must read. Clean and concise for React and JavaScript."
 
-**A Rookie Developer:** "I just finished the book as a rookie developer, thanks for working on this. It was easy to follow and I feel confident in starting a new app from scratch in the coming days. The book was much better than official React.js tutorial that I tried earlier (and couldn't complete due to lack of detail). The exercises at the end of each section were very rewarding."
+**신입 개발자:** "신입 개발자로서 이 책을 읽을 수 있어 매우 좋았다. 따라하기 시웠고 앞으로 새로운 앱을 개발할 수 있다는 자신감을 갖게 됐다. 리액트 공식 튜토리얼보다 훨씬 유익하다. 각 장의 연습문제 실습은 매우 유익했다."
 
-**Student:** "The best book to start learning ReactJS. The project moves along with the concepts being learnt which helps to grasp the subject. I have found 'Code and learn' as best way to master programming and this book exactly does that."
+**어느 학생:** "리액트를 배우기 위한 가장 좋은 책이다. 실습 프로젝트를 통해 학습 개념과 주제를 이해할 수 있다. '코드와 배움' 이 두 가지를 정확히 마스터할 수 있다."
 
-**[Thomas Lockney](https://www.goodreads.com/review/show/1880673388):** "Pretty solid introduction to React that doesn't try to be comprehensive. I just wanted a taste to understand what it was about and this book gave me exactly that. I didn't follow all the little footnotes to learn about the new ES6 features I've missed ("I wouldn't say I've been missing it, Bob."). But I'm sure for those of you who have fallen behind and are diligent about following those, you can probably learn a lot more than just what the book teaches."
-
-{pagebreak}
-
-# Education for Children
-
-The book is open source and should enable everyone to learn React. However, not everyone is privileged to use open source resources, because not everyone is educated in the English language in the first place. Even though the book is pay what you want, I want to use it to support projects that teach children English in the developing world.
-
-* 11. April to 18. April, 2017, [Giving Back, By Learning React](https://www.robinwieruch.de/giving-back-by-learning-react/)
+**[토마스 라크니(Thomas Lockney)](https://www.goodreads.com/review/show/1880673388):** "이 책은 포괄적인 리액트를 다루지 않다는 방침을 지녔다. 나는 리액트가 어떤 것인지 맛보고 싶었고, 이 책은 나를 만족시켰다. 현재 사용해보지 않은 ES6 기능을 배우기 위해 본문 내 각주를 모두 살펴보며 따라가지 않았다. (일부러 빠트린 것은 아니다) 부지런한 독자라면, 이 책의 내용 그 이상의 것을 얻을 수 있을 것이다."
 
 {pagebreak}
 
-# FAQ
+# 어린이를 위한 교육
+
+이 책은 모든 사람들이 활용할 수 있는 오픈 소스이다. 모든 사람들이 리액트를 배울 수 있어야한다. 그러나 지구상 모든 사람들이 영어교육을 받지 않았기 때문에 영어로 된 오픈 소스 자료를 열람할 수 있는 특권을 가지고 있지 않다. 이 책의 정가는 없다. 독자들은 각자 원하는 가격으로 구매할 수 있다. 도서 수익금은 개발도상국 어린이를 위한 영어 교육 프로젝트 후원을 위해 사용될 예정이다.
+
+* 11. April to 18. April, 2017, [리액트를 공부하며 기부하기](https://www.robinwieruch.de/giving-back-by-learning-react/)
+
+{pagebreak}
+
+# 자주 찾는 질문
 
 **How do I get updates?** You can [subscribe](https://www.getrevue.co/profile/rwieruch) to the Newsletter or follow me on [Twitter](https://twitter.com/rwieruch) for updates. Once you have a copy of the book, it will stay updated when a new edition gets released. But you have to grab the copy again when an update is announced.
 
@@ -62,7 +62,7 @@ The book is open source and should enable everyone to learn React. However, not 
 
 **Why is the book pay what you want?** I have put a lot of effort into this and will do so in the future. My desire is to reach as many people as possible. Everyone should be enabled to learn React. Still you could pay, if you can afford it. In addition, the [book attempts to support projects that educate children in the developing world](https://www.robinwieruch.de/giving-back-by-learning-react/). You can have an impact too.
 
-**Can I support the project?** Yes. Feel free to reach out. I invest a lot of my time into open source tutorials and learning resources. You can have a look at my [about me](https://www.robinwieruch.de/about/) page. I would love to have you as my [Patron on Patreon](https://www.patreon.com/rwieruch).
+**프로젝트 후원 방법은?** Yes. Feel free to reach out. I invest a lot of my time into open source tutorials and learning resources. You can have a look at my [about me](https://www.robinwieruch.de/about/) page. I would love to have you as my [Patron on Patreon](https://www.patreon.com/rwieruch).
 
 **Is there a call to action?** Yes. I want you to take a moment to think about a person who would be a good match to learn React. The person could have shown the interest already, could be in the middle of learning React or might not yet be aware about wanting to learn React. Reach out to that person and share the book. It would mean a lot to me. The book is intended to be given to others.
 
