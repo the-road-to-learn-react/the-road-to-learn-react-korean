@@ -1,10 +1,10 @@
 # 서문
 
-'리액트 배움의 길(The Road to Learn React)'은 기초적인 리액트를 지도하고자 한다. 복잡한 도구없이 아주 평범한 리액트 방식으로 실제 응용 프로그램을 구축할 수 있다. 이 책은 프로젝트 시작부터 서버 배포까지 모든 내용을 다룬다. 각 장 마다 연습문제와 참고 자료가 수록되어 있다. 이 책을 마쳤다면 리액트에서 나만의 응용 프로그램을 만들어 볼 수 있을 것이다. 필자인 로빈 위어크(Robin Wieruch)와 커뮤니티가 이 책의 최신 콘텐츠를 유지 및 관리하고 있다.
+'리액트 배움의 길(The Road to Learn React)'은 리액트 전반적인 기초 내용을 다룬 책이다. 복잡한 도구를 설치하지 않아도 리액트 만으로도 실제 응용 프로그램을 구축하는 것이 목적이다. 이 책은 프로젝트 시작부터 서버 배포까지 모든 내용을 다룬다. 각 장 마다 연습문제와 참고 자료가 수록되어 있다. 이 책을 마친 독자들은 리액트로 나만의 응용 프로그램을 만들어 볼 수 있을 것이다. 필자인 로빈 위어크(Robin Wieruch)와 커뮤니티가 유지 및 관리하고 있다.
 
-초보자들이 광범위한 리액트 생태계로 뛰어들기 전, '리액트 배움의 길'를 통해 기본적인 내용을 충실히 학습을 하길 바란다. 본 책에서는 많은 도구를 사용하거나 외부 상태 관리 도구들 다루지 않지만, 실제 리액트 앱 개발 환경에서 사용하고 있는 패턴과 모범 사례를 설명했다.
+드넓은 리액트 생태계로 뛰어들기 전, 초보자들이 '리액트 배움의 길'를 통해 기본적인 내용을 충실히 학습을 하길 바란다. 본 책에서는 외부 상태 관리 도구 등 많은 도구를 사용하지 않고서도, 실제 리액트 앱 개발 환경에서 사용하고 있는 패턴과 모범 사례를 설명했다.
 
-이 책은 해커 뉴스 애플리케이션을 개발 과정을 다뤘다. 페이지네이션,  클라이언트 캐싱, 검색과 정렬 등 실제 기능을 다룬다. 자바스크립트 ES5 사용자들은 자바스크립트 ES6으로 버전으로 전환하게 될 것이다. 이 책을 읽는 독자들이 리액트와 자바스크립트 개발에 열정을 발견하고 입문할 수 있도록 도움이 되길 바란다.
+이 책은 해커 뉴스 애플리케이션을 개발 과정을 다뤘다. 페이지네이션, 클라이언트 캐싱, 검색과 정렬 등 실제 기능을 다룬다. 자바스크립트 ES5 사용자들은 자바스크립트 ES6으로 버전으로 전환하게 될 것이다. 이 책을 읽는 여러분들이 리액트와 자바스크립트 개발에 열정을 발견하고 입문하는데 도움이 되길 바란다.
 
 {pagebreak}
 
@@ -22,7 +22,7 @@
 
 **[카란(Karan)](https://twitter.com/kvss1992/status/889197346344493056):** "방금 이 책을 끝냈다. 리액트와 자바스크립트 입문자들을 위한 최고의 책이다. 우아하다! :)"
 
-**[Eric Priou](https://twitter.com/erixtekila/status/840875459730657283):** "The Road to learn React by Robin Wieruch is a must read. Clean and concise for React and JavaScript."
+**[Eric Priou](https://twitter.com/erixtekila/status/840875459730657283):** "로빈 위어크의 책은 필독서이다. 리액트와 자바스크립트의 정수를 맛 볼 수 있다."
 
 **신입 개발자:** "신입 개발자로서 이 책을 읽을 수 있어 매우 좋았다. 따라하기 시웠고 앞으로 새로운 앱을 개발할 수 있다는 자신감을 갖게 됐다. 리액트 공식 튜토리얼보다 훨씬 유익하다. 각 장의 연습문제 실습은 매우 유익했다."
 
@@ -36,41 +36,40 @@
 
 이 책은 모든 사람들이 활용할 수 있는 오픈 소스이다. 모든 사람들이 리액트를 배울 수 있어야한다. 그러나 지구상 모든 사람들이 영어교육을 받지 않았기 때문에 영어로 된 오픈 소스 자료를 열람할 수 있는 특권을 가지고 있지 않다. 이 책의 정가는 없다. 독자들은 각자 원하는 가격으로 구매할 수 있다. 도서 수익금은 개발도상국 어린이를 위한 영어 교육 프로젝트 후원을 위해 사용될 예정이다.
 
-* 11. April to 18. April, 2017, [리액트를 공부하며 기부하기](https://www.robinwieruch.de/giving-back-by-learning-react/)
+* 11. 2017년 4월, [리액트를 공부하며 기부하기](https://www.robinwieruch.de/giving-back-by-learning-react/)
 
 {pagebreak}
 
 # 자주 찾는 질문
 
-**How do I get updates?** You can [subscribe](https://www.getrevue.co/profile/rwieruch) to the Newsletter or follow me on [Twitter](https://twitter.com/rwieruch) for updates. Once you have a copy of the book, it will stay updated when a new edition gets released. But you have to grab the copy again when an update is announced.
+**업데이트 소식을 받으려면 어떻게 해야하는가?** [이 곳](https://www.getrevue.co/profile/rwieruch)에서 구독 신청을 하거나 [트위터](https://twitter.com/rwieruch)로 업데이트 소식을 받을 수 있다. 한번 책을 다운받은 이후에도, 새 개정판을 다운 받을 수 있다. 
 
-**Does it use the recent React version?** The book always receives an update when the React version got updated. Usually books are outdated pretty soon after their release. Since this book is self-published, I can update it whenever I want.
+**최신 리액트 버전을 사용하고 있는가?** 리액트 최신 버전이 공표되면 이 책 내용도 항상 업데이트 된다. 현재 리액트 업데이트 주기가 매우 빠르기 때문에 대부분의 책들은 최신 내용을 담지 못하고 있다. 반면 이 책은 자가출판이기 때문에 내가 원하는 언제든지 수정하여 출판이 가능하다는 장점이 있다.
 
-**Does it cover Redux?** It doesn't. Therefore I have written a second book. The Road to learn React should give you a solid foundation before you dive into advanced topics. The implementation of the sample application in the book will show that you don't need Redux to build an application in React. After you have read the book, you should be able to implement a solid application without Redux. Then you can read my second book to learn [Redux](https://roadtoreact.com/course-details?courseId=TAMING_THE_STATE).
+**리덕스(Redux) 내용이 있는가?** 이 책에서는 리덕스를 다루지 않는다. 두 번째 저서에서 다룰 예정이다. "리액트 배움의 길"은 심화 주제로 넘어가기 전 튼튼한 기초 지식을 쌓기 위한 것이 목적이다. 제시된 프로젝트 예제는 리덕스가 없어도 충분히 리액트 애플리케이션을 만들 수 있다는 것을 보여주고자 했다. 이 책을 마쳤다면 리덕스를 사용하지 않고도 순수한 리액트 만으로 견고한 응용 프로그램을 구현할 수 있어야 한다. 리액트 두 번째 책인 [리액트 상태 관리(Taming the State in React)](https://roadtoreact.com/course-details?courseId=TAMING_THE_STATE)에서 리덕스 내용을 담고 있다
 
-**Does it use JavaScript ES6?** Yes. But don't worry. You will be fine if you are familiar with JavaScript ES5. All JavaScript ES6 features, that I describe on the journey to learn React, will transition from ES5 to ES6 in the book. Every feature along the way will be explained. The book does not only teach React, but also all useful JavaScript ES6 features for React.
+**ES6를 사용하는가** 그렇다. 하지만 걱정마라. 자바스크립트 ES5에 익숙하다면 문제없다. 설명된 모든 자바스크립트 ES6 기능은 ES5에서 ES6로 변환하는 과정 또한 제시한다. 리액트는 물론 유용한 자바스크립트 ES6 기능을 가르치고자 했다.
 
-**Will you add more chapters in the future?** You can have a look at the Change Log chapter for major updates that already happened. There will be unannounced improvements in between too. In general, it depends on the community whether I continue to work on the book. If there is an acceptance for the book, I will deliver more chapters and improve the old material. I will keep the content up to date with recent best practices, concepts and patterns.
+**추후 내용이 추가되는가** 주요 업데이트 기록을 확인할 수 있다. 업데이트 반영 전 개선 내용을 미리 공지하지는 않을 것이다. 저자인 나보다는 커뮤니티와 상관있다. 도서에 acceptance가 있다면 오래된 내용을 수정하고 추가 내용을 집필하겠다. 계속해서 가장 최신의 예제와 개념, 패턴을 담을 수 있도록 노력하고자 한다.
 
-**What are the reading formats?** In addition to the .pdf, .epub, and .mobi formats, you can read it in pure markdown on [GitHub](https://github.com/rwieruch/the-road-to-learn-react). In general, I recommend reading it on a suitable format, otherwise the code snippets will have ugly line breaks.
+**문서 확장자는 무엇인가** .pdf, .epub, .mobi 확장자를 제공하고 있으며, [깃헙(Github)](https://github.com/rwieruch/the-road-to-learn-react)에서 makrdown으로 볼 수 있다. 코드 가독성이 높은 적합한 문서 확장자를 선택해 보는 것을 추천한다.
 
-**How can I get help while reading the book?** The book has a [Slack Group](https://slack-the-road-to-learn-react.wieruch.com/) for people who are reading the book. You can join the channel to get help or to help others. After all, helping others can improve your learnings too.
+**독자가 도움을 줄 수 있는 방법이 있는가** [슬랙(Slack) 그룹](https://slack-the-road-to-learn-react.wieruch.com/)에서 같은 독자들을 만날 수 있다. 채널에 들어와 도움을 받거나 다른 사람에게 도움을 줄 수 있다. 다른 사람을 도와준 만큼 여러분들은 더 깊게 학습할 수 있을 것이다.
 
-**Is there any troubleshoot area?** If you run into problems, please join the Slack Group. In addition, you could have a look into the [open issues on GitHub](https://github.com/rwieruch/the-road-to-learn-react/issues) for the book. Perhaps your problem was already mentioned and you can find the solution for it. If your problem wasn't mentioned, don't hesitate to open a new issue where you can explain your problem, maybe provide a screenshot, and some more details (e.g. book page, node version). After all, I try to ship all fixes in next editions of the book.
+**문제 제기할 수 있는 방법은 무엇인가?** 문제가 생기면 슬랙 그룹에 들어와서 해결하길 바란다. [깃헙(GitHub)이슈](https://github.com/rwieruch/the-road-to-learn-react/issues)에서 이미 동일한 문제와 해결 방법을 찾을 수 있다. 동일한 문제를 찾을 수 없다면, 깃헙 이슈에 올리면 된다. 이슈를 작성할 때 문제점과 함께  스크린 샷, 책 페이지 번호, node 버전 등을 알려주길 바란다. 모든 문제점을 수정해 다음 개정판에서 반영하도록 하겠다.
 
-**Can I help to improve it?** Yes. You can have a direct impact with your thoughts and [contributions on GitHub](https://github.com/rwieruch/the-road-to-learn-react). I don't claim to be an expert nor to write in native English. I would appreciate your help very much.
+**더 나은 책을 만들기 위해 기여할 수 있는 방법이 있는가** 독자의 의견과 [깃헙 내 기여](https://github.com/rwieruch/the-road-to-learn-react)는 큰 영향을 가진다. 유창한 영어로 작성하지 않아도 된다. 여러분의 애정과 도움에 깊이 감사한다.
 
-**Why is the book pay what you want?** I have put a lot of effort into this and will do so in the future. My desire is to reach as many people as possible. Everyone should be enabled to learn React. Still you could pay, if you can afford it. In addition, the [book attempts to support projects that educate children in the developing world](https://www.robinwieruch.de/giving-back-by-learning-react/). You can have an impact too.
+**왜 독자가 자유롭게 도서 가격을 책정할 수 있는가** 나는 모든 사람들이 자신이 원하는 가격으로 책을 구입할 수 있게 하기 위해 많은 노력을 기울였고 앞으로도 이 제도를 유지할 것이다. 최대한 많은 사람들이 읽을 수 있게 하는 것이 제일 큰 목적이다. ㄴ는 모든 사람들이 리액트를 배울 수 있는 기회를 가져야 한다고 믿는다. 재정적 여유가 있다면 도서를 직접 구매할 수도 있다. 이 책의 수익금은 [개발 도상국 어린이들을 위한 영어 교육 후원](https://www.robinwieruch.de/giving-back-by-learning-react/)에 사용된다. 책을 구입하는 것은 이 프로젝트에 동참하는 것이다.
 
-**프로젝트 후원 방법은?** Yes. Feel free to reach out. I invest a lot of my time into open source tutorials and learning resources. You can have a look at my [about me](https://www.robinwieruch.de/about/) page. I would love to have you as my [Patron on Patreon](https://www.patreon.com/rwieruch).
+**프로젝트 후원 방법은?** 누구나 이 프로젝트에 후원할 수 있다. 이 오픈소스 튜토리얼 제작을 위해 상당한 많은 시간동안 투자하고 있다. [개인 홈페이지](https://www.robinwieruch.de/about/)에서 저자 프로필을 확인할 수 있다. 프로젝트를 위해 [Patreon](https://www.patreon.com/rwieruch) 플랫폼에서 개인 후원자가 되어준다면 기쁠 것이다.
 
-**Is there a call to action?** Yes. I want you to take a moment to think about a person who would be a good match to learn React. The person could have shown the interest already, could be in the middle of learning React or might not yet be aware about wanting to learn React. Reach out to that person and share the book. It would mean a lot to me. The book is intended to be given to others.
-
+**끝으로 바라는 점은?** 리액트를 배우고자 하는 독자들이 좋은 사람이 되기를 바란다 리액트를나는 독자들이 리액트를 나는 당신이 React를 배우기에 좋은 사람이 될 사람을 생각해보기를 원합니다. 그 사람은 이미 관심을 보일 수도 있었고, React를 배우는 중에있을 수도 있고, React를 배우고 싶어하지 않을 수도 있습니다. 그 사람에게 손을 뻗어 책을 나누십시오. 그것은 나에게 많은 것을 의미 할 것입니다. 이 책은 다른 사람들에게 주어지기위한 것입니다.
 {pagebreak}
 
-# Change Log
+# 수정 내용
 
-**10. January 2017:**
+**2017년 1월 10일:**
 
 * [v2 Pull Request](https://github.com/rwieruch/the-road-to-learn-react/pull/18)
 * even more beginner friendly
@@ -80,72 +79,71 @@
 * 140 pages of learning material
 * [+ interactive course of the book on educative.io](https://www.educative.io/collection/5740745361195008/5676830073815040)
 
-**08. March 2017:**
+**2017년 3월 8일:**
 
 * [v3 Pull Request](https://github.com/rwieruch/the-road-to-learn-react/pull/34)
-* 20% more content
-* 25% improved content
-* 9 new chapters
-* 170 pages of learning material
+* 본문 20% 내용 추가
+* 본문 25% 내용 개선
+* 신규 9장 추가
+* 총 170 페이지
 
-**15. April 2017:**
+**2017년 4월 15일:**
 
-* upgrade to React 15.5
+* React 15.5 업그레이드
 
-**5. July 2017:**
+**2017년 7월:**
 
-* upgrade to node 8.1.3
-* upgrade to npm 5.0.4
-* upgrade to create-react-app 1.3.3
+* node 8.1.3 업그레이드
+* npm 5.0.4 업그레이드
+* create-react-app 1.3.3 업그레이드 
 
-**17. October 2017:**
+**2017년 10월 17일:**
 
-* upgrade to node 8.3.0
-* upgrade to npm 5.5.1
-* upgrade to create-react-app 1.4.1
-* upgrade to React 16
+* node 8.3.0 업그레이드
+* npm 5.5.1  업그레이드
+* create-react-app 1.4.1 업그레이드
+* React 16 업그레이드
 * [v4 Pull Request](https://github.com/rwieruch/the-road-to-learn-react/pull/72)
-* 15% more content
-* 15% improved content
-* 3 new chapters (Bindings, Event Handlers, Error Handling)
-* 190+ pages of learning material
-* [+9 Source Code Projects](https://roadtoreact.com/course-details?courseId=THE_ROAD_TO_LEARN_REACT)
+* 본문 15% 내용 추가
+* 본문 15% 내용 개선
+* 신규 3장 추가 (바인딩, 이벤트 핸들러, 에러 처리)
+* 총 190+ 이상
+* [+9 프로젝트 예제 소스 코드](https://roadtoreact.com/course-details?courseId=THE_ROAD_TO_LEARN_REACT)
 
 {pagebreak}
 
-# How to read it?
+# 이 책을 읽는 방법
 
-The book is my attempt to teach React while you will write an application. It is a practical guide to learn React and not a reference work about React. You will write a Hacker News application that interacts with a real world API. Among several interesting topics, it covers state management in React, caching and interactions (sorting and searching). On the way you will learn best practices and patterns in React.
+이 책의 목적은 실제 리액트 애플리케이션을 만들면서 리액트를 배우는 것이다. 이 책은 리액트를 설명한 참고 자료가 아니라 리액트를 배우는 실질적인 가이드이다. API를 통해 상호 작용하는 해커 뉴스 애플리케이션을 제작해 볼 것이다. 리액트에서 가장 흥미있는 부분은 캐싱 및 상호 작용(정렬 및 검색)의 상태 관리 내용일 것이다. 이외 리액트 모범 예제와 패턴을 배울 수 있다.
 
-In addition, the book gives you a transition from JavaScript ES5 to JavaScript ES6. React embraces a lot of JavaScript ES6 features and I want to show you how you can use them.
+또한 이 책은 자바스크립트 ES5에서 ES6으로 전환하는 방법을 다뤘다. 리액트는 자바스크립트 ES6 기능을 포함하고 있어 ES6를 사용하는 방법을 보여주고자 했다.
 
-In general each chapter of the book will build up on the previous chapter. Each chapter will teach you something new. Don't rush through the book. You should internalize each step. You could apply your own implementations and read more about the topic. After each chapter I give you some reading material and exercises. If you really want to learn React, I highly recommend to read the extra material and do some hands on exercises. After you have read a chapter, make yourself comfortable with the learnings before you continue.
+각 장마다 새로운 내용을 다루기 때문에 서두루지 말고 학습 내용을 충분히 이해하여 내 것으로 만드는 것이 중요하다. 학습 내용을 실제로 적용해보는 과정을 통해 더 많이 배울 수 있다. 각 장마다 참고자료와 예제를 수록했다. 리액트를 깊이 배우고 싶다면 참고자료를 읽고 간단한 예제를 만들어 보는 것이 좋다. 다른 장을 읽기 전에 충분히 학습해 익숙한 내용이 되게 해야한다.
 
-In the end you will have a complete React application in production. I am very keen to see your results, so please text me when you have finished the book. The final chapter of the book will give you a handful of options to continue your React journey. In general you will find a lot of React related topics on [my personal website](https://www.robinwieruch.de/).
+이 책을 마치면 배포가능한 리액트 애플리케이션을 완성할 수 있다. 여러분들이 만든 결과물을 꼭 보고 싶다. 이 책을 다 읽고 난 후 나에게 알려 주길 바란다. 마지막 장에서 여러분의 리액트의 여정을 계속할 수 있는 몇 가지 방법을 제시했다. [개인 웹 사이트] (https://www.robinwieruch.de/)에서도 리액트 관련 정보를 찾을 수 있다.
 
-Since you are reading the book, I guess you are new to React. That's perfect. In the end I hope to get your feedback to improve the material to enable everyone to learn React. You can have a direct impact on [GitHub](https://github.com/rwieruch/the-road-to-learn-react) or text me on [Twitter](https://twitter.com/rwieruch).
+독자들은 리액트를 처음 접하는 입문자일 것이다. 리액트를 배우기로 결정한 것은 잘한 일이다. 끝으로 여러분들의 피드백을 반영해 모든 사람들이 리액트를 배울 수 있는 교육 자료를 만들고자 한다. [깃헙] (https://github.com/rwieruch/the-road-to-learn-react) 또는 [트위터] (https://twitter.com/rwieruch)로 여러분의 이야기를 듣고 있다.
 
-# What you can expect (so far...)
-
-* [Hacker News App in React](https://intense-refuge-78753.herokuapp.com/)
-* no complicated configurations
-* create-react-app to bootstrap your application
-* efficient lightweight code
-* only React setState as state management (so far...)
-* transition from JavaScript ES5 to ES6 along the way
-* the React API with setState and lifecycle methods
-* interaction with a real world API (Hacker News)
-* advanced user interactions
-  * client-sided sorting
-  * client-sided filtering
-  * server-sided searching
-* implementation of client-side caching
-* higher order functions and higher order components
-* snapshot test components with Jest
-* unit test components with Enzyme
-* neat libraries along the way
-* exercises and more readings along the way
-* internalize and reinforce your learnings
-* deploy your application to production
+# 앞으로 배울 내용은 다음과 같다.
+* [리액트 앱 개발하기 : 해커 뉴스 애플리케이션 ](https://intense-refuge-78753.herokuapp.com/)
+* 복잡하기 않는 환경설정
+* create-react-app 으로 애플리케이션 시작
+* 효율적인 간결한 코드 작성
+* 리액트 setState로 상태(state) 관리 
+* 자바스크립트 ES5에서 ES6으로 문법 전환
+* setState 및 생명 주기 메소드 React API 사용
+* 해커뉴스 앱에서 실제 API와의 상호 작용
+* 심화 : 사용자 인터랙션 
+   * 클라이언트 사이드 정렬
+   * 클라이언트 사이드 필터링
+   * 서버 사이드 검색
+* 클라이언트 사이드 캐싱 구현
+* 고차 함수와 고차 컴포넌트
+* Jest 컴포넌트 테스트
+* Enzyme로 유닛 컴포넌트 테스트
+* 라이브러리 사용
+* 예제와 참고자료 읽기
+* 학습 내용 되새기기 및 강화하기
+* 애플리케이션 배포
 
 {pagebreak}
