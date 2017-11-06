@@ -1,31 +1,32 @@
-# Introduction to React
+# 리액트 시작하기
 
-The chapter gives you an introduction to React. You may ask yourself: Why should I learn React in the first place? The chapter might give you the answer to that question. Afterward, you will dive into the ecosystem by bootstrapping your first React application from scratch with zero-configuration. Along the way, you will get an introduction to JSX and ReactDOM. So be prepared for your first React components.
+이번 장은 리액트 기초적인 내용을 다룬다. 아직도 리액트를 왜 배워야하는지 모르겠다면 이번 장을 통해 그 답을 찾을 수 있을 것이다. 리액트 애플리케이션 설치를 시작으로 리액트의 세계에 첫 발을 담궈 보자. JSX와 ReactDOM를 배우고 첫 번째 리액트 컴포넌트를 만들어 보자.
 
-## Hi, my name is React.
+## 반가워, 내 이름은 리액트야
 
-**Why should you bother to learn React?** In recent years single page applications ([SPA](https://en.wikipedia.org/wiki/Single-page_application)) have become popular. Frameworks like Angular, Ember and Backbone helped JavaScript developers to build modern web applications beyond the usage of vanilla JavaScript and jQuery. The list of these popular solutions is not exhaustive. There exists a wide range of SPA frameworks. When you consider the release dates, most of them are among the first generation of SPAs: Angular 2010, Backbone 2010 and Ember 2011.
+**왜 리액트를 배워야 할까?** 최근 몇 년 간 단일 페이지 애플리케이션 ([SPA] (https://en.wikipedia.org/wiki/Single-page_application))이 각광받고 있다. Angular, Ember 및 Backbone 등 자바스크립트 프레임워크의 등장은 바닐라 자바스크립트('Vanilla JavaScript' 타 라이브러리나 프레임워크 사용 없이 순수한 자바스크립트로 개발하는 것을 말함)와 jQuery를 사용하지 않고도 최신 웹 응용 프로그램을 구축할 수 있게 만들었다. 이외에도 SPA 프레임워크는 매우 다양하다. Angular 2010, Backbone 2010, Ember 2011 등 배포된 대부분 SPA 프레임워크는 1세대이다.
 
-The initial React release was 2013 by Facebook. React is not an SPA framework but a view library. It is the V in the [MVC](https://de.wikipedia.org/wiki/Model_View_Controller) (model view controller). It only enables you to render components as viewable elements in a browser. Yet the whole ecosystem around React makes it possible to build single page applications.
+리액트는 2013년 페이스북이 처음 공표했다. 리액트는 SAP 프레임워크가 아닌, 뷰 라이브러리(View Library)이다. 여기서 뷰(View)란 [MVC](https://de.wikipedia.org/wiki/Model_View_Controller) (Model–View–Controller, MVC는 소프트웨어 공학에서 사용되는 소프트웨어 디자인 패턴을 말함) 패턴의 'V'를 말한다. 뷰는 브라우저 내 특정 컴포넌트를 보여준다. 그러나 리액트를 이루는 전체는 하나의 단일 페이지 애플리케이션을 제작할 수 있게 해준다.
 
-But why should you consider using React over the first generation of SPA frameworks? While the first generation of frameworks tried to solve a lot of things at once, React only helps you to build your view layer. It's a library and not a framework. The idea behind it: Your view is a hierarchy of composable components.
+그렇다면 수많은 1세대 SPA 프레임워크 중 리액트를 선택해야하는 이유는 무엇일까? 1세대 프레임워크는 한 번에 많은 것을 해결하려고 노력했지만, 리액트는 뷰 레이어를 만드는 역할만 한다. 리액트는 프레임워크가 아닌 라이브러리이다. 뷰는 컴포넌트로서 다른 컴포넌트와 함께 계층구조를 이룬다.
 
-In React you can keep the focus on your view layer before you introduce more aspects to your application. Every other aspect is another building block for your SPA. These building blocks are essential to build a mature application. They come with two advantages.
+애플리케이션 내 여러 기능을 추가하기 전, 리액트만으로 뷰 레이어에 집중하여 개발할 수 있다는 장점이 있다. SPA 구조를 이루는 한 블록과 같다는 점이다. 복잡한 애플리케이션을 개발하는데 필요하다. 두가지 장점이 있다.
 
-First, you can learn the building blocks step by step. You don't have to worry about understanding them altogether. It is different from a framework that gives you every building block from the start. This book focuses on React as the first building block. More building blocks follow eventually.
+먼저 빌딩 블록을 단계별로 배울 수 있습니다. 그들 모두를 이해하는 것에 대해 걱정할 필요가 없습니다. 처음부터 모든 빌딩 블록을 제공하는 프레임 워크와 다릅니다. 이 책은 React를 첫 번째 요소로 중점적으로 다룹니다. 결국 더 많은 빌딩 블록과 연결된다.
 
-Second, all building blocks are interchangeable. It makes the ecosystem around React such an innovative place. Multiple solutions are competing with each other. You can pick the most appealing solution for you and your use case.
+둘째, 모든 블록은 상호 교환 가능하다. 그것은 주변의 생태계를 React와 같은 혁신적인 장소로 만듭니다. 여러 솔루션이 서로 경쟁하고 있습니다. 당신과 당신의 유스 케이스를 위해 가장 매력적인 솔루션을 선택할 수 있습니다.
 
-The first generation of SPA frameworks arrived at an enterprise level. They are more rigid. React stays innovative and gets adopted by multiple tech thought leader companies like [Airbnb, Netflix and of course Facebook](https://github.com/facebook/react/wiki/Sites-Using-React). All of them invest in the future of React and are content with React and the ecosystem itself.
+SPA 프레임 워크의 1세대는 이미 상용화 단계에 이르렀고 더욱 견고해졌다. 여전히 리액트 혁신적이다. [페이스북은 물론이거니와, 에어비앤비, 넷플릭스] (https://github.com/facebook/react/wiki/Sites-Using-React)등 선도적인 테크 회사들이 리액트를 채택해 플랫폼 개발을 하고 있다. 그들 모두가 리액트와 생태계에 만족하고 있으며 리액트의 미래에 투자하고 있다.
 
-React is probably one of the best choices for building modern web applications nowadays. It only delivers the view layer, [but the React ecosystem is a whole flexible and interchangeable framework](https://www.robinwieruch.de/essential-react-libraries-framework/). React has a slim API, an amazing ecosystem and a great community. You can read about my experiences [why I moved from Angular to React](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/). I highly recommend to have an understanding why you would choose React over another framework or library. After all, everyone is keen to experience where React will lead us in the next years.
+리액트는 최근 웹 애플리케이션을 개발하는데 가장 좋은 선택이 될 것이다. 뷰 레이어만 제공하지만 (그러나 리액트 생태계는 모든 프레임워크와 서로 상호 교환 가능하다) (https://www.robinwieruch.de/essential-react-libraries-framework/). 리액트는 간결한 API, 놀라운 생태계, 훌륭한 커뮤니티를 갖추고 있다. ["왜 나는 앵귤러(Angular)에서 리액트로 옮겼는가](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)" 블로그에서 리액트를 선택한 개인적인 경험을 작성했다. 굳이 타 프레임워크나 라이브러리가 아닌, 리액트를 선택해 개발하는 이유를 스스로에게 묻는 것이 매우 중요하다. 결국 모든 사람들이 다음 해 리액트 행보에 대해 궁금해 할 것이다.  
 
-### Exercises
 
-* read about [why I moved from Angular to React](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)
-* read about [React's flexible ecosystem](https://www.robinwieruch.de/essential-react-libraries-framework/)
+### 더 읽어보기
 
-## Requirements
+* [왜 나는 앵귤러에서 리액트로 옮겼는가](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)
+* [유연한 리액트 생태계](https://www.robinwieruch.de/essential-react-libraries-framework/)
+
+## 요구사항
 
 If you are coming from a different SPA framework or library, you should already be familiar with the basics of web development. If you have just started in web development, you should feel comfortable with HTML, CSS and JavaScript ES5 to learn React. The book will smoothly transition to JavaScript ES6 and beyond. I encourage you to join the official [Slack Group](https://slack-the-road-to-learn-react.wieruch.com/) for the book to get help or to help others.
 
@@ -468,7 +469,7 @@ In a growing application a page refresh delays your productivity. You have to wa
 
 The biggest benefit is that you can keep the application state with HMR. Imagine you have a dialog in your application with multiple steps and you are at step 3. Basically it is a wizard. Without HMR you would change the source code and your browser refreshes the page. You would have to open the dialog again and would have to navigate from step 1 to step 3. With HMR your dialog stays open at step 3. It keeps the application state even though the source code changes. The application itself reloads, but not the page.
 
-### Exercises:
+### 실습:
 
 * change your *src/App.js* source code a few times to see HMR in action
 * watch the first 10 minutes of [Live React: Hot Reloading with Time Travel](https://www.youtube.com/watch?v=xsSnOQynTHs) by Dan Abramov
