@@ -10,37 +10,38 @@
 
 그렇다면 수많은 1세대 SPA 프레임워크 중 리액트를 선택해야하는 이유는 무엇일까? 1세대 프레임워크는 한 번에 많은 것을 해결하려고 노력했지만, 리액트는 뷰 레이어를 만드는 역할만 한다. 리액트는 프레임워크가 아닌 라이브러리이다. 뷰는 컴포넌트로서 다른 컴포넌트와 함께 계층구조를 이룬다.
 
-애플리케이션 내 여러 기능을 추가하기 전, 리액트만으로 뷰 레이어에 집중하여 개발할 수 있다는 장점이 있다. SPA 구조를 이루는 한 블록과 같다는 점이다. 복잡한 애플리케이션을 개발하는데 필요하다. 두가지 장점이 있다.
+리액트 장점은 여러 복잡한 기능을 추가하기전 오롯이 뷰 레이어에 집중하여 개발할 수 있다는 것이다. SPA를 집이라고 한다면 리액트는 집을 짓는 벽돌과 같다. 복잡한 애플리케이션을 개발할 때 한 벽돌씩 만드는 작업이 필요하다 두 가지 장점이 있다. 
 
-먼저 빌딩 블록을 단계별로 배울 수 있습니다. 그들 모두를 이해하는 것에 대해 걱정할 필요가 없습니다. 처음부터 모든 빌딩 블록을 제공하는 프레임 워크와 다릅니다. 이 책은 React를 첫 번째 요소로 중점적으로 다룹니다. 결국 더 많은 빌딩 블록과 연결된다.
+단계별로 하나씩 벽돌을 쌓는 법을 배울 수 있다. 한꺼번에 모두 이해하는 것을 걱정할 필요가 없다. 처음부터 모든 구조를 갖춘 프레임워크와 다르다. 리액트는 그 중 첫 번째이며 더 많은 벽돌들과 연결된다.
 
-둘째, 모든 블록은 상호 교환 가능하다. 그것은 주변의 생태계를 React와 같은 혁신적인 장소로 만듭니다. 여러 솔루션이 서로 경쟁하고 있습니다. 당신과 당신의 유스 케이스를 위해 가장 매력적인 솔루션을 선택할 수 있습니다.
+모든 벽돌은 상호 교환이 가능하다. 때문에 리액트 생태계는 혁신적이다. 여러 솔루션들이 서로 경쟁하고 있으며 각자 상황에 맞게 가장 적합한 솔루션을 선택하면 된다.
 
-SPA 프레임 워크의 1세대는 이미 상용화 단계에 이르렀고 더욱 견고해졌다. 여전히 리액트 혁신적이다. [페이스북은 물론이거니와, 에어비앤비, 넷플릭스] (https://github.com/facebook/react/wiki/Sites-Using-React)등 선도적인 테크 회사들이 리액트를 채택해 플랫폼 개발을 하고 있다. 그들 모두가 리액트와 생태계에 만족하고 있으며 리액트의 미래에 투자하고 있다.
+SPA 프레임 워크의 1세대는 이미 상용화 단계에 이르렀고 더욱 견고했지만, 여전히 리액트는 혁신적이다. [페이스북은 물론이거니와, 에어비앤비, 넷플릭스](https://github.com/facebook/react/wiki/Sites-Using-React) 등 선도적인 테크 회사들이 리액트를 채택해 플랫폼 개발을 하고 있다. 그들 모두가 리액트와 생태계에 만족하고 있으며 리액트의 미래에 투자하고 있다.
 
 리액트는 최근 웹 애플리케이션을 개발하는데 가장 좋은 선택이 될 것이다. 뷰 레이어만 제공하지만 (그러나 리액트 생태계는 모든 프레임워크와 서로 상호 교환 가능하다) (https://www.robinwieruch.de/essential-react-libraries-framework/). 리액트는 간결한 API, 놀라운 생태계, 훌륭한 커뮤니티를 갖추고 있다. ["왜 나는 앵귤러(Angular)에서 리액트로 옮겼는가](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)" 블로그에서 리액트를 선택한 개인적인 경험을 작성했다. 굳이 타 프레임워크나 라이브러리가 아닌, 리액트를 선택해 개발하는 이유를 스스로에게 묻는 것이 매우 중요하다. 결국 모든 사람들이 다음 해 리액트 행보에 대해 궁금해 할 것이다.  
 
 
 ### 더 읽어보기
 
-* [왜 나는 앵귤러에서 리액트로 옮겼는가](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)
-* [유연한 리액트 생태계](https://www.robinwieruch.de/essential-react-libraries-framework/)
+* [[영문] 왜 나는 앵귤러에서 리액트로 옮겼는가](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)
+* [[영문] 유연한 리액트 생태계](https://www.robinwieruch.de/essential-react-libraries-framework/)
 
 ## 요구사항
 
-If you are coming from a different SPA framework or library, you should already be familiar with the basics of web development. If you have just started in web development, you should feel comfortable with HTML, CSS and JavaScript ES5 to learn React. The book will smoothly transition to JavaScript ES6 and beyond. I encourage you to join the official [Slack Group](https://slack-the-road-to-learn-react.wieruch.com/) for the book to get help or to help others.
+이전에 SPA 프레임워크나 라이브러리 사용 경험이 있다면 이미 웹 개발 기초 지식이 있을 것이다. 이제 막 웹 개발에 입문했다면 리액트를 배우기 전에 HTML, CSS, 자바스크립트 ES5를 잘 다룰 수 있어야 한다. 이 책에서 자바스크립트 ES6로 점차적으로 변환할 것이다.[공식 슬랙 그룹](https://slack-the-road-to-learn-react.wieruch.com/)에 가입해 동료들을 만나고 서로에게 도움을 주길 바란다.
 
-### Editor and Terminal
+### 코드에디터, 터미널
 
-What about the development environment? You will need a running editor or IDE and terminal (command line tool). You can [follow my setup guide](https://www.robinwieruch.de/developer-setup/). It is adjusted for MacOS users, but you can substitute most of the tools for other operating system. There is a ton of articles out there that will show you how to setup a web development environment in a more elaborated way for your OS.
+개발 환경은 어떻게 갖춰야할까? 코드에디터나 IDE, 터미널(ter커맨드라인 command line)이 필요하다. [개발 환경 설정 가이드](https://www.robinwieruch.de/developer-setup/)를 참고하라. MacOS을 대상으로 작성했으나 타 운영체제에 적용하여도 무방하다. 이미 개발 환경 설정 방법에 관한 수 많은 가이드 문서가 있기 때문에 사용 중인 운영체제에 알맞는 가이드를 쉽게 찾을 수 있을 것이다.
 
-Optionally, you can use git and GitHub on your own, while conducting the exercises in the book, to keep your projects and the progress in repositories on GitHub. There exists a [little guide](https://www.robinwieruch.de/git-essential-commands/) on how to use these tools. But once again, it is not mandatory for the book and can be overwhelming when learning everything from scratch. So you can skip it if you are a newcomer in web development to focus on the essential parts taught in this book.
+git와 깃헙(GitHub)을 사용하여 책에서 실습한 내용을 깃헙 저장소에 커밋하여 프로젝트를 계속해서 진행할 수 있다. 자세한 내용은 [GIT 가이드](https://www.robinwieruch.de/git-essential-commands/)를 읽기 바란다. git 사용은 의무 사항이 아니다. 웹 개발 초보자인 경우 모든 것을 한꺼번에 배우려고 하면 매우 부담스러울 수 있다. 때문에 초보자는 git과 깃헙을 쓰지말고 본문 내용에 집중하기 바란다.
 
-### Node and NPM
+### Node, NPM
 
-Last but not least, you will need an installation of [node and npm](https://nodejs.org/en/). Both are used to manage libraries you will need along the way. In this book, you will install external node packages via npm (node package manager). These node packages can be libraries or whole frameworks.
+마지막으로 [노드(node) 및 npm] (https://nodejs.org/en/)을 설치해야한다. 라이브러리를 관리를 위해 사용된다. 이 책에서는 npm(노드 패키지 관리자: node package manager)을 통해 외부 노드 패키지를 설치한다. 노드 패키지는 라이브러리 또는 전체 프레임워크가 될 수 있다.
 
-You can verify your versions of node and npm on the command line. If you don't get any output in the terminal, you need to install node and npm first. These are only my versions during the time writing this book:
+터미널에서 노드와 npm의 버전을 확인할 수 있다. 터미널에 출력되지 않으면 먼저 노드와 npm를 설치해야한다. 이 책을 쓰는 동안 현재 노드 버전은 아래와 같다. 
+
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -50,27 +51,27 @@ npm --version
 *v5.5.1
 ~~~~~~~~
 
-## node and npm
+## node, npm
 
-This chapter gives you a little crash course in node and npm. It is not exhaustive, but you will get all the necessary tools. If you are familiar with both of them, you can skip the chapter.
+이 장에서는 node와 npm에서 약간의 충돌 과정이 있울 수 있다. 완벽하진 않지만 필요한 모든 도구를 얻을 수 있다. 이미 패키지 설치와 관리가 익숙하다면 이번 장을 건너뛰이번 장을 건너뛸 수 있다.
 
-The **node package manager** (npm) allows you to install external **node packages** from the command line. These packages can be a set of utility functions, libraries or whole frameworks. They are the dependencies of your application. You can either install these packages to your global node package folder or to your local project folder.
+**노드 패키지 관리자** (npm) 명령어로 외부 **노드 패키지**를 로컬에 설치한다. 이들 패키지는 유틸리티 함수, 라이브러리 또는 프레임워크 세트 등이다. 패키지는 애플리케이션에 종속된다. 패키지는 전역 노드 패키지 폴더 또는 프로젝트 내 지역 폴더에 설치할 수 있다.
 
-Global node packages are accessible from everywhere in the terminal and you have to install them only once to your global directory. You can install a global package by typing in your terminal:
+전역 노드 패키지는 모든 터미널에서 액세스 할 수 있으므로 전역 디렉토리 내 한 번만 설치해야한다. 아래 명령어로 글로벌 패키지를 설치해보자.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm install -g <package>
 ~~~~~~~~
 
-The `-g` flag tells npm to install the package globally. Local packages are used in your application. For instance, React as a library will be a local package which can be required in your application for usage. You can install it via the terminal by typing:
+`-g` 플래그는 npm에게 패키지를 전역 설치하도록 지시한다. 지역 패키지는 응용 프로그램 내에서 사용된다. 리액트는 라이브러리로서 응용 프로그램에서 사용할 수 있는 로컬 패키지이다. 아래 명령어로 패키지를 설치하자.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm install <package>
 ~~~~~~~~
 
-In the case of React it would be:
+리액트 설치는 아래와 같이 한다. :
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -81,6 +82,10 @@ The installed package will automatically appear in a folder called *node_modules
 
 But how to initialize the *node_modules/* folder and the *package.json* file for your project in the first place? There is a npm command to initialize a npm project and thus a *package.json* file. Only when you have that file, you can install new local packages via npm.
 
+설치된 패키지는 생성된 *node_modules/* 폴더에 저장되며 종속된 *package.json* 파일에 패키지 리스트가 나열된다.
+
+ *package.json* 파일이 있어야만 npm 명령어로 *node_modules/* 폴더를 초기화할 수 있다. 아래 명령어로 새 지역 패키지를 설치한다.
+ 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm init -y
