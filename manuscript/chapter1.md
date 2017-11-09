@@ -2,7 +2,7 @@
 
 이번 장은 리액트 기초적인 내용을 다룬다. 아직도 리액트를 왜 배워야하는지 모르겠다면 이번 장을 통해 그 답을 찾을 수 있을 것이다. 리액트 애플리케이션 설치를 시작으로 리액트의 세계에 첫 발을 담궈 보자. JSX와 ReactDOM를 배우고 첫 번째 리액트 컴포넌트를 만들어 보자.
 
-## 반가워, 내 이름은 리액트야
+## 안녕, 내 이름은 리액트
 
 **왜 리액트를 배워야 할까?** 최근 몇 년 간 단일 페이지 애플리케이션 ([SPA] (https://en.wikipedia.org/wiki/Single-page_application))이 각광받고 있다. Angular, Ember 및 Backbone 등 자바스크립트 프레임워크의 등장은 바닐라 자바스크립트('Vanilla JavaScript' 타 라이브러리나 프레임워크 사용 없이 순수한 자바스크립트로 개발하는 것을 말함)와 jQuery를 사용하지 않고도 최신 웹 응용 프로그램을 구축할 수 있게 만들었다. 이외에도 SPA 프레임워크는 매우 다양하다. Angular 2010, Backbone 2010, Ember 2011 등 배포된 대부분 SPA 프레임워크는 1세대이다.
 
@@ -21,12 +21,12 @@ SPA 프레임 워크의 1세대는 이미 상용화 단계에 이르렀고 더�
 리액트는 최근 웹 애플리케이션을 개발하는데 가장 좋은 선택이 될 것이다. 뷰 레이어만 제공하지만 (그러나 리액트 생태계는 모든 프레임워크와 서로 상호 교환 가능하다) (https://www.robinwieruch.de/essential-react-libraries-framework/). 리액트는 간결한 API, 놀라운 생태계, 훌륭한 커뮤니티를 갖추고 있다. ["왜 나는 앵귤러(Angular)에서 리액트로 옮겼는가](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)" 블로그에서 리액트를 선택한 개인적인 경험을 작성했다. 굳이 타 프레임워크나 라이브러리가 아닌, 리액트를 선택해 개발하는 이유를 스스로에게 묻는 것이 매우 중요하다. 결국 모든 사람들이 다음 해 리액트 행보에 대해 궁금해 할 것이다.  
 
 
-### 더 읽어보기
+### 읽기자료
 
 * [[영문] 왜 나는 앵귤러에서 리액트로 옮겼는가](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)
 * [[영문] 유연한 리액트 생태계](https://www.robinwieruch.de/essential-react-libraries-framework/)
 
-## 요구사항
+## 준비사항
 
 이전에 SPA 프레임워크나 라이브러리 사용 경험이 있다면 이미 웹 개발 기초 지식이 있을 것이다. 이제 막 웹 개발에 입문했다면 리액트를 배우기 전에 HTML, CSS, 자바스크립트 ES5를 잘 다룰 수 있어야 한다. 이 책에서 자바스크립트 ES6로 점차적으로 변환할 것이다.[공식 슬랙 그룹](https://slack-the-road-to-learn-react.wieruch.com/)에 가입해 동료들을 만나고 서로에게 도움을 주길 바란다.
 
@@ -78,10 +78,6 @@ npm install <package>
 npm install react
 ~~~~~~~~
 
-The installed package will automatically appear in a folder called *node_modules/* and will be listed in the *package.json* file next to your other dependencies.
-
-But how to initialize the *node_modules/* folder and the *package.json* file for your project in the first place? There is a npm command to initialize a npm project and thus a *package.json* file. Only when you have that file, you can install new local packages via npm.
-
 설치된 패키지는 생성된 *node_modules/* 폴더에 저장되며 종속된 *package.json* 파일에 패키지 리스트가 나열된다.
 
  *package.json* 파일이 있어야만 npm 명령어로 *node_modules/* 폴더를 초기화할 수 있다. 아래 명령어로 새 지역 패키지를 설치한다.
@@ -91,39 +87,41 @@ But how to initialize the *node_modules/* folder and the *package.json* file for
 npm init -y
 ~~~~~~~~
 
-The `-y` flag is a shortcut to initialize all the defaults in your *package.json*. If you don't use the flag, you have to decide how to configure the file. After initializing your npm project you are good to install new packages via `npm install <package>`.
+`-y` 표시는 *package.json*의 기본값을 초기화하는 단축기다. 플래그를 사용하지 않으면 파일을 구성하는 방법을 결정해야 한다. npm 프로젝트를 초기화 한 후에는`npm install <package>`를 통해 새 패키지를 설치하는 것이 좋다.
 
-One more word about the *package.json*. The file enables you to share your project with other developers without sharing all the node packages. The file has all the references of node packages used in your project. These packages are called dependencies. Everyone can copy your project without the dependencies. The dependencies are references in the *package.json*. Someone who copies your project can simply install all packages by using `npm install` on the command line. The `npm install` script takes all the dependencies listed in the *package.json* file and installs them in the *node_modules/* folder.
+*package.json*에 대해 더 알아보자. *package.json*는 노드 패키지 전체 파일을 공유하지 않고도 다른 개발자와 프로젝트를 공유 할 수 있다. 이 파일 내 프로젝트에 사용된 노드 패키지 리스트가 모두 적혀 있있는데, 이러한 패키지를 종속성(dependencies)이라 부른다. 패키지 종속성없어도 프로젝트를 다운 받을 수 있다. 종속성은 *package.json*에 적혀있다. 프로젝트를 복사하고 `npm install`을 사용해 모든 패키지를 간단하게 설치할 수 있다. `npm install` 스크립트는 *package.json* 파일에 나열된 모든 의존성을 취하여 *node_modules/* 폴더에 설치한다. 배운 npm 명령을 한 번 더 입력해보자.
 
-I want to cover one more npm command:
+npm 명령어 하나가 더 남았다. :
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm install --save-dev <package>
 ~~~~~~~~
 
-The `--save-dev` flag indicates that the node package is only used in the development environment. It will not be used in production when you deploy your application on a server. What kind of node package could that be? Imagine you want to test your application with the help of a node package. You need to install that package via npm, but want to exclude it from your production environment. Testing should only happen during the development process but not when your application is already running in production. There you don't want to test your application anymore. It should be tested already and work out of the box for your users. That's only one use case where you would want to use the `--save-dev` flag.
+`--save-dev` 명령어는 노드 패키지가 개발(development)환경에서 사용되는 것을 말한다. 애플리케이션 배포(production) 시, 개발 환경과 달리 사용하지 않는 노드 패키지가 있다. 애플리케이션 테스트를 위한 노드 패키지가 그 예다. npm을 통해 해당 패키지를 설치할 수 있지만, 실제 프로덕션 환경에서는 제외해야 한다. 테스트는 개발 프로세스 중에만 수행되고, 실제 배포된 환경에서는 제외된다. 이를 위해 `--save-dev`를 사용된다.
 
-You will encounter more npm commands on your way. But these will be sufficient for now.
+앞으로 더 많은 npm 명령어를 다루게 될 것이지만 지금은 이 정도로 충분하다.
 
-### Exercises:
+### 실습
 
-* setup a throw away npm project
-  * create a new folder with `mkdir <folder_name>`
-  * navigate into the folder with `cd <folder_name>`
-  * execute `npm init -y` or `npm init`
-  * install a local package like React with `npm install react`
-  * have a look into the *package.json* file and the *node_modules/* folder
-  * find out on your own how to uninstall the *react* node package again
-* read more about [npm](https://docs.npmjs.com/)
+* npm 프로젝트 설치하기
+  * `mkdir <folder_name>`를 입력해 새 폴더 생성한다.
+  * `cd <folder_name>` 생성한 폴더 내로 들어간다.
+  * `npm init -y` 또는 `npm init` 을 실행한다.
+  * `npm install react`를 입력해 리액트를 전역 패키지로 설치한다.
+  * *package.json* 파일과 *node_modules/* 폴더가 생성되었는지 확인한다.
+  * *react* 노드 패키지를 제거하고 다시 설치하는 방법을 스스로 찾아본다.
 
-## Installation
+* [npm 문서](https://docs.npmjs.com/)를 읽어본다.
 
-There are multiple approaches to get started with a React application.
+## 설치
 
-The first one is to use a CDN. That may sound more complicated than it is. A CDN is a [content delivery network](https://en.wikipedia.org/wiki/Content_delivery_network). Several companies have CDNs that host files publicly for people to consume them. These files can be libraries like React, because after all the bundled React library is only a *react.js* JavaScript file. It can be hosted somewhere and you can require it in your application.
+리액트 애플리케이션 설치를 위한 몇 가지 방법이 있다.
 
-How to use a CDN to get started in React? You can inline the `<script>` tag in your HTML that points to a CDN url. To get started in React you need two files (libraries): *react* and *react-dom*.
+첫 번째는 CDN을 사용하는 것이다. CDN이란 [콘텐츠 전송 네트워크(Content_delivery_network)](https://en.wikipedia.org/wiki/Content_delivery_network)를 말한다. 많은 회사들이 CDN를 사용해 라이브러리를 제공하고 있다. 번들링된 리액트 라이브러리는 단 *react.js* 파일 뿐이기 때문에 리액트도 라이브러리다. CDN을 별도로 호스팅하거나 응용 프로그램 내에 설치할 수 있다.
+
+CDN을 사용해 리액트를 시작해보자. HTML 파일 내 `<script>` 인라인 태그로 CDN url을 작성한다. *react*와 *react-dom* 두 라이브러리 url을 추가한다.
+
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -131,9 +129,9 @@ How to use a CDN to get started in React? You can inline the `<script>` tag in y
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 ~~~~~~~~
 
-But why should you use a CDN when you have npm to install node packages such as React?
+npm으로 노드 패키지 설치할 때도 왜 CDN을 사용해야할까? 
 
-When your application has a *package.json* file, you can install *react* and *react-dom* from the command line. The requirement is that the folder is initialized as npm project by using `npm init -y` with a *package.json* file. You can install multiple node packages in one line with npm.
+애플리케이션 내 *package.json* 파일이 있다면, npm으로 *react* 및 *react-dom*을 설치하면 된다. 사전에 *npm init -y* 명령어를 입력해 * package.json*을 초기화해야한다. npm 한 줄로 여러 노드 패키지를 한 번에 설치해보자.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -146,7 +144,7 @@ Unfortunately that's not everything. You would have to deal with [Babel](http://
 
 Because of this reason, Facebook introduced *create-react-app* as a zero-configuration React solution. The next chapter will show you how to setup your application by using this bootstrapping tool.
 
-### Exercises:
+### 실습
 
 * read more about [React installations](https://facebook.github.io/react/docs/installation.html)
 
@@ -198,7 +196,7 @@ hackernews/
     logo.svg
 ~~~~~~~~
 
-A short break down of the folder and files. It is fine if you don't understand all of them in the beginning.
+각 파일과 폴더 단위가 무엇을 지칭하는 지 알아보자. 처음부터 모든 것을 이해하지 않아도 된다.
 
 * **README.md:** The .md extension indicates that the file is a markdown file. Markdown is used as a lightweight markup language with plain text formatting syntax. Many source code projects come with a *README.md* file to give you initial instructions about the project. When pushing your project to a platform such as GitHub eventually, the *README.md* file will show its content prominently when you access the repository. Because you have used *create-react-app*, your *README.md* should be the same as shown in the official [create-react-app GitHub repository](https://github.com/facebookincubator/create-react-app).
 
@@ -751,12 +749,11 @@ The `Component` class encapsulates all the implementation details of a React com
 
 The methods a React `Component` exposes is the public interface. One of these methods has to be overridden, the others don't need to be overridden. You will learn about the latter ones when the book arrives at lifecycle methods in a later chapter. The `render()` method has to be overridden, because it defines the output of a React `Component`. It has to be defined.
 
-Now you know the basics around JavaScript ES6 classes and how they are used in React to extend them to components. You will learn more about the Component methods when the book describes React lifecycle methods.
+이제 자바스크립트 ES6 클래스 기초와 이를 리액트 컴포넌트로 사용하는 방법을 배웠다. 컴포넌트 메소드는 리액트 생명주기에 대해 배울 때 자세히 알아볼 것이다.
 
-### Exercises:
+### 실습
 
-* read more about [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)
-
+* [ES6 클래스](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)에 대해 더 자세히 읽어본다.
 {pagebreak}
 
 You have learned to bootstrap your own React application! Let's recap the last chapters:
@@ -774,6 +771,6 @@ You have learned to bootstrap your own React application! Let's recap the last c
   * arrow functions can be used to keep your functions concise
   * classes are used to define components in React by extending them
 
-It makes sense to take a break at this point. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far.
+이 시점에서 잠시 휴식 시간을 가지자. 학습 내용을 되새기고 스스로 적용해보자. 지금까지 작성한 소스 코드를 테스트 학습 내용을 내부화하고 독자적으로 적용하십시오. 지금까지 작성한 소스 코드로 이것저것 시험해보자.
 
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/4.1).
+[공식 깃헙 저장소](https://github.com/rwieruch/hackernews-client/tree/4.1)에서 소스코드를 참고하라.
