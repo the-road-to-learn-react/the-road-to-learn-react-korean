@@ -4,7 +4,7 @@
 
 ## 안녕, 내 이름은 리액트
 
-**왜 리액트를 배워야 할까?** 최근 몇 년 간 단일 페이지 애플리케이션 ([SPA] (https://en.wikipedia.org/wiki/Single-page_application))이 각광받고 있다. Angular, Ember 및 Backbone 등 자바스크립트 프레임워크의 등장은 바닐라 자바스크립트('Vanilla JavaScript' 타 라이브러리나 프레임워크 사용 없이 순수한 자바스크립트로 개발하는 것을 말함)와 jQuery를 사용하지 않고도 최신 웹 응용 프로그램을 구축할 수 있게 만들었다. 이외에도 SPA 프레임워크는 매우 다양하다. Angular 2010, Backbone 2010, Ember 2011 등 배포된 대부분 SPA 프레임워크는 1세대이다.
+**왜 리액트를 배워야 할까?** 최근 몇 년 간 단일 페이지 애플리케이션 ([SPA: Single Page Application](https://en.wikipedia.org/wiki/Single-page_application))이 각광받고 있다. Angular, Ember 및 Backbone 등 자바스크립트 프레임워크의 등장은 바닐라 자바스크립트('Vanilla JavaScript' 타 라이브러리나 프레임워크 사용 없이 순수한 자바스크립트로 개발하는 것을 말함)와 jQuery를 사용하지 않고도 최신 웹 응용 프로그램을 구축할 수 있게 만들었다. 이외에도 SPA 프레임워크는 매우 다양하다. Angular 2010, Backbone 2010, Ember 2011 등 배포된 대부분 SPA 프레임워크는 1세대이다.
 
 리액트는 2013년 페이스북이 처음 공표했다. 리액트는 SAP 프레임워크가 아닌, 뷰 라이브러리(View Library)이다. 여기서 뷰(View)란 [MVC](https://de.wikipedia.org/wiki/Model_View_Controller) (Model–View–Controller, MVC는 소프트웨어 공학에서 사용되는 소프트웨어 디자인 패턴을 말함) 패턴의 'V'를 말한다. 뷰는 브라우저 내 특정 컴포넌트를 보여준다. 그러나 리액트를 이루는 전체는 하나의 단일 페이지 애플리케이션을 제작할 수 있게 해준다.
 
@@ -138,28 +138,31 @@ npm으로 노드 패키지 설치할 때도 왜 CDN을 사용해야할까?
 npm install react react-dom
 ~~~~~~~~
 
-That approach is often used to add React to an existing application that is managed with npm.
+이 방법은 npm으로 관리 중인 현재 애플리케이션에 리액트를 추가할 때 사용한다.
 
-Unfortunately that's not everything. You would have to deal with [Babel](http://babeljs.io/) to make your application aware of JSX (the React syntax) and JavaScript ES6. Babel transpiles your code so that browsers can interpret JavaScript ES6 and JSX. Not all browsers are capable of interpreting the syntax. The setup includes a lot of configuration and tooling. It can be overwhelming for React newcomers to bother with all the configuration.
+안타깝게도 이 것이 전부는 아니다. JSX(리액트 문법)과 자바스크립트 ES6로 만든 애플리케이션은 [바벨(babel)](http://babeljs.io/)을 사용한다. 바벨은 각기 다른 브라우저 사양에서도 자바스크립트 ES6와 JSX를 사용할 수 있게 변환해준다. 모든 브라우저가 ES6 문법을 해석할 수 없다. 바벨 설치를 위해 많은 환경 설정과 도구가 필요하다 떄문에 리액트 초심자는 바벨 환경구성하는데 중압감을 느낄 수 있다.
 
-Because of this reason, Facebook introduced *create-react-app* as a zero-configuration React solution. The next chapter will show you how to setup your application by using this bootstrapping tool.
+이러한 이유로, 페이스북에서는  zero-configuration React 솔루션인 *create-react-app* 만들었다. 다음 장에서는 이 부트스트래핑 툴로 애플리케이션을 설치하는 방법을 다룰 것이다.
 
 ### 실습
 
 * read more about [React installations](https://facebook.github.io/react/docs/installation.html)
 
-## Zero-Configuration Setup
+## 제로 구성 설치
 
-In the Road to learn React, you will use [create-react-app](https://github.com/facebookincubator/create-react-app) to bootstrap your application. It's an opinionated yet zero-configuration starter kit for React introduced by Facebook in 2016. People would [recommend it to beginners by 96%](https://twitter.com/dan_abramov/status/806985854099062785). In *create-react-app* the tooling and configuration evolve in the background while the focus is on the application implementation.
+본 책에서는 [create-react-app](https://github.com/facebookincubator/create-react-app)으로 애플리케이션을 부트스트래핑한다. 2016년 페이스북이 제안한 리액트 제로 구성 설치 스타터 킷(Zero-Configuration Setup Starter Kit)이다. [한 조사](https://twitter.com/dan_abramov/status/806985854099062785)에 따르면 96% 이상 넘는 사람들이 리액트 초보자들에게 create-react-app을 추천한다고 말했다.
 
-To get started, you will have to install the package to your global node packages. After that, you always have it available on the command line to bootstrap new React applications.
+*create-react-app*에서는 도구 구현과 구성이 백그라운드에서 진행되며 애플리케이션 구현에 중점을 둔다.
+
+시작하려면 글로벌 노드 패키지에 패키지를 설치해야한다. 이후에는 새로운 애플리케이션을 부트스트랩하려면 명령어를 입력해 실행하면 된다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm install -g create-react-app
 ~~~~~~~~
 
-You can check the version of *create-react-app* to verify a successful installation on your command line:
+*create-reaction-app* 버전을 확인해 성공적으로 패키지가 설치되었는지 확인할 수 있다.
+
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -167,7 +170,7 @@ create-react-app --version
 *v1.4.1
 ~~~~~~~~
 
-Now you can bootstrap your first React application. We call it *hackernews*, but you can choose a different name. The bootstrapping takes a couple of seconds. Afterward, simply navigate into the folder:
+이제 첫 번째 리액트 애플리케이션을 부트스트래핑해보자. 애플리케이션 이름을 *hackernews*라 하겠다. 물론 다른 이름을 사용해도 된다. 부트스트랩에는 몇 초가 걸린다. 그 후 폴더 안으로 이동한다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -175,7 +178,7 @@ create-react-app hackernews
 cd hackernews
 ~~~~~~~~
 
-Now you can open the application in your editor. The following folder structure, or a variation of it depending on the *create-react-app* version, should be presented to you:
+이제 코드에디터에서 애플리케이션을 열 수 있다. 폴더 내 아래와 같이 *create-react-app* 구조가 보일 것이다.
 
 {title="Folder Structure",lang="text"}
 ~~~~~~~~
@@ -198,21 +201,21 @@ hackernews/
 
 각 파일과 폴더 단위가 무엇을 지칭하는 지 알아보자. 처음부터 모든 것을 이해하지 않아도 된다.
 
-* **README.md:** The .md extension indicates that the file is a markdown file. Markdown is used as a lightweight markup language with plain text formatting syntax. Many source code projects come with a *README.md* file to give you initial instructions about the project. When pushing your project to a platform such as GitHub eventually, the *README.md* file will show its content prominently when you access the repository. Because you have used *create-react-app*, your *README.md* should be the same as shown in the official [create-react-app GitHub repository](https://github.com/facebookincubator/create-react-app).
+* **README.md:** .md 확장자는 파일이 마크다운(markdown) 파일이다. Markdown은 일반 텍스트와 함께 간단한 마크업 언어로 작성된다. 많은 소스 코드 프로젝트에는 *README.md* 파일에 프로젝트 설명 및 설치 등 안내 사항을 담고 있다. 깃헙 저장소 페이지에 진입하면 초기화면에  *README.md*이 먼저 보인다. *create-react-app*을 설치한 후 바로 깃헙에 프로젝트를 올린다면 *README.md*는 공식 [create-react-app 깃헙 저장소](https://github.com/facebookincubator/create-react-app)와 동일하다.
 
-* **node_modules/:** The folder has all the node packages that were and are installed via npm. Since you have used *create-react-app*, there should be already a couple of node modules installed for you. Usually you will never touch this folder, but only install and uninstall node packages with npm from the command line.
+* **node_modules/:** 이 폴더에는 npm을 통해 설치되었던 모든 노드 패키지가 들어있다. 이미 *create-react-app*를 사용했으므로 몇 개의 노드 모듈이 설치되어 있어야 한다. 보통 이 폴더를 절대로 건드리지 않는다. npm 명령어를 사용해 패키지를 설치 및 제거한다.
 
-* **package.json:** The file shows you a list of node package dependencies and other project configuration.
+* **package.json:** 이 파일에는 노드 패키지 종속성 및 기타 프로젝트 구성 목록을 포함한다.
 
-* **.gitignore:** The file indicates all files and folders that shouldn't be added to your remote git repository when using git. They should only live in your local project. The *node_modules/* folder is such a use case. It is sufficient to share the *package.json* file with your peers to enable them to install all dependencies on their own without sharing the whole dependency folder.
+* **.gitignore:** 이 파일은 git을 사용할 때 원격 git 저장소에 추가가 되지 않아야할 모든 파일과 폴더를 나타낸다. 예를 들어 *node_module*와 같이 로컬 프로젝트에만 있어야 한다. 종속성 폴더 전체를 올리지 않고도 공유된 *package.json* 파일만으로 종속성을 설치할 수 있다.
 
-* **public/:** The folder holds all your files when building your project for production. Eventually all your written code in the *src/* folder will be bundled into a couple of files when building your project and placed in the public folder.
+* **public/:** 배포를 위해 프로젝트를 빌드 할 때에  필요한 모든 파일이 들어 있다. 프로젝트 빌드 할 때, *src/* 폴더 내 모든 코드는 몇 개의 파일로 묶여 *public* 폴더에 배치된다.
 
-After all, you don't need to touch the mentioned files and folders. In the beginning everything you need is located in the *src/* folder. The main focus lies on the *src/App.js* file to implement React components. It will be used to implement your application, but later you might want to split up your components into multiple files whereas each file maintains one or a few components on its own.
+따라서 위에서 언급된 파일 및 폴더를 건드릴 필요가 없다. 초기에는 필요한 모든 것이 *src/* 폴더에 있다. 중요한 파일은 *src/App.js* 로 리액트 컴포넌트가 있다. 현재 이 파일 전체가 애플리케이션을 이루고 있으나, 리액트 컴포넌트를 여러 파일로 분절하여 나눠 유지 관리할 수 있다.
 
-Additionally, you will find a *src/App.test.js* file for your tests and a *src/index.js* as entry point to the React world. You will get to know both files in a later chapter. In addition, there is a *src/index.css* and a *src/App.css* file to style your general application and your components. They all come with default style when you open them.
+이외에 테스트를 위한 *src/App.test.js* 파일과 리액트의 진입점이라 볼 수 있는 *src/index.js* 파일이 보일 것이다. 다음 장에서 두 파일이 어떤 것인지 알게 될 것이다. 또한 애플리케이션과 컴포넌트 스타일을 지정하는 *src/index.css* 및 *src/App.css* 파일이 있다. 현재는 기본 스타일만 적용되어 있다.
 
-The *create-react-app* application is a npm project. You can use npm to install and uninstall node packages to your project. Additionally it comes with the following npm scripts for your command line:
+* create-reaction-app * 애플리케이션은 npm 프로젝트이다. npm을 사용하여 프로젝트에 노드 패키지를 설치하고 제거 할 수 있다. 또한 npm 명령어를 사용할 수 있다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -226,18 +229,19 @@ npm test
 npm run build
 ~~~~~~~~
 
-The scripts are defined in your *package.json*. Your boilerplate React application is bootstrapped now. The exciting part comes in the exercises to finally run your bootstrapped application in the browser.
+스크립트 명령어는 * package.json *에 정의되어 있다. 보일러플레이트 리액트 애플리케이션이 부트스트래핑된다. 이제 아래 실습을 통해 브라우저에서 애플리케이션이 구동되는 것을 확인해보자.
 
-### Exercises:
+### 실습
 
-* `npm start` your application and visit the application in your browser
-* run the interactive `npm test` script
-* check the content of your *public/* folder, run the `npm run build` script and verify that files were added to the folder (you can remove these files again, but they don't do any harm)
-* make yourself familiar with the folder structure
-* make yourself familiar with the content of the files
-* read more about [the npm scripts and create-react-app](https://github.com/facebookincubator/create-react-app)
+* `npm start`을 실행해 브라우저에서 구동 중인 애플리케이션 확인한다.
+* `npm test`를 실행해본다.
+* *public/*폴더 내 어떤 내용이 있는지 확인하고, `npm run build`스크립트를 실행해 폴더에 파일이 추가되었는지 확인한다. (추가된 파일을 다시 제거할 수 있고 프로젝트에 영향을 주지 않는다.)
+* 폴더 구조가 익숙해지도록 한다.
+* 파일 내용이 익숙해지도록 한다.
+* npm 스크립트 및 create-react-app에 대한 [자세한 내용](https://github.com/facebookincubator/create-react-app)을 읽어본다.
 
-## Introduction to JSX
+
+## JSX 들어가기
 
 Now you will get to know JSX. It is the syntax in React. As mentioned before, *create-react-app* has already bootstrapped a boilerplate application for you. All files come with default implementations. Let's dive into the source code. The only file you will touch in the beginning will be the *src/App.js* file.
 
@@ -294,7 +298,7 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-Now, you only return HTML in your `render()` method without JavaScript. Let's define the "Welcome to the Road to learn React" as a variable. A variable can be used in your JSX by using curly braces.
+이제 자바스크립트 없이 Now, you only return HTML in your `render()` method without JavaScript. Let's define the "Welcome to the Road to learn React" as a variable. A variable can be used in your JSX by using curly braces.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
