@@ -32,7 +32,7 @@ SPA 프레임 워크의 1세대는 이미 상용화 단계에 이르렀고 더�
 
 ### 코드에디터, 터미널
 
-개발 환경은 어떻게 갖춰야할까? 코드에디터나 IDE, 터미널(ter커맨드라인 command line)이 필요하다. [개발 환경 설정 가이드](https://www.robinwieruch.de/developer-setup/)를 참고하라. MacOS을 대상으로 작성했으나 타 운영체제에 적용하여도 무방하다. 이미 개발 환경 설정 방법에 관한 수 많은 가이드 문서가 있기 때문에 사용 중인 운영체제에 알맞는 가이드를 쉽게 찾을 수 있을 것이다.
+개발 환경은 어떻게 갖춰야할까? 코드에디터나 IDE, 터미널(terminal : 또는 커맨드라인(command line)라고도 함)이 필요하다. [개발 환경 설정 가이드](https://www.robinwieruch.de/developer-setup/)를 참고하라. MacOS을 대상으로 작성했으나 타 운영체제에 적용하여도 무방하다. 이미 개발 환경 설정 방법에 관한 수 많은 가이드 문서가 있기 때문에 사용 중인 운영체제에 알맞는 가이드를 쉽게 찾을 수 있을 것이다.
 
 git와 깃헙(GitHub)을 사용하여 책에서 실습한 내용을 깃헙 저장소에 커밋하여 프로젝트를 계속해서 진행할 수 있다. 자세한 내용은 [GIT 가이드](https://www.robinwieruch.de/git-essential-commands/)를 읽기 바란다. git 사용은 의무 사항이 아니다. 웹 개발 초보자인 경우 모든 것을 한꺼번에 배우려고 하면 매우 부담스러울 수 있다. 때문에 초보자는 git과 깃헙을 쓰지말고 본문 내용에 집중하기 바란다.
 
@@ -243,7 +243,7 @@ npm run build
 
 ## JSX 들어가기
 
-Now you will get to know JSX. It is the syntax in React. As mentioned before, *create-react-app* has already bootstrapped a boilerplate application for you. All files come with default implementations. Let's dive into the source code. The only file you will touch in the beginning will be the *src/App.js* file.
+이제 JSX에 대해 알아보자. JSX는 리액트 구문이다. 앞서 언급했듯이 *create-react-app*로 애플리케이션을 부트스트래핑한다. 애플리케이션을 구현하는 기본적인 파일이 제공된다. 소스 코드를 살펴보자. *src/App.js* 파일을 먼저 만들어보자.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -270,15 +270,18 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-Don't let yourself get confused by the import/export statements and class declaration. These features are already JavaScript ES6. We will revisit those in a later chapter.
 
-In the file you have an **React ES6 class component** with the name App. It is a component declaration. Basically after you have declared a component, you can use it as element everywhere in your application. It will produce an **instance** of your **component** or in other words: the component gets instantiated.
+import/export 및 클래스 선언을 먼저 하려고 서두르지 않아도 된다. 이 기능은 자바스크립트 ES6 기능이다. 다음 장에서 이들에 대해 더 자세히 알아볼 것이다.
 
-The **element** it returns is specified in the `render()` method. Elements are what components are made of. It is useful to understand the differences between component, instance and element.
+`App`파일 내 **리액트 ES6 클래스 컴포넌트**를 볼 수 있다. 이 파일에서 바로 컴포넌트를 선언한다.
+ 일반적으로 컴포넌트를 선언한 후에는 애플리케이션 내 어느 곳이든지 다시 요소사용될 수 있다. 컴포넌트는 다른 말로 인스턴스를 사용한다. 다시 말하자면 컴포넌트가 인스턴스화 된다.
 
-Pretty soon, you will see where the App component is instantiated. Otherwise you wouldn't see the rendered output in the browser, would you? The App component is only the declaration, but not the usage. You would instantiate the component somewhere in your JSX with `<App />`.
+리턴하는 **요소(element) **는`render()`메소드에서 지정한다. 요소는 컴포넌트를 이룬다. 컴포넌트(componet), 인스턴스(Instance), 요소(element) 간의 차이를  알고 있다면 이해가 쉬울 것이다.
 
-The content in the render block looks pretty similar to HTML, but it's JSX. JSX allows you to mix HTML and JavaScript. It's powerful yet confusing when you are used to separate your HTML and JavaScript. That's why a good starting point is to use basic HTML in your JSX. In the beginning, remove all the distracting content in the file.
+이제 `App` 컴포넌트가 인스턴스화 된 것을 볼 수 있다. 인스턴스가 되지 않았다면, 브라우저에서 렌더링 된 결과를 볼 수 없게 된다. App 컴포넌트는 선언되었지만, 다른 곳에 재사용되지 않았다. JSX문법인 `<App/>`를 사용하면 어느 컴포넌트에서나 인스턴스화하여 재사용할 수 있다.   
+
+`render()` 블록 내 내용은 HTML과 비슷해보이지만 JSX 문법으로 작성한다. JSX를 사용하면 HTML과 자바스크립트를 결합해 쓸 수 있다. HTML과 자바스크립트를 분리해 사용해왔던 분들에게는 혼란스러울 수 있다. 때문에 JSX에서 기본 HTML을 처음 사용하도록 한다. 이제 `App` 파일에 있는 모든 내용을 지우자.
+
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -298,7 +301,7 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-이제 자바스크립트 없이 Now, you only return HTML in your `render()` method without JavaScript. Let's define the "Welcome to the Road to learn React" as a variable. A variable can be used in your JSX by using curly braces.
+이제 자바스크립트 없이 `render()` 메소드로 HTML를 반환했다. "리액트 배움의 길에 오신 것을 환영합니다"라는 새 변수를 만들고, 이 변수를 JSX 문법인 중괄호(`{}`) 안에 넣어보자.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -308,7 +311,7 @@ import './App.css';
 class App extends Component {
   render() {
 # leanpub-start-insert
-    var helloWorld = 'Welcome to the Road to learn React';
+    var helloWorld = '리액트에 오신 여러분을 환영합니다';
 # leanpub-end-insert
     return (
       <div className="App">
@@ -323,7 +326,7 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-It should work when you start your application on the command line with `npm start` again.
+다시 `npm start` 명령어를 실행해 애플리케이션을 시작해보자.
 
 Additionally you might have noticed the `className` attribute. It reflects the standard `class` attribute in HTML. Because of technical reasons, JSX had to replace a handful of internal HTML attributes. You can find all of the [supported HTML attributes in the React documentation](https://facebook.github.io/react/docs/dom-elements.html). They all follow the camelCase convention. On your way to learn React, you will come across some more JSX specific attributes.
 
