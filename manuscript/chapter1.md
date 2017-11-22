@@ -328,21 +328,23 @@ export default App;
 
 다시 `npm start` 명령어를 실행해 애플리케이션을 시작해보자.
 
-Additionally you might have noticed the `className` attribute. It reflects the standard `class` attribute in HTML. Because of technical reasons, JSX had to replace a handful of internal HTML attributes. You can find all of the [supported HTML attributes in the React documentation](https://facebook.github.io/react/docs/dom-elements.html). They all follow the camelCase convention. On your way to learn React, you will come across some more JSX specific attributes.
+아마 `className` 속성(attribute)이란 것을 눈치챘을 것이다. 
+404/5000
+이것은 HTML의 표준`class` 속성에 영향을 ㅂ다았다. 기술적인 이유로 JSX는 몇 가지 내부 HTML 속성을 대체해야했다. 리액트 공식문서에서 [지원하는 HTML 속성](https://facebook.github.io/react/docs/dom-elements.html)을 확인 할 수 있다. 모두 카멜케이스(camelCase) 표기법을 따른다. 앞으로 리액트를 배우면서 JSX 특정 속성을 좀더 살펴볼 것이다.
 
-### Exercises:
+### 실습
 
-* define more variables and render them in your JSX
-  * use a complex object to represent an user with a first name and last name
-  * render the user properties in your JSX
-* read more about [JSX](https://facebook.github.io/react/docs/introducing-jsx.html)
-* read more about [React components, elements and instances](https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html)
+* JSX 안에 새 변수를 만들고 렌더링한다.
+  * 객체를 사용해 유저의 성과 이름을 나타낸다.
+  * JSX 내 유저 속성을 렌더링한다. 
+* [JSX](https://facebook.github.io/react/docs/introducing-jsx.html)에 대해 읽어본다. 
+* [리액트 컴포넌트, 요소, 인스턴스](https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html)에 대해 읽어본다.
 
-## ES6 const and let
+## ES6 const, let
 
-I guess you noticed that we declared the variable `helloWorld` with a `var` statement. JavaScript ES6 comes with two more options to declare your variables: `const` and `let`. In JavaScript ES6, you will rarely find `var` anymore.
+앞에서 `var` 문을 사용해 변수 `helloWorld`를 선언했다. 자바스크립트 ES6의 변수 선언은 `const`또는 `let`으로 한다. ES6에서는 `var` 사용이 극히 드물다.
 
-A variable declared with `const` cannot be re-assigned or re-declared. It cannot get mutated (changed, modified). You embrace immutable data structures by using it. Once the data structure is defined, you cannot change it.
+`const`로 선언된 변수는 다시 할당하거나 선언 할 수 없다. 수정되거나 변경될 수 없다. 불변 데이터 구조(immutable data structures)이다. 데이터 구조가 정의되면, 다시 변경할 수 없다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -351,7 +353,7 @@ const helloWorld = 'Welcome to the Road to learn React';
 helloWorld = 'Bye Bye React';
 ~~~~~~~~
 
-A variable declared with `let` can get mutated.
+반면 `let`은 변경 가능하다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -360,9 +362,9 @@ let helloWorld = 'Welcome to the Road to learn React';
 helloWorld = 'Bye Bye React';
 ~~~~~~~~
 
-You would use it when you would need to re-assign a variable.
+변수를 다시 할당해야 할 때 사용할 수 있다.
 
-However, you have to be careful with `const`. A variable declared with `const` cannot get modified. But when the variable is an array or object, the value it holds can get updated. The value it holds is not immutable.
+그러나, `const` 사용에 주의해야한다. `const`로 선언된 변수는 수정할 수 없다. 그러나 변수가 배열이나 객체일 경우, 갖고 있는 변수는 수정할 수 있다. 보유하고 있는 값은 변경할 수 없다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -373,11 +375,11 @@ const helloWorld = {
 helloWorld.text = 'Bye Bye React';
 ~~~~~~~~
 
-But when to use each declaration? There are different opinions about the usage. I suggest using `const` whenever you can. It indicates that you want to keep your data structure immutable even though values in objects and arrays can get modified. If you want to modify your variable, you can use `let`.
+그럼 어느 상황에서 `let`과 `const`를 사용해야할까? 사용법에 대한 의견은 서로 분분하다. 최대한 `const`를 사용하려고 노력하는 것이 좋다. 객체와 배열의 값이 변경 될 수 있더라도 데이터 구조를 변경하지 않으려는 것을 말한다. 변수를 수정하려면 `let`을 사용할 수 있다.
 
-Immutability is embraced in React and its ecosystem. That's why `const` should be your default choice when you define a variable. Still, in complex objects the values within can get modified. Be careful about this behavior.
+불변성은 리액트와 그 생태계가 따르고 있다. 그래서 변수를 정의 할 때 `const`가 우선시 되어야 한다. 객체가 복잡해지면 내부 값을 수정해야되는 경우도 있으니 주의해라. 
 
-In your application, you should use `const` over `var`.
+응용 프로그램에서는`const` 대신`var`을 사용해야한다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -402,11 +404,11 @@ export default App;
 
 ### Exercises:
 
-* read more about [ES6 const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
-* read more about [ES6 let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
-* research more about immutable data structures
-  * why do they make sense in programming in general
-  * why are they used in React and its ecosystem
+* [ES6 const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)에 더 읽어본다.
+* [ES6 let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)에 대해 읽어본다.
+* 불변 데이터 구조에 대해 더 조사한다.
+  * 일반적으로 프로그래밍에서 말하는 불편 데이터 구조란 무엇인지 알아본다.
+  * 리액트와 생테계에서 사용되는 이유에 대하 알아본다.
 
 ## ReactDOM
 
