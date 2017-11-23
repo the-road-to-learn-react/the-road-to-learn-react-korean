@@ -4,7 +4,7 @@
 
 ## 안녕, 내 이름은 리액트
 
-**왜 리액트를 배워야 할까?** 최근 몇 년 간 단일 페이지 애플리케이션 ([SPA: Single Page Application](https://en.wikipedia.org/wiki/Single-page_application))이 각광받고 있다. Angular, Ember 및 Backbone 등 자바스크립트 프레임워크의 등장은 바닐라 자바스크립트('Vanilla JavaScript' 타 라이브러리나 프레임워크 사용 없이 순수한 자바스크립트로 개발하는 것을 말함)와 jQuery를 사용하지 않고도 최신 웹 응용 프로그램을 구축할 수 있게 만들었다. 이외에도 SPA 프레임워크는 매우 다양하다. Angular 2010, Backbone 2010, Ember 2011 등 배포된 대부분 SPA 프레임워크는 1세대이다.
+**왜 리액트를 배워야 할까?** 최근 몇 년 간 단일 페이지 애플리케이션([SPA: Single Page Application](https://en.wikipedia.org/wiki/Single-page_application))이 각광받고 있다. Angular, Ember 및 Backbone 등 자바스크립트 프레임워크의 등장은 바닐라 자바스크립트(Vanilla JavaScript: 타 라이브러리나 프레임워크 사용 없이 순수한 자바스크립트로 개발하는 것을 말함)와 jQuery를 사용하지 않고도 최신 웹 응용 프로그램을 구축할 수 있게 만들었다. 이외에도 SPA 프레임워크는 매우 다양하다. Angular 2010, Backbone 2010, Ember 2011 등 배포된 대부분 SPA 프레임워크는 1세대이다.
 
 리액트는 2013년 페이스북이 처음 공표했다. 리액트는 SAP 프레임워크가 아닌, 뷰 라이브러리(View Library)이다. 여기서 뷰(View)란 [MVC](https://de.wikipedia.org/wiki/Model_View_Controller) (Model–View–Controller, MVC는 소프트웨어 공학에서 사용되는 소프트웨어 디자인 패턴을 말함) 패턴의 'V'를 말한다. 뷰는 브라우저 내 특정 컴포넌트를 보여준다. 그러나 리액트를 이루는 전체는 하나의 단일 페이지 애플리케이션을 제작할 수 있게 해준다.
 
@@ -18,10 +18,10 @@
 
 SPA 프레임 워크의 1세대는 이미 상용화 단계에 이르렀고 더욱 견고했지만, 여전히 리액트는 혁신적이다. [페이스북은 물론이거니와, 에어비앤비, 넷플릭스](https://github.com/facebook/react/wiki/Sites-Using-React) 등 선도적인 테크 회사들이 리액트를 채택해 플랫폼 개발을 하고 있다. 그들 모두가 리액트와 생태계에 만족하고 있으며 리액트의 미래에 투자하고 있다.
 
-리액트는 최근 웹 애플리케이션을 개발하는데 가장 좋은 선택이 될 것이다. 뷰 레이어만 제공하지만 (그러나 리액트 생태계는 모든 프레임워크와 서로 상호 교환 가능하다) (https://www.robinwieruch.de/essential-react-libraries-framework/). 리액트는 간결한 API, 놀라운 생태계, 훌륭한 커뮤니티를 갖추고 있다. ["왜 나는 앵귤러(Angular)에서 리액트로 옮겼는가](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)" 블로그에서 리액트를 선택한 개인적인 경험을 작성했다. 굳이 타 프레임워크나 라이브러리가 아닌, 리액트를 선택해 개발하는 이유를 스스로에게 묻는 것이 매우 중요하다. 결국 모든 사람들이 다음 해 리액트 행보에 대해 궁금해 할 것이다.  
+리액트는 최근 웹 애플리케이션을 개발하는데 가장 좋은 선택이 될 것이다. 뷰 레이어만 제공하지만, [그러나 리액트 생태계는 모든 프레임워크와 서로 상호 교환 가능하다는 철학을 가지고 있다.](https://www.robinwieruch.de/essential-react-libraries-framework/) 리액트는 간결한 API, 놀라운 생태계, 훌륭한 커뮤니티를 갖추고 있다. ["왜 나는 앵귤러(Angular)에서 리액트로 옮겼는가](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)" 블로그에서 리액트를 선택한 개인적인 경험을 작성했다. 굳이 타 프레임워크나 라이브러리가 아닌, 리액트를 선택해 개발하는 이유를 스스로에게 묻는 것이 매우 중요하다. 결국 모든 사람들이 다음 해 리액트 행보에 대해 궁금해 할 것이다.  
 
 
-### 읽기자료
+### 읽어보기
 
 * [[영문] 왜 나는 앵귤러에서 리액트로 옮겼는가](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)
 * [[영문] 유연한 리액트 생태계](https://www.robinwieruch.de/essential-react-libraries-framework/)
@@ -36,7 +36,7 @@ SPA 프레임 워크의 1세대는 이미 상용화 단계에 이르렀고 더�
 
 git와 깃헙(GitHub)을 사용하여 책에서 실습한 내용을 깃헙 저장소에 커밋하여 프로젝트를 계속해서 진행할 수 있다. 자세한 내용은 [GIT 가이드](https://www.robinwieruch.de/git-essential-commands/)를 읽기 바란다. git 사용은 의무 사항이 아니다. 웹 개발 초보자인 경우 모든 것을 한꺼번에 배우려고 하면 매우 부담스러울 수 있다. 때문에 초보자는 git과 깃헙을 쓰지말고 본문 내용에 집중하기 바란다.
 
-### Node, NPM
+### Node, NPM 설치
 
 마지막으로 [노드(node) 및 npm] (https://nodejs.org/en/)을 설치해야한다. 라이브러리를 관리를 위해 사용된다. 이 책에서는 npm(노드 패키지 관리자: node package manager)을 통해 외부 노드 패키지를 설치한다. 노드 패키지는 라이브러리 또는 전체 프레임워크가 될 수 있다.
 
@@ -215,7 +215,7 @@ hackernews/
 
 이외에 테스트를 위한 *src/App.test.js* 파일과 리액트의 진입점이라 볼 수 있는 *src/index.js* 파일이 보일 것이다. 다음 장에서 두 파일이 어떤 것인지 알게 될 것이다. 또한 애플리케이션과 컴포넌트 스타일을 지정하는 *src/index.css* 및 *src/App.css* 파일이 있다. 현재는 기본 스타일만 적용되어 있다.
 
-* create-reaction-app * 애플리케이션은 npm 프로젝트이다. npm을 사용하여 프로젝트에 노드 패키지를 설치하고 제거 할 수 있다. 또한 npm 명령어를 사용할 수 있다.
+* *create-reaction-app* 애플리케이션은 npm 프로젝트이다. npm을 사용하여 프로젝트에 노드 패키지를 설치하고 제거 할 수 있다. 또한 npm 명령어를 사용할 수 있다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -402,7 +402,7 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-### Exercises:
+### 실습
 
 * [ES6 const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)에 더 읽어본다.
 * [ES6 let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)에 대해 읽어본다.
@@ -412,7 +412,7 @@ export default App;
 
 ## ReactDOM
 
-Before you continue with the App component, you might want to see where it is used. It is located in your entry point to the React world: the *src/index.js* file.
+App 컴포넌트를 다루기 전에 어디에 사용되고 있는지 확인해 보자. 리액트의 첫 진입점이라 할 수 있는 *src/index.js* 파일에 있다는 것을 확인할 수 있을 것이다.
 
 {title="src/index.js",lang=javascript}
 ~~~~~~~~
@@ -427,24 +427,24 @@ ReactDOM.render(
 );
 ~~~~~~~~
 
-Basically `ReactDOM.render()` uses a DOM node in your HTML to replace it with your JSX. That's how you can easily integrate React in every foreign application. It is not forbidden to use `ReactDOM.render()` multiple times across your application. You can use it at multiple places to bootstrap simple JSX syntax, a React component, multiple React components or a whole application. But in plain React application you will only use it once to bootstrap your whole component tree.
+대게 `ReactDOM.render()`는 HTML 내 DOM 노드를 JSX로 대체한다. 이 때문에 타 애플리케이션에 리액트가 쉽게 통합될 수 있는 것이다. 애플리케이션 내 `ReactDOM.render()`를 여러 번 사용할 수 있다. 원하는 곳마다 JSX 구문, 단일 리액트 컴포넌트, 다중 리액트 컴포넌트, 또는 전체 응용 프로그램을 부트스트랩 할 수 있습니다. 그러나 일반 리액트 애플리케이션은 관용적으로 전체 컴포넌트 트리를 부트스트랩하기 위해 `ReactDOM.render()`를 한 번만 사용한다.
 
-`ReactDOM.render()` expects two arguments. The first argument is JSX that gets rendered. The second argument specifies the place where the React application hooks into your HTML. It expects an element with an `id='root'`. You can open your *public/index.html* file to find the id attribute.
+`ReactDOM.render()`에는 두 개의 인자가 필요하다. 첫 번째 인자는 렌더링된 JSX, 두 번째 인자는 리액트 애플리케이션이 HTML에 들어갈 위치를 지정한다. `id='root'`에 들어가게 된다. *public/index.html* 파일을 열어 이 id 속성을 확인할 수 있다. 
 
-In the implementation `ReactDOM.render()` already takes your App component. However, it would be fine to pass simpler JSX as long as it is JSX. It doesn't have to be an instantiation of a component.
+`ReactDOM.render()`실행되면 이미 App 컴포넌트를 사용하고 있다. 그러나 되도록 가능한 간단한 JSX로 만들어 전달하는 것이 좋다. 컴포넌트를 인스턴스화 시킬 필요는 없다.
 
 {title="Code Playground",lang=javascript}
 ~~~~~~~~
 ReactDOM.render(
-  <h1>Hello React World</h1>,
+  <h1>안녕 리액트</h1>,
   document.getElementById('root')
 );
 ~~~~~~~~
 
-### Exercises:
+### 실습
 
-* open the *public/index.html* to see where the React applications hooks into your HTML
-* read more about [rendering elements in React](https://facebook.github.io/react/docs/rendering-elements.html)
+* *public/index.html*을 열어 HTML 안에 리액트 애플리케이션 들어가는 곳을 찾아본다.
+* [리액트 공식문서 - 리액트 내 렌더링되는 요소](https://facebook.github.io/react/docs/rendering-elements.html)에 관해 더 읽어본다
 
 ## Hot Module Replacement
 
@@ -481,7 +481,7 @@ In a growing application a page refresh delays your productivity. You have to wa
 
 The biggest benefit is that you can keep the application state with HMR. Imagine you have a dialog in your application with multiple steps and you are at step 3. Basically it is a wizard. Without HMR you would change the source code and your browser refreshes the page. You would have to open the dialog again and would have to navigate from step 1 to step 3. With HMR your dialog stays open at step 3. It keeps the application state even though the source code changes. The application itself reloads, but not the page.
 
-### 실습:
+### 실습
 
 * change your *src/App.js* source code a few times to see HMR in action
 * watch the first 10 minutes of [Live React: Hot Reloading with Time Travel](https://www.youtube.com/watch?v=xsSnOQynTHs) by Dan Abramov
@@ -696,13 +696,13 @@ Additionally, you can remove the *block body*, meaning the curly braces, of the 
 
 Your JSX looks more concise and readable now. It omits the function statement, the curly braces and the return statement. Instead a developer can focus on the implementation details.
 
-### Exercises:
+### 읽어보기
 
 * read more about [ES6 arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 
 ## ES6 Classes
 
-JavaScript ES6 introduced classes. A class is commonly used in object-oriented programming languages. JavaScript was and is very flexible in its programming paradigms. You can do functional programming and object-oriented programming side by side for their particular use cases.
+자바스크립트 ES6는 클래스를 도입했다. A class is commonly used in object-oriented programming languages. JavaScript was and is very flexible in its programming paradigms. You can do functional programming and object-oriented programming side by side for their particular use cases.
 
 Even though React embraces functional programming, for instance with immutable data structures, classes are used to declare components. They are called ES6 class components. React mixes the good parts of both programming paradigms.
 
@@ -765,7 +765,7 @@ The methods a React `Component` exposes is the public interface. One of these me
 * [ES6 클래스](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)에 대해 더 자세히 읽어본다.
 {pagebreak}
 
-You have learned to bootstrap your own React application! Let's recap the last chapters:
+이제 여러분은 나만의 리액트 애플리케이션을 부트스트래핑을 할 수 잇다! 이번 장에서 배운 내용을 복습해보자.
 
 * React
   * create-react-app bootstraps a React application
