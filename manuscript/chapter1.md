@@ -448,11 +448,11 @@ ReactDOM.render(
 
 ## Hot Module Replacement
 
-There is one thing that you can do in the *src/index.js* file to improve your development experience as a developer. But it is optional and shouldn't overwhelm you in the beginning when learning React.
+개발자로서 개발 경험을 향상하기 위해 *src/index.js*에서 할 수 있는 일 한 가지가 있다. 옵션사항이기 때문에 리액트 초심자라면 이 부분을 꼭 알고 있을 필요는 없다.
 
-In *create-react-app* it is already an advantage that the browser automatically refreshes the page when you change your source code. Try it by changing the `helloWorld` variable in your *src/App.js* file. The browser should refresh the page. But there is a better way of doing it.
+*create-react-app*은 소스 코드 변경 시, 자동으로 브라우저를 새로고침해준다는 장점을 가지고 있다. *src/App.js* 파일 내 `helloWorld`를 다른 변수로 변경하라. 브라우저가 새로고침되어야 된다. 그러나 더 좋은 방법이 있다.
 
-Hot Module Replacement (HMR) is a tool to reload your application in the browser. The browser doesn't perform a page refresh. You can easily activate it in *create-react-app*. In your *src/index.js*, your entry point to React, you have to add one little configuration.
+Hot Module Replacement(HMR)란 브라우저 내 애플리케이션을 재실행하기 위한 도구이다. 브라우저는 페이지 새로고침을 수행하지 않는다. *create-reaction-app*에서 쉽게 활성화 할 수 있습니다. *src/index.js*에서 진입점이 리액트를 가리키려면 아래와 같이 약간의 설정을 추가해야한다.
 
 {title="src/index.js",lang=javascript}
 ~~~~~~~~
@@ -473,18 +473,18 @@ if (module.hot) {
 # leanpub-end-insert
 ~~~~~~~~
 
-That's it. Try again to change the `helloWorld` variable in your *src/App.js* file. The browser shouldn't perform a page refresh, but the application reloads and shows the correct output. HMR comes with multiple advantages:
+위 코드가 전부다. *src/App.js* 파일에서 `helloWorld` 변수를 다른 것으로 바꿔보자. 브라우저는 페이지 새로고침되지 않지만, 애플리케이션이 재실행되어 올바른 결과가 출력된다. HMR은 여러 장점을 가지고 있다.
 
-Imagine you are debugging your code with `console.log()` statements. These statements will stay in your developer console, even though you change your code, because the browser doesn't refresh the page anymore. That can be convenient for debugging purposes.
+`console.log()`문으로 코드를 디버깅한다고 생각해보자. 코드를 수정해도 브라우저 페이지가 새로고침되지 않기 떄문에 개발자 콘솔에 그대로 남아있다. 디버깅 목적이라면 편리하다.
 
-In a growing application a page refresh delays your productivity. You have to wait until the page loads. A page reload can take several seconds in a large application. HMR takes away this disadvantage.
+애플리케이션이 성장하면서 페이지 새로고침은 생산성을 지연시킨다. 페이지가 로드될 떄까지 기다려야된다. 대규모 애플리케이션에서 페이지를 다시 로드하는데 몇 초 이상이 걸릴 수 있다. HMR은 이러한 단점을 해결한다.
 
-The biggest benefit is that you can keep the application state with HMR. Imagine you have a dialog in your application with multiple steps and you are at step 3. Basically it is a wizard. Without HMR you would change the source code and your browser refreshes the page. You would have to open the dialog again and would have to navigate from step 1 to step 3. With HMR your dialog stays open at step 3. It keeps the application state even though the source code changes. The application itself reloads, but not the page.
+가장 큰 장점은 HMR로 애플리케이션 상태를 유지할 수 있다는 것이다. 애플리케이션에 3단계의 대화창이 있다고 가정해보자. 다이얼로그 창 기능이라고 생각하면 된다. HMR이 없다면 소스 코드를 변경할 때마다 브라우저 페이지가 새로고침된다. 창을 다시 열어 1 단계에서 3 단계로 이동시켜야하는 번거로운 일을 해야된다. HMR을 사용하면 다이얼로그 창은 3 단계 상태로 유지된다. 소스코드가 수정되어도 애플리케이션 내 상태가 유지된다. 애플리케이션 자체는 다시 실행되지만 페이지는 새로고침되지 않는다.
 
 ### 실습
 
-* change your *src/App.js* source code a few times to see HMR in action
-* watch the first 10 minutes of [Live React: Hot Reloading with Time Travel](https://www.youtube.com/watch?v=xsSnOQynTHs) by Dan Abramov
+* *src/App.js* 소스코드를 수정해 HMR이 어떻게 실행되는지 확인한다.
+* 댄 애브라몹(Dan Abramov)의 [리액트 라이브 : Hot Reloading으로 시간 여행 떠나기](https://www.youtube.com/watch?v=xsSnOQynTHs) 초반 10분간 시청한다.
 
 ## Complex JavaScript in JSX
 
