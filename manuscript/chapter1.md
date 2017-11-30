@@ -486,11 +486,11 @@ if (module.hot) {
 * *src/App.js* 소스코드를 수정해 HMR이 어떻게 실행되는지 확인한다.
 * 댄 애브라몹(Dan Abramov)의 [리액트 라이브 : Hot Reloading으로 시간 여행 떠나기](https://www.youtube.com/watch?v=xsSnOQynTHs) 초반 10분간 시청한다.
 
-## Complex JavaScript in JSX
+## JSX 내 복잡한 자바스크립트
 
-Let's get back to your App component. So far you rendered some primitive variables in your JSX. Now you will start to render a list of items. The list will be sample data in the beginning, but later you will fetch the data from an external [API](https://www.robinwieruch.de/what-is-an-api-javascript/). That will be far more exciting.
+App 컴포넌트로 다시 돌아가보자 지금까지 JSX에서 초기 변수를 렌더했다. 이제 리스트 내의 원소를 렌더링 해보자 처음 리스트는 샘플 데이터이지만 나중에 외부 [API] (https://www.robinwieruch.de/what-is-an-api-javascript/)를 통해 데이터를 가져오기도 한다. 나중에 이 부분을 해보게되면 점점 재밌어 질 것이다.
 
-First you have to define the list of items.
+먼저 리스트 내 목록을 정의하자.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -523,9 +523,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The sample data will reflect the data we will fetch later on from the API. An item in the list has a title, an url and an author. Additionally it comes with an identifier, points (which indicate how popular an article is) and a count of comments.
+샘플 데이터는 나중에 API에서 가져올 데이터로 교체할 수 있다. 리스트 항목은 제목(title), url, 작성사(author)가 있다. 그외에 또한 식별자(objectID), 기사의 인기도를 나타내는 점수(point), 댓글 수(num_comments)가 있다.
 
-Now you can use the built-in JavaScript `map` functionality in your JSX. It enables you to iterate over your list of items to display them. Again you will use curly braces to encapsulate the JavaScript expression in your JSX.
+이제 JSX에서  자바스크립트 내장함수인 `map`을 사용해 리스트 내 항목을 출력하는 반복문을 만들어보자. JSX에서 자바스크립트 표현식을 캡슐화하기 위해 중괄호(`{}`)를 사용한다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -546,9 +546,9 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-Using JavaScript in HTML is pretty powerful in JSX. Usually you might have used `map` to convert one list of items to another list of items. This time you use `map` to convert a list of items to HTML elements.
+JSX 내 HTML과 자바스크립트를 함께 사용하는 것은 매우 강력하다. `map`를 사용하면 특정 항목을 다른 항목으로 변환해 출력할 수 있다. 이번에는 `map`를 사용해 HTML 태그와 섞어 변환해 볼 것이다.
 
-So far, only the `title` will be displayed for each item. Let's display some more of the item properties.
+지금까지 각 항목의 `title`만 보여졌다. 이제 모든 항목의 속성을 표시해보자.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -578,9 +578,9 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-You can see how the map function is simply inlined in your JSX. Each item property is displayed in a `<span>` tag. Moreover the url property of the item is used in the `href` attribute of the anchor tag.
+이제 `map()` 함수로 JSX 내 반복구문을 간단하게 처리할 수 있다는 것을 알 수 있을 것이다. 각 항목은 HTML `<span>` 태그로 감쌌다. url은 a 태그의 href 속성과 함께 사용했다.
 
-React will do all the work for you and display each item. But you should add one helper for React to embrace its full potential and improve its performance. You have to assign a key attribute to each list element. That way React is able to identify added, changed and removed items when the list changes. The sample list items come with an identifier already.
+리액트는 각 항목을 완벽히 표시했다. 그러나 아직 모든 것이 끝난 것은 아니다 한 가지 도우미를 추가해 잠재요소를 포용하고 다른 속성을 축추가해 React에 대한 한 가지 도우미를 추가하여 잠재력을 완전히 포용하고 성능을 향상시켜야 한다. 바로 각 리스트 요소마다 `key` 속성을 추가해야한다. 이렇게 해야 리액트는 리스트내 항목이 변경될 떄마다 수정 및 제거된 항목을 식별 할 수 있게 된다. 샘플 데이터 리스트 항목에는 식별자(`objectID`)가 있어 이를 `key`로 지정하면 된다. 
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -600,11 +600,11 @@ React will do all the work for you and display each item. But you should add one
 })}
 ~~~~~~~~
 
-You should make sure that the key attribute is a stable identifier. Don't make the mistake of using index of the item in the array. The array index isn't stable at all. For instance, when the list changes its order, React will have a hard time identifying the items properly.
+키 속성 값은 고유하며 안정적인 식별자를 사용해야한다. 배열의 인덱스값은 고정값이 아니기 떄문에 사용하지 말아야 한다. 목록의 순서가 변경되면, 리액트는 항목을 식별하기 어렵게 되기 떄문이다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
-// don't do this
+// 이렇게 사용하면 안된다
 {list.map(function(item, key) {
   return (
     <div key={key}>
@@ -614,13 +614,13 @@ You should make sure that the key attribute is a stable identifier. Don't make t
 })}
 ~~~~~~~~
 
-You are displaying both list items now. You can start your app, open your browser and see both items of the list displayed.
+이제 두 배열 내 모든 항목이 보인다. 앱을 시작해 브라우저를 열어 변경된 내용을 확인해보자.
 
-### Exercises:
+### 실습하기
 
-* read more about [React lists and keys](https://facebook.github.io/react/docs/lists-and-keys.html)
-* recap the [standard built-in array functionalities in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
-* use more JavaScript expressions on your own in JSX
+* [리액트 리스트(lists)와 키(keys)](https://facebook.github.io/react/docs/lists-and-keys.html)에 관해 읽어본다.
+* [자바스크립트 기본 내장 배열 함수](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) 내용을 복습한다.
+* JSX 내 자바스크립트 표현식(expression)을 작성해본다.
 
 ## ES6 Arrow Functions
 
