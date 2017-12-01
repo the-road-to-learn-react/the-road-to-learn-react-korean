@@ -600,7 +600,7 @@ export default App;
 })}
 ~~~~~~~~
 
-키 속성 값은 고유하며 안정적인 식별자를 사용해야한다. 배열의 인덱스값은 고정값이 아니기 떄문에 사용하지 말아야 한다. 목록의 순서가 변경되면, 리액트는 항목을 식별하기 어렵게 되기 떄문이다.
+키 속성 값은 고유하며 안정적인 식별를 사용해야한다. 배열의 인덱스값은 고정값이 아니기 때문에 사용하지 말아야 한다. 목록의 순서가 변경되면, 리액트는 항목을 식별하기 어렵게 되기 때문이다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -622,9 +622,9 @@ export default App;
 * [자바스크립트 기본 내장 배열 함수](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) 내용을 복습한다.
 * JSX 내 자바스크립트 표현식(expression)을 작성해본다.
 
-## ES6 Arrow Functions
+## ES6 화살표 함수 
 
-JavaScript ES6 introduced arrow functions. An arrow function expression is shorter than a function expression.
+자바스크립트 ES6는 화살표함수를 도입했다. 화살표 표현식은 기존의 함수 표현식보다 간결하다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -635,26 +635,26 @@ function () { ... }
 () => { ... }
 ~~~~~~~~
 
-But you have to be aware of its functionalities. One of them is a different behavior with the `this` object. A function expression always defines its own `this` object. Arrow function expressions still have the `this` object of the enclosing context. Don't get confused when using `this` in an arrow function.
+그러나 화살표의 기능을 알고 있어야 한다. 화살표 함수에서는 `this`를 다르게 정의한다. 함수 표현식은 자기 자신을 `this` 객체로 정의하지만, 화살표 함수 표현식은 자신만의 `this`를 생성하지 않고 감싸고 있는 본문 컨텍스트로부터 부터 의미를 갖는다. 화살표 함수에서 `this`사용을 혼동하지 말자.
 
-There is another valuable fact about arrow functions regarding the parenthesis. You can remove the parenthesis when the function gets only one argument, but have to keep them when it gets multiple arguments.
+화살표 함수 내 괄호 사용에 조심히 해야한다. 매개변수가 하나 뿐인 경우 괄호는 생략할 수 있지만, 여러 개 매개변수를 사용하는 경우이거나 매개변수가 없는 함수는 괄호를 생략할 수 없다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
-// allowed
+// 가능
 item => { ... }
 
-// allowed
+// 가능
 (item) => { ... }
 
-// not allowed
+// 불가능
 item, key => { ... }
 
-// allowed
+// 가능
 (item, key) => { ... }
 ~~~~~~~~
 
-However, let's have a look at the `map` function. You can write it more concisely with an ES6 arrow function.
+`map` 함수를 다시 보자. ES6 화살표 표현식으로 좀더 깔끔하게 작성해보자.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -674,7 +674,7 @@ However, let's have a look at the `map` function. You can write it more concisel
 })}
 ~~~~~~~~
 
-Additionally, you can remove the *block body*, meaning the curly braces, of the ES6 arrow function. In a *concise body* an implicit return is attached. Thus you can remove the return statement. That will happen more often in the book, so be sure to understand the difference between a block body and a concise body when using arrow functions.
+또한 ES6 화살표 함수에 중괄호(`{}`) 부분인 *블록 본문*을 생략할 수 있다. *간결한 본문* 에서는 암시된 반환(return)이 포함되어 있다. 따라서 `return` 문을 삭제할 수 있다. 앞으로 화살표 함수를 자주 보게 될 것이기 때문에, 화살표 기능을 사용할 때 블록 본문과 간결한 본문의 차이점을 이해하고 있어야 한다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -694,7 +694,7 @@ Additionally, you can remove the *block body*, meaning the curly braces, of the 
 # leanpub-end-insert
 ~~~~~~~~
 
-Your JSX looks more concise and readable now. It omits the function statement, the curly braces and the return statement. Instead a developer can focus on the implementation details.
+이제 JSX가 간결해지고 보기 쉬워졌을 것이다. 함수 선언, 중괄호, return 문을 생략할 수 있다. 개발자는 구현 세부 내용에 집중할 수 있다.
 
 ### 읽어보기
 
@@ -702,11 +702,11 @@ Your JSX looks more concise and readable now. It omits the function statement, t
 
 ## ES6 Classes
 
-자바스크립트 ES6는 클래스를 도입했다. A class is commonly used in object-oriented programming languages. JavaScript was and is very flexible in its programming paradigms. You can do functional programming and object-oriented programming side by side for their particular use cases.
+자바스크립트 ES6에서는 클래스를 도입했다. 클래스는 일반적으로 객체 지향 프로그래밍 언어에서 사용된다. 자바스크립트는 융통성과 유연성이 뛰어난 프로그래밍 언어다. 함수형 프로그래밍과 객체지향 프로그래밍으로 할 수 있다.
 
-Even though React embraces functional programming, for instance with immutable data structures, classes are used to declare components. They are called ES6 class components. React mixes the good parts of both programming paradigms.
+리액트는 함수형 프로그래밍과 객체 프로그래밍의 각기 장점을 취하고 있다. 리액트는 불변하는 데이터 구조를 다룰 때는 함수형 프로그래밍을, 컴포넌트를 만들 때는 클래스로 선언한다. 이들 모두 ES6 클래스 컴포넌트라고 한다. 
 
-Let's consider the following Developer class to examine a JavaScript ES6 class without thinking about a component.
+다음 `Developer` 클래스를 리액트 컴포넌트가 아닌, ES6 클래스로서 생각해보자.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -722,11 +722,11 @@ class Developer {
 }
 ~~~~~~~~
 
-A class has a constructor to make it instantiable. The constructor can take arguments to assign it to the class instance. Additionally a class can define functions. Because the function is associated with a class, it is called a method. Often it is referenced as a class method.
+클래스에는 인스턴스화 할 수 있는 생성자가 있다. 생성자는 매개변수를 사용하여 클래스 인스턴스에 할당 할 수 있다. 또한 클래스는 함수를 정의한다. 함수는 클래스와 연관되어 있어 메서드(method)라고한다. 이 메소드는 클래스 메소드로 참조된다.
 
-The Developer class is only the class declaration. You can create multiple instances of the class by invoking it. It is similar to the ES6 class component, that has a declaration, but you have to use it somewhere else to instantiate it.
+Developer 클래스는 클래스 선언문일 뿐이다. 클래스를 호출해 클래스 내 여러 인스턴스를 작성할 수 있다. ES6 클래스 컴포넌트와 비슷하지만, 다른 인스턴스를 사용하여 인스턴스를 생성해야한다.
 
-Let's see how you can instantiate the class and how you can use its methods.
+클래스를 인스턴스화하는 방법과 클래스를 사용하는 방법을 살펴보자.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -735,7 +735,7 @@ console.log(robin.getName());
 // output: Robin Wieruch
 ~~~~~~~~
 
-React uses JavaScript ES6 classes for ES6 class components. You already used one ES6 class component.
+리액트는 ES6 클래스 컴포넌트에 자바스크립트 ES6 클래스를 사용한다. 이미 하나의 ES6 클래스 컴포넌트를 사용했다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -750,36 +750,34 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The App class extends from `Component`. Basically you declare the App component, but it extends from another component. What does extend mean? In object-oriented programming you have the principle of inheritance. It is used to pass over functionalities from one class to another class.
+App 클래스는 `Component`에서 확장(extend)된다. 기본적으로 App 컴포넌트에서 확장을 선언했지만, 다른 컴포넌트에서도 선언할 수 있다. 확장(extend)이란 것은 무엇일까? 객체 지향 프로그래밍에는 상속의 원칙이 있다. 한 클래스의 기능을 다른 클래스로 전달하는 데 사용된다.
 
-The App class extends functionality from the Component class. To be more specific, it inherits functionalities from the Component class. The Component class is used to extend a basic ES6 class to a ES6 component class. It has all the functionalities that a component in React needs to have. The render method is one of these functionalities that you have already used. You will learn about other component class methods later on.
+App 클래스는 `Component` 클래스의 기능을 확장한다. 보다 구체적으로, `Component` 기능을 상속받는다. `Component` 클래스는 기본 ES6 클래스를 ES6 컴포넌트 클래스로 확장하는 데 사용된다. 리액트의 컴포넌트에 필요한 모든 기능이 있습니다. `render()` 메소드는 이미 사용했던 기능 중 하나이다. 앞으로 다른 컴포넌트 클래스 메소드에 대해 배우게 될 것이다.
 
-The `Component` class encapsulates all the implementation details of a React component. It enables developers to use classes as components in React.
+`Component` 클래스는 리액트 컴포넌트의 모든 구현 세부 사항을 캡슐화한다. 개발자는 리액트에서 클래스를 컴포넌트로 상용할 수 있다.
 
-The methods a React `Component` exposes is the public interface. One of these methods has to be overridden, the others don't need to be overridden. You will learn about the latter ones when the book arrives at lifecycle methods in a later chapter. The `render()` method has to be overridden, because it defines the output of a React `Component`. It has to be defined.
-
-이제 자바스크립트 ES6 클래스 기초와 이를 리액트 컴포넌트로 사용하는 방법을 배웠다. 컴포넌트 메소드는 리액트 생명주기에 대해 배울 때 자세히 알아볼 것이다.
+이제 자바스크립트 ES6 클래스 기초와 이를 리액트 컴포넌트로 사용하는 방법을 배웠다. 컴포넌트 메소드는 리액트 생명주기(Life Cycle)에 대해 배울 때 자세히 알아볼 것이다.
 
 ### 실습
 
 * [ES6 클래스](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)에 대해 더 자세히 읽어본다.
 {pagebreak}
 
-이제 여러분은 나만의 리액트 애플리케이션을 부트스트래핑을 할 수 잇다! 이번 장에서 배운 내용을 복습해보자.
+이제 여러분은 나만의 리액트 애플리케이션을 부트스트래핑을 할 수 있다! 이번 장에서 배운 내용을 복습해보자.
 
 * React
-  * create-react-app bootstraps a React application
-  * JSX mixes up HTML and JavaScript to define the output of React components in their render methods
-  * components, instances and elements are different things in React
-  * `ReactDOM.render()` is an entry point for a React application to hook React into the DOM
-  * built-in JavaScript functionalities can be used in JSX
-    * map can be used to render a list of items as HTML elements
+  * create-react-app 으로 리액트 애플리케이션을 부트스트래핑한다.
+  * JSX 문법으로 `render()` 메소드 내 HTML과 자바스크립트를 같이 사용해 컴포넌트의 결과값을 출력한다.
+  * 리액트에서 컴포넌트, 인스턴스, 요소는 다른 것이다.
+  * `ReactDOM.render()`는 리액트 애플리케이션이 리액트를 DOM에 연결시키는 엔트리 포인트(entry point)이다.
+  * 자바스크립트 내장 함수 기능은 JSX에서 사용할 수 있다.
+  * 배열의 요소를 렌더링할 때 `map()`메소드로 HTML구문과 함께 사용한다.
 * ES6
-  * variable declarations with `const` and `let` can be used for specific use cases
-    * use const over let in React applications
-  * arrow functions can be used to keep your functions concise
-  * classes are used to define components in React by extending them
+  * 특정 상황에 따라 `const`와 `let`로 변수를 선언한다. 
+  * 리액트 애플리케이션에서는 가능한 `const`로 변수를 선언한다.
+  * 화살표 함수는 간결한 함수로 만들어 준다.
+  * 클래스는 확장하여 리액트 컴포넌트로 정의한다.
 
-이 시점에서 잠시 휴식 시간을 가지자. 학습 내용을 되새기고 스스로 적용해보자. 지금까지 작성한 소스 코드를 테스트 학습 내용을 내부화하고 독자적으로 적용하십시오. 지금까지 작성한 소스 코드로 이것저것 시험해보자.
+잠시 휴식 시간을 가지자. 학습 내용을 되새기고 스스로 적용해보자. 지금까지 작성한 소스 코드를 테스트 학습 내용을 내부화하고 독자적으로 적용하십시오. 지금까지 작성한 소스 코드로 이것저것 시험해보자.
 
 [공식 깃헙 저장소](https://github.com/rwieruch/hackernews-client/tree/4.1)에서 소스코드를 참고하라.
