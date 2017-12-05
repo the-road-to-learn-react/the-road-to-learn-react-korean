@@ -146,7 +146,7 @@ npm install react react-dom
 
 ### 실습
 
-* read more about [React installations](https://facebook.github.io/react/docs/installation.html)
+* [[리액트 공식문서] 리액트 설치](https://facebook.github.io/react/docs/installation.html)에 관해 읽어본다.
 
 ## 제로 구성 설치
 

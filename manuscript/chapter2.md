@@ -1,12 +1,12 @@
-# Basics in React
+# 리액트 기초
 
-The chapter will guide you through the basics of React. It covers state and interactions in components, because static components are a bit dull, aren't they? Additionally, you will learn about the different ways to declare a component and how to keep components composable and reusable. Be prepared to breathe life into your components.
+이번 장에서는 리액트 기초 내용을 살펴볼 것이다. 정적인 컴포넌트보다 동적인 컴포넌트의 상태와 인터렉션을 다룬다. 이어 컴포넌트를 선언하는 여러가지 방법을 배우고 컴포넌트를 재사용 가능한 상태로 유지하는 방법을 알아볼 것이다. 마지막으로 컴포넌트에 숨결을 불어넣어 생명체로 만들어보자.
 
-## Internal Component State
+## 컴포넌트 내부 상태(Internal component state)
 
-Internal component state, also known as local state, allows you to save, modify and delete properties that are stored in your component. The ES6 class component can use a constructor to initialize internal component state later on. The constructor is called only once when the component initializes.
+컴포넌트 내부 상태(Internal component state), 또는 지역 상태(local state)라고 불리는데 이를 통해 컴포넌트에 저장된 속성을 수정, 삭제, 저장할 수게 된다. ES6 클래스 생성자를 사용해 컴포넌트를 만들어 내부 컴포넌트 상태를 초기화할 수 있다. 생성자는 컴포넌트가 초기화될 때 한 번만 호출된다.
 
-Let's introduce a class constructor.
+이제 클래스 생성자(class constructor)를 알아보자.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -23,11 +23,11 @@ class App extends Component {
 }
 ~~~~~~~~
 
-When having a constructor in your ES6 class component, it is mandatory to call `super();` because the App component is a subclass of `Component`. Hence the `extends Component` in your App component declaration. You will learn more about ES6 class components later on.
+ES6 클래스 컴포넌트에 생성자가 있는 경우, App 컴포넌트는 `Component`의 하위 클래스이기 때문에 반드시 `super();`를 호출해야한다. 때문에 App 컴포넌트를 선언할 때 `extends Component`를 확장시킨다. 이 부분은 ES6 클래스 컴포넌트 부분에서 좀더 더 알아볼 것이다.
 
-You can call `super(props);` as well. It sets `this.props` in your constructor in case you want to access them in the constructor. Otherwise, when accessing `this.props` in your constructor, they would be `undefined`. You will learn more about the props of a React component later on.
+또한 `super(props);`도 호출 할 수 있다. 생성자에 접근하기 원한다면 생성자 내 `this.props`를 설정한다. 그렇지 않으면 생성자에서 `this.props`를 접근할 때 `undefined`로 출력된다. 이 부분은 리액트 props 부분에서 좀더 자세히 다루고자 한다.
 
-Now, in your case, the initial state in your component should be the sample list of items.
+아래와 같이 배열을 만들고 컴포넌트 초기 state로  세팅해보자.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -60,7 +60,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The state is bound to the class by using the `this` object. Thus you can access the local state in your whole component. For instance, it can be used in the `render()` method. Previously you have mapped a static list of items in your `render()` method that was defined outside of your component. Now you are about to use the list from your local state in your component.
+state는 `this`객체를 사용해 클래스에 바인딩된다. 따라서 전체 컴포넌트 내 로컬 상태값에 액세스 할 수 있게 된다. 그 예로,`render ()`메소드에서 state 사용할 수 있다. 이전에는 컴포넌트 외부에 정의된`render ()`메소드에 정적 배열를 매핑했다. 이제 컴포넌트 state로 리스트를 만들어 사용해보자.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -89,16 +89,16 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The list is part of the component now. It resides in the internal component state. You could add items, change items or remove items in and from your list. Every time you change your component state, the `render()` method of your component will run again. That's how you can simply change your internal component state and be sure that the component re-renders and displays the correct data that comes from the local state.
+이제 내부 컴포넌트 상태에 있던 리스트는 컴포넌트의 일부가 되었다. 리스트 내 항목을 추가, 변경 제거를 할 수 있다. 컴포넌트 state를 변경할 때마다 `render()` 메소드가 다시 실행된다. 이를 통해 쉽게 컴포넌트 state를 변경하고 전달된 데이터가 올바르게 표시되는지 확인할 수 있다. 
 
-But be careful. Don't mutate the state directly. You have to use a method called `setState()` to modify your state. You will get to know it in a following chapter.
+그러나 절대로 상태를 직접 변경해서는 안된다. state를 변경하려면 `setState ()`라는 메소드를 사용해야한다. 다음 장에서 이 내용을 다룰 것이다.
 
-### Exercises:
+### 실습
 
-* experiment with the local state
-  * define more initial state in the constructor
-  * use and access the state in your `render()` method
-* read more about [the ES6 class constructor](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor)
+* 로컬 상태값을 가지고 테스트해본다
+  * 생성자에 초기 상태 값을 할당한다.
+  * `render()`메소드로 state를 사용하고 접근한다.
+* [[MDN] : ES6 클래스 생성자](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor)에 관해 읽어본다.
 
 ## ES6 Object Initializer
 
