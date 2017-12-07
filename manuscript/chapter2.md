@@ -100,9 +100,9 @@ class App extends Component {
   * `render()`메소드로 state를 사용하고 접근한다.
 * [[MDN] : ES6 클래스 생성자](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor)에 관해 읽어본다.
 
-## ES6 Object Initializer
+## ES6 객체 초기자 (Object Initializer)
 
-In JavaScript ES6, you can use a shorthand property syntax to initialize your objects more concisely. Imagine the following object initialization:
+자바스크립트 ES6는 좀더 간결해진 문법으로 객체 초기화한다. 아래와 같이 객체 정의를 해왔을 것이다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -113,7 +113,7 @@ const user = {
 };
 ~~~~~~~~
 
-When the property name in your object is the same as your variable name, you can do the following:
+위처럼 작성할 수도 있지만 개체 속성 이름과 변수 이름이 같다면, 축약해 속성을 정의할 수 있다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -124,7 +124,7 @@ const user = {
 };
 ~~~~~~~~
 
-In your application, you can do the same. The list variable name and the state property name share the same name.
+리액트 애플리케이션 내에도 동일하다. state 속성 명과 변수 명이 동일하기 때문에 `list`로만 선언하면 된다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -139,7 +139,7 @@ this.state = {
 };
 ~~~~~~~~
 
-Another neat helper are shorthand method names. In JavaScript ES6, you can initialize methods in an object more concisely.
+메소드 역시 축악하여 작성한다. 자바스크립트 ES6에서 객체 메소드도 축약한다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -158,7 +158,7 @@ const userService = {
 };
 ~~~~~~~~
 
-Last but not least, you are allowed to use computed property names in JavaScript ES6.
+마지막으로 자바스크립트 ES6에서 계산된 속성명을 사용할 수 있다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -174,12 +174,12 @@ const user = {
 };
 ~~~~~~~~
 
-Perhaps computed property names make no sense for you yet. Why should you need them? In a later chapter, you will come to a point where you can use them to allocate values by key in a dynamic way in an object. It's neat to generate lookup tables in JavaScript.
+계산된 속성 명이 아직 이해가 안될 수도 있다. 왜 필요할까? 다음 장에서 키(key)를 사용해 객체에서 동적인 방식으로 값을 할당하는데 이를 사용할 것이다. 자바스크립트에서 룩업 테이블(lookup tables: 주어진 연산에 대해 미리 계산된 결과들의 배열)을 생성하는 것이 코드 가독성을 높인다.
 
-### Exercises:
+### 실습
 
-* experiment with ES6 object initializer
-* read more about [ES6 object initializer](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer)
+* ES6 객체 초기자를 생성해본다.
+* [[MDN] ES6 객체 초기자 (object initializer)](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Object_initializer) 공식문서를 읽어본다.
 
 ## Unidirectional Data Flow
 
