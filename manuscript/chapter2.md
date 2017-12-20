@@ -178,14 +178,15 @@ const user = {
 
 ### 실습
 
-* ES6 객체 초기자를 생성해본다.
-* [[MDN] ES6 객체 초기자 (object initializer)](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Object_initializer) 공식문서를 읽어본다.
+* ES6 객체 초기자를 생성한다.
+* [[MDN] ES6 객체 초기자 (object initializer)](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Object_initializer) 공식문서를 읽는다.
 
-## Unidirectional Data Flow
+## 단방향 데이터 흐름
 
-Now you have some internal state in your App component. However, you have not manipulated the local state yet. The state is static and thus is the component. A good way to experience state manipulation is to have some component interaction.
+App 컴포넌트 내부 상태 값이 있지만, 로컬 상태를 변경하지 않았다. 상태는 정적임으로 컴포넌트이다. state를 조작하여 컴포넌트를 인터렉티브하게 만들 수 있다.
 
-Let's add a button for each item in the displayed list. The button says "Dismiss" and is going to remove the item from the list. It could be useful eventually when you only want to keep a list of unread items and dismiss the items that you are not interested in.
+각 배열 내 아이템 마다 새 버튼을 추가하자. 이 버튼에 `취소`라고 이름을 붙이고 리스트 내 아이템을 하나씩 삭제할 것이다. 아직 읽지 않은 항목을 남겨두고 관심없는 항목을 닫을 때 좋은 기능이다.
+
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -222,11 +223,11 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The `onDismiss()` class method is not defined yet. We will do it in a moment, but for now the focus should be on the `onClick` handler of the button element. As you can see, the `onDismiss()` method in the `onClick` handler is enclosed by another function. It is an arrow function. That way, you can sneak in the `objectID` property of the `item` object to identify the item that will be dismissed. An alternative way would be to define the function outside of the `onClick` handler and only pass the defined function to the handler. A later chapter will explain the topic of handlers in elements in more detail.
+`onDismiss()` 메소드는 구현하지 않았다. 우선 버튼 내 `onClick` 핸들러에 집중해보자. `onDismiss()` 메소드는 화살표 함수이다. `item`의  `objectID` 속성으로 삭제될 항목을 식별한다. 또 다른 방법은 `onClick` 핸들러 밖에서 함수를 정의하여 정의된 함수만 핸들러에 전달하는 것이다. 다음 장에서 핸들러에 대해 자세히 알아볼 것이다.
 
-Did you notice the multilines for the button element? Note that elements with multiple attributes get messy as one line at some point. That's why the button element is used with multilines and indentations to keep it readable. But it is not mandatory. It is only a code style recommendation that I highly recommend.
+button 요소가 여러 줄로 작성되어 있는 것을 발견했는가? 여러 속성이 있는 요소를 한 줄로 길게 코드를 작성하면 읽기가 어렵다. 때문에 들여쓰기와 문장바꿈으로 읽기 쉽게 작성해야한다. 필수 사항은 아니지만 추천하는 코드 작성 스타일이다.
 
-Now you have to implement the `onDismiss()` functionality. It takes an id to identify the item to dismiss. The function is bound to the class and thus becomes a class method. That's why you access it with `this.onDismiss()` and not `onDismiss()`. The `this` object is your class instance. In order to define the `onDismiss()` as class method, you have to bind it in the constructor. Bindings will be explained in another chapter later on.
+`onDismiss()`함수를 구현할 차례다. 항목을 식별하기 위해 ID가 필요하다. 이 함수는 클래스에 바인딩되어있으므로 클래스 메서드가 된다. 그래서 `onDismiss()`가 아니라 `this.onDismiss()`로 접근하는 것이다. `this`객체는 클래스 인스턴스이다. `onDismiss()`를 클래스 메소드로 정의하기 위해서는 생성자에서 바인딩을 해줘야한다. 바인딩은 다음 장에서 설명할 것이다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -250,7 +251,8 @@ class App extends Component {
 }
 ~~~~~~~~
 
-In the next step, you have to define its functionality, the business logic, in your class. Class methods can be defined the following way.
+
+다음 단계에서는 클래스의 기능, 할일의 로직을 정의해야한다. 클래스 메소드는 아래와 같이 정의된다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -278,9 +280,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now you are able to define what happens inside of the class method. Basically you want to remove the item identified by the id from the list and store an updated list to your local state. Afterward, the updated list will be used in the re-running `render()` method to display it. The removed item shouldn't appear anymore.
+클래스 메소드 내부에 일어나는 일을 정의해보자. 리스트에서 ID와 매칭되는 항목을 제거하고 업데이트된 리스트를 로컬 상태로 저장한다. 그 다음 `render ()`가 재실행되어 업데이트된 리스트가 표시된다. 제거된 항목은 더 이상 보이지 않아야 한다.
 
-You can remove an item from a list by using the JavaScript built-in filter functionality. The filter function takes a function as input. The function has access to each value in the list, because it iterates over the list. That way, you can evaluate each item in the list based on a filter condition. If the evaluation for an item is true, the item stays in the list. Otherwise it will be filtered from the list. Additionally, it is good to know that the function returns a new list and doesn't mutate the old list. It supports the convention in React of having immutable data structures.
+자바스크립트 내장 함수인 `filter()`를 사용해 리스트내 항목을 삭제할 수 있다. filter 함수는 입력 기능을 사용한다. 이 함수는 리스트를 반복해 각 항목마다 액세스 할 수 있다. 이렇게하면 필터 조건에 따라 목록의 각 항목을 대조한다. 일치하는 항목이면 true로 목록에 그대로 유지됩니다. 반대로 일치하지 않으면 리스트에서 필터링 된다. 그러나 반환되는 리스트는 원래 리스트를 변경하지 않는다. 불변 데이터 구조인 리액트 컨벤션을 따르고 있다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -293,7 +295,7 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-In the next step, you can extract the function and pass it to the filter function.
+간결한 구문으로 filter 함수를 작성할 수 있다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -308,7 +310,7 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-In addition, you can do it more concisely by using a JavaScript ES6 arrow function again.
+자바스크립트 ES6 화살표 함수를 사용해 더 간결한 구문으로 작성할 수 있다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -320,7 +322,7 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-You could even inline it again, like you did in the `onClick` handler of the button, but it might get less readable.
+앞서 버튼 내 `onClick` 핸들러에 인라인으로 작성할 수도 있지만 코드 가독성이 떨어진다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -331,7 +333,7 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-The list removes the clicked item now. However the state isn't updated yet. Therefore you can finally use the `setState()` class method to update the list in the internal component state.
+이제 리스트 내 클릭된 항목이 제거되는 것을 볼 수 있다 그러나 상태는 아직 업데이트 되지 않았다 마지막에 `setState()` 클래스 메소드를 사용해 내부 컴포넌트 상태 리스트를 업데이트 해보자.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -344,13 +346,13 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-Now run again your application and try the "Dismiss" button. It should work. What you experience now is the **unidirectional data flow** in React. You trigger an action in your view with `onClick()`, a function or class method modifies the internal component state and the `render()` method of the component runs again to update the view.
+애플리케이션을 재실행해 "닫기" 버튼을 클릭해 작동하는지 확인하자. 이 것이바로 리액트 내 __단방향 데이터 흐름(unidirectional data flow)__ 이다. `onClick ()`을 사용해 뷰에서 액션을 트리거하면, 함수 또는 클래스 메소드가 내부 컴포넌트 상태를 수정하고 컴포넌트의`render ()`메소드가 재실행되어 뷰를 업데이트 한다.
 
-![Internal state update with unidirectional data flow](images/set-state-to-render-unidirectional.png)
+![단방향 데이터 흐름으로 내부 상태 업데이트를 한다](images/set-state-to-render-unidirectional.png)
 
-### Exercises:
+### 실습
 
-* read more about [the state and lifecycle in React](https://facebook.github.io/react/docs/state-and-lifecycle.html)
+* [[React 공식문서] 리액트 state와 생명주기](https://facebook.github.io/react/docs/state-and-lifecycle.html)에 대해 읽어본다
 
 ## Bindings
 
@@ -1798,7 +1800,7 @@ I don't want to be opinionated here, but I want to leave you some more options. 
 
 {pagebreak}
 
-You have learned the basics to write your own React application! Let's recap the last chapters:
+이제 여러분은 기초적인 리액트 애플리케이션을 만들 수 있다! 배운 내용을 정리하자.
 
 * React
   * use `this.state` and `setState()` to manage your internal component state
