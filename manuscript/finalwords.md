@@ -6,7 +6,7 @@
 
 애플리케이션 내 여러 기능을 추가해보고 싶다면, 앞으로 공부할 방향에 대해 제안하고자 한다.
 
-* **state 관리** 지금까지 `this.setState ()`와`this.state`를 사용하여 로컬 컴포넌트 상태를 관리하고 액세스했다. 완벽한 시작이다. 규모가 큰 애플리케이션에서는 [React의 로컬 컴포넌트 state의 한계] (https://www.robinwieruch.de/learn-react-before-using-redux/)가 있다. 때문에 [Redux 또는 MobX] (https://www.robinwieruch.de/redux-mobx-confusion/)와 같은 상태 관리 라이브러리를 사용할 수 있다. [React to React] (https://roadtoreact.com/) 온라인 강좌 사이트 내 "리액트 State 다루기(Taming the State in React)" 강좌에서 리액트 내 로컬 state, Redux, Mobx를 다룬다. 이 과정은 전자책이 제공되며, 소스 코드와 화상 채팅도 모두 참여할 것을 권장한다. 이 책이 마음에 들면, 리액트 State 다루기 강좌를 확인해보기 바란다. 
+* **state 관리** 지금까지 `this.setState()`와 `this.state`를 사용하여 로컬 컴포넌트 상태를 관리하고 액세스했다. 완벽한 시작이다. 규모가 큰 애플리케이션에서는 [리액트 로컬 컴포넌트 state의 한계](https://www.robinwieruch.de/learn-react-before-using-redux/)가 있다. 때문에 [Redux 또는 MobX](https://www.robinwieruch.de/redux-mobx-confusion/)와 같은 상태 관리 라이브러리를 사용할 수 있다. [React to React](https://roadtoreact.com/) 온라인 강좌 사이트 내 "리액트 State 다루기(Taming the State in React)" 강좌에서 리액트 내 로컬 state, Redux, Mobx를 다룬다. 이 과정은 전자책이 제공되며, 소스 코드와 화상 채팅도 모두 참여할 것을 권장한다. 이 책이 마음에 들면, 리액트 State 다루기 강좌를 확인해보기 바란다. 
 
 * **샘플 프로젝트** 기본적인 리액트를 배운 후 새로운 내용으로 넘어가지 전에 프로젝트를 진행하면서 배운 내용을 적용하는 것이 좋다. 리액트로 tic-tac-toe 게임이나 간단한 계산기를 만들어 볼 수 있다. 리액트로 재미있는 것들을 만들 수 있는 튜토리얼이 많이 있다. 저자의 [페이지 매김 및 무한 스크롤 목록](https://www.robinwieruch.de/react-paginated-list/), [트위터 목록 표시](https://www.robinwieruch.de/react-svg-patterns/), [React 내 Stripe 결제연동](https://www.robinwieruch.de/react-express-stripe-payment/)을 참고하기 바란다. 작은 규모의 리액트 애플리케이션을 만들어 보면서 리액트에 익숙해지길 바란다.
 
@@ -25,7 +25,7 @@
 
 * **React Native:** [React Native](https://facebook.github.io/react-native/)은 모바일 애플리케이션을 제작할 수 있다. 리액트에서 학습한 내용을 토대로 iOS와 안드로이드 애플리케이션을 만들어 볼 수 있다. 리액트에 대해 이미 잘 알고 있다면  React Native에서 배울 것이 아주 많지 않다. React와 React Native 모두 원칙은 같다. 익숙한 웹 UI가 아닌 모바일 UI를 새로 접하게 될 것이다. 
 
-웹 개발 및 소프트웨어 엔지니어링에 대한 더 흥미로운 주제를 찾으려면 [저자 웹 사이트](https://www.robinwieruch.de/)를 방문하길 바란다. [구독신청](https://www.getrevue.co/profile/rwieruch)을 하면 매달 업데이트 소식을 받을 수 있다. [후원자](https://www.patreon.com/rwieruch)가 되어 저자의 컨텐츠 제작을 지원할 수 있다. 이외에 [React to React](https://roadtoreact.com/) 온라인 강좌를 통해 리액트 생태계와 관련된 심화 과정을 제공한다. 강좌에 방문하길 바란다! 
+웹 개발 및 소프트웨어 엔지니어링에 대한 더 흥미로운 주제를 찾으려면 [저자 웹 사이트](https://www.robinwieruch.de/)를 방문하길 바란다. [구독신청](https://www.getrevue.co/profile/rwieruch)을 하면 매달 업데이트 소식을 받을 수 있고, [후원자](https://www.patreon.com/rwieruch)가 되어 저자의 컨텐츠 제작을 지원할 수 있다. 이외에 [React to React](https://roadtoreact.com/) 온라인 강좌를 통해 리액트 생태계와 관련된 심화 과정을 제공한다. 강좌에 방문하길 바란다! 
 
 이 책이 여러분의 마음에 들었다면, 리액트를 알았으면 하는 사람이 누구인지 생각해보는 시간을 가졌으면 한다. 그 사람에게 이 책을 나눈다면, 나에게 정말 큰 도움이 될 것이다. 이 책은 다른 사람들과 함께 나누고자 출판되었따. 더 많은 사람들이 내 책을 읽고 피드백을 주면서 책 내용 또한 개선될 것이다.
 
