@@ -280,7 +280,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-클래스 메소드 내부에 일어나는 일을 정의해보자. 리스트에서 ID와 매칭되는 항목을 제거하고 업데이트된 리스트를 로컬 상태로 저장한다. 그 다음 `render ()`가 재실행되어 업데이트된 리스트가 표시된다. 제거된 항목은 더 이상 보이지 않아야 한다.
+클래스 메소드 내부에 일어나는 일을 정의해보자. 리스트에서 ID와 매칭되는 항목을 제거하고 업데이트된 리스트를 로컬 상태로 저장한다. 그 다음 `render()`이 재 실행되고 업데이트된 리스트가 표시된다. 제거된 항목은 더 이상 보이지 않아야 한다.
 
 자바스크립트 내장 함수인 `filter()`를 사용해 리스트내 항목을 삭제할 수 있다. filter 함수는 입력 기능을 사용한다. 이 함수는 리스트를 반복해 각 항목마다 액세스 할 수 있다. 이렇게하면 필터 조건에 따라 목록의 각 항목을 대조한다. 일치하는 항목이면 true로 목록에 그대로 유지됩니다. 반대로 일치하지 않으면 리스트에서 필터링 된다. 그러나 반환되는 리스트는 원래 리스트를 변경하지 않는다. 불변 데이터 구조인 리액트 컨벤션을 따르고 있다.
 
@@ -352,11 +352,11 @@ onDismiss(id) {
 
 ### 실습
 
-* [[React 공식문서] 리액트 state와 생명주기](https://facebook.github.io/react/docs/state-and-lifecycle.html)에 대해 읽어본다
+* [[React 공식문서] 리액트 state와 생명주기](https://facebook.github.io/react/docs/state-and-lifecycle.html)를 읽어본다
 
-## Bindings
+## 바인딩(Bindings)
 
-It is important to learn about bindings in JavaScript classes when using React ES6 class components. In the previous chapter, you have bound your class method `onDismiss()` in the constructor.
+리액트 ES6 클래스 컴포넌트를 사용할 때 자바스크립트 바인딩(binding)에 대해 잘 알고 있어야 한다. 이전 장에서 constructor 안에 클래스 메소드인 `onDismiss()` 바운드시켰다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -375,7 +375,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Why would you do that in the first place? The binding step is necessary, because class methods don't automatically bind `this` to the class instance. Let's demonstrate it with the help of the following ES6 class component.
+왜 처음부터 그렇게했을까요? 클래스 메소드는 클래스 인스턴스에 자동으로 `this`를 바인딩하지 않기 때문에 바인딩을 일일이 해줘야한다. 아래 ES6 클래스 컴포넌트를 예시로 설명하겠다.
 
 {title="Code Playground",lang=javascript}
 ~~~~~~~~
@@ -397,9 +397,10 @@ class ExplainBindingsComponent extends Component {
 }
 ~~~~~~~~
 
-The component renders just fine, but when you click the button, you will get `undefined` in your developer console log. That's a main source of bugs when using React, because if you want to access `this.state` in your class method, it cannot be retrieved because `this` is `undefined`. So in order to make `this` accessible in your class methods, you have to bind the class methods to `this`.
+위 컴포넌트 렌더링은 잘 되지만, 버튼을 클릭하면 개발자 콘솔 로그에 `undefined`이 출력된다. 리액트를 사용할 때 많이 실수하는 버그 중 하나이다. 클래스 메소드에서`this.state`에 접근하고 싶다면`this`가 `undefined`이기 때문에 접근할 수 없다. 따라서 클래스 메소드에서 `this`를 접근 가능하게 만들기 위해 클래스 메소드를 `this`에 바인딩해야한다.
 
-In the following class component the class method is properly bound in the class constructor.
+아래 클래스 컴포넌트의 클래스 메서드는 클래스 생성자에서 제대로 바인딩된다.
+
 
 {title="Code Playground",lang=javascript}
 ~~~~~~~~
@@ -429,9 +430,9 @@ class ExplainBindingsComponent extends Component {
 }
 ~~~~~~~~
 
-When trying the button again, the `this` object, to be more specific the class instance, should be defined and you would be able to access `this.state`, or as you will later learn `this.props`, now.
+버튼을 구현 할 때, 클래스 인스턴스를 구체적으로 지정하기 위해 `this` 객체를 정의해야하고,`this.state`에 접근하거나, `this.props`를 사용해 접근할 수 있어야 한다.
 
-The class method binding can happen somewhere else too. For instance, it can happen in the `render()` class method.
+클래스 메서드 바인딩은 어느 곳이든 발생할 수 있다. 그 예로, 클래스 메소드인 `render()`에서 발생할 수 있다.
 
 {title="Code Playground",lang=javascript}
 ~~~~~~~~
@@ -455,9 +456,10 @@ class ExplainBindingsComponent extends Component {
 }
 ~~~~~~~~
 
-But you should avoid it, because it would bind the class method every time when the `render()` method runs. Basically it runs every time your component updates which leads to performance implications. When binding the class method in the constructor, you bind it only once in the beginning when the component is instantiated. That's a better approach to do it.
 
-Another thing people sometimes come up with is defining the business logic of their class methods in the constructor.
+그러나 `render()`메소드가 실행될 때마다 클래스 메소드를 바인드 할 것이기 때문에, 이를 피해야합니다. 일반적으로 컴포넌트가 업데이트 될 때마다 실행되어 성능에 영향을 미친다. 생성자에서 클래스 메서드를 바인딩 할 때 컴포넌트가 인스턴스화 될 때 처음에 한 번만 바인딩하는 것이 더 좋은 접근 방법이다.
+
+이외에 생성자에서 클래스 메서드의 비즈니스 로직을 정의하는 방법도 있다.
 
 {title="Code Playground",lang=javascript}
 ~~~~~~~~
@@ -485,7 +487,7 @@ class ExplainBindingsComponent extends Component {
 }
 ~~~~~~~~
 
-You should avoid it too, because it will clutter your constructor over time. The constructor is only there to instantiate your class with all its properties. That's why the business logic of class methods should be defined outside of the constructor.
+이 방법 역시 시간이 지날수록 생성자에게 혼란을 줌으로 피해야한다. 생성자는 모든 속성을 가진 클래스를 인스턴스화하기 위해서만 존재한다. 따라서 클래스 메소드의 비즈니스 로직을 생성자 외부에서 정의해야한다.
 
 {title="Code Playground",lang=javascript}
 ~~~~~~~~
@@ -509,7 +511,7 @@ class ExplainBindingsComponent extends Component {
 }
 ~~~~~~~~
 
-Last but not least, it is worth to mention that class methods can be autobound automatically without binding them explicitly by using JavaScript ES6 arrow functions.
+마지막으로 클래스 메소드는 ES6 화살표 함수를 사용해 명시적으로 바인딩하지 않고 자동으로 자동 바인딩 될 수 있음을 언급하는 것이 중요하다.
 
 {title="Code Playground",lang=javascript}
 ~~~~~~~~
@@ -531,15 +533,16 @@ class ExplainBindingsComponent extends Component {
 }
 ~~~~~~~~
 
-If the repetitive binding in the constructor annoys you, you can go ahead with this approach instead. The official React documentation sticks to the class method bindings in the constructor. That's why the book will stick to those as well.
+생성자의 반복 바인딩이 귀찮다면 위 방법을 사용할 수 있다. 리액트 공식 문서는 생성자의 클래스 메소드 바인딩을 고수하고 있다. 그러므로 본 도서는 리액트 공식 문서의 내용에 충실히 따른다.
 
-### Exercises:
+### 실습
 
-* try the different approaches of bindings and console log the `this` object
+* 바인딩을 여러번 시도해보고 콘솔에 `this`를 출력해본다.
 
-## Event Handler
 
-The chapter should give you a deeper understanding of event handlers in elements. In your application, you are using the following button element to dismiss an item from the list.
+## 이벤트 핸들러(Event Handler)
+
+이번 장에서는 이벤트 핸들러에 대해 자세히 알아볼 것이다. 애플리케이션 내 버튼을 사용해 리스트 항목을 삭제하는 기능을 구현해 볼 것이다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -555,7 +558,7 @@ The chapter should give you a deeper understanding of event handlers in elements
 ...
 ~~~~~~~~
 
-That's already a complex use case, because you have to pass a value to the class method and thus you have to wrap it into another (arrow) function. So basically, it has to be a function that is passed to the event handler. The following code wouldn't work, because the class method would be executed immediately when you open the application in the browser.
+위 예제는 조금 복잡하다. 클래스 메소드에 값을 전달해야하므로 화살표 함수로 래핑했다. 기본적으로 외부에서 이벤트 핸들러에 전달되는 함수를 만들어야 한다. 브라우저에서 응용 프로그램을 열면 클래스 메서드가 즉시 실행되므로 다음 코드는 작동하지 않는다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1110,7 +1113,7 @@ const { searchTerm, list } = this.state;
 
 But since the book uses JavaScript ES6 most of the time, you should stick to it.
 
-### Exercises:
+### 실습
 
 * read more about [ES6 destructuring](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
 
@@ -1154,7 +1157,7 @@ That's it. The unidirectional data flow loop for the input field is self-contain
 
 The whole internal state management and unidirectional data flow might be new to you. But once you are used to it, it will be your natural flow to implement things in React. In general, React brought a novel pattern with the unidirectional data flow to the world of single page applications. It is adopted by several frameworks and libraries by now.
 
-### Exercises:
+### 실습
 
 * read more about [React forms](https://facebook.github.io/react/docs/forms.html)
 
@@ -1536,7 +1539,7 @@ Now you have one lightweight functional stateless component. Once you would need
 * refactor the Table and Button component to stateless functional components
 * read more about [ES6 class components and functional stateless components](https://facebook.github.io/react/docs/components-and-props.html)
 
-## Styling Components
+## 컴포넌트 스타일링
 
 Let's add some basic styling to your application and components. You can reuse the *src/App.css* and *src/index.css* files. These files should already be in your project since you have bootstrapped it with *create-react-app*. They should be imported in your *src/App.js* and *src/index.js* files too. I prepared some CSS which you can simply copy and paste to these files, but feel free to use your own style at this point.
 
@@ -1800,11 +1803,11 @@ I don't want to be opinionated here, but I want to leave you some more options. 
 
 {pagebreak}
 
-이제 여러분은 기초적인 리액트 애플리케이션을 만들 수 있다! 배운 내용을 정리하자.
+이제 여러분은 기초적인 리액트 애플리케이션을 만들 수 있게 됐다! 배운 내용을 정리하자.
 
 * React
-  * use `this.state` and `setState()` to manage your internal component state
-  * pass functions or class methods to your element handler
+  * `this.state`와 `setState()`를 사용해 컴포넌트 내부 상태를 관리한다.
+  * 함수 또는 클래스 메소드를 사용해 요소 핸들러로 전달한다.
   * use forms and events in React to add interactions
   * unidirectional data flow is an important concept in React
   * embrace controlled components
@@ -1815,9 +1818,10 @@ I don't want to be opinionated here, but I want to leave you some more options. 
   * functions that are bound to a class are class methods
   * destructuring of objects and arrays
   * default parameters
-* General
-  * higher order functions
+* 기본
+  * 고차 함수
 
-Again it makes sense to take a break. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far. Additionally you can read more in the official [documentation](https://facebook.github.io/react/docs/installation.html).
 
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/4.2).
+잠시 휴식시간을 가지자. 학습한 내용을 되새기고 적용해보자. 작성한 소스로 이것저것 테스트해보자. [리액트 공식 문서] (https://facebook.github.io/react/docs/installation.html)에서 자세한 내용을 확인할 수 있다.
+
+[공식 저장소](https://github.com/rwieruch/hackernews-client/tree/4.2)에서 코드를 확인할 수 있다.
