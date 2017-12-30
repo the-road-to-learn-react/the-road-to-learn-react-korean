@@ -23,7 +23,7 @@
 
 * **Webpack, Babel** 이 책에서는 *create-react-app*로 애플리케이션을 시작했다. 어느 정도 리액트에 익숙해지면 다른 툴들을 배우고 싶을 것이다. *create-react-app*가 없이 프로젝트를 초기 설정할 수 있다. [Webpack과 Babel](https://www.robinwieruch.de/minimal-react-webpack-babel-setup/)을 사용해 최소한의 설정을 따르는 것이 좋다. 이후에는 더 많은 도구를 직접 적용할 수 있다. 예를 들어, [ESLint](https://www.robinwieruch.de/react-eslint-webpack-babel/)를 사용해 애플리케이션 통합 코드 스타일을 따를 수 있다.
 
-* **React Native:** [React Native](https://facebook.github.io/react-native/)은 모바일 애플리케이션을 제작할 수 있다. 리액트에서 학습한 내용을 토대로 iOS와 안드로이드 애플리케이션을 만들어 볼 수 있다. 리액트에 대해 이미 잘 알고 있다면  React Native에서 배울 것이 아주 많지 않다. React와 React Native 모두 원칙은 같다. 익숙한 웹 UI가 아닌 모바일 UI를 새로 접하게 될 것이다. 
+* **React Native** [React Native](https://facebook.github.io/react-native/)은 모바일 애플리케이션아 개발 가능하다. 리액트에서 학습한 내용을 토대로 iOS와 안드로이드 애플리케이션을 만들어 볼 수 있다. 리액트에 대해 이미 잘 알고 있다면  React Native에서 배울 것이 아주 많지 않다. React와 React Native 모두 원칙은 같다. 익숙한 웹 UI가 아닌 모바일 UI를 새로 접하게 될 것이다. 
 
 웹 개발 및 소프트웨어 엔지니어링에 대한 더 흥미로운 주제를 찾으려면 [저자 웹 사이트](https://www.robinwieruch.de/)를 방문하길 바란다. [구독신청](https://www.getrevue.co/profile/rwieruch)을 하면 매달 업데이트 소식을 받을 수 있고, [후원자](https://www.patreon.com/rwieruch)가 되어 저자의 컨텐츠 제작을 지원할 수 있다. 이외에 [React to React](https://roadtoreact.com/) 온라인 강좌를 통해 리액트 생태계와 관련된 심화 과정을 제공한다. 강좌에 방문하길 바란다! 
 
