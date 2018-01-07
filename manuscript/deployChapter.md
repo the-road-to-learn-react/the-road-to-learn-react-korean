@@ -1,6 +1,6 @@
 # Final Steps to Production
 
-The last chapters will show you how to deploy your application to production. You will use the free hosting service Heroku. On the way to deploy your application, you will learn more about *create-react-app*.
+마지막 장에서는 애플리케이션을 프로덕션 환경에 배포하는 방법을 알아보자. 무료 호스팅 서비스 Heroku에 배포할 것이다. 애플리케이션을 배포하는 과정에서 *create-react-app*에 대해 자세히 배울 것이다.
 
 ## Eject
 
