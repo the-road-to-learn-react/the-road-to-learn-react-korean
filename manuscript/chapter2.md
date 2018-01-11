@@ -1032,7 +1032,7 @@ class App extends Component {
 
 ## ES6 구조해체 Destructuring
 
-There is a way in JavaScript ES6 for an easier access to properties in objects and arrays. It's called destructuring. Compare the following snippet in JavaScript ES5 and ES6.
+ES6에서는 디스트럭팅(destructing 구조해체)으로 객체와 배열의 속성에 쉽게 액서스할 수 있다. ES5와 ES6를 함께 비교해보자.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -1055,7 +1055,8 @@ console.log(firstname + ' ' + lastname);
 // output: Robin Wieruch
 ~~~~~~~~
 
-While you have to add an extra line each time you want to access an object property in JavaScript ES5, you can do it in one line in JavaScript ES6. A best practice for readability is to use multilines when you destructure an object into multiple properties.
+ES5에서 객체 속성에 액서스 할 때마다 행을 추가되지만, ES6에서는 코드 한 줄로 끝난다.
+가독성을 높이기 위해 객체를 해체할 때 각 객체 속성마다 구분하여 줄을 바꿔주는 것이 좋다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -1065,7 +1066,7 @@ const {
 } = user;
 ~~~~~~~~
 
-The same goes for arrays. You can destructure them too. Again, multilines will keep your code scannable and readable.
+배열에서도 구조해체를 할 수 있다. 여러 행으로 작성하는 것이 코드를 읽기 더 편하게 해준다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -1080,7 +1081,7 @@ console.log(userOne, userTwo, userThree);
 // output: Robin Andrew Dan
 ~~~~~~~~
 
-Perhaps you have noticed that the local state object in the App component can get destructured the same way. You can shorten the filter and map line of code.
+앞서 만든 App 컴포넌트에서 로컬 상태 객체가 동일한 방식으로 디스트럭팅될 수 있음을 알 수 있을 것이다 filter와 map 코드를 축약할 수 있다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1100,7 +1101,7 @@ Perhaps you have noticed that the local state object in the App component can ge
     );
 ~~~~~~~~
 
-You can do it the ES5 or ES6 way:
+ES5 또는 ES6 방법으로 작성할 수 있다. 
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -1112,21 +1113,22 @@ var list = this.state.list;
 const { searchTerm, list } = this.state;
 ~~~~~~~~
 
-But since the book uses JavaScript ES6 most of the time, you should stick to it.
+이 책에서는 ES6를 사용하기 때문에 ES6 문법에 친숙해지길 바란다.
+
 
 ### 실습
 
-* read more about [ES6 destructuring](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+*  [[영문] MDN : ES6 destructuring](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) 에 대해 읽어본다.
 
-## Controlled Components
+## 제어된 컴포넌트(Controlled Components)
 
-You already learned about the unidirectional data flow in React. The same law applies for the input field, which updates the local state with the `searchTerm` in order to filter the list. When the state changes, the `render()` method runs again and uses the recent `searchTerm` from the local state to apply the filter condition.
+앞 장에서 리액트의 단방향 데이터 흐름에 대해 이미 배웠다. 입력 필드에도 같은 법칙이 적용된다.이 필드는 목록을 필터링하기 위해`searchTerm`을 사용하여 로컬 상태를 업데이트한다. 상태가 변경되면`render ()`메소드가 다시 실행되고 로컬 상태에서 최근의`searchTerm`을 사용하여 필터 조건을 적용한다.
 
-But didn't we forget something in the input element? A HTML input tag comes with a `value` attribute. The value attribute usually has the value that is shown in the input field. In this case it would be the `searchTerm` property. However, it seems like we don't need that in React.
+그러나 잊어버린 것이 있지 않은가? HTML input 태그에는 `value` 속성이 있다. value 속성은 input 필드에 표시된 값을 가진다. 이 경우 `searchTerm` 속성이 된다. 그러나 리액트에서는 필요로 하지 않는 것처럼 보인다.
 
-That's wrong. Form elements such as `<input>`, `<textarea>` and `<select>` hold their own state in plain HTML. They modify the value internally once someone changes it from the outside. In React that's called an **uncontrolled component**, because it handles its own state. In React, you should make sure to make those elements **controlled components**.
+그렇지 않다. `<input>`,`<textarea>`,`<select>` 와 같은 폼 요소는 일반 HTML로 자신의 상태를 유지한다. 누군가 외부에서 변경되면 값을 내부적으로 수정한다. 리액트에서는 **제어되지 않은 컴포넌트(uncontrolled componen)**라고 부른다. 그 자가 스스로 상태를 처리하기 때문이다.  리액트에서는 이러한 요소를 **제어된 컴포넌트(controlled components)**로 만들어야한다.
 
-How should you do that? You only have to set the value attribute of the input field. The value is already saved in the `searchTerm` state property. So why not access it from there?
+무엇을 하면 될까? input 필드의 값 속성만 설정하면 된다. 이미 값이 `searchTerm` 상태 속성에 저장되어 있다. 이를 활용하면 되지 않을까?
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1154,15 +1156,13 @@ class App extends Component {
 }
 ~~~~~~~~
 
-That's it. The unidirectional data flow loop for the input field is self-contained now. The internal component state is the single source of truth for the input field.
-
-The whole internal state management and unidirectional data flow might be new to you. But once you are used to it, it will be your natural flow to implement things in React. In general, React brought a novel pattern with the unidirectional data flow to the world of single page applications. It is adopted by several frameworks and libraries by now.
+여기까지다. 입력 필드의 단방향 데이터 흐름 루프가 포함되었다. 내부 컴포넌트 상태는 입력 필드로 부터 단방향으로 데이터를 받는다. 아직 전체 내부 상태 관리 및 단방향 데이터 흐름이 생소할 수 있다. 점차 익숙해지면, 리액트에서 자연스럽게 사용할 수 있을 것이다. 리액트는 SPA(단일 페이지 애플리케이션: Single Page Applications)에 단방향 데이터 흐름이 포함된 새로운 패턴을 도입했다. 현재 많은 프레임워크와 라이브러리에서 단방향 데이터 흐름을 채택했다.
 
 ### 실습
 
-* read more about [React forms](https://facebook.github.io/react/docs/forms.html)
+*  [[영문] 리액트 공식문서 - forms](https://facebook.github.io/react/docs/forms.html)에 대해 읽어본다.
 
-## Split Up Components
+## 컴포넌트 분리
 
 You have one large App component now. It keeps growing and can become confusing eventually. You can start to split it up into chunks of smaller components.
 
