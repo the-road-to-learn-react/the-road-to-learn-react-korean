@@ -1,10 +1,10 @@
-# API 사용하기
+# API 실제 사용 Getting Real with an API
 
 이제 실제 API를 사용해볼 차례입니다. API로 샘플 데이터를 받을 수 있기 때문입니다.
 
-API에 대해 익숙하지 않다면, 저자가 쓴 [아무도 나에게 API를 알려주지 않았다](https://www.robinwieruch.de/what-is-an-api-javascript/) 블로그 글을 읽어보길 바랍니다. 
+API에 잘 모른다면, 저자가 쓴 [아무도 나에게 API를 알려주지 않았다](https://www.robinwieruch.de/what-is-an-api-javascript/) 글을 읽어보길 바랍니다. 
 
-[해커 뉴스(Hacker News)](https://news.ycombinator.com/) 플랫폼은 기술 주제 관련 우수 기사를 큐레이션하는 플랫폼입니다. 이 책에서는 해커 뉴스 API를 사용해 플랫폼에서 인기 급상승 중인 글 리스트를 보여줄 것입니다. 해커 뉴스는 [데이터](https://github.com/HackerNews/API) 열람 API와 [검색](https://hn.algolia.com/api) API를 제공합니다. API 명세서를 통해 데이터 구조를 이해할 수 있을 겁니다.
+[해커 뉴스(Hacker News)](https://news.ycombinator.com/) 플랫폼은 기술 주제 관련 우수 기사를 큐레이션하는 플랫폼입니다. 이 책에서는 해커 뉴스 API를 사용해 플랫폼에서 인기 급상승 중인 글 리스트를 보여줄 것입니다. 해커 뉴스는 [데이터](https://github.com/HackerNews/API) 조회 API와 [검색](https://hn.algolia.com/api) API를 제공합니다. API 명세서를 통해 데이터 구조를 이해할 수 있을 겁니다.
 
 ## 생명주기 메소드 Lifecycle Methods
 
@@ -16,7 +16,7 @@ API를 사용하기 전에 리액트 컴포넌트의 생명주기 메서드에 �
 
 컴포넌트 인스턴스가 만들어져 DOM에 삽입 될 때 생성자가 호출됩니다. 컴포넌트가 인스턴스화됩니다. 이 프로세스를 컴포넌트 탑재됐다(mounting)고 말합니다.
 
-`render()`는 마운트 프로세스 중에도 호출되지만 컴포넌트가 업데이트 될 때도 호출됩니다. 컴포넌트 상태와 props가 변경될 때마다 `render()`이 호출됩니다.
+`render()`는 마운트 프로세스 중에도 호출되지만 컴포넌트가 업데이트 될 때도 호출됩니다. 컴포넌트의 state와 props가 변경될 때마다 `render()`이 호출됩니다.
 
 아마 이전 장에서 두 메소드를 사용해봤을 겁니다. 그 외 더 많은 생명주기 메소드가 있습니다
  
@@ -30,7 +30,7 @@ API를 사용하기 전에 리액트 컴포넌트의 생명주기 메서드에 �
 * componentDidMount()
 
 
-상태나 props가 바뀔 때의 업데이트 생명주기는 어떨까요? 아래와 같은 순서로 5개의 생명주기 메소드가 호출됩니다
+state나 props가 변경 시, 업데이트 생명주기는 어떨까요? 아래와 같은 순서로 5개의 생명주기 메소드가 호출됩니다.
 
 * componentWillReceiveProps()
 * shouldComponentUpdate()
@@ -40,8 +40,9 @@ API를 사용하기 전에 리액트 컴포넌트의 생명주기 메서드에 �
 
 마지막으로 마운트 해제 수명주기가 있습니다. 메소드는 `componentWillUnmount()`만 있습니다.
 
-처음부터 모든 생명주기 메소드를 사용하지 않아도 됩니다. 아직 많이 다뤄보지 않았기 때문에 익숙해지지 않았을 뿐입니다. 대규모 애플리케이션에도 `constructor()`과 `render()`만 사용할 경우가 많습니다. 앞서 알아본 생명주기 메소드를 언제 사용해야 하는지 정리해봅시다.
+* componentWillUnmount()
 
+처음부터 모든 생명주기 메소드를 사용하지 않아도 됩니다. 아직 많이 다뤄보지 않았기 때문에 익숙해지지 않았을 뿐입니다. 대규모 애플리케이션에도 `constructor()`과 `render()`만 사용할 경우가 많습니다. 앞서 알아본 생명주기 메소드를 언제 사용해야 하는지 정리해봅시다.
 
 
 * **constructor(props)** - 컴포넌트 초기화 시 호출됩니다. 초기 컴포넌트 상태 및 클래스 메소드를 정의합니다.
@@ -73,7 +74,7 @@ API를 사용하기 전에 리액트 컴포넌트의 생명주기 메서드에 �
 * [[리액트 공식문서] 리액트 생명주기 메소드와 상태 관리](https://facebook.github.io/react/docs/state-and-lifecycle.html)
 * [[reactjs.org] 컴포넌트 에러 핸들링](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
 
-## Fetching Data
+## 데이터 가져오기 Fetching Data
 
 Now you are prepared to fetch data from the Hacker News API. There was one lifecycle method mentioned that can be used to fetch data: `componentDidMount()`. You will use the native fetch API in JavaScript to perform the request.
 
