@@ -1,35 +1,36 @@
-# Getting Real with an API
+# API 사용하기
 
-Now it's time to get real with an API, because it can get boring to deal with sample data.
+이제 실제 API를 사용해볼 차례입니다. API로 샘플 데이터를 받을 수 있기 때문입니다.
 
-If you are not familiar with APIs, I encourage you [to read my journey where I got to know APIs](https://www.robinwieruch.de/what-is-an-api-javascript/).
+API에 대해 익숙하지 않다면, 저자가 쓴 [아무도 나에게 API를 알려주지 않았다](https://www.robinwieruch.de/what-is-an-api-javascript/) 블로그 글을 읽어보길 바랍니다. 
 
-Do you know the [Hacker News](https://news.ycombinator.com/) platform? It's a great news aggregator about tech topics. In this book, you will use the Hacker News API to fetch trending stories from the platform. There is a [basic](https://github.com/HackerNews/API) and [search](https://hn.algolia.com/api) API to get data from the platform. The latter one makes sense in the case of this application in order to search stories on Hacker News. You can visit the API specification to get an understanding of the data structure.
+[해커 뉴스(Hacker News)](https://news.ycombinator.com/) 플랫폼은 기술 주제 관련 우수 기사를 큐레이션하는 플랫폼입니다. 이 책에서는 해커 뉴스 API를 사용해 플랫폼에서 인기 급상승 중인 글 리스트를 보여줄 것입니다. 해커 뉴스는 [데이터](https://github.com/HackerNews/API) 열람 API와 [검색](https://hn.algolia.com/api) API를 제공합니다. API 명세서를 통해 데이터 구조를 이해할 수 있을 겁니다.
 
-## Lifecycle Methods
+## 생명주기 메소드 Lifecycle Methods
 
-You will need to know about React lifecycle methods before you can start to fetch data in your components by using an API. These methods are a hook into the lifecycle of a React component. They can be used in ES6 class components, but not in functional stateless components.
+API를 사용하기 전에 리액트 컴포넌트의 생명주기 메서드에 대해 알아보겠습니다. S6 클래스 컴포넌트에서 사용할 수 있지만 비상태 컴포넌트에서는 사용할 수 없습니다. 
 
-Do you remember when a previous chapter taught you about JavaScript ES6 classes and how they are used in React? Apart from the `render()` method, there are several methods that can be overridden in a React ES6 class component. All of these are the lifecycle methods. Let's dive into them:
+이전 장에서 E6 클래스와 리액트에서 사용법을 배웠습니다. `render()`외에, 리액트 ES6 클래스 컴포넌트에서 오버라이드가 가능한 메소드가 있습니다. 바로 생명주기 메소드입니다.
 
-You already know two lifecycle methods that can be used in an ES6 class component: `constructor()` and `render()`.
+우리는 이미 ES6 클래스 컴포넌트에서 사용하는 두 생명주기 메소드 `constructor()`와  `render()`를 알고 있습니다.
 
-The constructor is only called when an instance of the component is created and inserted in the DOM. The component gets instantiated. That process is called mounting of the component.
+컴포넌트 인스턴스가 만들어져 DOM에 삽입 될 때 생성자가 호출됩니다. 컴포넌트가 인스턴스화됩니다. 이 프로세스를 컴포넌트 탑재됐다(mounting)고 말합니다.
 
-The `render()` method is called during the mount process too, but also when the component updates. Each time when the state or the props of a component change, the `render()` method of the component is called.
+`render()`는 마운트 프로세스 중에도 호출되지만 컴포넌트가 업데이트 될 때도 호출됩니다. 컴포넌트 상태와 props가 변경될 때마다 `render()`이 호출됩니다.
 
-Now you know more about the two lifecycle methods and when they are called. You already used them as well. But there are more of them.
+아마 이전 장에서 두 메소드를 사용해봤을 겁니다. 그 외 더 많은 생명주기 메소드가 있습니다
+ 
+컴포넌트 마운트에는` componentWillMount()`와`componentDidMount()` 두 메소드가 있습니다. `constructor()`가 호출되면, `componentWillMount()`가 호출되고, 그 후 `render()`이 호출되며, 마지막에 `componentDidMount()`가 호출됩니다.
 
-The mounting of a component has two more lifecycle methods: `componentWillMount()` and `componentDidMount()`. The constructor is called first, `componentWillMount()` gets called before the `render()` method and `componentDidMount()` is called after the `render()` method.
-
-Overall the mounting process has 4 lifecycle methods. They are invoked in the following order:
+일반적인 마운팅 프로세스에서 생명주기 메소드는 아래 순서대로 호출됩니다.
 
 * constructor()
 * componentWillMount()
 * render()
 * componentDidMount()
 
-But what about the update lifecycle of a component that happens when the state or the props change? Overall it has 5 lifecycle methods in the following order:
+
+상태나 props가 바뀔 때의 업데이트 생명주기는 어떨까요? 아래와 같은 순서로 5개의 생명주기 메소드가 호출됩니다
 
 * componentWillReceiveProps()
 * shouldComponentUpdate()
@@ -37,37 +38,40 @@ But what about the update lifecycle of a component that happens when the state o
 * render()
 * componentDidUpdate()
 
-Last but not least there is the unmounting lifecycle. It has only one lifecycle method: `componentWillUnmount()`.
+마지막으로 마운트 해제 수명주기가 있습니다. 메소드는 `componentWillUnmount()`만 있습니다.
 
-After all, you don't need to know all of these lifecycle methods from the beginning. It can be intimidating yet you will not use all of them. Even in a larger React application you will only use a few of them apart from the `constructor()` and the `render()` method. Still, it is good to know that each lifecycle method can be used for specific use cases:
+처음부터 모든 생명주기 메소드를 사용하지 않아도 됩니다. 아직 많이 다뤄보지 않았기 때문에 익숙해지지 않았을 뿐입니다. 대규모 애플리케이션에도 `constructor()`과 `render()`만 사용할 경우가 많습니다. 앞서 알아본 생명주기 메소드를 언제 사용해야 하는지 정리해봅시다.
 
-* **constructor(props)** - It is called when the component gets initialized. You can set an initial component state and bind class methods during that lifecycle method.
 
-* **componentWillMount()** - It is called before the `render()` lifecycle method. That's why it could be used to set internal component state, because it will not trigger a second rendering of the component. Generally it is recommended to use the `constructor()` to set the initial state.
 
-* **render()** - The lifecycle method is mandatory and returns the elements as an output of the component. The method should be pure and therefore shouldn't modify the component state. It gets an input as props and state and returns an element.
+* **constructor(props)** - 컴포넌트 초기화 시 호출됩니다. 초기 컴포넌트 상태 및 클래스 메소드를 정의합니다.
 
-* **componentDidMount()** - It is called only once when the component mounted. That's the perfect time to do an asynchronous request to fetch data from an API. The fetched data would get stored in the internal component state to display it in the `render()` lifecycle method.
+* **componentWillMount()** - `render()` 전에 호출됩니다. 컴포넌트의 두 번째 렌더링을 트리거하지 않아 컴포넌트 상태를 설정하기 적합합니다. `constructor()`을 사용해 초기 상태를 설정하는 것이 좋습니다.
 
-* **componentWillReceiveProps(nextProps)** - The lifecycle method is called during an update lifecycle. As input you get the next props. You can diff the next props with the previous props, by using `this.props`, to apply a different behavior based on the diff. Additionally, you can set state based on the next props.
+* **render()** - 컴포넌트의 출력을 반환하기 때문에 필수로 사용합 반환합 그것은 소품 및 상태로 입력을 가져오고 요소를 반환합니다.
 
-* **shouldComponentUpdate(nextProps, nextState)** - It is always called when the component updates due to state or props changes. You will use it in mature React applications for performance optimizations. Depending on a boolean that you return from this lifecycle method, the component and all its children will render or will not render on an update lifecycle. You can prevent the render lifecycle method of a component.
+* **componentDidMount()** - 컴포넌트가 마운트 될 때 한 번만 호출됩니다. 이 메소드에서 API에서 데이터를 가져 오기 위해 비동기 요청을 수행할 수 있습니다. 가져온 데이터는 내부 컴포넌트 상태에 저장되어 `render()`로 컴포넌트가 업데이트 됩니다.
 
-* **componentWillUpdate(nextProps, nextState)** - The lifecycle method is immediately invoked before the `render()` method. You already have the next props and next state at your disposal. You can use the method as last opportunity to perform preparations before the render method gets executed. Note that you cannot trigger `setState()` anymore. If you want to compute state based on the next props, you have to use `componentWillReceiveProps()`.
+* **componentWillReceiveProps(nextProps)** - 업데이트 생명주기 동안 호출됩니다. `nextProps`는 다음 props를, `this.props`로 이전 props를 조회해 서로 차이를 알 수 있습니다. nextProps를 컴포넌트의 state로 사용할 수 있습니다.
+ 
+* **shouldComponentUpdate(nextProps, nextState)** - props 또는 state의 변경으로 컴포넌트가 업데이트 될 때 호출됩니다. 성능 최적화를 위해 고도화된 리액트 애플리케이션에서 사용됩니다. 생명주기 메서드에서 반환하는 부울 값(boolean)에 컴포넌트와 모든 자식이 업데이트 주기에 렌더링되거나 반대로 그렇지 않을 수 있습니다. 문제가 되는 특정 컴포넌트의 렌더링 생명주기 렌더링을 막을 수 있습니다.명주기 메소드를 방지 할 수 있습니다.
 
-* **componentDidUpdate(prevProps, prevState)** - The lifecycle method is immediately invoked after the `render()` method. You can use it as opportunity to perform DOM operations or to perform further asynchronous requests.
+* **componentWillUpdate(nextProps, nextState)** - `render()` 메소드 전에 바로 호출됩니다. `nextProps`는 다음 props를, `nextState`로 다음 state를 조회할 수 있습니다. `render()` 메서드가 실행되기 전에 마지막으로 상태를 업데이트 할 수 있는 기회입니다. 이후에는 `setState()`를 더 이상 사용할 수 없습니다. nextProps를 state 값으로 사용하려면 `componentWillReceiveProps()`를 사용합니다.
 
-* **componentWillUnmount()** - It is called before you destroy your component. You can use the lifecycle method to perform any clean up tasks.
+* **componentDidUpdate(prevProps, prevState)** - `render()` 후에 즉시 호출됩니다. DOM조작을 하거나 추가 비동기 요청을 수행할 수 있습니다.
 
-The `constructor()` and `render()` lifecycle methods are already used by you. These are the commonly used lifecycle methods for ES6 class components. Actually the `render()` method is required, otherwise you wouldn't return a component instance.
+* **componentWillUnmount()** - 컴포넌트를 해체하기 전에 호출 됩니다. 테스크를 초기화하는 작업을 수행할 수 있습니다.
 
-There is one more lifecycle method: `componentDidCatch(error, info)`. It was introduced in [React 16](https://www.robinwieruch.de/what-is-new-in-react-16/) and is used to catch errors in components. For instance, displaying the sample list in your application works just fine. But there could be a case when the list in the local state is set to `null` by accident (e.g. when fetching the list from an external API, but the request failed and you set the local state of the list to null). Afterward, it wouldn't be possible to filter and map the list anymore, because it is `null` and not an empty list. The component would be broken and the whole application would fail. Now, by using `componentDidCatch()`, you can catch the error, store it in your local state, and show an optional message to your application user that an error has happened.
 
-### Exercises:
+`constructor()`와 `render()` 메소드는 이미 사용해봤습니다. ES6 클래스 컴포넌트에서 사용되는 생명주기 입니다. `render()`은 컴포넌트 인스턴스를 반환하기 때문에 반드시 필요한 메소드입니다.
 
-* read more about [lifecycle methods in React](https://facebook.github.io/react/docs/react-component.html)
-* read more about [the state related to lifecycle methods in React](https://facebook.github.io/react/docs/state-and-lifecycle.html)
-* read more about [error handling in components](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
+그 외 생명주기 메소드로 `componentDidCatch(error, info)`가 있습니다. 이 메소드는 [React 16](https://www.robinwieruch.de/what-is-new-in-react-16/)에서 도입되었으며 컴포넌트 에러를 캐치합니다. 예를 들어 목록이 표시하는 애플리케이션이 있다고 해봅시다. 외부 API 호출이 실패하여 state가 `null`로 표시되었습니다. 리스트가 비어있지 않고 `null` 상태이기 때문에 filter과 map을 사용할 수 없습니다. 이 경우 에러가 발생하여 컴포넌트가 깨지고 전체 애플리케이션이 작동되지 않습니다. 이 때, `componentDidCatch()`로 에러를 포착하고 내부 상태에 저장하여 사용자에게 에러 메세지를 표시해줄 수 있습니다.
+
+### 읽어봅시다
+
+* [[리액트 공식문서] 리액트 생명주기](https://facebook.github.io/react/docs/react-component.html)
+* [[리액트 공식문서] 리액트 생명주기 메소드와 상태 관리](https://facebook.github.io/react/docs/state-and-lifecycle.html)
+* [[reactjs.org] 컴포넌트 에러 핸들링](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
 
 ## Fetching Data
 
@@ -1190,4 +1194,4 @@ You have learned to interact with an API in React! Let's recap the last chapters
 
 Again it makes sense to take a break. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far.
 
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/4.3).
+[깃헙 리퍼지토리](https://github.com/rwieruch/hackernews-client/tree/4.3)에서 소스코드를 확인하세요.
