@@ -1,6 +1,6 @@
 # 리액트 시작하기 Introduction to React
 
-첫 장은 리액트 기초를 함께 살펴봅니다. 아직도 리액트를 배워야하는 이유를 모르겠다면 이번 장을 마칠 때 쯤, 그 답을 찾을 수 있을 것이라 확신합니다. 리액트 애플리케이션 설치를 시작으로 리액트의 세계에 첫 발을 내딛어봅시다. JSX와 ReactDOM를 배우고 첫 번째 리액트 컴포넌트를 만들어 봅시다.
+리액트의 기본적인 내용에 대해 알아봅시다. 아직도 리액트를 배워야하는 이유를 모르겠다면 이번 장을 마칠 때 쯤, 그 답을 찾을 수 있을 것이라 확신합니다. 리액트 애플리케이션 설치를 시작으로 리액트의 세계에 첫 발을 내딛어봅시다. JSX와 ReactDOM를 배우고 첫 번째 리액트 컴포넌트를 만들어 봅시다.
 
 ## 안녕, 내 이름은 리액트 Hi, my name is React.
 
@@ -14,11 +14,11 @@
 
 먼저 단계별로 하나씩 벽돌을 쌓는 법을 배울 수 있습니다. 처음부터 한꺼번에 모든 것을 공부하지 않아도 됩니다. 시작부터 모든 구조를 갖춘 프레임워크와 다릅니다. 제일 먼저 리액트를 먼저 배우고 그 이후 다른 벽돌(기술)을 배우며 더 많은 벽돌들과 연결시키는 작업을 통해 점점 넓고 깊게 배울 수 있습니다.
 
-모든 벽돌은 상호 교환이 가능합니다. 이 것이 리액트 생태계가 혁신적이다라고 평가받는 이유입니다. 여러 솔루션들이 서로 경쟁하고 있고 각자 개발 상황에 맞는 적합한 솔루션을 선택하면 된다.
+모든 벽돌은 상호 교환이 가능합니다. 이 것이 리액트 생태계가 혁신적이다라고 평가받는 이유입니다. 여러 솔루션들이 서로 경쟁하고 있고 각자 개발 상황에 맞는 적합한 솔루션을 선택하면 됩니다.
 
 SPA 프레임 워크의 1세대는 이미 상용화 단계에 이르렀고 더욱 견고해졌습니다. 리액트는 여전히 혁신적입니다. [페이스북은 물론 에어비앤비, 넷플릭스](https://github.com/facebook/react/wiki/Sites-Using-React) 등 선도적인 테크 회사들이 리액트를 도입해 플랫폼 개발을 하고 있습니다. 그들 모두가 리액트와 생태계에 만족하고 있으며 리액트의 미래에 투자하고 있습니다.
 
-최신 웹 애플리케이션 개발을 위해 리액트는 가장 좋은 선택이 될 겁니다. 리액트 자체는 뷰 레이어의 역할을 하지만 [거의 모든 프레임워크와 서로 상호 교환 가능합니다.](https://www.robinwieruch.de/essential-react-libraries-framework/) 리액트는 간결한 API, 놀라운 생태계, 훌륭한 커뮤니티를 갖추고 있습니다. ["왜 나는 앵귤러(Angular)에서 리액트로 옮겼는가](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)" 블로그에서 리액트를 선택한 개인적인 경험을 나누었습니다. 그러나 타 프레임워크나 라이브러리가 아닌, 리액트를 선택한 이유를 스스로에게 물어보기 바랍니다. 본인이 리액트를 사용해야하는 이유를 알고 있어야, 더 많은 사람들이 앞으로 리액트의 발전과 행보에 관심을 가지게 될 것이니까요.
+최신 웹 애플리케이션 개발을 위해 리액트는 가장 좋은 선택이 될 겁니다. 리액트 자체는 뷰 레이어의 역할을 하지만 [거의 모든 프레임워크와 서로 상호 교환 가능합니다.](https://www.robinwieruch.de/essential-react-libraries-framework/) 리액트는 간결한 API, 놀라운 생태계, 훌륭한 커뮤니티를 갖추고 있습니다. ["왜 나는 앵귤러(Angular)에서 리액트로 옮겼는가](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)" 블로그에서 리액트를 선택한 개인적인 경험을 나누었습니다. 그러나 리액트를 배우기 이전에 다른 프레임워크나 라이브러리가 아닌, 리액트를 선택한 이유를 스스로에게 물어보기 바랍니다. 본인이 리액트를 사용해야하는 이유를 잘 알고 있어야, 더 많은 사람들이 앞으로 리액트의 발전과 행보에 관심을 가지게 될 것이니까요.
 
 
 ### 읽어보기
@@ -86,9 +86,9 @@ npm install react
 npm init -y
 ~~~~~~~~
 
-`-y` 표시는 *package.json*의 기본값을 초기화하는 단축키입니다. 플래그를 사용하지 않으면 파일을 구성하는 방법을 결정해야 해야합니다. npm 프로젝트를 초기화 한 후에는`npm install <package>`를 통해 새 패키지를 설치하는 것이 좋습니다.
+`-y` 표시는 *package.json*를 초기화하는 단축키입니다. 플래그 표시(`-`) 사용하지 않으면 파일구성 방법을 결정해야 해야합니다. npm 프로젝트 초기화 후 `npm install <package>`를 통해 새 패키지를 설치하는 것이 좋습니다.
 
-*package.json*에 대해 더 알아봅시다. *package.json*는 노드 패키지 전체 파일을 공유하지 않고도 다른 개발자와 프로젝트를 공유 할 수 있습니다. 이 파일 내 프로젝트에 사용된 노드 패키지 리스트가 모두 적혀 있는데, 이러한 패키지를 종속성(dependencies)이라 부릅니다. 패키지 종속성이 없어도 프로젝트를 다운 받을 수 있습니다. 종속성은 *package.json*에 작성됩니다. 프로젝트를 복사한 후 `npm install`명령어로 모든 패키지가 간단하게 설치됩니다. `npm install` 스크립트는 *package.json* 파일에 나열된 모든 의존성을 취하여 *node_modules/* 폴더에 설치합니다.
+*package.json*에 대해 더 알아봅시다. *package.json*는 노드 패키지 전체 파일을 공유하지 않고도 다른 개발자와 프로젝트를 공유 할 수 있습니다. 이 파일 내 프로젝트에 사용된 노드 패키지 리스트가 모두 적혀 있는데, 이러한 패키지를 종속성(dependencies)이라 부릅니다. 패키지 종속성이 없어도 프로젝트를 다운 받을 수 있습니다. 종속성은 *package.json*에 작성됩니다. 프로젝트를 복사한 후 `npm install`명령어로 모든 패키지가 쉽게 설치됩니다. `npm install` 스크립트는 *package.json* 파일에 나열된 모든 의존성을 취하여 *node_modules/* 폴더에 설치합니다.
 
 npm 명령어 하나가 더 남았습니다.
 
@@ -97,7 +97,7 @@ npm 명령어 하나가 더 남았습니다.
 npm install --save-dev <package>
 ~~~~~~~~
 
-`--save-dev` 명령어는 노드 패키지가 개발(development)환경에서 사용되는 것을 말합니다. 애플리케이션 배포 시, 개발 환경과 달리 사용하지 않는 노드 패키지가 있습니다. 예를 들어 애플리케이션 테스트를 위한 노드 패키지가 그렇습니다. npm을 통해 해당 패키지를 설치할 수 있지만, 실제 프로덕션 환경에서는 제외시켜야 합니다. 테스트는 개발 프로세스 중에만 수행되고, 실제 배포된 환경에서는 제외해야 됩니다. 이를 위해 `--save-dev` 명령어를 사용합니다.
+`--save-dev` 명령어는 노드 패키지가 개발 환경에서 사용되는 것을 말합니다. 애플리케이션 배포 환경에서, 개발 환경과 달리 사용하지 않는 노드 패키지가 있습니다. 예를 들어 테스트를 위한 노드 패키지가 그렇습니다. npm을 통해 해당 패키지를 설치할 수 있지만, 실제 제품이 운영되는 환경에서는 제외시켜야 합니다. 테스트는 개발 프로세스 중에만 수행되고, 실제 배포 환경에서는 제외됩니다. 이를 위해 `--save-dev` 명령어를 사용합니다.
 
 앞으로 더 많은 npm 명령어를 다루게 될 것입니다. 지금은 이 정도로도 충분합니다.
 
@@ -111,15 +111,18 @@ npm install --save-dev <package>
   * *package.json* 파일과 *node_modules/* 폴더가 생성되었는지 확인합니다.
   * *react* 노드 패키지를 제거하고 다시 설치하는 방법을 스스로 찾아봅니다.
 
-* [npm 문서](https://docs.npmjs.com/)를 읽어 봅니다.
+### 읽어보기
+
+* [npm 문서](https://docs.npmjs.com/)
 
 ## 설치하기
 
-여러 방법으로 리액트 애플리케이션 설치가 가능합니다.
+리액트는 CDN 또는 npm 명령어로 설치할 수 있습니다.
 
-첫 번째 방법은 CDN을 사용하는 것이다. CDN이란 [콘텐츠 전송 네트워크(Content_delivery_network)](https://en.wikipedia.org/wiki/Content_delivery_network)를 말합니다. 많은 회사들이 CDN를 사용해 라이브러리를 제공하고 있습니다. 번들링된 리액트 라이브러리는 단 *react.js* 파일 뿐이기 때문에 리액트도 라이브러라라고 할 수 있습니다. CDN을 별도로 호스팅하거나 응용 프로그램 내에 설치하여 사용 가능합니다.
+### CDN
+CDN이란 [콘텐츠 전송 네트워크(Content_delivery_network)](https://en.wikipedia.org/wiki/Content_delivery_network)를 말합니다. 많은 회사들이 CDN를 사용해 라이브러리를 제공하고 있습니다. 번들링된 리액트 라이브러리는 단 *react.js* 파일 뿐이기 때문에 리액트도 라이브러라라고 할 수 있습니다. CDN을 별도로 호스팅하거나 응용 프로그램 내에 설치하여 사용 가능합니다.
 
-CDN을 사용해 리액트를 시작해봅시다. HTML 파일 내 `<script>` 인라인 태그로 CDN url을 작성합니다. *react*와 *react-dom* 두 라이브러리 url을 추가합니다.
+CDN을 사용해 리액트를 시작하기 위해 HTML 파일 내 `<script>` 인라인 태그로 CDN url을 작성합니다. *react*와 *react-dom* 두 라이브러리 url을 추가합니다.
 
 
 {title="Code Playground",lang="javascript"}
@@ -128,7 +131,8 @@ CDN을 사용해 리액트를 시작해봅시다. HTML 파일 내 `<script>` 인
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 ~~~~~~~~
 
-두 번째는 npm으로 리액트를 설치하는 방법입니다. 애플리케이션 내 *package.json* 파일이 있다면, npm 명령어로 *react* 및 *react-dom*을 설치할 수 있습니다. 제일 먼저  *npm init -y* 명령어를 입력해 * package.json*을 초기화합니다. npm 명령어 한 줄로 여러 노드 패키지를 한 번에 설치해봅시다.
+### npm
+npm으로 리액트를 설치하는 방법입니다. 애플리케이션 내 *package.json* 파일이 있다면, npm 명령어로 *react* 및 *react-dom*을 설치할 수 있습니다. 제일 먼저  *npm init -y* 명령어를 입력해 *package.json*을 초기화합니다. npm 명령어 한 줄로 여러 노드 패키지를 한 번에 설치해봅시다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -137,29 +141,28 @@ npm install react react-dom
 
 이와 같은 방법은 현재 개발 중인 애플리케이션에 리액트를 추가할 때 사용됩니다.
 
-안타깝게도 설치가 전부가 아닙니다. JSX(리액트 문법)과 자바스크립트 ES6로 만든 애플리케이션은 [바벨(babel)](http://babeljs.io/)을 사용합니다. 모든 브라우저가 ES6 문법을 해석할 수 없기 때문에, 바벨을 통해 각기 다른 브라우저 사양에서 자바스크립트 ES6와 JSX를 변환해줘야 합니다. 바벨 설치를 위해 많은 환경 설정과 도구가 필요하기 때문에, 리액트 초심자는 바벨 사용은 또 다른 장벽이 될 수 있습니다.
+설치로 모든 준비가 끝난 것이 아닙니다. JSX(리액트 문법)과 자바스크립트 ES6로 만든 애플리케이션은 [바벨(babel)](http://babeljs.io/)을 사용합니다. 모든 브라우저가 ES6 문법을 해석할 수 없기 때문에, 바벨을 통해 자바스크립트 ES6와 JSX를 ES5로 변환해야 합니다. 바벨 설치를 위해 많은 환경 설정과 도구가 필요하기 때문에, 리액트 초심자에게 바벨 사용은 또 다른 장벽이 될 수 있습니다.
 
-이러한 이유로 페이스북에서는 제로 구성 설치(zero-configuration) 솔루션인 *create-react-app* 패키지를 만들었습니다. 우리는 이 패키지로 리액트 애플리케이션을 시작하고 개발을 진행해 볼 것입니다.
+이러한 이유로 페이스북에서는 제로 구성 설치(zero-configuration) 솔루션인 *create-react-app* 패키지를 만들었습니다. 우리는 이 패키지로 리액트 애플리케이션을 만들어 볼 것입니다.
 
 ### 읽어보기
 
-* [[리액트 공식문서] 리액트 설치](https://facebook.github.io/react/docs/installation.html)에 관해 읽어본다.
+* [[리액트 공식문서] 리액트 설치](https://facebook.github.io/react/docs/installation.html)
 
 ## 제로 구성 설치 Zero-Configuration Setup
 
-본 책에서는 [create-react-app](https://github.com/facebookincubator/create-react-app)으로 애플리케이션을 부트스트래핑한다. 2016년 페이스북이 제안한 리액트 제로 구성 설치 스타터 킷(Zero-Configuration Setup Starter Kit)이다. [한 조사](https://twitter.com/dan_abramov/status/806985854099062785)에 따르면 96% 이상 넘는 사람들이 리액트 초보자들에게 create-react-app을 추천한다고 말했다.
+이 책에서는 [create-react-app](https://github.com/facebookincubator/create-react-app)으로 애플리케이션을 부트스트래핑합니다. 부트스트래핑(bootstrapping)이라는 뜻은 애플리케이션을 최초 생성하여 브라우저에서 실행하는 과정을 말합니다. create-react-app은 2016년 페이스북이 제안한 리액트 제로 구성 설치 스타터 킷(Zero-Configuration Setup Starter Kit)입니다. [한 조사](https://twitter.com/dan_abramov/status/806985854099062785)에 따르면 96% 이상의 개발자들이 리액트 입문자의 경우 create-react-app를 사용하여 리액트 개발할 것을 추천했습니다.
 
-*create-react-app*에서는 도구 구현과 구성이 백그라운드에서 진행되며 애플리케이션 구현에 중점을 둔다.
+*create-react-app*는 리액트 개발 도구와 환경 설정이 이미 세팅되어 있어, 우리는 오롯이 애플리케이션 구현에만 신경쓰면 됩니다. 
 
-시작하려면 글로벌 노드 패키지에 패키지를 설치해야한다. 이후에는 새로운 애플리케이션을 부트스트랩하려면 명령어를 입력해 실행하면 된다.
+시작을 위해 전역 노드 패키지에 패키지를 설치합니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm install -g create-react-app
 ~~~~~~~~
 
-*create-reaction-app* 버전을 확인해 성공적으로 패키지가 설치되었는지 확인할 수 있다.
-
+*create-reaction-app* 버전을 확인해 성공적으로 패키지가 설치되었는지 확인해봅시다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -167,7 +170,9 @@ create-react-app --version
 *v1.4.1
 ~~~~~~~~
 
-이제 첫 번째 리액트 애플리케이션을 부트스트래핑해보자. 애플리케이션 이름을 *hackernews*라 하겠다. 물론 다른 이름을 사용해도 된다. 부트스트랩에는 몇 초가 걸린다. 그 후 폴더 안으로 이동한다.
+첫 번째 리액트 애플리케이션을 시작해봅시다.  앞으로 새로운 리액트 애플리케이션을 부트스트랩할 때마다 `create-react-app <name>` 명령어를 입력하면 됩니다.
+
+우리가 만들 애플리케이션은 해커 뉴스 플랫폼임으로 프로젝트 이름을 *hackernews*라 합시다. 물론 다른 이름을 사용해도 괜찮습니다. 부트스트랩에는 몇 초가 걸립니다. 완료 후에 생성된 폴더 안으로 들어갑니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -175,7 +180,7 @@ create-react-app hackernews
 cd hackernews
 ~~~~~~~~
 
-이제 코드에디터에서 애플리케이션을 열 수 있다. 폴더 내 아래와 같이 *create-react-app* 구조가 보일 것이다.
+코드에디터에서 애플리케이션을 열어 봅시다. 디렉토리에 아래와 같은 *create-react-app* 구조가 보일 것입니다.
 
 {title="Folder Structure",lang="text"}
 ~~~~~~~~
@@ -196,51 +201,53 @@ hackernews/
     logo.svg
 ~~~~~~~~
 
-각 파일과 폴더 단위가 무엇을 지칭하는 지 알아보자. 처음부터 모든 것을 이해하지 않아도 된다.
+각 파일과 폴더 단위가 무엇을 지칭하는지 알아봅시다. 처음부터 모든 것을 이해하지 않아도 됩니다.
 
-* **README.md:** .md 확장자는 파일이 마크다운(markdown) 파일이다. Markdown은 일반 텍스트와 함께 간단한 마크업 언어로 작성된다. 많은 소스 코드 프로젝트에는 *README.md* 파일에 프로젝트 설명 및 설치 등 안내 사항을 담고 있다. 깃헙 저장소 페이지에 진입하면 초기화면에  *README.md*이 먼저 보인다. *create-react-app*을 설치한 후 바로 깃헙에 프로젝트를 올린다면 *README.md*는 공식 [create-react-app 깃헙 저장소](https://github.com/facebookincubator/create-react-app)와 동일하다.
+* **README.md:** .md 확장자는 파일이 마크다운(markdown) 파일입니다. 일반 텍스트와 함께 간단한 마크업 언어로 작성합니다. 대부분의 프로젝트에는 *README.md* 파일에 프로젝트 설명 및 설치 방법 등 안내 사항이 작성되어 있습니다. 깃허브 리퍼지토리 페이지의 첫 화면에  *README.md*을 보았을 겁니다. *create-react-app*을 설치한 후 바로 깃헙에 프로젝트를 올린다면 *README.md*는 공식 [create-react-app 깃허브 리퍼지토리](https://github.com/facebookincubator/create-react-app)와 동일할 겁니다.
 
-* **node_modules/:** 이 폴더에는 npm을 통해 설치되었던 모든 노드 패키지가 들어있다. 이미 *create-react-app*를 사용했으므로 몇 개의 노드 모듈이 설치되어 있어야 한다. 보통 이 폴더를 절대로 건드리지 않는다. npm 명령어를 사용해 패키지를 설치 및 제거한다.
+* **node_modules/:** 이 폴더에는 npm을 통해 설치되었던 모든 노드 패키지를 포함합니다. 이미 *create-react-app*를 사용했으므로 이미 여러 개의 노드 모듈이 설치되어있어야 합니다. 이 폴더를 건드리지 말아야 합니다. npm 명령어를 사용해 패키지를 설치 및 제거만 하도록 합니다.
 
-* **package.json:** 이 파일에는 노드 패키지 종속성 및 기타 프로젝트 구성 목록을 포함한다.
+* **package.json:** 이 파일에는 노드 패키지 종속성 및 기타 프로젝트 구성 목록을 포함합니다.
 
-* **.gitignore:** 이 파일은 git을 사용할 때 원격 git 저장소에 추가가 되지 않아야할 모든 파일과 폴더를 나타낸다. 예를 들어 *node_module*와 같이 로컬 프로젝트에만 있어야 한다. 종속성 폴더 전체를 올리지 않고도 공유된 *package.json* 파일만으로 종속성을 설치할 수 있다.
+* **.gitignore:** 이 파일은 git을 사용할 때, 원격 git 리퍼지토리에 제외시킬 모든 파일과 폴더를 나타낸다. 예를 들어 *node_module*은 같이 로컬에만 있어야 합니다. 종속성 폴더 전체를 올리지 않고도 공유된 *package.json* 파일만으로 종속성을 설치할 수 있습니다.
 
-* **public/:** 배포를 위해 프로젝트를 빌드 할 때에  필요한 모든 파일이 들어 있다. 프로젝트 빌드 할 때, *src/* 폴더 내 모든 코드는 몇 개의 파일로 묶여 *public* 폴더에 배치된다.
+* **public/:** 배포를 위해 프로젝트를 빌드 시 필요한 모든 파일을 포함합니다. 프로젝트 빌드 할 때, *src/* 폴더 내 모든 코드는 몇 개의 파일로 묶여 *public* 폴더에 배치됩니다.
 
-따라서 위에서 언급된 파일 및 폴더를 건드릴 필요가 없다. 초기에는 필요한 모든 것이 *src/* 폴더에 있다. 중요한 파일은 *src/App.js* 로 리액트 컴포넌트가 있다. 현재 이 파일 전체가 애플리케이션을 이루고 있으나, 리액트 컴포넌트를 여러 파일로 분절하여 나눠 유지 관리할 수 있다.
+따라서 위에서 언급된 파일 및 폴더를 건드릴 필요가 없습니다. 우리가 필요한 모든 것은 *src/* 폴더에 있습니다. 제일 중요한 파일은 *src/App.js*로 이 파일이 바로 리액트 컴포넌트입니다. 현재 이 파일이 전체 애플리케이션을 이루고 있지만, 리액트 컴포넌트를 여러 파일로 분절하여 나눠 유지 관리할 수 있습니다.
 
-이외에 테스트를 위한 *src/App.test.js* 파일과 리액트의 진입점이라 볼 수 있는 *src/index.js* 파일이 보일 것이다. 다음 장에서 두 파일이 어떤 것인지 알게 될 것이다. 또한 애플리케이션과 컴포넌트 스타일을 지정하는 *src/index.css* 및 *src/App.css* 파일이 있다. 현재는 기본 스타일만 적용되어 있다.
+이외에 테스트를 위한 *src/App.test.js* 파일과 리액트의 진입점이라 볼 수 있는 *src/index.js* 파일이 보일 겁니다. 이어 다음 장에서 두 파일이 어떤 것인지 알게 될 것입니다. 또한 애플리케이션과 컴포넌트 스타일을 지정하는 *src/index.css* 및 *src/App.css* 파일이 있습니다. 현재는 기본 스타일만 적용되어 있습니다.
 
-* *create-reaction-app* 애플리케이션은 npm 프로젝트이다. npm을 사용하여 프로젝트에 노드 패키지를 설치하고 제거 할 수 있다. 또한 npm 명령어를 사용할 수 있다.
+* *create-reaction-app* 애플리케이션은 npm 프로젝트입니다. npm을 사용하여 프로젝트에 노드 패키지를 설치하고 제거할 수 있습니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
-// Runs the application in http://localhost:3000
+// http://localhost:3000 에서 애플리케이션 실행
 npm start
 
-// Runs the tests
+// 테스트 실행
 npm test
 
-// Builds the application for production
+// 배포를 위한 애플리케이션 빌드
 npm run build
 ~~~~~~~~
 
-스크립트 명령어는 * package.json *에 정의되어 있다. 보일러플레이트 리액트 애플리케이션이 부트스트래핑된다. 이제 아래 실습을 통해 브라우저에서 애플리케이션이 구동되는 것을 확인해보자.
+*package.json*에 스트립트 명령어가 정의되어 있습니다. 리액트 애플리케이션을 부트스트리팽 했으니 브라우저에서 애플리케이션이 구동되는 것을 확인해봅시다.
 
-### 실습
+### 실습하기
 
-* `npm start`을 실행해 브라우저에서 구동 중인 애플리케이션 확인한다.
-* `npm test`를 실행해본다.
-* *public/*폴더 내 어떤 내용이 있는지 확인하고, `npm run build`스크립트를 실행해 폴더에 파일이 추가되었는지 확인한다. (추가된 파일을 다시 제거할 수 있고 프로젝트에 영향을 주지 않는다.)
-* 폴더 구조가 익숙해지도록 한다.
-* 파일 내용이 익숙해지도록 한다.
-* npm 스크립트 및 create-react-app에 대한 [자세한 내용](https://github.com/facebookincubator/create-react-app)을 읽어본다.
+* `npm start`을 실행해 브라우저에서 애플리케이션을 확인합니다.
+* `npm test`를 실행합니다.
+* *public/* 폴더 내 어떤 내용이 있는지 확인하고, `npm run build` 스크립트를 실행해 폴더에 어떤 파일이 추가되었는지 확인합니다. (추가된 파일은 프로젝트에 영향을 주지 않으므로 제거할 수 있습니다.)
+* 폴더 구조에 익숙해지도록 합니다.
+* 파일 내용이 익숙해지도록 합니다.
+
+### 읽어보기
+* [create-react-app 깃헙 리퍼지토리](https://github.com/facebookincubator/create-react-app)
 
 
-## JSX 들어가기
+## JSX 들어가기 Introduction to JSX
 
-이제 JSX에 대해 알아보자. JSX는 리액트 구문이다. 앞서 언급했듯이 *create-react-app*로 애플리케이션을 부트스트래핑한다. 애플리케이션을 구현하는 기본적인 파일이 제공된다. 소스 코드를 살펴보자. *src/App.js* 파일을 먼저 만들어보자.
+이제 JSX에 대해 알아봅시다. JSX는 리액트 구문입니다. *create-react-app*로 애플리케이션을 부트스트래핑을 하면 애플리케이션이 이미 구현되어 있습니다. *src/App.js* 소스 코드를 살펴봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -267,17 +274,17 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
+자바스크립트 ES6 기능인 import/export 및 클래스 선언에 대해 알기 위해 조급해할 필요가 없습니다. 앞으로 차근차근 배워볼 것입니다.
 
-import/export 및 클래스 선언을 먼저 하려고 서두르지 않아도 된다. 이 기능은 자바스크립트 ES6 기능이다. 다음 장에서 이들에 대해 더 자세히 알아볼 것이다.
+`App.js` 파일에 **리액트 ES6 클래스 컴포넌트(React ES6 Class Component)**를 볼 수 있습니다. 이 파일에서  컴포넌트를 선언합니다.
 
-`App`파일 내 **리액트 ES6 클래스 컴포넌트**를 볼 수 있다. 이 파일에서 바로 컴포넌트를 선언한다.
- 일반적으로 컴포넌트를 선언한 후에는 애플리케이션 내 어느 곳이든지 다시 요소사용될 수 있다. 컴포넌트는 다른 말로 인스턴스를 사용한다. 다시 말하자면 컴포넌트가 인스턴스화 된다.
+ 컴포넌트를 선언한 후, 컴포넌트는 요소(element)로서 애플리케이션의 어느 곳이든지 재 사용될 수 있습니다. 컴포넌트가 인스턴스화되기 때문에, 다른 말로 컴포넌트의 인스턴스를 사용한다고 말합니다.
+ 
+ `render()`메소드에서 **요소(element)**가 리턴(return)됩니다. 여러 요소가 모여 컴포넌트 전체를 구성합니다. 컴포넌트(componet), 인스턴스(Instance), 요소(element) 간의 용어와 각 쓰임의 차이를 알고 있다면 이해가 쉬울 것입니다.
 
-리턴하는 **요소(element) **는`render()`메소드에서 지정한다. 요소는 컴포넌트를 이룬다. 컴포넌트(componet), 인스턴스(Instance), 요소(element) 간의 차이를  알고 있다면 이해가 쉬울 것이다.
+이제 `App` 컴포넌트가 인스턴스화 된 것을 볼 수 있습니다. 인스턴스가 되지 않았다면, 브라우저에서 렌더링된 결과를 볼 수 없습니다. App 컴포넌트는 선언되었지만, 다른 곳에 재사용되지 않았습니다. JSX문법인 `<App/>`를 사용하면 어느 컴포넌트에서나 인스턴스화하여 재사용할 수 있습니다.   
 
-이제 `App` 컴포넌트가 인스턴스화 된 것을 볼 수 있다. 인스턴스가 되지 않았다면, 브라우저에서 렌더링 된 결과를 볼 수 없게 된다. App 컴포넌트는 선언되었지만, 다른 곳에 재사용되지 않았다. JSX문법인 `<App/>`를 사용하면 어느 컴포넌트에서나 인스턴스화하여 재사용할 수 있다.   
-
-`render()` 블록 내 내용은 HTML과 비슷해보이지만 JSX 문법으로 작성한다. JSX를 사용하면 HTML과 자바스크립트를 결합해 쓸 수 있다. HTML과 자바스크립트를 분리해 사용해왔던 분들에게는 혼란스러울 수 있다. 때문에 JSX에서 기본 HTML을 처음 사용하도록 한다. 이제 `App` 파일에 있는 모든 내용을 지우자.
+`render()` 블록 안에 내용은 HTML과 비슷해보일 겁니다만, JSX 문법으로 작성되었습니다. JSX를 사용하면 HTML과 자바스크립트를 결합해 쓸 수 있습니다. HTML과 자바스크립트를 따로 사용했다면 혼란스러울 겁니다. 먼저 JSX에서 기본적인 HTML 요소를 작성해봅시다. 먼저 `App` 컴포넌트의 모든 내용을 지우고 아래와 같이 작성합니다.
 
 
 {title="src/App.js",lang=javascript}
@@ -289,7 +296,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h2>Welcome to the Road to learn React</h2>
+        <h2>리액트에 오신 여러분을 환영합니다</h2>
       </div>
     );
   }
@@ -298,7 +305,7 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-이제 자바스크립트 없이 `render()` 메소드로 HTML를 반환했다. "리액트 배움의 길에 오신 것을 환영합니다"라는 새 변수를 만들고, 이 변수를 JSX 문법인 중괄호(`{}`) 안에 넣어보자.
+이제 자바스크립트없이 `render()`로 HTML를 반환했습니다. 새 변수를 만들고 "리액트에 오신 여러분을 환영합니다"라는 값을 주고, 이 변수를 JSX 문법인 중괄호(`{}`) 안에 넣습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -323,60 +330,59 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-다시 `npm start` 명령어를 실행해 애플리케이션을 시작해보자.
+다시 `npm start` 명령어를 실행해 애플리케이션을 시작합니다.
 
-아마 `className` 속성(attribute)이란 것을 눈치챘을 것이다. 
-404/5000
-이것은 HTML의 표준`class` 속성에 영향을 ㅂ다았다. 기술적인 이유로 JSX는 몇 가지 내부 HTML 속성을 대체해야했다. 리액트 공식문서에서 [지원하는 HTML 속성](https://facebook.github.io/react/docs/dom-elements.html)을 확인 할 수 있다. 모두 카멜케이스(camelCase) 표기법을 따른다. 앞으로 리액트를 배우면서 JSX 특정 속성을 좀더 살펴볼 것이다.
+아마 `className`가 속성(attribute)임을 눈치챘을 겁니다. `className`은 HTML 표준 `class`속성에 영향을 받았습니다. 기술적인 이유로 JSX는 몇 가지 내부 HTML 속성으로 대체했습니다. 리액트 공식문서에서 [지원하는 HTML 속성](https://facebook.github.io/react/docs/dom-elements.html)을 확인할 수 있습니다.  HTML 속성은 카멜케이스(camelCase) 표기법을 따릅니다. 앞으로 JSX 특정 속성을 좀더 살펴볼 것입니다.
 
-### 실습
+### 실습하기
 
-* JSX 안에 새 변수를 만들고 렌더링한다.
-  * 객체를 사용해 유저의 성과 이름을 나타낸다.
-  * JSX 내 유저 속성을 렌더링한다. 
-* [JSX](https://facebook.github.io/react/docs/introducing-jsx.html)에 대해 읽어본다. 
-* [리액트 컴포넌트, 요소, 인스턴스](https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html)에 대해 읽어본다.
+* JSX 안에 새 변수를 만들고 렌더링합니다.
+  * 객체를 사용해 유저의 성과 이름을 나타냅니다.
+  * JSX 내 유저 속성을 렌더링합니다. 
+  
+### 읽어보기  
+* [[리액트 공식문서] JSX](https://facebook.github.io/react/docs/introducing-jsx.html)에 대해 읽어봅니다. 
+* [[리액트 공식문서] 리액트 컴포넌트, 요소, 인스턴스](https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html)에 대해 읽어봅니다.
 
 ## ES6 const, let
 
-앞에서 `var` 문을 사용해 변수 `helloWorld`를 선언했다. 자바스크립트 ES6의 변수 선언은 `const`또는 `let`으로 한다. ES6에서는 `var` 사용이 극히 드물다.
+앞에서 `var` 문을 사용해 변수 `helloWorld`를 선언했습니다. 자바스크립트 ES6 변수 선언은 `const`또는 `let`을 사용합니다. ES6에서는 `var` 사용하는 일은 극히 드뭅니다.
 
-`const`로 선언된 변수는 다시 할당하거나 선언 할 수 없다. 수정되거나 변경될 수 없다. 불변 데이터 구조(immutable data structures)이다. 데이터 구조가 정의되면, 다시 변경할 수 없다.
-
-{title="Code Playground",lang="javascript"}
-~~~~~~~~
-// not allowed
-const helloWorld = 'Welcome to the Road to learn React';
-helloWorld = 'Bye Bye React';
-~~~~~~~~
-
-반면 `let`은 변경 가능하다.
+`const`로 선언된 변수를 다시 할당하거나 선언할 수 없습니다. 불변 데이터 구조(immutable data structures)이기 때문에 데이터 구조가 정의된 이후, 변경할 수 없습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
-// allowed
-let helloWorld = 'Welcome to the Road to learn React';
-helloWorld = 'Bye Bye React';
+// 불가능
+const helloWorld = '리액트에 오신 여러분을 환영합니다';
+helloWorld = '안녕 리액트';
 ~~~~~~~~
 
-변수를 다시 할당해야 할 때 사용할 수 있다.
+반면 `let`은 변경 가능해 변수를 다시 할당할 수 있습니다.
 
-그러나, `const` 사용에 주의해야한다. `const`로 선언된 변수는 수정할 수 없다. 그러나 변수가 배열이나 객체일 경우, 갖고 있는 변수는 수정할 수 있다. 보유하고 있는 값은 변경할 수 없다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
-// allowed
+// 가능
+let helloWorld = '리액트에 오신 여러분을 환영합니다';
+helloWorld = '안녕 리액트';
+~~~~~~~~
+
+기본적으로 `const`로 선언된 변수는 변경할 수 없습니다. 그러나 변수가 배열이나 객체일 경우 변경 가능합니다.
+
+{title="Code Playground",lang="javascript"}
+~~~~~~~~
+// 가능
 const helloWorld = {
-  text: 'Welcome to the Road to learn React'
+  text: '리액트에 오신 여러분을 환영합니다'
 };
-helloWorld.text = 'Bye Bye React';
+helloWorld.text = '안녕 리액트';
 ~~~~~~~~
 
-그럼 어느 상황에서 `let`과 `const`를 사용해야할까? 사용법에 대한 의견은 서로 분분하다. 최대한 `const`를 사용하려고 노력하는 것이 좋다. 객체와 배열의 값이 변경 될 수 있더라도 데이터 구조를 변경하지 않으려는 것을 말한다. 변수를 수정하려면 `let`을 사용할 수 있다.
+그렇다면 어느 상황에서 `let`과 `const`를 사용해야 할까요? 사용법에 대한 의견은 서로 분분합니다만, 가능하면 최대한 `const`를 기본적으로 사용하는 것이 좋습니다. 객체와 배열의 값이 변경되더라도 데이터 구조를 변경되지 않으려도 의도를 반영하기 때문입니다. 변수가 수정된다면 `let`을 사용합니다.
 
-불변성은 리액트와 그 생태계가 따르고 있다. 그래서 변수를 정의 할 때 `const`가 우선시 되어야 한다. 객체가 복잡해지면 내부 값을 수정해야되는 경우도 있으니 주의해라. 
+리액트 생태계에서는 불변성을 준수합니다. 따라서 변수를 정의 시 `const`가 우선시 됩니다. 객체가 복잡해지면 내부 값을 수정해야되는 경우도 있으니 주의합니다. 
 
-응용 프로그램에서는`const` 대신`var`을 사용해야한다.
+우리가 만드는 애플리케이션에서는`const` 대신`var`을 사용합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -386,7 +392,7 @@ import './App.css';
 class App extends Component {
   render() {
 # leanpub-start-insert
-    const helloWorld = 'Welcome to the Road to learn React';
+    const helloWorld = '리액트에 오신 여러분을 환영합니다';
 # leanpub-end-insert
     return (
       <div className="App">
@@ -399,17 +405,19 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-### 실습
+### 읽어보기
 
-* [ES6 const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)에 더 읽어본다.
-* [ES6 let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)에 대해 읽어본다.
-* 불변 데이터 구조에 대해 더 조사한다.
-  * 일반적으로 프로그래밍에서 말하는 불편 데이터 구조란 무엇인지 알아본다.
-  * 리액트와 생테계에서 사용되는 이유에 대하 알아본다.
+* [[MDN] ES6 const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
+* [[MDN] ES6 let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
+
+### 찾아보기
+* 불변 데이터 구조에 대해 더 조사합니다.
+  * 보편적인 프로그래밍에서 말하는 불변 데이터 구조란 무엇인지 알아봅니다.
+  * 리액트와 그 생테계에서 불변 데이터 구조가 사용되는 이유에 대해 알아봅니다.
 
 ## ReactDOM
 
-App 컴포넌트를 다루기 전에 어디에 사용되고 있는지 확인해 보자. 리액트의 첫 진입점이라 할 수 있는 *src/index.js* 파일에 있다는 것을 확인할 수 있을 것이다.
+App 컴포넌트를 바꾸기 전에 이 컴포넌트가 어디에서 사용되고 있는지 확인해봅시다. 리액트의 첫 진입점이라 할 수 있는 *src/index.js* 파일에 있습니다.
 
 {title="src/index.js",lang=javascript}
 ~~~~~~~~
@@ -424,11 +432,11 @@ ReactDOM.render(
 );
 ~~~~~~~~
 
-대게 `ReactDOM.render()`는 HTML 내 DOM 노드를 JSX로 대체한다. 이 때문에 타 애플리케이션에 리액트가 쉽게 통합될 수 있는 것이다. 애플리케이션 내 `ReactDOM.render()`를 여러 번 사용할 수 있다. 원하는 곳마다 JSX 구문, 단일 리액트 컴포넌트, 다중 리액트 컴포넌트, 또는 전체 응용 프로그램을 부트스트랩 할 수 있습니다. 그러나 일반 리액트 애플리케이션은 관용적으로 전체 컴포넌트 트리를 부트스트랩하기 위해 `ReactDOM.render()`를 한 번만 사용한다.
+대게 `ReactDOM.render()`는 HTML 내 DOM 노드를 JSX로 대체합니다. 때문에 타 애플리케이션에 리액트가 쉽게 통합됩니다. 애플리케이션 내 `ReactDOM.render()`를 여러 번 사용할 수 있습니다. 원하는 곳마다 JSX 구문, 단일 리액트 컴포넌트, 다중 리액트 컴포넌트, 또는 전체 응용 프로그램을 부트스트랩 할 수 있습니다. 그러나 일반 리액트 애플리케이션은 관용적으로 전체 컴포넌트 트리를 부트스트랩하기 위해 `ReactDOM.render()`를 한 번만 사용합니다.
 
-`ReactDOM.render()`에는 두 개의 인자가 필요하다. 첫 번째 인자는 렌더링된 JSX, 두 번째 인자는 리액트 애플리케이션이 HTML에 들어갈 위치를 지정한다. `id='root'`에 들어가게 된다. *public/index.html* 파일을 열어 이 id 속성을 확인할 수 있다. 
+`ReactDOM.render()`에는 두 개의 인자가 필요합니다. 첫 번째 인자는 렌더링된 JSX, 두 번째 인자는 리액트 애플리케이션이 HTML에 들어갈 위치인 id, 또는 클래스를 지정합니다. *public/index.html* 파일을 열어 이 id 속성을 확인합시다. App 컴포넌트는 `id='root'`에 들어가게 됩니다.
 
-`ReactDOM.render()`실행되면 이미 App 컴포넌트를 사용하고 있다. 그러나 되도록 가능한 간단한 JSX로 만들어 전달하는 것이 좋다. 컴포넌트를 인스턴스화 시킬 필요는 없다.
+`ReactDOM.render()`가 실행되어 이미 App 컴포넌트를 사용하고 있습니다. 되도록 가능한 간단한 JSX로 만들어 컴포넌트로 전달하는 것이 좋습니다. 이 파일에서 컴포넌트를 정의하고 컴포넌트를 인스턴스화 시킬 필요가 없습니다.
 
 {title="Code Playground",lang=javascript}
 ~~~~~~~~
@@ -438,18 +446,20 @@ ReactDOM.render(
 );
 ~~~~~~~~
 
-### 실습
+### 실습하기
 
-* *public/index.html*을 열어 HTML 안에 리액트 애플리케이션 들어가는 곳을 찾아본다.
-* [리액트 공식문서 - 리액트 내 렌더링되는 요소](https://facebook.github.io/react/docs/rendering-elements.html)에 관해 더 읽어본다
+* *public/index.html*을 열어 HTML 안에 리액트 애플리케이션 들어가는 곳을 찾아봅니다.
+
+### 읽어보기
+* [[리액트 공식문서] - 리액트 내 렌더링되는 요소](https://facebook.github.io/react/docs/rendering-elements.html)
 
 ## Hot Module Replacement
 
-개발자로서 개발 경험을 향상하기 위해 *src/index.js*에서 할 수 있는 일 한 가지가 있다. 옵션사항이기 때문에 리액트 초심자라면 이 부분을 꼭 알고 있을 필요는 없다.
+더 나은 개발 환경을 위해 *src/index.js*에서 할 일이 더 있습니다. 이 내용은 필수가 아니라 옵션이기 때문에 리액트 입문자가 꼭 해야할 내용은 아닙니다.
 
-*create-react-app*은 소스 코드 변경 시, 자동으로 브라우저를 새로고침해준다는 장점을 가지고 있다. *src/App.js* 파일 내 `helloWorld`를 다른 변수로 변경하라. 브라우저가 새로고침되어야 된다. 그러나 더 좋은 방법이 있다.
+*create-react-app*은 소스 코드 변경 시, 자동으로 브라우저를 새로고침합니다. *src/App.js* 파일 내 `helloWorld`를 다른 변수로 변경해보면 브라우저가 자동으로 새로고침되기 때문에 매번 수정 후 새로고침을 하지 않아도 됩니다. 그러나 더 좋은 방법이 있습니다.
 
-Hot Module Replacement(HMR)란 브라우저 내 애플리케이션을 재실행하기 위한 도구이다. 브라우저는 페이지 새로고침을 수행하지 않는다. *create-reaction-app*에서 쉽게 활성화 할 수 있습니다. *src/index.js*에서 진입점이 리액트를 가리키려면 아래와 같이 약간의 설정을 추가해야한다.
+Hot Module Replacement(HMR)란 브라우저 내 애플리케이션을 재실행하는 도구입니다. *create-reaction-app*에서 쉽게 사용할 수 있습니다. *src/index.js*에서 아래와 같이 약간의 설정을 추가합니다. 
 
 {title="src/index.js",lang=javascript}
 ~~~~~~~~
@@ -470,24 +480,26 @@ if (module.hot) {
 # leanpub-end-insert
 ~~~~~~~~
 
-위 코드가 전부다. *src/App.js* 파일에서 `helloWorld` 변수를 다른 것으로 바꿔보자. 브라우저는 페이지 새로고침되지 않지만, 애플리케이션이 재실행되어 올바른 결과가 출력된다. HMR은 여러 장점을 가지고 있다.
+위 코드가 전부입니다. *src/App.js* 파일에서 `helloWorld` 변수를 다른 것으로 바꿔봅시다. 브라우저는 페이지 새로고침되지 않지만, 애플리케이션이 재실행되어 올바른 결과가 출력됩니다. 이처럼 HMR은 장점이 많습니다.
 
-`console.log()`문으로 코드를 디버깅한다고 생각해보자. 코드를 수정해도 브라우저 페이지가 새로고침되지 않기 떄문에 개발자 콘솔에 그대로 남아있다. 디버깅 목적이라면 편리하다.
+`console.log()`문으로 코드를 디버깅한다고 생각해봅시다. 코드를 수정해도 브라우저 페이지가 새로고침되지 않기 때문에 개발자 콘솔에 그대로 남아있다. 디버깅을 보다 편리해집니다.
 
-애플리케이션이 성장하면서 페이지 새로고침은 생산성을 지연시킨다. 페이지가 로드될 떄까지 기다려야된다. 대규모 애플리케이션에서 페이지를 다시 로드하는데 몇 초 이상이 걸릴 수 있다. HMR은 이러한 단점을 해결한다.
+애플리케이션이 점차 성장하면서 페이지 새로고침은 개발 생산성을 지연시킵니다. 페이지가 로드될 때까지 기다려야 하며, 대규모 애플리케이션에서 페이지를 다시 로드하는데 몇 초 이상이 걸릴 수 있습니다. HMR은 이러한 단점을 해결합니다.
 
-가장 큰 장점은 HMR로 애플리케이션 상태를 유지할 수 있다는 것이다. 애플리케이션에 3단계의 대화창이 있다고 가정해보자. 다이얼로그 창 기능이라고 생각하면 된다. HMR이 없다면 소스 코드를 변경할 때마다 브라우저 페이지가 새로고침된다. 창을 다시 열어 1 단계에서 3 단계로 이동시켜야하는 번거로운 일을 해야된다. HMR을 사용하면 다이얼로그 창은 3 단계 상태로 유지된다. 소스코드가 수정되어도 애플리케이션 내 상태가 유지된다. 애플리케이션 자체는 다시 실행되지만 페이지는 새로고침되지 않는다.
+가장 큰 장점은 HMR로 애플리케이션 상태를 유지할 수 있다는 것입니다. 애플리케이션에 3단계의 대화창이 있다고 가정해봅시다. 쉽게 다이얼로그 창 기능이라고 생각하면 됩니다. HMR이 없다면 소스 코드를 변경할 때마다 브라우저 페이지가 새로고침 됩니다. 창을 다시 열어 1 단계에서 3 단계로 이동시켜야하는 번거로운 일을 해야합니다. HMR을 사용하면 다이얼로그 창은 3 단계 상태로 유지되며, 소스코드가 수정되어도 애플리케이션 내 상태가 유지됩니다. 애플리케이션 자체는 다시 실행되지만 페이지는 새로고침되지 않습니다.
 
-### 실습
+### 실습하기
 
-* *src/App.js* 소스코드를 수정해 HMR이 어떻게 실행되는지 확인한다.
-* 댄 애브라몹(Dan Abramov)의 [리액트 라이브 : Hot Reloading으로 시간 여행 떠나기](https://www.youtube.com/watch?v=xsSnOQynTHs) 초반 10분간 시청한다.
+* *src/App.js* 소스코드를 수정해 HMR이 어떻게 실행되는지 확인합니다.
 
-## JSX 내 복잡한 자바스크립트
+### 영상보기
+* 댄 애브라몹(Dan Abramov)의 [리액트 라이브 : Hot Reloading으로 시간 여행 떠나기](https://www.youtube.com/watch?v=xsSnOQynTHs) 10분간 시청합니다.
 
-App 컴포넌트로 다시 돌아가보자 지금까지 JSX에서 초기 변수를 렌더했다. 이제 리스트 내의 원소를 렌더링 해보자 처음 리스트는 샘플 데이터이지만 나중에 외부 [API](https://www.robinwieruch.de/what-is-an-api-javascript/)를 통해 데이터를 가져오기도 한다. 나중에 이 부분을 해보게되면 점점 재밌어 질 것이다.
+## JSX 내 복잡한 자바스크립트 작성 Complex JavaScript in JSX
 
-먼저 리스트 내 목록을 정의하자.
+App 컴포넌트로 다시 돌아갑시다. 지금까지 JSX에서 초기 변수를 렌더링했습니다. 이제 배열의 각 항목을 차례로 렌더링 해봅시다. 지금은 샘플 데이터를 사용하지만 앞으로 외부 [API](https://www.robinwieruch.de/what-is-an-api-javascript/)를 통해 데이터를 가져올 것입니다. 앞으로 점점 재밌고 흥미있을 겁니다.
+
+먼저 아래와 같이 list를 정의합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -520,9 +532,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-샘플 데이터는 나중에 API에서 가져올 데이터로 교체할 수 있다. 리스트 항목은 제목(title), url, 작성사(author)가 있다. 그외에 또한 식별자(objectID), 기사의 인기도를 나타내는 점수(point), 댓글 수(num_comments)가 있다.
+list는 객체로 이루어진 배열입니다. 프로퍼티에는 제목(title), url, 작성사(author), 식별자(objectID), 기사의 인기도를 나타내는 점수(point), 댓글 수(num_comments)가 있습니다.
 
-이제 JSX에서  자바스크립트 내장함수인 `map`을 사용해 리스트 내 항목을 출력하는 반복문을 만들어보자. JSX에서 자바스크립트 표현식을 캡슐화하기 위해 중괄호(`{}`)를 사용한다.
+이제 JSX에서  자바스크립트 반복 메서드인 `map()`을 사용해 배열의 모든 데이터를 출력해봅시다. JSX에서는 자바스크립트 표현식을 캡슐화하기 위해 중괄호(`{}`)를 사용합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -543,9 +555,9 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-JSX 내 HTML과 자바스크립트를 함께 사용하는 것은 매우 강력하다. `map`를 사용하면 특정 항목을 다른 항목으로 변환해 출력할 수 있다. 이번에는 `map`를 사용해 HTML 태그와 섞어 변환해 볼 것이다.
+JSX는 HTML과 자바스크립트를 함께 사용할 수 있습니다. `map()`를 사용해 각 요소를 출력합니다. 이번에는 `map`를 사용해 HTML 태그와 섞어 작성해봅시다.
 
-지금까지 각 항목의 `title`만 보여졌다. 이제 모든 항목의 속성을 표시해보자.
+지금까지 `title` 프로퍼티 값만 표시했습니다. 이제 모든 프로퍼티 값을 보여줍시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -575,9 +587,9 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-이제 `map()` 함수로 JSX 내 반복구문을 간단하게 처리할 수 있다는 것을 알 수 있을 것이다. 각 항목은 HTML `<span>` 태그로 감쌌다. url은 a 태그의 href 속성과 함께 사용했다.
+이제 `map()`메서드로 JSX에서 반복문을 작성했습니다. 각 프로퍼티를 HTML `<span>` 태그로 감싸고, url은 a 태그의 href 속성과 함께 사용했습니다.
 
-리액트는 각 항목을 완벽히 표시했다. 그러나 아직 모든 것이 끝난 것은 아니다 한 가지 도우미를 추가해 잠재요소를 포용하고 다른 속성을 축추가해 React에 대한 한 가지 도우미를 추가하여 잠재력을 완전히 포용하고 성능을 향상시켜야 한다. 바로 각 리스트 요소마다 `key` 속성을 추가해야한다. 이렇게 해야 리액트는 리스트내 항목이 변경될 떄마다 수정 및 제거된 항목을 식별 할 수 있게 된다. 샘플 데이터 리스트 항목에는 식별자(`objectID`)가 있어 이를 `key`로 지정하면 된다. 
+그러나 아직 한 가지가 남았습니다 바로 각 요소마다 `key` 속성을 추가해야 합니다. 리액트는 `key`로 배열의 수정 및 제거된 항목을 식별합니다. 우리는 `objectID` 프로퍼티를 `key`로 지정하겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -597,11 +609,11 @@ export default App;
 })}
 ~~~~~~~~
 
-키 속성 값은 고유하며 안정적인 식별를 사용해야한다. 배열의 인덱스값은 고정값이 아니기 때문에 사용하지 말아야 한다. 목록의 순서가 변경되면, 리액트는 항목을 식별하기 어렵게 되기 때문이다.
+`key` 값은 고유값으로 식별가능한 값이어야 합니다. 배열의 인덱스값은 고정값이 아니기 때문에 사용하지 말아야 합니다. 배열의 순서가 변경되면, 리액트가 각 항목을 식별할 수 없기 때문입니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
-// 이렇게 사용하면 안된다
+// 이렇게 사용하면 안됩니다
 {list.map(function(item, key) {
   return (
     <div key={key}>
@@ -611,17 +623,19 @@ export default App;
 })}
 ~~~~~~~~
 
-이제 두 배열 내 모든 항목이 보인다. 앱을 시작해 브라우저를 열어 변경된 내용을 확인해보자.
+이제 두 배열의 모든 항목이 보입니다. 브라우저를 열어 변경 내용을 확인합시다.
+
+### 읽어보기
+
+* [[리액트 공식문서] 리액트 리스트(lists)와 키(keys)](https://facebook.github.io/react/docs/lists-and-keys.html)
+* [[MND] 자바스크립트 map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
 ### 실습하기
-
-* [리액트 리스트(lists)와 키(keys)](https://facebook.github.io/react/docs/lists-and-keys.html)에 관해 읽어본다.
-* [자바스크립트 기본 내장 배열 함수](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) 내용을 복습한다.
-* JSX 내 자바스크립트 표현식(expression)을 작성해본다.
+* JSX 내 자바스크립트 표현식(expression)을 작성합니다.
 
 ## ES6 화살표 함수 
 
-자바스크립트 ES6는 화살표함수를 도입했다. 화살표 표현식은 기존의 함수 표현식보다 간결하다.
+ES6에서 화살표 함수이 도입했습니다. 화살표 표현식으로 문법이 간결해졌습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -632,9 +646,9 @@ function () { ... }
 () => { ... }
 ~~~~~~~~
 
-그러나 화살표의 기능을 알고 있어야 한다. 화살표 함수에서는 `this`를 다르게 정의한다. 함수 표현식은 자기 자신을 `this` 객체로 정의하지만, 화살표 함수 표현식은 자신만의 `this`를 생성하지 않고 감싸고 있는 본문 컨텍스트로부터 부터 의미를 갖는다. 화살표 함수에서 `this`사용을 혼동하지 말자.
+그러나 화살표의 기능을 알고 있어야 합니다. 화살표 함수는 `this`를 다르게 정의합니다. 기존 함수 표현식은 자기 자신을 `this` 객체로 정의하지만, 화살표 함수 표현식은 자기 자신을 `this`를 생성하지 않고, 감싸고 있는 본문 컨텍스트로에서 의미를 갖습니다. 화살표 함수에서 `this` 사용을 혼동하지 말아야 합니다.
 
-화살표 함수 내 괄호 사용에 조심히 해야한다. 매개변수가 하나 뿐인 경우 괄호는 생략할 수 있지만, 여러 개 매개변수를 사용하는 경우이거나 매개변수가 없는 함수는 괄호를 생략할 수 없다.
+화살표 함수 내 괄호 사용도 유의해야 합니다. 단일 매개변수라면 괄호 생략이 가능하지만, 복수 매개변수이거나 매개변수가 없는 함수는 괄호를 생략할 수 없습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -651,7 +665,7 @@ item, key => { ... }
 (item, key) => { ... }
 ~~~~~~~~
 
-`map` 함수를 다시 보자. ES6 화살표 표현식으로 좀더 깔끔하게 작성해보자.
+앞서 작성한 `map()` 코드 부분을 ES6 화살표 표현식으로 작성해봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -671,7 +685,7 @@ item, key => { ... }
 })}
 ~~~~~~~~
 
-또한 ES6 화살표 함수에 중괄호(`{}`) 부분인 *블록 본문*을 생략할 수 있다. *간결한 본문* 에서는 암시된 반환(return)이 포함되어 있다. 따라서 `return` 문을 삭제할 수 있다. 앞으로 화살표 함수를 자주 보게 될 것이기 때문에, 화살표 기능을 사용할 때 블록 본문과 간결한 본문의 차이점을 이해하고 있어야 한다.
+또한 ES6 화살표 함수에서 중괄호(`{}`) 부분인 *블록 본문*을 생략합니다. *간결한 본문* 에서는 반환(return)이 포함되어, `return` 문을 삭제할 수 있습니다. 화살표 함수를 자주 보게 될 것이기 때문에, 화살표 기능을 사용할 때 블록 본문과 간결한 본문의 차이점을 이해하고 있어야 합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -691,19 +705,19 @@ item, key => { ... }
 # leanpub-end-insert
 ~~~~~~~~
 
-이제 JSX가 간결해지고 보기 쉬워졌을 것이다. 함수 선언, 중괄호, return 문을 생략할 수 있다. 개발자는 구현 세부 내용에 집중할 수 있다.
+이제 JSX가 간결해지고 보기 쉬워졌습니다. 함수 선언, 중괄호(`{}`) , return 문을 생략할 수 있습니다.  이로써 세부적인 구현 내용에 집중할 수 있게 됩니다. 
 
 ### 읽어보기
 
-* read more about [ES6 arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+* [[MDN] ES6 화살표함수](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 
-## ES6 Classes
+## ES6 클래스
 
-자바스크립트 ES6에서는 클래스를 도입했다. 클래스는 일반적으로 객체 지향 프로그래밍 언어에서 사용된다. 자바스크립트는 융통성과 유연성이 뛰어난 프로그래밍 언어다. 함수형 프로그래밍과 객체지향 프로그래밍으로 할 수 있다.
+ES6에서 클래스를 도입했습니다. 클래스는 일반적으로 객체 지향 프로그래밍 언어에서 사용됩니다. 자바스크립트는 융통성과 유연성이 뛰어난 프로그래밍 언어로 함수형 프로그래밍과 객체지향 프로그래밍으로 작성할 수 있습니다.
 
-리액트는 함수형 프로그래밍과 객체 프로그래밍의 각기 장점을 취하고 있다. 리액트는 불변하는 데이터 구조를 다룰 때는 함수형 프로그래밍을, 컴포넌트를 만들 때는 클래스로 선언한다. 이들 모두 ES6 클래스 컴포넌트라고 한다. 
+리액트는 함수형 프로그래밍과 객체 프로그래밍의 각기 장점을 취하고 있습니다. 리액트는 불변하는 데이터 구조를 다룰 때는 함수형 프로그래밍을, 컴포넌트를 만들 때는 클래스로 선언합니다. 이들 모두 ES6 클래스 컴포넌트라고 합니다. 
 
-다음 `Developer` 클래스를 리액트 컴포넌트가 아닌, ES6 클래스로서 생각해보자.
+다음 `Developer` 클래스를 리액트 컴포넌트가 아닌, ES6 클래스로 간주해봅시다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -719,11 +733,11 @@ class Developer {
 }
 ~~~~~~~~
 
-클래스에는 인스턴스화 할 수 있는 생성자가 있다. 생성자는 매개변수를 사용하여 클래스 인스턴스에 할당 할 수 있다. 또한 클래스는 함수를 정의한다. 함수는 클래스와 연관되어 있어 메서드(method)라고한다. 이 메소드는 클래스 메소드로 참조된다.
+클래스에는 인스턴스화 할 수 있는 생성자(constructor)가 있습니다. 생성자는 매개변수를 사용해 클래스 인스턴스에 할당합니다. 또한 클래스는 함수를 정의합니다. 함수는 클래스와 연관되어 있어 메서드(method)라고도 불립니다. 이 메소드는 클래스 메소드로 참조됩니다.
 
-Developer 클래스는 클래스 선언문일 뿐이다. 클래스를 호출해 클래스 내 여러 인스턴스를 작성할 수 있다. ES6 클래스 컴포넌트와 비슷하지만, 다른 인스턴스를 사용하여 인스턴스를 생성해야한다.
+Developer 클래스는 클래스 선언문일 뿐입니다. 클래스를 호출해 클래스 내 여러 인스턴스를 작성할 수 있습니다. ES6 클래스 컴포넌트와 비슷하지만, 다른 인스턴스를 사용하여 인스턴스를 생성해야 합니다.
 
-클래스를 인스턴스화하는 방법과 클래스를 사용하는 방법을 살펴보자.
+클래스를 인스턴스화하는 방법과 클래스를 사용하는 방법을 살펴봅시다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -732,7 +746,7 @@ console.log(robin.getName());
 // output: Robin Wieruch
 ~~~~~~~~
 
-리액트는 ES6 클래스 컴포넌트에 자바스크립트 ES6 클래스를 사용한다. 이미 하나의 ES6 클래스 컴포넌트를 사용했다.
+리액트는 ES6 클래스 컴포넌트에 자바스크립트 ES6 클래스를 사용합니다. 이미 하나의 ES6 클래스 컴포넌트를 사용했습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -747,34 +761,35 @@ class App extends Component {
 }
 ~~~~~~~~
 
-App 클래스는 `Component`에서 확장(extend)된다. 기본적으로 App 컴포넌트에서 확장을 선언했지만, 다른 컴포넌트에서도 선언할 수 있다. 확장(extend)이란 것은 무엇일까? 객체 지향 프로그래밍에는 상속의 원칙이 있다. 한 클래스의 기능을 다른 클래스로 전달하는 데 사용된다.
+App 클래스는 `Component`에서 확장(extend)됩니다. 기본적으로 App 컴포넌트에서 확장을 선언했지만, 다른 컴포넌트에서도 선언할 수 있습니다. 확장(extend)이란 것은 무엇일까요? 객체 지향 프로그래밍에는 상속의 원칙이 있습니다. 한 클래스의 기능을 다른 클래스로 전달하는데 사용됩니다.
 
-App 클래스는 `Component` 클래스의 기능을 확장한다. 보다 구체적으로, `Component` 기능을 상속받는다. `Component` 클래스는 기본 ES6 클래스를 ES6 컴포넌트 클래스로 확장하는 데 사용된다. 리액트의 컴포넌트에 필요한 모든 기능이 있습니다. `render()` 메소드는 이미 사용했던 기능 중 하나이다. 앞으로 다른 컴포넌트 클래스 메소드에 대해 배우게 될 것이다.
+App 클래스는 `Component` 클래스의 기능을 확장합니다. 보다 구체적으로, `Component` 기능을 상속받습니다. `Component` 클래스는 기본 ES6 클래스를 ES6 컴포넌트 클래스로 확장하는 데 사용됩니다. 리액트의 컴포넌트에 필요한 모든 기능이 있습니다. `render()`은 이미 사용했던 함수 입니다. 앞으로 여러 컴포넌트 클래스 메소드에 대해 배우게 될 것입니다.
 
-`Component` 클래스는 리액트 컴포넌트의 모든 구현 세부 사항을 캡슐화한다. 개발자는 리액트에서 클래스를 컴포넌트로 상용할 수 있다.
+`Component` 클래스는 리액트 컴포넌트의 모든 구현 세부 사항을 캡슐화합니다. 때문에 여러분은 리액트에서 클래스를 컴포넌트로 사용할 수 있습니다.
 
-이제 자바스크립트 ES6 클래스 기초와 이를 리액트 컴포넌트로 사용하는 방법을 배웠다. 컴포넌트 메소드는 리액트 생명주기(Life Cycle)에 대해 배울 때 자세히 알아볼 것이다.
+지금까지 ES6 클래스 기초와 이를 리액트 컴포넌트로 사용하는 방법을 배웠습니다. 컴포넌트 메소드는 리액트 생명주기(Life Cycle)에 대해 배울 때 보다 자세히 알아볼 것입니다.
 
-### 실습
+### 읽어보기
 
-* [ES6 클래스](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)에 대해 더 자세히 읽어본다.
+* [[MND] ES6 클래스](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)
 {pagebreak}
 
-이제 여러분은 나만의 리액트 애플리케이션을 부트스트래핑을 할 수 있다! 이번 장에서 배운 내용을 복습해보자.
+이제 여러분은 나만의 리액트 애플리케이션을 부트스트래핑을 할 수 있게 되었습니다! 이번 장에서 배운 내용을 복습합시다.
 
 * React
-  * create-react-app 으로 리액트 애플리케이션을 부트스트래핑한다.
-  * JSX 문법으로 `render()` 메소드 내 HTML과 자바스크립트를 같이 사용해 컴포넌트의 결과값을 출력한다.
-  * 리액트에서 컴포넌트, 인스턴스, 요소는 다른 것이다.
-  * `ReactDOM.render()`는 리액트 애플리케이션이 리액트를 DOM에 연결시키는 엔트리 포인트(entry point)이다.
-  * 자바스크립트 내장 함수 기능은 JSX에서 사용할 수 있다.
-  * 배열의 요소를 렌더링할 때 `map()`메소드로 HTML구문과 함께 사용한다.
+  * create-react-app 으로 리액트 애플리케이션을 부트스트래핑합니다.
+  * JSX 문법으로 `render()` 메소드 내 HTML과 자바스크립트를 같이 사용해 컴포넌트의 결과값을 출력합니다.
+  * 리액트에서 컴포넌트, 인스턴스, 요소는 다릅니다.
+  * `ReactDOM.render()`는 리액트 애플리케이션이 리액트를 DOM에 연결시키는 엔트리 포인트(entry point)입니다.
+  * JSX에서 자바스크립트 내장 함수를 사용할 수 있습니다.
+  * 배열의 요소를 렌더링할 때 `map()`와 HTML구문과 함께 사용합니다.
+  
 * ES6
-  * 특정 상황에 따라 `const`와 `let`로 변수를 선언한다. 
-  * 리액트 애플리케이션에서는 가능한 `const`로 변수를 선언한다.
-  * 화살표 함수는 간결한 함수로 만들어 준다.
-  * 클래스는 확장하여 리액트 컴포넌트로 정의한다.
+  * 특정 상황에 따라 `const`와 `let`로 변수를 선언합니다. 
+  * 리액트 애플리케이션에서는 가능한한 `const`로 변수를 선언합니다.
+  * 화살표 함수는 간결한 함수로 만들어 줍니다
+  * 클래스는 확장하여 리액트 컴포넌트로 정의합니다.
 
-잠시 휴식 시간을 가지자. 학습 내용을 되새기고 스스로 적용해보자. 지금까지 작성한 코드와 배운 내용을 내 것으로 만들자. 코드로 이것저것 시험해보자.
+잠시 휴식 시간을 가집시다. 학습 내용을 되새기고 스스로 적용해보며 지금까지 작성한 코드와 배운 내용을 내 것으로 만듭시다. 코드로 이것저것 실험해보길 바랍니다.
 
-[공식 깃헙 저장소](https://github.com/rwieruch/hackernews-client/tree/4.1)에서 소스코드를 참고하라.
+앞으로 만들 애플리케이션에 대해 궁금하다면 [해커뉴스 깃헙 저장소](https://github.com/rwieruch/hackernews-client/tree/4.1)를 참고합니다.
