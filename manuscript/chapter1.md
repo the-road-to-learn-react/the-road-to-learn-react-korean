@@ -635,14 +635,14 @@ export default App;
 
 ## ES6 화살표 함수 
 
-ES6에서 화살표 함수이 도입했습니다. 화살표 표현식으로 문법이 간결해졌습니다.
+ES6에서 화살표 함수이 도입했습니다. 화살표 표현식으로 함수 표현식 문법이 간결해졌습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
-// function expression
+// 함수 표현식 
 function () { ... }
 
-// arrow function expression
+// 화살표 함수 표현식
 () => { ... }
 ~~~~~~~~
 
