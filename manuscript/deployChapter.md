@@ -1,6 +1,6 @@
 # 배포하기
 
-마지막 장에서는 애플리케이션을 프로덕션 환경에 배포하는 방법을 알아보겠습니 . 무료 호스팅 서비스 Heroku에 애플리케이션을 배포할 것입니다. 배포 과정에서 *create-react-app*에 대해 자세히 알아봅시다.
+마지막 장에서는 애플리케이션을 프로덕션 환경에 배포하는 방법을 알아보겠습니다. 무료 호스팅 서비스 Heroku에 애플리케이션을 배포할 것입니다. 배포 과정에서 *create-react-app*에 대해 자세히 알아봅시다.
 
 ## Eject
 
@@ -12,7 +12,7 @@
 
 공식문서에 따르면  *create-react-app* 는 중소 규모 프로젝트에 적합하다고 말합니다. 여러분이 모두 "eject"를 사용해야 할 의무는 없습니다.
 
-### 실습하기
+### 읽어보기
 
 * [[리액트 공식문서 ]eject](https://github.com/facebookincubator/create-react-app#converting-to-a-custom-setup)에 대해 읽어보세요.
 
@@ -46,7 +46,9 @@ git push heroku master
 heroku open
 ~~~~~~~~
 
-이 것으로 배포를 마쳤습니다. 애플리케이션이 잘 작동하길 바랍니다. 이후 아래 참고자료를 보고 학습해보길 바랍니다.
+이 것으로 배포를 마쳤습니다. 애플리케이션이 잘 작동하길 바랍니다. 앞으로 아래 참고자료를 보고 더 깊게 학습해보길 바랍니다.
+
+### 읽어보기
 
 * [[영문] 깃과 깃허브 사용 기초 사용법](https://www.robinwieruch.de/git-essential-commands/)
 * [[영문] 제로 구성 설치로 리액트 베포하기](https://blog.heroku.com/deploying-react-with-zero-configuration)

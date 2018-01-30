@@ -964,7 +964,7 @@ Once again you might need to accept the failing snapshot tests for your Table co
 
 Finally your advanced sort interaction is complete now.
 
-### Exercises:
+### 실습하기
 
 * use a library like [Font Awesome](http://fontawesome.io/) to indicate the (reverse) sort
   * it could be an arrow up or arrow down icon next to each Sort header

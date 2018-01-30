@@ -68,7 +68,7 @@ state나 props가 변경 시, 업데이트 생명주기는 어떨까요? 아래�
 
 그 외 생명주기 메소드로 `componentDidCatch(error, info)`가 있습니다. 이 메소드는 [React 16](https://www.robinwieruch.de/what-is-new-in-react-16/)에서 도입되었으며 컴포넌트 에러를 캐치합니다. 예를 들어 목록이 표시하는 애플리케이션이 있다고 해봅시다. 외부 API 호출이 실패하여 state가 `null`로 표시되었습니다. 리스트가 비어있지 않고 `null` 상태이기 때문에 filter과 map을 사용할 수 없습니다. 이 경우 에러가 발생하여 컴포넌트가 깨지고 전체 애플리케이션이 작동되지 않습니다. 이 때, `componentDidCatch()`로 에러를 포착하고 내부 상태에 저장하여 사용자에게 에러 메세지를 표시해줄 수 있습니다.
 
-### 읽어봅시다
+### 읽어보기
 
 * [[리액트 공식문서] 리액트 생명주기](https://facebook.github.io/react/docs/react-component.html)
 * [[리액트 공식문서] 리액트 생명주기 메소드와 상태 관리](https://facebook.github.io/react/docs/state-and-lifecycle.html)
@@ -416,7 +416,7 @@ These were a few approaches to use conditional rendering in React. You can read 
 
 After all, you should be able to see the fetched data in your application. Everything except the Table is displayed when the data fetching is pending. Once the request resolves the result and stores it into the local state, the Table is displayed because the `render()` method runs again and the condition in the conditional rendering resolves in favor of displaying the Table component.
 
-### Exercises:
+### 읽어보기
 
 * read more about [React conditional rendering](https://facebook.github.io/react/docs/conditional-rendering.html)
 * read more about [different ways for conditional renderings](https://www.robinwieruch.de/conditional-rendering-react/)
