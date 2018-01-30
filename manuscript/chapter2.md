@@ -578,7 +578,7 @@ class ExplainBindingsComponent extends Component {
 
 `onClick={doSomething()}`일 경우, `doSomething()` 함수는 그 즉시 실행됩니다. 핸들러 표현식이 평가되는데, 그 결과를 함수로 반환하지 않기 때문에 버튼을 클릭해도 아무 일도 일어나지 않습니다. 따라서 `onClick={doSomething}`으로 수정하면 실행됩니다. 이를 `onDismiss()`클래스 메소드에 적용해봅시다.
 
-`onClick={this.onDismiss}`로 고쳤겠지만 이 역시 문제가 있습니다. 삭제해야할 항목을 식별하는 `item.objectID`가 빠져있습니다. 함수의 인자를 추가합시다.
+`onClick={this.onDismiss}`로 고쳤겠지만 이 역시 문제가 있습니다. 삭제할 항목을 식별하는 `item.objectID`가 빠져있습니다. 함수 인자를 추가합시다.
  
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
