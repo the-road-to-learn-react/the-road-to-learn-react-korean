@@ -1126,7 +1126,7 @@ const { searchTerm, list } = this.state;
 
 ## 제어되는 컴포넌트 Controlled Components
 
-이미 우리는 단방향 데이터 흐름에 대해 이미 배웠습니다. 검색어 입력 필드 역시 단방향 데이터 흐름 규칙이 적용됩니다. 입력필드는 목록을 필터링하기 위해 `searchTerm`로 state를 업데이트합니다. state가 변경되면 `render()` 메소드가 재실행되고 `searchTerm`에 검색어가 있는지 목록에서 확인 후 필터링합니다.
+이미 우리는 단방향 데이터 흐름에 대해 배웠습니다. 검색어 입력 필드 역시 단방향 데이터 흐름 규칙이 적용됩니다. 입력필드는 목록을 필터링하기 위해 `searchTerm`로 state를 업데이트합니다. state가 변경되면 `render()` 메소드가 재실행되고 `searchTerm`에 검색어가 있는지 목록에서 확인 후 필터링합니다.
 
 그러나 우리가 놓친 것이 있습니다. HTML input 태그의 `value` 속성은 입력 필드에 표시된 값을 가집니다. 바로 `searchTerm`에 해당합니다. 그렇다면 리액트에서는 `value`를 활용하지 않아도 될까요?
 
@@ -1166,11 +1166,11 @@ class App extends Component {
 
 *  [[리액트 공식문서] 폼(Form)](https://facebook.github.io/react/docs/forms.html)
 
-## 컴포넌트 분리
+## 컴포넌트 분리 Split Up Components
 
-You have one large App component now. It keeps growing and can become confusing eventually. You can start to split it up into chunks of smaller components.
+어느새 App 컴포넌트가 매우 커졌습니다. 계속해서 기능을 추가하고 개발하다보면 점점 규모가 커질 겁니다. 드디어 이 컴포넌트를 작은 컴포넌트 덩어리로 분리 작업을 시작할 때 입니다.
 
-Let's start to use a component for the search input and a component for the list of items.
+아래와 같이 검색 입력 컴포넌트 `<Search />` 와 리스트를 나열하는 `<Table />` 두 개로 컴포넌트를 분리해봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1192,7 +1192,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-You can pass those components properties which they can use themselves. In the case of the App component it needs to pass the properties managed in the local state and its class methods.
+다음 사용할 컴포넌트 프로퍼티를 전달해야 합니다. App 컴포넌트의 경우 state와 클래스 메소드를 전달합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1221,9 +1221,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now you can define the components next to your App component. Those components will be ES6 class components as well. They render the same elements like before.
+이제 App 컴포넌트 옆에 분리시킨 컴포넌트를 정의합시다. 이 컴포넌트 역시 ES6 컴포넌트로 작성합니다
 
-The first one is the Search component.
+제일 먼저 Search 컴포넌트를 작성합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1249,7 +1249,7 @@ class Search extends Component {
 # leanpub-end-insert
 ~~~~~~~~
 
-The second one is the Table component.
+다음으로 Table 컴포넌트를 작성합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1286,14 +1286,14 @@ class Table extends Component {
 # leanpub-end-insert
 ~~~~~~~~
 
-Now you have three ES6 class components. Perhaps you have noticed the `props` object that is accessible via the class instance by using `this`. The props, short form for properties, have all the values you have passed to the components when you used them in your App component. That way, components can pass properties down the component tree.
+이제 하나였던 컴포넌트가 3개가 되었습니다. 이쯤에서 `props`가 필요하다는 생각이 드는 분도 있을 겁니다. `props`은 프로퍼티(properties)의 약자로 `this`를 사용해 클래스 인스턴스에 접근합니다. App 컴포넌트에서 전달된 모든 값을 가지게 됩니다. 컴포넌트가 또 하위 컴포넌트로 계속해서 프로퍼티를 전달할 수 있습니다.
 
-By extracting those components from the App component, you would be able to reuse them somewhere else. Since components get there values by using the props object, you can pass every time different props to your components when you use them somewhere else. These components became reusable.
+ App 컴포넌트에서 뽑아낸 컴포넌트를 다른 컴포넌트에서도 재사용할 수 있습니다. 컴포넌트는 `props`의 통해 값을 가져오기 때문에, `props` 값을 바꿔 전달할 수 있습니다.
 
-### Exercises:
+### 실습하기
 
-* figure out further components that you could split up as you have done with the Search and Table components
-  * but don't do it now, otherwise you will run into conflicts in the next chapters
+* Search와 Table 컴포넌트로 컴포넌트를 분리한 것처럼 추가적으로 더 분리할 수 있는 컴포넌트 요소를 찾아봅니다.
+  *  다음 장에서 실습 코드와 충돌이 생길 수 있으니 지금 바로 코딩을 하지 마세요.
 
 ## Composable Components
 
