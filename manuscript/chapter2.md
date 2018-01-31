@@ -639,7 +639,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-이제 모든 요소의 핸들러로 함수가 전달되었습니다.
+모든 요소의 핸들러로 함수가 전달되었습니다.
 
 다른 예도 살펴보기 위해 아래 코드로 고쳐 봅시다.
 
@@ -674,7 +674,7 @@ class App extends Component {
 
 위 코드에서는 브라우저에서 애플리케이션을 열었을 때 바로 실행되지만 버튼을 클릭하면 실행되지 않는 문제가 있습니다. 
 
-다시 아래 코드로 수정해봅시다. 이제 버튼을 클릭 할 때만 실행됩니다. 
+다시 아래 코드로 수정해봅시다. 버튼을 클릭 할 때만 함수가 실행됩니다. 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 ...
@@ -742,17 +742,17 @@ class App extends Component {
 }
 ~~~~~~~~
 
-이벤트 핸들러 내 화살표 함수 사용은 성능 문제와 연관됩니다. 그 예로, `onDismiss()` 내 `onClick` 핸들러는 식별자를 전달하고자 다른 화살표 함수로 메소드를 래핑했습니다. 따라서 `render()`이 실행될 때마다, 핸들러는 고차 함수인 화살표 함수를 인스턴스화 됩니다. 애플리케이션 성능에 영향을 미칠 수 있지만, 실제로 그 효과를 파악할 수 없습니다. 1000개의 항목마다 이벤트 핸들러에 화살표 함수가 있다고 해봅시다. 성능에 미치지 않도록 생성자에서 메서드를 바인딩하는 할 수 있을 겁니다. 하지만 지금 이제 막 리액트를 시작하는 단계에서 성능 최적화까지 생각하는 것은 시기상조입니다. 우리는 리액트를 배우는 그 자체에 일단 집중하도록 합시다.
+이벤트 핸들러 내 화살표 함수 사용은 성능 문제와 연관됩니다. 그 예로, `onDismiss()` 내 `onClick` 핸들러는 식별자를 전달하고자 다른 화살표 함수로 메소드를 래핑했습니다. 따라서 `render()`이 실행될 때마다, 핸들러는 고차 함수인 화살표 함수를 인스턴스화 됩니다. 애플리케이션 성능에 영향을 미칠 수 있지만, 실제로 그 효과를 파악할 수 없습니다. 1000개의 항목마다 이벤트 핸들러에 화살표 함수가 있다고 해봅시다. 성능에 미치지 않도록 생성자에서 메서드를 바인딩하는 할 수 있을 겁니다. 하지만 리액트를 시작하는 단계에서 성능 최적화까지 생각하는 것은 시기상조입니다. 우리는 리액트를 배우는 그 자체에 일단 집중하도록 합시다.
 
 ### 실습하기
 
-* `onClick` 핸들러에서 여러가지 함수 사용법을 시도합니다.
+* `onClick` 핸들러에서 여러가지 함수 사용법을 사용해봅니다.
 
-## 폼과 이벤트와의 상호 작용
+## 폼과 이벤트 상호 작용 Interactions with Forms and Events
 
-이번에는 폼과 이벤트 인터렉션을 추가해보자. 검색 기능을 만들어보자. 검색 필드 내 입력 값은 title 속성에 따라 목록을 필터링하는 데 사용된다.
+이번 장에서는 검색 기능을 구현해보면서 폼과 이벤트 인터렉션을 배워봅시다. 검색 필드의 입력된 검색어에 따라 목록을 필터링 합니다.
 
-제일 먼저, JSX에 입력 필드가 있는 폼을 정의한다.
+첫 번째 단계로, JSX에 입력 필드가 있는 폼을 정의합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -777,9 +777,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-검색어에 따라 일시적으로 목록을 필터링 해야한다. 이를 위해 입력 필드의 값을 로컬 상태로 저장해야한다. 어떻게 로컬 상태에 접근해야할까?  리액트에서 **synthetic events**를 사용해 이벤트 페이로드에 액세스 할 수 있다.
+검색어를 입력할 때마다 즉시 리스트를 필터링해야 합니다. 입력 필드 값이 state에 저장되려면 어떻게 해야할까요? 리액트의  **통합적 이벤트(synthetic event)** 를 사용해 이벤트 페이로드에 접근할 수 있습니다.
 
-입력 필드의 `onChange` 핸들러를 정의해보자.
+다음으로 입력 필드의 `onChange` 핸들러를 정의합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -805,7 +805,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-함수는 컴포넌트에 바인딩되므로 클래스 메서드에 다시 바인딩된다. 메소드를 바인드하고 정의해야한다.
+이 함수는 컴포넌트 그리고 다시 클래스 메서드에 바운드됨으로, 바인딩이 필요합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -834,7 +834,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-핸들러를 사용할 때, 콜백 함수에서 합성된 이벤트를 사용할 수 있다.
+요소에서 핸들러를 사용할 때 콜백 함수로 통합적 이벤트에 접근할 수 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -852,7 +852,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-이벤트는 해당 객체 내 필트 값을 가지고 있다. 따라서 `this.setState()`를 사용해 검색 조건으로 로컬 상태를 업데이트 할 수 있다.
+타켓 객체의 입력 필드 값을 `this.setState()`를 사용해 state를 업데이트합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -870,7 +870,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-
+생성자에서 `searchTerm` 프로퍼티 초기 값을 설정하는 것을 잊지 말아야 합니다. 처음 입력 필드는 비어 있어야하므로 값은 빈 문자열이 됩니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -894,11 +894,11 @@ class App extends Component {
 }
 ~~~~~~~~
 
-이제 입력 필드 값이 변경 될 때마다 내부 컴포넌트 상태에 입력 값을 저장할 수 있게 됐다.
+이제 입력 필드 값이 변경될 때마다 state가 업데이트됩니다.
 
-리액트 컴포넌트의 로컬 상태 업데이트 방법에 대해 간단히 설명하겠다. `this.setState ()`를 사용하여 `searchTerm`을 업데이트하기 위해 전달할 리스트가 있다. 하지만 그렇지 않다. `this.setState()`는 얕은 병합입니다. 하나의 속성을 업데이트 할 때 상태 개체의 형제 속성을 유지합니다. 따라서 목록 상태는 이미 항목을 닫은 경우에도 'searchTerm` 속성을 업데이트 할 때 동일하게 유지됩니다.
+state 업데이트 과정을 간략히 정리해봅시다. `this.setState()`는 특정 프로퍼티가 업데이트 되어도 다른 state 프로퍼티는 그대로 유지됩니다. `searchTerm` 프로퍼티가 업데이트될 때 `list`는 변하지 않습니다.
 
-앱으로 돌아가보자. 리스트는 아직 필터링되지 않았다. 일반적인 방버븡로 `searchTerm`을 기반으로 목록을 일시적으로 필터링하는데, . 모든 리스트 내 요소를 필터링해야한다. 그렇다면 어떻게 일시적인 필터링을 어떻게 구현해야할까? `render()` 에서 리스트를 맵핑하기 전에 filter 함수를 적용 할 수 있다. 필터는`searchTerm(검색어)` 가 항목의 title 속성과 일치하는지 대조한다. 이미 자바스크립트 내장 함수인 filter를 사용해봤으니, 다시 해보자. 필터 함수가 새로운 배열을 반환하여 함수를 편리한 방식으로 사용할 수 있고, map 함수 앞에 filter 함수를 같이 사용할 수 있다.
+App 컴포넌트를 다시 봅시다. `list`를 필터링하기 위해 `searchTerm`을 가지고 목록을 필터링합니다. 이전에 `render()` 메소드에서 `map()`메소드를 사용해 배열의 모든 요소를 접근하고 각 프로퍼티를 표시했었습니다. 이번에도 유사하게 과정에  `filter()` 메소드를 추가할 수 있습니다. `searchTerm`은 각 요소의 `title` 프로퍼티 값과 일치하는지 확인해 리스트를 필터링합니다. `map()` 메소드 앞에 `filter()` 메소드를 같이 사용하는 것이 일반적입니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -926,17 +926,17 @@ class App extends Component {
 }
 ~~~~~~~~
 
-이번에 다른 방법으로 filter 함수를 접근해보자. ES6 클래스 컴포넌트 외부에 filter 함수에 전달되는 인수를 정의해보자. 컴포넌트 상태에 접근할 수 없으므로 필터 조건을 평가하기 위해 `searchTerm` 속성에 접근 할 수도 없다. 그러므로 filter 함수에 `searchTerm`을 전달하고 조건을 평가할 수 있는 새로운 함수를 반환해야한다. 이를 고차함수 (higher order function)이라고 한다. 
+좀 더 다른 방법으로 `filter()` 메소드를 다뤄봅시다. 클래스 컴포넌트 외부에서 `filter()` 메소드에 전달되는 인자를 정의합시다. 컴포넌트 상태에 직접 접근할 수 없어 `searchTerm` 프로퍼티를 접근할 수도 없습니다. 따라서 새로운 함수가 필요합니다`filter()`메소드에 `searchTerm`을 전달하고 조건을 확인하는 함수를 반환하는 함수를 만들어보겠습니다. 다른 말로 이 함수는 고차 함수(higher order function)라고 불립니다.
 
 
-고차원 함수에 대해 언급하지 않을 것이지만, 어느 정도 아는 것은 중요하다. 리액트는 고차원 컴포넌트(higher order components)를 다루기 때문에 고차 함수에 대해 알아야 한다. 나중에 이 개념을 알게 될 것이다. 이제 다시 filter 기능을 살펴보자. 먼저, App 컴포넌트 외부에서 고차 함수를 정의한다.
+이 책에서는 고차 함수에 대해 다루지 않지만, 기본적인 내용을 아는 것이 좋습니다. 리액트는 고차원 컴포넌트(higher order components)를 다루기 때문에 고차 함수에 대해 알고 있어야 합니다. 아마 나중에 이 개념을 알게 될 것입니다. 이제 다시 `filter()` 메소드 부분을 봅시다. 제일 먼저 App 컴포넌트 외부에 고차 함수를 정의합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
 function isSearched(searchTerm) {
   return function(item) {
-    // some condition which returns true or false
+    // 조건에 따라 true 또는 false을 반환
   }
 }
 # leanpub-end-insert
@@ -948,7 +948,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-이 함수는 `searchTerm`을 취하여 다른 함수를 반환한다. 모든 filter 함수가 이 함수를 입력으로 사용하기 때문이다 반환된 함수는 filter 함수에 전달되는 함수이기 때문에 항목 개체에 액세스 할 수 있다. 또한 반환된 함수는 함수에 정의된 조건에 따라 목록을 필터링한다. 아래와 같이 조건을 추가해보자.
+이 함수는 `searchTerm`을 취하여 다른 함수를 반환한다. 모든 `filter()` 메소드가 이 함수를 입력으로 사용합니다. 반환된 함수는 `filter()` 메소드에 전달되어 각 개체에 접근할 수 있습니다. 반환된 함수는 조건에 따라 배열을 필터링합니다. 아래와 같이 조건을 추가해봅시다.
 
 
 {title="src/App.js",lang=javascript}
@@ -968,9 +968,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-조건은 들어오는`searchTerm` 패턴을 목록의 항목의 title 속성과 일치시키는 것이다. 자바스크립트 내장 함수인 `include`를 통해 할 수 있다. 패턴이 일치 할 때만 true를 반환하고 목록에 항목은 그대로 유지한다. 패턴이 일치하지 않으면 목록에서 항목이 제거됩니다. 패턴 매칭에 유의해야한다. 두 문자열 모두 소문자로 해야한다. 만약 검색어가 'redux'라면 목록 내 항목인 'Redux'와 불일치가 발생한다. 불변 리스트에 filter 함수를 사용해 새 목록을 반환하기 때문에 로컬 상태 내 원래 목록은 변경되지 않는다. 
+ES6 `include()` 메소드로 `searchTerm`과 `title`의 값이 일치하는지 확인합니다. 이 때 문자열을 모두 소문자로 바꿔야 합니다. 만약 'redux'와 'Redux'와 불일치하기 때문입니다. `filter()` 메소드는 새 배열을 반환하기 때문에 `this.state.list`는 변경되지 않습니다.
 
-한가지 언급해야 할 것이 남았다. 자바스크립트 built-in 기능에 대해 일 부 알아보았다. 이 기능은 ES6 기능이다. 자바스크립트 ES5에서는 어떻게 사용할까? `indexOf()` 함수를 사용해 목록의 항목 색인을 얻는다. 아이템이 목록에 있다면, `indexOf()`는 배열의 인덱스를 반환한다.
+ES5의 경우 `indexOf()` 메소드로 배열의 인덱스 값을 조회할 수 있습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -981,7 +981,7 @@ string.indexOf(pattern) !== -1
 string.includes(pattern)
 ~~~~~~~~
 
-ES6 화살표 함수로 간결하게 만들 수 있다.
+ES6 화살표 함수로 코드를 간결하게 만듭시다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -997,9 +997,9 @@ const isSearched = searchTerm => item =>
   item.title.toLowerCase().includes(searchTerm.toLowerCase());
 ~~~~~~~~
 
-위의 두 함수 중 어떤 것이 더 읽기 쉽다고 생각하는가. 나는 두 번째 함수를 더 선호한다. 리액트에서는 함수형 프로그래밍을 주로 사용한다. 함수를 반환하는 함수(고차 함수)를 더 자주 사용한다. 자바스크립트  ES6에서는 화살표 함수를 사용해 보다 명확하게 표현할 수 있다.
+ES5와 ES6 중 어떤 것이 더 읽기 쉬운가요? 저는 ES6 화살표 함수를 선호합니다. 리액트는 함수형 프로그래밍과 함수를 반환하는 함수(고차 함수)를 많이 사용하기 때문에 되도록 화살표 함수를 사용하는 것이 좋습니다. 화살표 함수는 코드를 명확하게 표현하며 가독성을 높이기 때문입니다.
 
-마지막으로 `isSearched()`함수를 사용해 목록을 필터링한다. 로컬 상태에서 `searchTerm` 속성을 전달하면 필터 입력 함수를 반환하고 필터 조건을 기반으로 목록을 필터링합니다. 이후에는 필터링 된 목록을 매핑하여 각 목록 항목에 대한 요소를 표시한다.
+마지막으로 `isSearched()` 함수를 `filter()`메소드에 추가해 목록을 필터링하게 만듭시다. `this.state.searchTerm`를 전달하면, 반환된 함수에서 조건에 `title`과 일치하는지 확인하여 목록을 필터링합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1027,16 +1027,16 @@ class App extends Component {
 }
 ~~~~~~~~
 
-이제 검색 기능이 작동할 것이다. 브라우저에서 직접 사용해보자.
+브라우저를 열어 구현한 검색 기능이 잘 작동되는지 확인합시다.
 
-### 실습
+### 읽어보기
 
-* [[리액트 공식문서]리액트 이벤트](https://facebook.github.io/react/docs/handling-events.html)에 대해 읽어본다.
-* [고차 함수(higher order functions)](https://en.wikipedia.org/wiki/Higher-order_function)에 대해 읽어본다.
+* [[리액트 공식문서] 리액트 이벤트](https://facebook.github.io/react/docs/handling-events.html)
+* [[위키피디아] 고차 함수(higher order functions)](https://en.wikipedia.org/wiki/Higher-order_function)
 
 ## ES6 구조해체 Destructuring
 
-ES6에서는 디스트럭팅(destructing 구조해체)으로 객체와 배열의 속성에 쉽게 액서스할 수 있다. ES5와 ES6를 함께 비교해보자.
+ES6에서는 구조해체(destructing)로 객체와 배열의 프로퍼티에 쉽게 접근할 수 있습니다. ES5와 ES6 문법을 서로 비교해봅시다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -1059,8 +1059,8 @@ console.log(firstname + ' ' + lastname);
 // output: Robin Wieruch
 ~~~~~~~~
 
-ES5에서 객체 속성에 액서스 할 때마다 행을 추가되지만, ES6에서는 코드 한 줄로 끝난다.
-가독성을 높이기 위해 객체를 해체할 때 각 객체 속성마다 구분하여 줄을 바꿔주는 것이 좋다.
+ES5에서는 객체 프로퍼티에 접근할 때마다 행이 추가되지만, ES6에서는 코드 한 줄이면 됩니다.
+가독성을 높이기 위해 객체를 해체할 때 각 객체 프로퍼티마다 줄을 바꿔주는 것이 좋습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -1070,7 +1070,7 @@ const {
 } = user;
 ~~~~~~~~
 
-배열에서도 구조해체를 할 수 있다. 여러 행으로 작성하는 것이 코드를 읽기 더 편하게 해준다.
+배열에서도 구조해체가 가능합니다. 여러 행으로 작성하는 것이 좋습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -1085,7 +1085,7 @@ console.log(userOne, userTwo, userThree);
 // output: Robin Andrew Dan
 ~~~~~~~~
 
-앞서 만든 App 컴포넌트에서 로컬 상태 객체가 동일한 방식으로 디스트럭팅될 수 있음을 알 수 있을 것이다 filter와 map 코드를 축약할 수 있다.
+앞서 만든 App 컴포넌트에서도 state 객체가 동일한 방식으로 구조해체될 수 있음을 알 수 있을 겁니다. 코드가 짧고 간결해졌습니다. 
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1105,7 +1105,7 @@ console.log(userOne, userTwo, userThree);
     );
 ~~~~~~~~
 
-ES5 또는 ES6 방법으로 작성할 수 있다. 
+ES5 또는 ES6으로 작성 가능합니다. 
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -1117,22 +1117,22 @@ var list = this.state.list;
 const { searchTerm, list } = this.state;
 ~~~~~~~~
 
-이 책에서는 ES6를 사용하기 때문에 ES6 문법에 친숙해지길 바란다.
+이 책에서는 ES6를 사용하기 때문에 ES6 문법에 친숙해지길 바랍니다.
 
 
-### 실습
+### 읽기자료
 
-*  [[영문] MDN : ES6 destructuring](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) 에 대해 읽어본다.
+*  [[MDN] ES6 객체구조](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
 
-## 제어된 컴포넌트(Controlled Components)
+## 제어되는 컴포넌트 Controlled Components
 
-앞 장에서 리액트의 단방향 데이터 흐름에 대해 이미 배웠다. 입력 필드에도 같은 법칙이 적용된다.이 필드는 목록을 필터링하기 위해`searchTerm`을 사용하여 로컬 상태를 업데이트한다. 상태가 변경되면`render ()`메소드가 다시 실행되고 로컬 상태에서 최근의`searchTerm`을 사용하여 필터 조건을 적용한다.
+이미 우리는 단방향 데이터 흐름에 대해 이미 배웠습니다. 검색어 입력 필드 역시 단방향 데이터 흐름 규칙이 적용됩니다. 입력필드는 목록을 필터링하기 위해 `searchTerm`로 state를 업데이트합니다. state가 변경되면 `render()` 메소드가 재실행되고 `searchTerm`에 검색어가 있는지 목록에서 확인 후 필터링합니다.
 
-그러나 잊어버린 것이 있지 않은가? HTML input 태그에는 `value` 속성이 있다. value 속성은 input 필드에 표시된 값을 가진다. 이 경우 `searchTerm` 속성이 된다. 그러나 리액트에서는 필요로 하지 않는 것처럼 보인다.
+그러나 우리가 놓친 것이 있습니다. HTML input 태그의 `value` 속성은 입력 필드에 표시된 값을 가집니다. 바로 `searchTerm`에 해당합니다. 그렇다면 리액트에서는 `value`를 활용하지 않아도 될까요?
 
-그렇지 않다. `<input>`,`<textarea>`,`<select>` 와 같은 폼 요소는 일반 HTML로 자신의 상태를 유지한다. 누군가 외부에서 변경되면 값을 내부적으로 수정한다. 리액트에서는 **제어되지 않은 컴포넌트(uncontrolled componen)**라고 부른다. 그 자가 스스로 상태를 처리하기 때문이다.  리액트에서는 이러한 요소를 **제어된 컴포넌트(controlled components)**로 만들어야한다.
+그렇지 않습니다. `<input>`,`<textarea>`,`<select>` 와 같은 폼 요소는 HTML로 자신의 상태를 유지합니다. 외부에서 그 값이 변경되면 내부 값도 수정되기 때문에, 이러한 컴포넌트를 리액트에서는 **제어되지 않은 컴포넌트(uncontrolled component)** 라 부릅니다. 리액트에서는 제어되지 않는 컴포넌트를 **제어되는 컴포넌트(controlled components)** 로 만들어야 합니다. 리액트 컴포넌트는 초기화 시점 뿐만 아니라, 어떤 시점이라도 반드시 뷰의 state를 나타내야 합니다. 
 
-무엇을 하면 될까? input 필드의 값 속성만 설정하면 된다. 이미 값이 `searchTerm` 상태 속성에 저장되어 있다. 이를 활용하면 되지 않을까?
+그렇다면 이제 무엇을 하면 될까요? 입력 필드에 `searchTerm`을 주면 됩니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1160,11 +1160,11 @@ class App extends Component {
 }
 ~~~~~~~~
 
-여기까지다. 입력 필드의 단방향 데이터 흐름 루프가 포함되었다. 내부 컴포넌트 상태는 입력 필드로 부터 단방향으로 데이터를 받는다. 아직 전체 내부 상태 관리 및 단방향 데이터 흐름이 생소할 수 있다. 점차 익숙해지면, 리액트에서 자연스럽게 사용할 수 있을 것이다. 리액트는 SPA(단일 페이지 애플리케이션: Single Page Applications)에 단방향 데이터 흐름이 포함된 새로운 패턴을 도입했다. 현재 많은 프레임워크와 라이브러리에서 단방향 데이터 흐름을 채택했다.
+여기까지입니다. 입력 필드에도 단방향 데이터 흐름 규칙이 적용되었습니다. 내부 컴포넌트 상태는 입력 필드로 부터 단방향으로 데이터를 받습니다. 아직 전체 내부 상태 관리 및 단방향 데이터 흐름이라는 단어가 생소하게 느껴질 수 있습니다. 점차 익숙해지면, 자연스럽게 사용할 수 있을 겁니다. 리액트는 SPA에 단방향 데이터 흐름이 포함된 새로운 패턴을 처음 제시했습니다. 현재 SPA 프레임워크와 라이브러리 역시 리액트의 영향을 받아 단방향 데이터 흐름을 도입했습니다.
 
-### 실습
+### 읽어보기
 
-*  [[영문] 리액트 공식문서 - forms](https://facebook.github.io/react/docs/forms.html)에 대해 읽어본다.
+*  [[리액트 공식문서] 폼(Form)](https://facebook.github.io/react/docs/forms.html)
 
 ## 컴포넌트 분리
 
