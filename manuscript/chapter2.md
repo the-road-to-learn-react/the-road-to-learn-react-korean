@@ -1192,7 +1192,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-다음 사용할 컴포넌트 프로퍼티를 전달해야 합니다. App 컴포넌트의 경우 state와 클래스 메소드를 전달합니다.
+다음 분리한 컴포넌트에 사용할 프로퍼티를 전달해야 합니다. App 컴포넌트의 state와 클래스 메소드를 전달합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1221,7 +1221,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-이제 App 컴포넌트 옆에 분리시킨 컴포넌트를 정의합시다. 이 컴포넌트 역시 ES6 컴포넌트로 작성합니다
+이제 App 컴포넌트 옆에 분리시킨 컴포넌트를 정의합시다. 이 컴포넌트 역시 ES6 컴포넌트로 작성합니다.
 
 제일 먼저 Search 컴포넌트를 작성합니다.
 
@@ -1295,9 +1295,12 @@ class Table extends Component {
 * Search와 Table 컴포넌트로 컴포넌트를 분리한 것처럼 추가적으로 더 분리할 수 있는 컴포넌트 요소를 찾아봅니다.
   *  다음 장에서 실습 코드와 충돌이 생길 수 있으니 지금 바로 코딩을 하지 마세요.
 
-## Composable Components
+## 구성가능한 컴포넌트 Composable Components
 
-There is one more little property which is accessible in the props object: the `children` prop. You can use it to pass elements to your components from above, which are unknown to the component itself, but make it possible to compose components into each other. Let's see how this looks like when you only pass a text (string) as a child to the Search component.
+`prop` 객체 안을 접근할 수 있는 프로퍼티가 하나 더 있습니다. 바로 `children` prop입니다.
+
+ `children` prop는 자기 자신이 무엇인지 어떤 것이 모르지만, 그 안에 자식 요소가 전달됨을 의미합니다.
+Search 컴포넌트에 텍스트를 자식으로 전달해보겠습니다. 
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1328,9 +1331,8 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now the Search component can destructure the children property from the props object. Then it can specify where the children should be displayed.
+ Search 컴포넌트는 children 객체를 구조해제할 수 있습니다. `children` props가 표시될 곳을 정합시다.
 
-{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class Search extends Component {
   render() {
@@ -1352,17 +1354,17 @@ class Search extends Component {
 }
 ~~~~~~~~
 
-The "Search" text should be visible next to your input field now. When you use the Search component somewhere else, you can choose a different text if you like. After all, it is not only text that you can pass as children. You can pass an element and element trees (which can be encapsulated by components again) as children. The children property makes it possible to weave components into each other.
+입력 필드 옆에 검색어가 보여야 합니다. Search 컴포넌트를 다른 곳에 사용할 때마다, 다른 텍스트를 사용할 수 있습니다. 텍스트를 자식으로 전달했습니다. 이외에도 요소와 요소 트리(다시 컴포넌트로 캡슐화할 수 있습니다)를 자식으로 전달할 수 있습니다. children 프로퍼티를 사용하면 여러 컴포넌트를 서로 끼워넣고 맞물려 사용할 수 있게 됩니다.
 
-### Exercises:
+### 읽어보기
 
-* read more about [the composition model of React](https://facebook.github.io/react/docs/composition-vs-inheritance.html)
+* [[리액트 공식문서] 리액트 컴포지션 모델](https://facebook.github.io/react/docs/composition-vs-inheritance.html)
 
-## Reusable Components
+## 재사용가능한 컴포넌트 Reusable Components
 
-Reusable and composable components empower you to come up with capable component hierarchies. They are the foundation of React's view layer. The last chapters mentioned the term reusability. You can reuse the Table and Search components by now. Even the App component is reusable, because you could instantiate it somewhere else again.
+재사용가능한 컴포넌트와 구성가능한 컴포넌트를 사용해 컴포넌트 간 게층을 만들 수 잇습니다 이 것이 바로 리액트 뷰 레이어의 토대입니다. 마지막 장에서 재사용성(reusability)에 대해 설명하겠습니다. 지금 만든 Table과 Search 컴포넌트도 재사용할 수 있습니다. 물론 App 컴포넌트도 재사용할 수 있습니다. 컴포넌트는 다른 곳에서 다시 인스턴스를 만들 수 있기 때문입니다. 
 
-Let's define one more reusable component, a Button component, which gets reused more often eventually.
+재사용 컴포넌트로 Button 컴포넌트를 만들어보겠습니다. 앞으로 Button은 더 많이 자주 사용되는 컴포넌트가 될 겁니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1387,9 +1389,9 @@ class Button extends Component {
 }
 ~~~~~~~~
 
-It might seem redundant to declare such a component. You will use a `Button` component instead of a `button` element. It only spares the `type="button"`. Except for the type attribute you have to define everything else when you want to use the Button component. But you have to think about the long term investment here. Imagine you have several buttons in your application, but want to change an attribute, style or behavior for the button. Without the component you would have to refactor every button. Instead the Button component ensures to have only one single source of truth. One Button to refactor all buttons at once. One Button to rule them all.
+이미 HTML에 `button`요소가 있어 굳이 컴포넌트로 만들 이유가 없다고 느낄 수도 있습니다. 우리는 `button` 요소 대신에 `button` 컴포넌트를 사용할 것입니다. 이 컴포넌트는 type 속성인 `button`만 사용합니다. 사용하는 곳마다 재사용할 수 있도록 모든 내용을 다시 정의할 겁니다. 여기서 우리는 보다 장기적인 안목을 가지고 컴포넌트를 만들어야 합니다. 애플리케이션에 다양한 버튼이 있고 프로퍼티, 스타일, 동작이 모두 제각각일 경우가 있습니다. 컴포넌트가 없다면 모든 버튼을 일일이 리팩토링해야합니다. 대신 Button 컴포넌트는 단일 소스로, 컴포넌트만 수정하면 다른 버튼을 한꺼번에 리팩토링할 수 있습니다. 
 
-Since you already have a button element, you can use the Button component instead. It omits the type attribute, because the Button component specifies it.
+이처럼 기존의 `button`요소를 대체해 `Button` 컴포넌트를 사용할 수 있습니다. 이미 Button 컴포넌트가 button 타입을 가지고 있기 때문에 type 속성은 생략합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1421,9 +1423,7 @@ class Table extends Component {
 }
 ~~~~~~~~
 
-The Button component expects a `className` property in the props. The `className` attribute is another React derivate for the HTML attribute class. But we didn't pass any `className` when the Button was used. In the code it should be more explicit in the Button component that the `className` is optional.
-
-Therefore, you can use the default parameter which is a JavaScript ES6 feature.
+Button 컴포넌트는 props에 `className` 프로퍼티를 전달받습니다. `className`는 HTML 클래스에서 파생된 것으로 클래스명입니다. 아직 우리는 `className`을 전달하지 않았습니다. 보다 명확히 표현하기 위해 ES6 기능인 기본 매개 변수를 사용할 수 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1442,11 +1442,11 @@ class Button extends Component {
 }
 ~~~~~~~~
 
-Now, whenever there is no `className` property specified when using the Button component, the value will be an empty string instead of `undefined`.
+이제 Button 컴포넌트를 사용할 때, `className` 프로퍼티 값이 지정되지 않아도 `undefined` 가 표시되지 않고 빈 문자열로 표시될 겁니다.
 
-### 실습
+### 읽어보기
 
-* [ES6 기본 파라미터](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters)에 대해 읽어본다.
+* [[MDN] ES6 기본 파라미터](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters)
 
 ## 컴포넌트 선언
 
@@ -1828,6 +1828,6 @@ I don't want to be opinionated here, but I want to leave you some more options. 
   * 고차 함수
 
 
-잠시 휴식시간을 가지자. 학습한 내용을 되새기고 적용해보자. 작성한 소스로 이것저것 테스트해보자. [리액트 공식 문서] (https://facebook.github.io/react/docs/installation.html)에서 자세한 내용을 확인할 수 있다.
+잠시 휴식시간을 가지자. 학습한 내용을 되새기고 적용해보자. 작성한 소스로 이것저것 테스트해보자. [리액트 공식 문서](https://facebook.github.io/react/docs/installation.html)에서 자세한 내용을 확인할 수 있다.
 
 [공식 저장소](https://github.com/rwieruch/hackernews-client/tree/4.2)에서 코드를 확인할 수 있다.

@@ -247,7 +247,7 @@ npm run build
 
 ## JSX 들어가기 Introduction to JSX
 
-이제 JSX에 대해 알아봅시다. JSX는 리액트 구문입니다. *create-react-app*로 애플리케이션을 부트스트래핑을 하면 애플리케이션이 이미 구현되어 있습니다. *src/App.js* 소스 코드를 살펴봅시다.
+리액트 구문인 JSX에 대해 알아봅시다. *create-react-app*로 애플리케이션을 부트스트래핑을 하면 애플리케이션이 이미 구현되어 있습니다. *src/App.js* 소스 코드를 살펴봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
