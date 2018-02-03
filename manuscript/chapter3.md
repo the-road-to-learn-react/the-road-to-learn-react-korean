@@ -209,9 +209,9 @@ You used the native fetch API that is supported by most browsers to perform an a
 
 Back to your application: The list of hits should be visible now. However, there are two regression bugs in the application now. First, the "Dismiss" button is broken. It doesn't know about the complex result object and still operates on the plain list from the local state when dismissing an item. Second, when the list is displayed but you try to search for something else, the list gets filtered on the client-side even though the initial search was made by searching for stories on the server-side. The perfect behvaior would be to fetch another result object from the API when using the Search component. Both regression bugs will be fixed in the following chapters.
 
-### Exercises:
+### 읽어보기
 
-* read more about [ES6 template strings](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals)
+* [[MDN] ES6 템플릿 문자열](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals)
 * read more about [the native fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API)
 * read more about [data fetching in React](https://www.robinwieruch.de/react-fetching-data/)
 

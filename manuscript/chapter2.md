@@ -1,6 +1,6 @@
-# 리액트 기초 Basics in React
+# 리액트 기초 다지기 Basics in React
 
-이번 장에서는 리액트 기초적인 내용을 알아볼 것입니다. 정적인 컴포넌트보다 동적인 컴포넌트와 인터렉션을 구현해보면서 컴포넌트를 선언과 재사용 가능한 컴포넌트에 대해 배우고, 마지막으로 컴포넌트에 숨결을 불어넣어 생명체로 만들어 봅시다.
+이번 장에서는 리액트 기초적인 내용을 알아볼 것입니다. 정적인 컴포넌트보다 동적인 컴포넌트와 인터렉션을 구현해보면서 컴포넌트를 선언과 재사용이 가능한 컴포넌트에 대해 배우고, 마지막으로 컴포넌트에 숨결을 불어넣어 생명체로 만들어 봅시다.
 
 ## 컴포넌트 내부 상태 Internal component state
 
@@ -1126,7 +1126,7 @@ const { searchTerm, list } = this.state;
 
 ## 제어되는 컴포넌트 Controlled Components
 
-이미 우리는 단방향 데이터 흐름에 대해 배웠습니다. 검색어 입력 필드 역시 단방향 데이터 흐름 규칙이 적용됩니다. 입력필드는 목록을 필터링하기 위해 `searchTerm`로 state를 업데이트합니다. state가 변경되면 `render()` 메소드가 재실행되고 `searchTerm`에 검색어가 있는지 목록에서 확인 후 필터링합니다.
+앞에서 우리는 이미 단방향 데이터 흐름에 대해 배웠습니다. 검색어 입력 필드 역시 단방향 데이터 흐름 규칙이 적용됩니다. 입력필드는 목록을 필터링하기 위해 `searchTerm`로 state를 업데이트합니다. state가 변경되면 `render()` 메소드가 재실행되고 `searchTerm`에 검색어가 있는지 목록에서 확인 후 필터링합니다.
 
 그러나 우리가 놓친 것이 있습니다. HTML input 태그의 `value` 속성은 입력 필드에 표시된 값을 가집니다. 바로 `searchTerm`에 해당합니다. 그렇다면 리액트에서는 `value`를 활용하지 않아도 될까요?
 
@@ -1364,7 +1364,7 @@ class Search extends Component {
 
 재사용가능한 컴포넌트와 구성가능한 컴포넌트를 사용해 컴포넌트 간 게층을 만들 수 잇습니다 이 것이 바로 리액트 뷰 레이어의 토대입니다. 마지막 장에서 재사용성(reusability)에 대해 설명하겠습니다. 지금 만든 Table과 Search 컴포넌트도 재사용할 수 있습니다. 물론 App 컴포넌트도 재사용할 수 있습니다. 컴포넌트는 다른 곳에서 다시 인스턴스를 만들 수 있기 때문입니다. 
 
-재사용 컴포넌트로 Button 컴포넌트를 만들어보겠습니다. 앞으로 Button은 더 많이 자주 사용되는 컴포넌트가 될 겁니다.
+재사용가능한 컴포넌트로 Button 컴포넌트를 만들어보겠습니다. 앞으로 Button은 더 많이 자주 사용되는 컴포넌트가 될 겁니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1389,7 +1389,7 @@ class Button extends Component {
 }
 ~~~~~~~~
 
-이미 HTML에 `button`요소가 있어 굳이 컴포넌트로 만들 이유가 없다고 느낄 수도 있습니다. 우리는 `button` 요소 대신에 `button` 컴포넌트를 사용할 것입니다. 이 컴포넌트는 type 속성인 `button`만 사용합니다. 사용하는 곳마다 재사용할 수 있도록 모든 내용을 다시 정의할 겁니다. 여기서 우리는 보다 장기적인 안목을 가지고 컴포넌트를 만들어야 합니다. 애플리케이션에 다양한 버튼이 있고 프로퍼티, 스타일, 동작이 모두 제각각일 경우가 있습니다. 컴포넌트가 없다면 모든 버튼을 일일이 리팩토링해야합니다. 대신 Button 컴포넌트는 단일 소스로, 컴포넌트만 수정하면 다른 버튼을 한꺼번에 리팩토링할 수 있습니다. 
+이미 HTML에 `button`요소가 있어 굳이 컴포넌트로 만들 이유가 없다고 느낄 수도 있습니다. 우리는 `button` 요소 대신에 `button` 컴포넌트를 사용할 것입니다. 이 컴포넌트는 type 속성인 `button`만 사용합니다. 사용하는 곳마다 다시 사용할 수 있도록 모든 내용을 다시 정의할 겁니다. 여기서 우리는 보다 장기적인 안목을 가지고 컴포넌트를 만들어야 합니다. 애플리케이션에 다양한 버튼이 있고 프로퍼티, 스타일, 동작이 모두 제각각일 경우가 있습니다. 컴포넌트가 없다면 모든 버튼을 일일이 리팩토링해야합니다. 대신 Button 컴포넌트는 단일 소스로, 컴포넌트만 수정하면 다른 버튼을 한꺼번에 리팩토링할 수 있습니다. 
 
 이처럼 기존의 `button`요소를 대체해 `Button` 컴포넌트를 사용할 수 있습니다. 이미 Button 컴포넌트가 button 타입을 가지고 있기 때문에 type 속성은 생략합니다.
 
@@ -1446,21 +1446,21 @@ class Button extends Component {
 
 ### 읽어보기
 
-* [[MDN] ES6 기본 파라미터](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters)
+* [[MDN] ES6 기본 매개변수](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters)
 
-## 컴포넌트 선언
+## 컴포넌트 선언 Component Declarations
 
-지금까지 4가지 ES6 클래스 컴포넌트를 만들었다. 여러분도 할 수 있다. ES6 클래스 컴포넌트의 대안으로 비상태 컴포넌트 함수에 대해 알아보자.컴포넌트를 리팩토링하기 전에 리액트의 여러 컴포넌트 유형에 대해 소개하겠다.
+지금까지 4가지 ES6 클래스 컴포넌트를 만들어봤습니다. 이제 자신감이 생겼길 바랍니다. 이번 장에서 비상태 함수형 컴포넌트(Functional Stateless Components)를 만들어 보겠습니다. 다시 한번 앞에서 배운 리액트 컴포넌트 유형을 정리해봅시다. 
 
-* **비상태 함수형 컴포넌트(Functional Stateless Components)** These components are functions which get an input and return an output. The input are the props. The output is a component instance thus plain JSX. So far it is quite similar to an ES6 class component. However, functional stateless components are functions (functional) and they have no local state (stateless). You cannot access or update the state with `this.state` or `this.setState()` because there is no `this` object. Additionally, they have no lifecycle methods. You didn't learn about lifecycle methods yet, but you already used two: `constructor()` and `render()`. Whereas the constructor runs only once in the lifetime of a component, the `render()` class method runs once in the beginning and every time the component updates. Keep in mind that functional stateless component have no lifecycle methods, when you arrive at the lifecycle methods chapter later on.
+* **비상태 함수형 컴포넌트** 비상태 함수형 컴포넌트는 props를 입력으로 받고 JSX를 반환하는 함수입니다. 여기까지는 ES6 클래스 컴포넌트와 비슷합니다. 그러나 비상태 함수형 컴포넌트는 state가 없기 때문에 `this.state` 또는 `this.setState()`로 state에 액세서하거나 업데이트 할 수 없습니다. 또한 생명주기 메소드도 없습니다. 아직 생명주기 메소드에 대해 배우지 않았지만, 이미 생명주기 메소드인 `constructor()`과 `render()`을 사용했습니다. 생명주기동안 `constructor()`는 한번만 실행되는 반면, `render()`은 컴포넌트가 업데이트될 때마다 한번 실행됩니다. 비상태 함수형은 생명주기 메소드가 없음을 꼭 기억하길 바랍니다.
 
-* **ES6 Class Components:** You already used this type of component declaration in your four components. In the class definition, they extend from the React component. The `extend` hooks all the lifecycle methods, available in the React component API, to the component. That way you were able to use the `render()` class method. Additionally, you can store and manipulate state in ES6 class components by using `this.state` and `this.setState()`.
+* **ES6 클래스 컴포넌트** 이미 앞에서 ES6 클래스 컴포넌트를 사용했습니다. 클래스 정의 시, `extends Component` 부분은 리액트 컴포넌트로부터 확장한다는 뜻합니다. `extend`는 리액트 컴포넌트 API인 생명주기 메소드를 컴포넌트에 연결합니다. 때문에`render()` 클래스 메소드를 사용할 수 있는 겁니다. 또한 `this.state`와 `this.setState()`를 사용해 ES6 클래스 컴포넌트에서 상태를 저장하고 조작할 수 있게 됩니다.
 
-* **React.createClass:** The component declaration was used in older versions of React and still in JavaScript ES5 React applications. But [Facebook declared it as deprecated](https://facebook.github.io/react/blog/2015/03/10/react-v0.13.html) in favor of JavaScript ES6. They even added a [deprecation warning in version 15.5](https://facebook.github.io/react/blog/2017/04/07/react-v15.5.0.html). You will not use it in the book.
+* **React.createClass:**  `React.createClas`은 리액트 구버전의 클래스 선언문으로 ES5 애플리케이션에서 사용합니다. 페이스북은 ES6을 사용함에 따라 더 이상 `React.createClass`를 지원하지 않는다고 [공고](https://facebook.github.io/react/blog/2015/03/10/react-v0.13.html)했으며, [리액트 15.5 버전에서 비추천 경고문구](https://facebook.github.io/react/blog/2017/04/07/react-v15.5.0.html)를 추가했습니다. 이 책 역시 이 선언문을 사용하지 않습니다.
 
-So basically there are only two component declarations left. But when to use functional stateless components over ES6 class components? A rule of thumb is to use functional stateless components when you don't need local state or component lifecycle methods. Usually you start to implement your components as functional stateless components. Once you need access to the state or lifecycle methods, you have to refactor it to an ES6 class component. In our application, we started the other way around for the sake of learning React.
+따라서 `React.createClass`를 제외하고 비상태 함수형 컴포넌트 또는 ES6 클래스 컴포넌트 사용해 컴포넌트를 선언할 수 있습니다. 그렇다면 언제 비상태 함수형 컴포넌트를 사용해야할까요? 기본 원칙은 컴포넌트에 상태나 생명주기 메소드가 필요 없을 때 비상태 함수형 컴포넌트를 사용합니다. 일반적으로 컴포넌트를 만들 때, 처음 비상태 함수형 컴포넌트로 만들고 이후 state와 생명주기 메소드가 필요할 때 ES6 클래스로 리팩토링합니다. 
 
-Let's get back to your application. The App component uses internal state. That's why it has to stay as an ES6 class component. But the other three of your ES6 class components are stateless. They don't need access to `this.state` or `this.setState()`. Even more, they have no lifecycle methods. Let's refactor together the Search component to a stateless functional component. The Table and Button component refactoring will remain as your exercise.
+개발 중인 애플리케이션으로 돌아갑시다. App 컴포넌트는 state를 사용하기 때문에 ES6 클래스 컴포넌트가 되어야 합니다. 그러나 나머지 세 컴포넌트는 state가 없으며 `this.state` 또는 `this.setState()`를 사용하지 않습니다. 또한 생명주기 메소드도 없습니다. Search 컴포넌트를 비상태 컴포넌트로 만들어 봅시다. 이후 스스로 Table과 Button 컴포넌트도 비상태 컴포넌트를 리팩토링해봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1480,7 +1480,7 @@ function Search(props) {
 # leanpub-end-insert
 ~~~~~~~~
 
-That's basically it. The props are accessible in the function signature and the return value is JSX. But you can do more code wise in a functional stateless component. You already know the ES6 destructuring. The best practice is to use it in the function signature to destructure the props.
+기본적인 코드입니다. props는 함수 시그니처(function signature: 함수의 원형에 명시되는 매개변수 리스트)에 액서스할 수 있고 JSX를 반환합니다. 앞에서 ES6 구조해체를 배웠습니다. 가장 좋은 방법은 함수 시그니처로 props를 구조해제하는 것입니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1499,8 +1499,7 @@ function Search({ value, onChange, children }) {
 }
 ~~~~~~~~
 
-But it can get better. You know already that ES6 arrow functions allow you to keep your functions concise. You can remove the block body of the function. In a concise body an implicit return is attached thus you can remove the return statement. Since your functional stateless component is a function, you can keep it concise as well.
-
+함수형 비상태 컴포넌트를 ES6 화살표 함수로 바꿔 간결하게 작성해봅시다. 블록을 제거하고 return을 제거합니다.  
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
@@ -1515,13 +1514,12 @@ const Search = ({ value, onChange, children }) =>
 # leanpub-end-insert
 ~~~~~~~~
 
-The last step was especially useful to enforce only to have props as input and JSX as output. Nothing in between. Still, you could *do something* in between by using a block body in your ES6 arrow function.
-
+지금 만든 함수는 props를 입력으로 사용하고 JSX를 반환하는 경우에만 사용할 수 있습니다. 이들 사이에 *해야할 일*을 추가할 수 있습니다. 
 {title="Code Playground",lang=javascript}
 ~~~~~~~~
 const Search = ({ value, onChange, children }) => {
 
-  // do something
+  // 해야할 일
 
   return (
     <form>
@@ -1535,21 +1533,23 @@ const Search = ({ value, onChange, children }) => {
 }
 ~~~~~~~~
 
-But you don't need it for now. That's why you can keep the previous version without the block body. When using block bodies, people often tend to do too many things in the function. By leaving the block body out, you can focus on the input and output of your function.
+그러나 지금 필요하지 않기 때문에 위 코드로 변경하지 않을 겁니다. 대부분이 하나의 함수가 많은 기능을 하도록 코드를 작성하기 때문에 , 되도록 블록 부분을 걷어내 함수의 입력과 출력을 집중하여 개발하는 것이 좋습니다. 
 
-Now you have one lightweight functional stateless component. Once you would need access to its internal component state or lifecycle methods, you would refactor it to an ES6 class component. In addition you saw how JavaScript ES6 can be used in React components to make them more concise and elegant.
-
-### Exercises:
-
-* refactor the Table and Button component to stateless functional components
-* read more about [ES6 class components and functional stateless components](https://facebook.github.io/react/docs/components-and-props.html)
-
-## 컴포넌트 스타일링
-
-애플리케이션과 컴포넌트에 기본적인 스타일을 추가해보자. *src/App.css* 과 *src/ index.css* 파일을 다시 사용할 수 있다. 이 파일은 *create-react-app*를 사용하여 부트스트랩했으므로 이미 프로젝트 폴더 내에 있어야한다. CSS 파일은 *src/App.js* 및 src/ index.js*파일로 가져와야 한다. 아래 이미 복사붙여넣을 수 있는 CSS를 준비했지만 자기가 원하는데로 자유롭게 사용할 수 있다.
+이번 장에서 가벼운 비상태 함수 컴포넌트를 만들었고, 내부 상태나 생명주기 메소드가 필요한 경우 ES6 클래스 컴포넌트로 리팩토링하면 된다는 것을 배웠습니다. 그리고 ES6로 리액트 컴포넌트를 간결하고 보기 좋게 만들어보았습니다.
 
 
-먼저, 전반적인 애플리케이션의 스타일링을 고쳐보자.
+### 실습하기
+
+* Table과 Button컴포넌트를 비상태 함수 컴포넌트로 리팩토링합니다.
+ 
+### 읽어보기
+* [[리액트 공식문서] ES6 클래스 컴포넌트와 비상태 함수 컴포넌트](https://facebook.github.io/react/docs/components-and-props.html)
+
+## 컴포넌트 스타일링 Styling Components
+
+애플리케이션과 컴포넌트를 에쁘게 꾸며 봅시다. *src/App.css* 과 *src/index.css* 파일을 사용할 겁니다. 이 파일은 *create-react-app*를 사용하여 부트스트랩했기 때문에 이미 프로젝트 폴더에 있을 겁니다. CSS 파일은 *src/App.js* 및 *src/index.js*로 가져와야 합니다. 아래 CSS 코드를 그대로 사용할수 있지만 내가 원하는데로 자유롭게 고칠 수 있습니다.
+
+먼저 전반적인 애플리케이션의 스타일링을 수정합시다.
 
 {title="src/index.css",lang="css"}
 ~~~~~~~~
@@ -1599,7 +1599,7 @@ button:hover {
 }
 ~~~~~~~~
 
-둘째, App 파일에서 컴포넌트 스타일을 지정하자.
+이어서 App 파일에서 컴포넌트 스타일를 지정합니다.
 
 {title="src/App.css",lang="css"}
 ~~~~~~~~
@@ -1668,9 +1668,9 @@ button:hover {
 }
 ~~~~~~~~
 
-이제 일부 컴포넌트에 스타일을 사용할 수 있다. HTML 속성 `class` 대신에 `className`을 사용해한다.
+이제 컴포넌트에 스타일이 적용되었습니다. HTML 속성인 `class` 대신에 JSX에서는 `className`을 사용합니다.
 
-먼저 App ES6 클래스 컴포넌트에 적용해보자.
+먼저 ES6 클래스 컴포넌트인 App 컴포넌트에 적용해봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1707,7 +1707,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-두 번째, 상태가 없는 함수(stateless function)인 Tab 컴포넌트에 적용해보자.
+이어서 비상태 함수형 컴포넌트인 Tab 컴포넌트에도 적용해봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1744,9 +1744,9 @@ const Table = ({ list, pattern, onDismiss }) =>
 # leanpub-end-insert
 ~~~~~~~~
 
-Now you have styled your application and components with basic CSS. It should look quite decent. As you know, JSX mixes up HTML and JavaScript. Now one could argue to add CSS in the mix as well. That's called inline style. You can define JavaScript objects and pass them to the style attribute of an element.
+CSS로 애플리케이션과 컴포넌트 스타일을 지정했습니다. 이제 좀 괜찮게 보일 겁니다. JSX문법은 HTML과 자바스크립트를 섞어 사용하기 때문에 CSS를 추가할 수도 있습니다. 이를 인라인 스타일(Inline Style)이라고 합니다. 스타일을 자바스크립트 객체로 만든 다음 스타일 속성에 전달합니다. 
 
-Let's keep the Table column width flexible by using inline style.
+인라인 스타일로 테이블의 열 가로 넓이를 조절해봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1781,7 +1781,8 @@ const Table = ({ list, pattern, onDismiss }) =>
   </div>
 ~~~~~~~~
 
-The style is inlined now. You could define the style objects outside of your elements to make it cleaner.
+
+인라인 스타일을 적용해보았습니다. 다음으로 외부에 스타일 객체를 정의해 좀더 코드를 깔끔하게 만듭시다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -1798,36 +1799,36 @@ const smallColumn = {
 };
 ~~~~~~~~
 
-After that you would use them in your columns: `<span style={smallColumn}>`.
+그리고 각 열에 적용하면 됩니다. 가로넓이가 10%인 `smallColumn` 객체에 해당되면 `<span style={smallColumn}>`이라고 수정합니다.
 
-In general, you will find different opinions and solutions for style in React. You used pure CSS and inline style now. That's sufficient to get started.
+리액트의 스타일링 방법은 매우 다양합니다. 지금은 순수한 CSS와 인라인 스타일로 스타일을 정의했습니다. 이 정도로도 충분합니다.
 
-I don't want to be opinionated here, but I want to leave you some more options. You can read about them and apply them on your own. But if you are new to React, I would recommend to stick to pure CSS and inline style for now.
+앞으로 여러 리액트 컴포넌트 스타일링 라이브러리을 스스로 찾아보고 적용해보길 바랍니다. 그러나 입문 수준에서는 순수한 CSS와 인라인 스타일만을 사용할 것을 권장합니다.
 
-* [styled-components](https://github.com/styled-components/styled-components)
-* [CSS Modules](https://github.com/css-modules/css-modules)
+* [[리액트 컴포넌트 스타일링 라이브러리] styled-components](https://github.com/styled-components/styled-components)
+* [[리액트 컴포넌트 스타일링 라이브러리] CSS Modules](https://github.com/css-modules/css-modules)
 
 {pagebreak}
 
-이제 여러분은 기초적인 리액트 애플리케이션을 만들 수 있게 됐다! 배운 내용을 정리하자.
+마침내 여러분들이 기본적인 리액트 애플리케이션을 만들 수 있게 되었습니다! 지금까지 배운 내용을 정리해봅시다.
 
 * React
-  * `this.state`와 `setState()`를 사용해 컴포넌트 내부 상태를 관리한다.
-  * 함수 또는 클래스 메소드를 사용해 요소 핸들러로 전달한다.
-  * use forms and events in React to add interactions
-  * unidirectional data flow is an important concept in React
-  * embrace controlled components
-  * compose components with children and reusable components
-  * usage and implementation of ES6 class components and functional stateless components
-  * approaches to style your components
+  * `this.state`와 `setState()`를 사용해 컴포넌트 내부 상태 관리
+  * 이벤트 핸들러로 함수 또는 클래스 메소드를 전달하는 방법
+  * 폼과 이벤트 처리
+  * 리액트의 단뱡향 데이터 흐름 원칙
+  * 제어되지 않은 컴포넌트를 제어되는 컴포넌트로 만들기
+  * 자식 컴포넌트와 재사용 가능한 컴포넌트 구현
+  * ES6 클래스 컴포넌트 및 비상태 함수형 컴포넌트의 사용과 구현
+  * 컴포넌트 스타일링 방법
 * ES6
-  * functions that are bound to a class are class methods
-  * destructuring of objects and arrays
-  * default parameters
+  * 클래스 메소드에 함수 바인딩 방법
+  * 객체와 배열의 구조해체
+  * 기본 매개변수
 * 기본
   * 고차 함수
 
 
-잠시 휴식시간을 가지자. 학습한 내용을 되새기고 적용해보자. 작성한 소스로 이것저것 테스트해보자. [리액트 공식 문서](https://facebook.github.io/react/docs/installation.html)에서 자세한 내용을 확인할 수 있다.
+잠시 휴식시간을 가집시다. 학습한 내용을 되새기고 적용해보며 이것저것 만들어보며 테스트해보길 바랍니다. [리액트 공식 문서](https://facebook.github.io/react/docs/installation.html)에서 리액트에 관한 자세한 내용을 읽어보길 바랍니다.
 
-[공식 저장소](https://github.com/rwieruch/hackernews-client/tree/4.2)에서 코드를 확인할 수 있다.
+실습코드는 [공식 저장소](https://github.com/rwieruch/hackernews-client/tree/4.2)에서 확인할 수 있습니다.
