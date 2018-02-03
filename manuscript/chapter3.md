@@ -4,25 +4,25 @@
 
 API에 잘 모른다면, 저자가 쓴 [아무도 나에게 API를 알려주지 않았다](https://www.robinwieruch.de/what-is-an-api-javascript/) 글을 읽어보길 바랍니다. 
 
-[해커 뉴스(Hacker News)](https://news.ycombinator.com/) 플랫폼은 기술 주제 관련 우수 기사를 큐레이션하는 플랫폼입니다. 이 책에서는 해커 뉴스 API를 사용해 플랫폼에서 인기 급상승 중인 글 리스트를 보여줄 것입니다. 해커 뉴스는 [데이터](https://github.com/HackerNews/API) 조회 API와 [검색](https://hn.algolia.com/api) API를 제공합니다. API 명세서를 통해 데이터 구조를 이해할 수 있을 겁니다.
+[해커 뉴스(Hacker News)](https://news.ycombinator.com/) 플랫폼은 기술 주제 관련 우수 기사를 큐레이션하는 플랫폼입니다. 이 책에서는 해커 뉴스 API를 사용해 플랫폼에서 인기 급상승 중인 글 리스트를 보여줄 것입니다. 해커 뉴스는 [데이터](https://github.com/HackerNews/API) 조회 API와 [검색](https://hn.algolia.com/api) API를 제공합니다. 사이트에서 API 명세서를 읽어본다면 데이터 구조를 이해할 수 있을 겁니다.
 
-## 생명주기 메소드 Lifecycle Methods
+## 생명주기 메서드 Lifecycle Methods
 
-API를 사용하기 전에 리액트 컴포넌트의 생명주기 메서드에 대해 알아보겠습니다. S6 클래스 컴포넌트에서 사용할 수 있지만 비상태 컴포넌트에서는 사용할 수 없습니다. 
+API를 사용하기 전 컴포넌트 생명주기 메서드에 대해 알아봅시다. 생명주기 메서드는 ES6 클래스 컴포넌트에서 사용할 수 있지만 비상태 컴포넌트에서는 사용할 수 없습니다. 
 
-이전 장에서 E6 클래스와 리액트에서 사용법을 배웠습니다. `render()`외에, 리액트 ES6 클래스 컴포넌트에서 오버라이드가 가능한 메소드가 있습니다. 바로 생명주기 메소드입니다.
+이전 장에서 E6 클래스와 리액트에서 사용법을 배웠습니다. `render()`외에, 리액트 ES6 클래스 컴포넌트에서 오버라이드가 가능한 메서드가 있습니다. 바로 생명주기 메서드입니다.
 
-우리는 이미 ES6 클래스 컴포넌트에서 사용하는 두 생명주기 메소드 `constructor()`와  `render()`를 알고 있습니다.
+우리는 이미 ES6 클래스 컴포넌트에서 사용하는 두 생명주기 메서드 `constructor()`와  `render()`를 알고 있습니다.
 
 컴포넌트 인스턴스가 만들어져 DOM에 삽입 될 때 생성자가 호출됩니다. 컴포넌트가 인스턴스화됩니다. 이 프로세스를 컴포넌트 탑재됐다(mounting)고 말합니다.
 
 `render()`는 마운트 프로세스 중에도 호출되지만 컴포넌트가 업데이트 될 때도 호출됩니다. 컴포넌트의 state와 props가 변경될 때마다 `render()`이 호출됩니다.
 
-아마 이전 장에서 두 메소드를 사용해봤을 겁니다. 그 외 더 많은 생명주기 메소드가 있습니다
+아마 이전 장에서 두 메서드를 사용해봤을 겁니다. 그 외 더 많은 생명주기 메서드가 있습니다
  
-컴포넌트 마운트에는` componentWillMount()`와`componentDidMount()` 두 메소드가 있습니다. `constructor()`가 호출되면, `componentWillMount()`가 호출되고, 그 후 `render()`이 호출되며, 마지막에 `componentDidMount()`가 호출됩니다.
+컴포넌트 마운트에는` componentWillMount()`와`componentDidMount()` 두 메서드가 있습니다. `constructor()`가 호출되면, `componentWillMount()`가 호출되고, 그 후 `render()`이 호출되며, 마지막에 `componentDidMount()`가 호출됩니다.
 
-일반적인 마운팅 프로세스에서 생명주기 메소드는 아래 순서대로 호출됩니다.
+일반적인 마운팅 프로세스에서 생명주기 메서드는 아래 순서대로 호출됩니다.
 
 * constructor()
 * componentWillMount()
@@ -30,7 +30,7 @@ API를 사용하기 전에 리액트 컴포넌트의 생명주기 메서드에 �
 * componentDidMount()
 
 
-state나 props가 변경 시, 업데이트 생명주기는 어떨까요? 아래와 같은 순서로 5개의 생명주기 메소드가 호출됩니다.
+state나 props가 변경 시, 업데이트 생명주기는 어떨까요? 아래와 같은 순서로 5개의 생명주기 메서드가 호출됩니다.
 
 * componentWillReceiveProps()
 * shouldComponentUpdate()
@@ -38,40 +38,40 @@ state나 props가 변경 시, 업데이트 생명주기는 어떨까요? 아래�
 * render()
 * componentDidUpdate()
 
-마지막으로 마운트 해제 수명주기가 있습니다. 메소드는 `componentWillUnmount()`만 있습니다.
+마지막으로 마운트 해제 수명주기가 있습니다. 메서드는 `componentWillUnmount()`만 있습니다.
 
 * componentWillUnmount()
 
-처음부터 모든 생명주기 메소드를 사용하지 않아도 됩니다. 아직 많이 다뤄보지 않았기 때문에 익숙해지지 않았을 뿐입니다. 대규모 애플리케이션에도 `constructor()`과 `render()`만 사용할 경우가 많습니다. 앞서 알아본 생명주기 메소드를 언제 사용해야 하는지 정리해봅시다.
+처음부터 모든 생명주기 메서드를 사용하지 않아도 됩니다. 아직 많이 다뤄보지 않았기 때문에 익숙해지지 않았을 뿐입니다. 대규모 애플리케이션에도 `constructor()`과 `render()`만 사용할 경우가 많습니다. 앞서 알아본 생명주기 메서드를 언제 사용해야 하는지 정리해봅시다.
 
 
-* **constructor(props)** - 컴포넌트 초기화 시 호출됩니다. 초기 컴포넌트 상태 및 클래스 메소드를 정의합니다.
+* **constructor(props)** - 컴포넌트 초기화 시 호출됩니다. 초기 컴포넌트 상태 및 클래스 메서드를 정의합니다.
 
 * **componentWillMount()** - `render()` 전에 호출됩니다. 컴포넌트의 두 번째 렌더링을 트리거하지 않아 컴포넌트 상태를 설정하기 적합합니다. `constructor()`을 사용해 초기 상태를 설정하는 것이 좋습니다.
 
 * **render()** - 컴포넌트의 출력을 반환하기 때문에 필수로 사용합 반환합 그것은 소품 및 상태로 입력을 가져오고 요소를 반환합니다.
 
-* **componentDidMount()** - 컴포넌트가 마운트 될 때 한 번만 호출됩니다. 이 메소드에서 API에서 데이터를 가져 오기 위해 비동기 요청을 수행할 수 있습니다. 가져온 데이터는 내부 컴포넌트 상태에 저장되어 `render()`로 컴포넌트가 업데이트 됩니다.
+* **componentDidMount()** - 컴포넌트가 마운트 될 때 한 번만 호출됩니다. 이 메서드에서 API에서 데이터를 가져 오기 위해 비동기 요청을 수행할 수 있습니다. 가져온 데이터는 내부 컴포넌트 상태에 저장되어 `render()`로 컴포넌트가 업데이트 됩니다.
 
 * **componentWillReceiveProps(nextProps)** - 업데이트 생명주기 동안 호출됩니다. `nextProps`는 다음 props를, `this.props`로 이전 props를 조회해 서로 차이를 알 수 있습니다. nextProps를 컴포넌트의 state로 사용할 수 있습니다.
  
-* **shouldComponentUpdate(nextProps, nextState)** - props 또는 state의 변경으로 컴포넌트가 업데이트 될 때 호출됩니다. 성능 최적화를 위해 고도화된 리액트 애플리케이션에서 사용됩니다. 생명주기 메서드에서 반환하는 부울 값(boolean)에 컴포넌트와 모든 자식이 업데이트 주기에 렌더링되거나 반대로 그렇지 않을 수 있습니다. 문제가 되는 특정 컴포넌트의 렌더링 생명주기 렌더링을 막을 수 있습니다.명주기 메소드를 방지 할 수 있습니다.
+* **shouldComponentUpdate(nextProps, nextState)** - props 또는 state의 변경으로 컴포넌트가 업데이트 될 때 호출됩니다. 성능 최적화를 위해 고도화된 리액트 애플리케이션에서 사용됩니다. 생명주기 메서드에서 반환하는 부울 값(boolean)에 컴포넌트와 모든 자식이 업데이트 주기에 렌더링되거나 반대로 그렇지 않을 수 있습니다. 문제가 되는 특정 컴포넌트의 렌더링 생명주기 렌더링을 막을 수 있습니다.명주기 메서드를 방지 할 수 있습니다.
 
-* **componentWillUpdate(nextProps, nextState)** - `render()` 메소드 전에 바로 호출됩니다. `nextProps`는 다음 props를, `nextState`로 다음 state를 조회할 수 있습니다. `render()` 메서드가 실행되기 전에 마지막으로 상태를 업데이트 할 수 있는 기회입니다. 이후에는 `setState()`를 더 이상 사용할 수 없습니다. nextProps를 state 값으로 사용하려면 `componentWillReceiveProps()`를 사용합니다.
+* **componentWillUpdate(nextProps, nextState)** - `render()` 메서드 전에 바로 호출됩니다. `nextProps`는 다음 props를, `nextState`로 다음 state를 조회할 수 있습니다. `render()` 메서드가 실행되기 전에 마지막으로 상태를 업데이트 할 수 있는 기회입니다. 이후에는 `setState()`를 더 이상 사용할 수 없습니다. nextProps를 state 값으로 사용하려면 `componentWillReceiveProps()`를 사용합니다.
 
 * **componentDidUpdate(prevProps, prevState)** - `render()` 후에 즉시 호출됩니다. DOM조작을 하거나 추가 비동기 요청을 수행할 수 있습니다.
 
 * **componentWillUnmount()** - 컴포넌트를 해체하기 전에 호출 됩니다. 테스크를 초기화하는 작업을 수행할 수 있습니다.
 
 
-`constructor()`와 `render()` 메소드는 이미 사용해봤습니다. ES6 클래스 컴포넌트에서 사용되는 생명주기 입니다. `render()`은 컴포넌트 인스턴스를 반환하기 때문에 반드시 필요한 메소드입니다.
+`constructor()`와 `render()` 메서드는 이미 사용해봤습니다. ES6 클래스 컴포넌트에서 사용되는 생명주기 입니다. `render()`은 컴포넌트 인스턴스를 반환하기 때문에 반드시 필요한 메서드입니다.
 
-그 외 생명주기 메소드로 `componentDidCatch(error, info)`가 있습니다. 이 메소드는 [React 16](https://www.robinwieruch.de/what-is-new-in-react-16/)에서 도입되었으며 컴포넌트 에러를 캐치합니다. 예를 들어 목록이 표시하는 애플리케이션이 있다고 해봅시다. 외부 API 호출이 실패하여 state가 `null`로 표시되었습니다. 리스트가 비어있지 않고 `null` 상태이기 때문에 filter과 map을 사용할 수 없습니다. 이 경우 에러가 발생하여 컴포넌트가 깨지고 전체 애플리케이션이 작동되지 않습니다. 이 때, `componentDidCatch()`로 에러를 포착하고 내부 상태에 저장하여 사용자에게 에러 메세지를 표시해줄 수 있습니다.
+그 외 생명주기 메서드로 `componentDidCatch(error, info)`가 있습니다. 이 메서드는 [React 16](https://www.robinwieruch.de/what-is-new-in-react-16/)에서 도입되었으며 컴포넌트 에러를 캐치합니다. 예를 들어 목록이 표시하는 애플리케이션이 있다고 해봅시다. 외부 API 호출이 실패하여 state가 `null`로 표시되었습니다. 리스트가 비어있지 않고 `null` 상태이기 때문에 filter과 map을 사용할 수 없습니다. 이 경우 에러가 발생하여 컴포넌트가 깨지고 전체 애플리케이션이 작동되지 않습니다. 이 때, `componentDidCatch()`로 에러를 포착하고 내부 상태에 저장하여 사용자에게 에러 메세지를 표시해줄 수 있습니다.
 
 ### 읽어보기
 
 * [[리액트 공식문서] 리액트 생명주기](https://facebook.github.io/react/docs/react-component.html)
-* [[리액트 공식문서] 리액트 생명주기 메소드와 상태 관리](https://facebook.github.io/react/docs/state-and-lifecycle.html)
+* [[리액트 공식문서] 리액트 생명주기 메서드와 상태 관리](https://facebook.github.io/react/docs/state-and-lifecycle.html)
 * [[reactjs.org] 컴포넌트 에러 핸들링](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
 
 ## 데이터 가져오기 Fetching Data
