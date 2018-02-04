@@ -190,7 +190,7 @@ const user = {
 
 App 컴포넌트에 state가 있지만 그 값이 변동되지 않아 정적인 컴포넌트라 할 수 있습니다. state를 조작하여 동적인 컴포넌트를 만들어 봅시다.
 
-각 배열의 항목마다 `취소` 버튼을 추가하고, 버튼을 클릭하면 각 항목이 삭제되도록 구현해봅시다.
+각 배열의 항목마다 `닫기` 버튼을 추가하고, 버튼을 클릭하면 각 대상이 삭제되게 구현해봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -215,7 +215,7 @@ class App extends Component {
                 onClick={() => this.onDismiss(item.objectID)}
                 type="button"
               >
-                Dismiss
+                닫기
               </button>
             </span>
 # leanpub-end-insert
@@ -1810,7 +1810,7 @@ const smallColumn = {
 
 {pagebreak}
 
-마침내 여러분들이 기본적인 리액트 애플리케이션을 만들 수 있게 되었습니다! 지금까지 배운 내용을 정리해봅시다.
+마침내 기본적인 리액트 애플리케이션을 만들 수 있게 되었습니다! 지금까지 배운 내용을 정리해봅시다.
 
 * React
   * `this.state`와 `setState()`를 사용해 컴포넌트 내부 상태 관리

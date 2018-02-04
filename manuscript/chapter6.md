@@ -453,9 +453,9 @@ Because of all these reasons, there exist standalone solutions to take care of t
 
 Redux and MobX are outside of the scope of this book. When you have finished the book, you will get guidance on how you can continue to learn React and its ecosystem. One learning path could be to learn Redux. Before you dive into the topic of external state management, I can recommend to read this [article](https://www.robinwieruch.de/redux-mobx-confusion/). It aims to give you a better understanding of how to learn external state management.
 
-### 실습
+### 실습하기
 
-* read more about [external state management and how to learn it](https://www.robinwieruch.de/redux-mobx-confusion/)
+* read more about [[저자 블로그] external state management and how to learn it](https://www.robinwieruch.de/redux-mobx-confusion/)
 * check out my second ebook about [state management in React](https://roadtoreact.com/)
 
 {pagebreak}

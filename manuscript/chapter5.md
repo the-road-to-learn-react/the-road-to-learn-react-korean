@@ -150,12 +150,12 @@ const Search = ({
 
 Now you would be able to access the input DOM element. In the example of the focus use case it wouldn't help you, because you have no lifecycle method in a functional stateless component to trigger the focus. But in the future you might come across other use cases where it can make sense to use a functional stateless component with the `ref` attribute.
 
-### Exercises
+### 읽어보기
 
-* read more about [the ref attribute in general in React](https://facebook.github.io/react/docs/refs-and-the-dom.html)
-* read more about [the usage of the ref attribute in React](https://www.robinwieruch.de/react-ref-attribute-dom-node/)
+* [[리액트 공식문서] the ref attribute in general in React](https://facebook.github.io/react/docs/refs-and-the-dom.html)
+* [[리액트 공식문서] the usage of the ref attribute in React](https://www.robinwieruch.de/react-ref-attribute-dom-node/)
 
-## Loading ...
+## 로딩 Loading
 
 Now let's get back to the application. You might want to show a loading indicator when you submit a search request to the Hacker News API. The request is asynchronous and you should show your user some feedback that something is about to happen. Let's define a reusable Loading component in your *src/App.js* file.
 
@@ -966,9 +966,11 @@ Finally your advanced sort interaction is complete now.
 
 ### 실습하기
 
-* use a library like [Font Awesome](http://fontawesome.io/) to indicate the (reverse) sort
-  * it could be an arrow up or arrow down icon next to each Sort header
-* read more about the [classnames library](https://github.com/JedWatson/classnames)
+* [Font Awesome](http://fontawesome.io/) 라이브러리를 사용해 정렬 아이콘을 추가하기
+  * [화살표 위](https://fontawesome.com/icons/arrow-up?style=solid) 또는 [화살표 아래](https://fontawesome.com/icons/arrow-down?style=solid) 아이콘을 정렬 레이블 제목 옆에 추가
+
+### 읽어보기
+* [classnames 라이브러리](https://github.com/JedWatson/classnames)
 
 {pagebreak}
 

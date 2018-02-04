@@ -23,8 +23,8 @@ SPA 프레임 워크의 1세대는 이미 상용화 단계에 이르렀고 더�
 
 ### 읽어보기
 
-* [[영문] 왜 나는 앵귤러에서 리액트로 옮겼는가](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)
-* [[영문] 유연한 리액트 생태계](https://www.robinwieruch.de/essential-react-libraries-framework/)
+* [[저자 블로그] 왜 나는 앵귤러에서 리액트로 옮겼는가](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)
+* [[저자 블로그] 유연한 리액트 생태계](https://www.robinwieruch.de/essential-react-libraries-framework/)
 
 ## 준비사항 Requirements
 
@@ -113,7 +113,7 @@ npm install --save-dev <package>
 
 ### 읽어보기
 
-* [npm 문서](https://docs.npmjs.com/)
+* [npm 공식문서](https://docs.npmjs.com/)
 
 ## 설치하기
 
@@ -709,7 +709,7 @@ item, key => { ... }
 
 ### 읽어보기
 
-* [[MDN] ES6 화살표함수](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+* [[MDN] ES6 화살표 함수](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 
 ## ES6 클래스 ES6 Class
 

@@ -2,7 +2,7 @@
 
 The chapter will focus on important topics to keep your code maintainable in a scaling application. You will learn about code organization to embrace best practices when structuring your folders and files. Another aspect you will learn is testing, which is important to keep your code robust. The whole chapter will take a step back from the practical application and explain a couple of these topics for you.
 
-## ES6 Modules: Import and Export
+## ES6 모듈 Modules: Import/Export
 
 In JavaScript ES6 you can import and export functionalities from modules. These functionalities can be functions, classes, components, constants and others. Basically everything that you can assign to a variable. The modules can be single files or whole folders with one index file as entry point.
 
@@ -789,11 +789,13 @@ Same as the ES6 default parameter, the default prop ensures that the property is
 
 If you run your tests again, you might see PropType errors for your components on your command line. It can happen because you didn't define all props for your components in the tests that are defined as required in your PropType definition. The tests themselves all pass correctly though. You can pass all required props to avoid these errors.
 
-### Exercises:
+### 실습하기
 
-* define the PropType interface for the Search component
+* Search 컴포넌트에 PropType 정의하기
 * add and update the PropType interfaces when you add and update components in the next chapters
-* read more about [React PropTypes](https://facebook.github.io/react/docs/typechecking-with-proptypes.html)
+
+### 읽어보기
+* [[리액트 공식문서]리액트 PropTypes](https://facebook.github.io/react/docs/typechecking-with-proptypes.html)
 
 {pagebreak}
 
