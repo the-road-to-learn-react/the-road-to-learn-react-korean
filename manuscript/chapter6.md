@@ -452,10 +452,11 @@ class App extends Component {
 이러한 모든 이유를 해결하기 위해 상태 관리를 처리할 수 있는 독립형 솔루션이 있습니다. 이 솔루션은 리액트에만 허용된 것이 아니라 타 프레임워크에서도 사용가능합니다. 이러한 점이 바로 리액트 생태계를 풍부하고 강력하게 만들어 줍니다. 상태 관리 라이브러리인 [리덕스(Redux)](http://redux.js.org/docs/introduction/)와 [모브엑스(MobX)](https://mobx.js.org/)에 대해 들어봤을 겁니다. 둘 중 하나를 선택해 리액트 애플리케이션에 사용할 수 있습니다. [react-redux](https://github.com/reactjs/react-redux) 또는 [mobx-react](https://github.com/mobxjs/mobx-react)를 도입해 리액트 뷰 레이어에 통합시킬 수 있습니다.
  
 Redux와 MobX는 이 책에서 다루지 않았습니다. 이 책을 마치면 리액트와 그 생태계를 계속 탐험할 수 있는 방법을 스스로 깨우치게 될 것입니다. 이 책을 마치고 난 후 리덕스를 배울 수 있습니다. 외부 상태 관리로 넘어가지 전에 저자의 [Redux와 MobX에 대해 바로알기](https://www.robinwieruch.de/redux-mobx-confusion/) 블로그 글을 읽길 바랍니다. 여러분이 외부 상태 관리를 배우는 방법을 소개했습니다.
+
 ### 읽어보기
 
-* [[저자 블로그] external state management and how to learn it](https://www.robinwieruch.de/redux-mobx-confusion/)
-* [[저자 두번째 출간 도서] Taming the State in React](https://roadtoreact.com/)
+* [[저자 블로그] 외부 상태 관리와 학습 방법](https://www.robinwieruch.de/redux-mobx-confusion/)
+* [[저자 두번째 출간 도서] 리액트 상태 다루기](https://roadtoreact.com/)
 
 {pagebreak}
 
