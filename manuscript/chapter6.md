@@ -1,16 +1,16 @@
-# State Management in React and beyond
+# 리액트 상태 관리 State Management in React and beyond
 
-You have already learned the basics of state management in React in the previous chapters. This chapter digs a bit deeper into the topic. You will learn best practices, how to apply them and why you could consider using a third-party state management library.
+이미 여러분은 기본적인 리액트 상태 관리에 대해 알고 있습니다. 이 장에서는 리액트 상태 관리의 모범 사례와 적용 방법, 관련 라이브러리를 통해 상태 관리의 심화 내용을 살펴보겠습니다.
 
-## Lifting State
+## 상태 이동 Lifting State
 
-Only the App component is a stateful ES6 component in your application. It handles a lot of application state and logic in its class methods. Maybe you have noticed that you pass a lot of properties to your Table component. Most of these props are only used in the Table component. In conclusion one could argue that it makes no sense that the App component knows about them.
+App 컴포넌트는 상태가 있는 ES6 컴포넌트 입니다 클래스 메서드에서 상태와 로직을 처리합니다. Table 컴포넌트로 많은 프로퍼티를 props로 넘겼습니다. 이 props는 Table 컴포넌트에서만 사용합니다. 결론적으로 App 컴포넌트가 Table  컴포넌트가 사용하고 있는지 모릅니다.
 
-The whole sort functionality is only used in the Table component. You could move it into the Table component, because the App component doesn't need to know about it at all. The process of refactoring substate from one component to another is known as *lifting state*. In your case, you want to move state that isn't used in the App component into the Table component. The state moves down from parent to child component.
+전체 정렬 기능은 Table 컴포넌트에서만 사용됩니다. App 컴포넌트가 Table 컴포넌트를 모르기 때문에, 이 기능을 Table 컴포넌트로 옮길 수 있습니다. 특정 컴포넌트에에서 다른 컴포넌트로 전달한 하위 상태를 리팩토링하는 프로세스를 *상태 이동(lifting state)*라고 합니다. 우리는 App 컴포넌트에서 사용하지 않는 상태를 Table 컴포넌트로 옮기려고 합니다. 즉 상태는 상위 컴포넌트에서 하위 컴포넌트로 이동됩니다.
 
-In order to deal with state and class methods in the Table component, it has to become an ES6 class component. The refactoring from functional stateless component to ES6 class component is straight forward.
+Table 컴포넌트의 상태와 클래스 메서드를 처리하기 위해서 ES6클래스 컴포넌트로 수정해야합니다. 함수형 컴포넌트에서 ES6 클래스 컴포넌트로 리팩토링은 쉽습니다.
 
-Your Table component as a functional stateless component:
+현재 Table 컴포넌트는 비상태 함수형 컴포넌트입니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -32,7 +32,7 @@ const Table = ({
 }
 ~~~~~~~~
 
-Your Table component as an ES6 class component:
+Table 컴포넌트를 ES6 클래스 컴포넌트로 수정합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -60,7 +60,7 @@ class Table extends Component {
 # leanpub-end-insert
 ~~~~~~~~
 
-Since you want to deal with state and methods in your component, you have to add a constructor and initial state.
+컴포넌트의 상태와 메서드를 처리하려면 생성자와 초기 상태를 추가해야 합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -79,7 +79,7 @@ class Table extends Component {
 }
 ~~~~~~~~
 
-Now you can move state and class methods regarding the sort functionality from your App component down to your Table component.
+이제 App 컴포넌트의 정렬 기능에 해당하는 상태와 클래스 메서드를 Table 컴포넌트로 옮깁시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -110,7 +110,7 @@ class Table extends Component {
 }
 ~~~~~~~~
 
-Don't forget to remove the moved state and `onSort()` class method from your App component.
+App 컴포넌트에서 옮긴 상태와 `onSort()` 메서드를 삭제하는 것을 잊지 마세요.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -140,7 +140,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Additionally, you can make the Table component API more lightweight. Remove the props that are passed to it from the App component, because they are handled internally in the Table component now.
+Table 컴포넌트 API를 더 가볍게 만들 수 있습니다. App 컴포넌트에서 전달된 props를 제거하기 위해, Table 컴포넌트에서 내부적으로 처리하게 만듭시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -177,7 +177,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now in your Table component you can use the internal `onSort()` method and the internal Table state.
+이제 Table 컴포넌트 내부에서 `onSort()` 메서드와 상태를 사용할 수 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -263,25 +263,25 @@ class Table extends Component {
 }
 ~~~~~~~~
 
-Your application should still work. But you made a crucial refactoring. You moved functionality and state closer into another component. Other components got more lightweight again. Additionally the component API of the Table got more lightweight because it deals internally with the sort functionality.
+애플리케이션이 잘 작동하는지 확인하세요. 여러분은 가장 중요한 리팩토링을 해봤습니다. Table 컴포넌트 API가 내부적으로 정렬 기능을 처리하고, 관련있는 상태와 메서드를 상위 컴포넌트에서 이동시켜 상위 컴포넌트를 가볍게 만들었습니다. 
 
-The process of lifting state can go the other way as well: from child to parent component. It is called as lifting state up. Imagine you were dealing with internal state in a child component. Now you want to fulfill a requirement to show the state in your parent component as well. You would have to lift up the state to your parent component. But it goes even further. Imagine you want to show the state in a sibling component of your child component. Again you would have to lift the state up to your parent component. The parent component deals with the internal state, but exposes it to both child components.
+하위에서 상위 컴포넌트로 상태를 이동할 수 있습니다. 하위 컴포넌트의 내부 상태를 처리한다고 가정해봅시다. 부모 컴포넌트에서도 그 상태가 표시되어야 한다면, 부모 컴포넌트로 상태를 옮겨야합니다. 더 나아가 자식 컴포넌트에 형제 컴포넌트의 상태를 표시한다고 해봅시다. 이 역시 형제 컴포넌트의 상태를 부모 컴포넌트로  옮겨야 합니다. 부모 컴포넌트는 내부 상태를 처리하면 두 컴포넌트에 모두 표시됩니다.
 
-### Exercises:
+### 읽어보기
 
-* read more about [lifting state in React](https://facebook.github.io/react/docs/lifting-state-up.html)
-* read more about lifting state in [learn React before using Redux](https://www.robinwieruch.de/learn-react-before-using-redux/)
+* [[리액트 공식문서] 리액트 상태 옮기기](https://facebook.github.io/react/docs/lifting-state-up.html)
+* [[저자 블로그] Redux 사용 전 알아야 할 것들](https://www.robinwieruch.de/learn-react-before-using-redux/)
 
-## Revisited: setState()
+## 다시보는 `setState()` Revisited: `setState()`
 
-So far, you have used React `setState()` to manage your internal component state. You can pass an object to the function where you can update partially the internal state.
+지금까지 `setState()`메서드로 컴포넌트 내부 상태를 관리했습니다. 전체 상태 중 부분적으로 업데이트할 객체를 함수에 전달했습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
 this.setState({ foo: bar });
 ~~~~~~~~
 
-But `setState()` doesn't take only an object. In its second version, you can pass a function to update the state.
+`setState()`는 객체 하나만 취하지 않습니다. 함수를 전달해 상태를 업데이트 할 수 있습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -290,9 +290,7 @@ this.setState((prevState, props) => {
 });
 ~~~~~~~~
 
-Why should you want to do that? There is one crucial use case where it makes sense to use a function over an object. It is when you update the state depending on the previous state or props. If you don't use a function, the internal state management can cause bugs.
-
-But why does it cause bugs to use an object over a function when the update depends on the previous state or props? The React `setState()` method is asynchronous. React batches `setState()` calls and executes them eventually. It can happen that the previous state or props changed in between when you would rely on it in your `setState()` call.
+왜 이렇게 해야할까요? 단일 객체가 아닌 함수를 사용할 때 문제가 됩니다. 바로 이전 상태 또는 props에 따라 상태를 업데이트하는 경우가 있습니다. 이 때 함수를 사용하지 않으면 내부 상태로 인해 버그가 발생할 수 있습니다. `setState()`메서드는 비동기입니다. 리액트는 `setState()` 호출하고 이를 실행합니다. `setState()`가 호출될 때, 이전 state나 props가 때 변경할 수 있습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -301,9 +299,9 @@ const { barCount } = this.props;
 this.setState({ count: fooCount + barCount });
 ~~~~~~~~
 
-Imagine that `fooCount` and `barCount`, thus the state or the props, change somewhere else asynchronously when you call `setState()`. In a growing application, you have more than one 'setState()' call across your application. Since `setState()` executes asynchronously, you could rely in the example on stale values.
+`fooCount`과 `barCount`가 있다고 가정해봅시다. 그리고 `setState()` 메서드를 호출할 때 state나 props에 따라 어떤 곳이 변경된다고 합시다. 애플리케이션 규모가 커지면서 한 개 이상의 `setState()`가 호출해야하는 일이 생겼습니다. `setState()`는 비동기적으로 실행되기 때문에, 이전 상태 값을 의존할 수 있습니다.
 
-With the function approach, the function in `setState()` is a callback that operates on the state and props at the time of executing the callback function. Even though `setState()` is asynchronous, with a function it takes the state and props at the time when it is executed.
+`setState()`메서드는 state와 props를 처리하는 비동기 콜백 함수입니다. `setState()`메서드는 비동기로 실행될 때 이전 state와 props를 변경합니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -314,9 +312,9 @@ this.setState((prevState, props) => {
 });
 ~~~~~~~~
 
-Now, lets get back to your code to fix this behavior. Together we will fix it for one place where `setState()` is used and relies on the state or props. Afterward, you are able to fix it at other places too.
+이제 문제를 해결해봅시다. `setState()`메서드를 사용하는 곳을 수정해 state와 props를 의존하게 만듭시다. 나중에 다른 곳도 수정할 수 있습니다.
 
-The `setSearchTopStories()` method relies on the previous state and thus is a perfect example to use a function over an object in `setState()`. Right now, it looks like the following code snippet.
+`setSearchTopStories()`메서드는 이전 상태를 의존함으로 `setState()`에서 함수를 사용할 수 있습니다. 지금 현재 코드는 아래와 같을 것입니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -343,7 +341,7 @@ setSearchTopStories(result) {
 }
 ~~~~~~~~
 
-You extract values from the state, but update the state depending on the previous state asynchronously. Now you can use the functional approach to prevent bugs because of a stale state.
+상태값을 가져오지만 비동기로 이전 상태를 업데이트 합니다. 이전 상태로 인한 버그가 발생하지 않도록 함수를 만들어봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -358,7 +356,7 @@ setSearchTopStories(result) {
 }
 ~~~~~~~~
 
-You can move the whole block that you have already implemented into the function. You only have to exchange that you operate on the `prevState` rather than `this.state`.
+여기서 구현한 블록 전체를 함수 안으로 옮길 수 있습니다. 수정할 것은 `this.state`을 `prevState`으로 바꾸는 것 뿐입니다. 
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -390,7 +388,7 @@ setSearchTopStories(result) {
 }
 ~~~~~~~~
 
-That will fix the issue with a stale state. There is one more improvement. Since it is a function, you can extract the function for an improved readability. That's one more advantage to use a function over an object. The function can live outside of the component. But you have to use a higher order function to pass the result to it. After all, you want to update the state based on the fetched result from the API.
+이전 상태를 가져오는 문제를 해결해봅시다. 한 가지 더 개선할 것이 있습니다. 가독성을 높이기 위해 함수를 밖으로 빼낼 수 있습니다. 객체에 대한 함수의 장점입니다. 이 함수는 컴포넌트 외부로 빼낼 수 있지만, 고차 함수를 만들어 결과를 전달할 수 있게 해야합니다. API에서 가져온 `result`를 가지고 상태를 업데이트하는 것입니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -400,7 +398,7 @@ setSearchTopStories(result) {
 }
 ~~~~~~~~
 
-The `updateSearchTopStoriesState()` function has to return a function. It is a higher order function. You can define this higher order function outside of your App component. Note how the function signature changes slightly now.
+`updateSearchTopStoriesState()` 함수는 함수를 반환하는 고차원 함수입니다. 고차함수는 App 컴포넌트 외부에서 정의할 수 있습니다. 함수 시그니처가 조금 변경되었습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -432,39 +430,40 @@ class App extends Component {
 }
 ~~~~~~~~
 
-That's it. The function over an object approach in `setState()` fixes potential bugs yet increases readability and maintainability of your code. Furthermore, it becomes testable outside of the App component. You could export it and write a test for it as exercise.
+`setState()`에서 객체 접근 함수는 잠재적인 버그를 수정해주고 코드의 가독성과 유지 보수성을 높여줍니다. 또한 App 컴포넌트 외부에서 테스트를 할 수 있게 됩니다. 밖으로 export하여 테스트를 진행할 수 있습니다.
 
-### Exercise:
+### 읽어보기
 
-* read more about [React using state correctly](https://facebook.github.io/react/docs/state-and-lifecycle.html#using-state-correctly)
-* refactor all `setState()` methods to use a function
-  * but only when it makes sense, because it relies on props or state
-* run your tests again and verify that everything is up to date
-
-## Taming the State
-
-The previous chapters have shown you that state management can be a crucial topic in larger applications. In general, not only React but a lot of SPA frameworks struggle with it. Applications got more complex in the recent years. One big challenge in web applications nowadays is to tame and control the state.
-
-Compared to other solutions, React already made a big step forward. The unidirectional data flow and a simple API to manage state in a component are indispensable. These concepts make it easier to reason about your state and your state changes. It makes it easier to reason about it on a component level and to a certain degree on a application level.
-
-In a growing application, it gets harder to reason about state changes. You can introduce bugs by operating on stale state when using an object over a function in `setState()`. You have to lift state around to share necessary or hide unnecessary state across components. It can happen that a component needs to lift up state, because its sibling component depends on it. Perhaps the component is far away in the component tree and thus you have to share the state across the whole component tree. In conclusion components get involved to a greater extent in state management. But after all, the main responsibility of components should be representing the UI, shouldn't it?
-
-Because of all these reasons, there exist standalone solutions to take care of the state management. These solutions are not only used in React. However, that's what makes the React ecosystem such a powerful place. You can use different solutions to solve your problems. To address the problem of scaling state management, you might have heard of the libraries [Redux](http://redux.js.org/docs/introduction/) or [MobX](https://mobx.js.org/). You can use either of these solutions in a React application. They come with extensions, [react-redux](https://github.com/reactjs/react-redux) and [mobx-react](https://github.com/mobxjs/mobx-react), to integrate them into the React view layer.
-
-Redux and MobX are outside of the scope of this book. When you have finished the book, you will get guidance on how you can continue to learn React and its ecosystem. One learning path could be to learn Redux. Before you dive into the topic of external state management, I can recommend to read this [article](https://www.robinwieruch.de/redux-mobx-confusion/). It aims to give you a better understanding of how to learn external state management.
+* [[리액트 공식문서] 올바른 상태 사용법](https://facebook.github.io/react/docs/state-and-lifecycle.html#using-state-correctly)
 
 ### 실습하기
+* `setState()`가 함수를 사용할 수 있게 리팩토링합니다.
+  * 의존하는 props 또는 상태가 있는 경우에만
+* 테스트를 재실행하고 업데이트되었는지 확인합니다.
 
-* read more about [[저자 블로그] external state management and how to learn it](https://www.robinwieruch.de/redux-mobx-confusion/)
-* check out my second ebook about [state management in React](https://roadtoreact.com/)
+## 상태 제어
+
+규모가 큰 애플리케이션의 상태 관리는 매우 중요합니다. 리액트는 물론 많은 SPA 프레임워크가 상태 관리 문제가 있습니다. 최근 몇 년간 애플리케이션이 더 복잡해짐에 따라 상태 제어하는 문제가 대두되고 있습니다.
+
+리액트는 다른 솔루션에 비해서 이미 큰 발전을 이뤘습니다. 단방향 데이터 흐름과 컴포넌트에서 상태를 관리하는 API가 반드시 필요합니다. 이를 통해 상태와 상태 변경 사항, 컴포넌트 레벨에서 특정 수준의 애플리케이션 레벨까지 쉽게 파악할 수 있게 됩니다.
+
+이미 고도화된 애플리케이션의 경우 상태 변경을 파악하기가 어렵습니다. `setState()`를 통해 상태를 조작하다보면 버그가 생길 수 있습니다. 컴포넌트 간 필요한 상태를 공유하거나, 혹은 불필요한 상태를 삭제하기 위해서 상태를 여러번 옮겨야 합니다. 또한 형제 컴포넌트가 종속되어 있는 경우 상태를 옮겨야할 경우가 생깁니다. 컴포넌트가 최상위 컴포넌트에서 아주 멀리 떨어져 있는 경우에도 전체 컴포넌트에 상태를 공유하기 위해 상태를 또 옮겨야할 겁니다. 결론적으로 컴포넌트는 상태 관리가 문제입니다. 그러나 컴포넌트의 본래 목적은 UI를 보여주는 것입니다.
+
+이러한 모든 이유를 해결하기 위해 상태 관리를 처리할 수 있는 독립형 솔루션이 있습니다. 이 솔루션은 리액트에만 허용된 것이 아니라 타 프레임워크에서도 사용가능합니다. 이러한 점이 바로 리액트 생태계를 풍부하고 강력하게 만들어 줍니다. 상태 관리 라이브러리인 [리덕스(Redux)](http://redux.js.org/docs/introduction/)와 [모브엑스(MobX)](https://mobx.js.org/)에 대해 들어봤을 겁니다. 둘 중 하나를 선택해 리액트 애플리케이션에 사용할 수 있습니다. [react-redux](https://github.com/reactjs/react-redux) 또는 [mobx-react](https://github.com/mobxjs/mobx-react)를 도입해 리액트 뷰 레이어에 통합시킬 수 있습니다.
+ 
+Redux와 MobX는 이 책에서 다루지 않았습니다. 이 책을 마치면 리액트와 그 생태계를 계속 탐험할 수 있는 방법을 스스로 깨우치게 될 것입니다. 이 책을 마치고 난 후 리덕스를 배울 수 있습니다. 외부 상태 관리로 넘어가지 전에 저자의 [Redux와 MobX에 대해 바로알기](https://www.robinwieruch.de/redux-mobx-confusion/) 블로그 글을 읽길 바랍니다. 여러분이 외부 상태 관리를 배우는 방법을 소개했습니다.
+### 읽어보기
+
+* [[저자 블로그] external state management and how to learn it](https://www.robinwieruch.de/redux-mobx-confusion/)
+* [[저자 두번째 출간 도서] Taming the State in React](https://roadtoreact.com/)
 
 {pagebreak}
 
-You have learned advanced state management in React! Let's recap the last chapters:
+여러분은 심화 수준의 리액트 상태 관리를 배웠습니다! 마지막 장에서 배운 내용을 정리해봅시다.
 
 * React
-  * lift state management up and down to suitable components
-  * setState can use a function to prevent stale state bugs
-  * existing external solutions that help you to tame the state
-
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/4.6).
+  * 쓰임새와 역할에 맞게 상하위 컴포넌트로 상태를 재배치합니다.
+  * setState는 오래된 상태 버그를 방지하기 위해 별도 함수를 사용할 수 있습니다.
+  * 상태 관리 라이브러리를 사용해 외부에서 상태 관리를 할 수 있습니다.
+  
+실습코드는 [공식 깃허브 리퍼지토리](https://github.com/rwieruch/hackernews-client/tree/4.2)에서 확인할 수 있습니다.

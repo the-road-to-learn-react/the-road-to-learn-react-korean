@@ -50,6 +50,6 @@ heroku open
 
 ### 읽어보기
 
-* [[영문] 깃과 깃허브 사용 기초 사용법](https://www.robinwieruch.de/git-essential-commands/)
-* [[영문] 제로 구성 설치로 리액트 베포하기](https://blog.heroku.com/deploying-react-with-zero-configuration)
-* [[영문] create-react-app를 위한 헤로쿠 빌드팩](https://github.com/mars/create-react-app-buildpack)
+* [[저자 블로그] 깃과 깃허브 사용 기초 사용법](https://www.robinwieruch.de/git-essential-commands/)
+* [[저자 블로그] 제로 구성 설치로 리액트 베포하기](https://blog.heroku.com/deploying-react-with-zero-configuration)
+* [[저자 블로그] create-react-app를 위한 헤로쿠 빌드팩](https://github.com/mars/create-react-app-buildpack)

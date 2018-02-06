@@ -1,12 +1,12 @@
 # Code Organization and Testing
 
-The chapter will focus on important topics to keep your code maintainable in a scaling application. You will learn about code organization to embrace best practices when structuring your folders and files. Another aspect you will learn is testing, which is important to keep your code robust. The whole chapter will take a step back from the practical application and explain a couple of these topics for you.
+규모가 큰 애플리케이션에서 코드를 유지 보수하는 방법에 대해 설명할 것입니다. 모범 예제를 통해 폴더와 파일 구성 방법과 조직적인 코드를 작성하는 방법에 배울 것입니다. 또한 테스트도 알아보겠습니다. 코드를 강력하게 유지하는 것은 중요합니다. 이번 장은 애플리케이션에서 한 걸음 물러나서 이 두 가지 주제를 설명할 것입니다.
 
 ## ES6 모듈 Modules: Import/Export
 
-In JavaScript ES6 you can import and export functionalities from modules. These functionalities can be functions, classes, components, constants and others. Basically everything that you can assign to a variable. The modules can be single files or whole folders with one index file as entry point.
+ES6에서는 모듈에서 기능을 가져오고(import) 내보낼 수 있습니다(export). 이 기능은 변수를 지정할 수 있는 함수, 클래스 컴포넌트, 상수 등이 해당됩니다. 모듈은 단일 파일이거나 index 파일이 있는 폴더 전체가 될 수 있습니다.
 
-In the beginning of the book, after you have bootstrapped your application with *create-react-app*, you already had several `import` and `export` statements across your initial files. Now it is the appropriate time to explain these.
+처음에 *create-react-app*으로 부트스트래핑한 후, 초기 파일에 `import`과 `export` 문이 있는 것을 보았을 것입니다. 이제 이들에 대해 알아보도록 하겠습니다.
 
 The `import` and `export` statements help you to share code across multiple files. Before there were already several solutions for this in the JavaScript environment. It was a mess, because you would want to follow one standardized way rather than having several approaches for the same thing. Now it is a native behavior since JavaScript ES6.
 
@@ -810,4 +810,4 @@ You have learned how to organize your code and how to test it! Let's recap the l
 * General
   * code organization allows you to scale your application with best practices
 
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/4.4).
+실습 코드는 [공식 깃허브 리퍼 지토리](https://github.com/rwieruch/hackernews-client/tree/4.2)에서 확인할 수 있습니다.

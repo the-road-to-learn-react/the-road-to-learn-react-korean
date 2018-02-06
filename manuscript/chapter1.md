@@ -792,4 +792,4 @@ App 클래스는 `Component` 클래스의 기능을 확장하는데, `Component`
 
 잠시 휴식 시간을 가집시다. 학습 내용을 되새기고 스스로 적용해보며 지금까지 작성한 코드와 배운 내용을 내 것으로 만듭시다. 코드로 이것저것 실험해보길 바랍니다.
 
-앞으로 만들 애플리케이션에 대해 궁금하다면 [해커뉴스 깃허브 저장소](https://github.com/rwieruch/hackernews-client/tree/4.1)를 참고합니다.
+앞으로 만들 애플리케이션에 대해 궁금하다면 [해커뉴스 깃허브 리퍼지토리](https://github.com/rwieruch/hackernews-client/tree/4.1)를 참고합니다.

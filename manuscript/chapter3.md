@@ -1,6 +1,6 @@
 # API 실제 사용 Getting Real with an API
 
-이제 실제 API를 사용해볼 차례입니다. API로 샘플 데이터를 받을 수 있기 때문입니다.
+이제 API로 데이터를 요청하고 받아봅시다.
 
 API에 잘 모른다면, 저자가 쓴 [아무도 나에게 API를 알려주지 않았다](https://www.robinwieruch.de/what-is-an-api-javascript/) 글을 읽어보길 바랍니다. 
 
@@ -44,7 +44,6 @@ state나 props가 변경 시, 업데이트 생명주기는 어떨까요? 아래�
 
 처음부터 모든 생명주기 메서드를 사용하지 않아도 됩니다. 아직 많이 다뤄보지 않았기 때문에 익숙해지지 않았을 뿐입니다. 대규모 애플리케이션에도 `constructor()`과 `render()`만 사용할 경우가 많습니다. 앞서 알아본 생명주기 메서드를 언제 사용해야 하는지 정리해봅시다.
 
-
 * **constructor(props)** - 컴포넌트 초기화 시 호출됩니다. 초기 컴포넌트 상태 및 클래스 메서드를 정의합니다.
 
 * **componentWillMount()** - `render()` 전에 호출됩니다. 컴포넌트의 두 번째 렌더링을 트리거하지 않아 컴포넌트 상태를 설정하기 적합합니다. `constructor()`을 사용해 초기 상태를 설정하는 것이 좋습니다.
@@ -76,7 +75,7 @@ state나 props가 변경 시, 업데이트 생명주기는 어떨까요? 아래�
 
 ## 데이터 가져오기 Fetching Data
 
-이제 Hacker News API에서 데이터를 가져올 준비가 되었습니다. `componentDidMount()` 생명주기 메서드 안에 `fetch()` 자바스크립트 네이티브 API를 사용해 요청을 수행할 수 있습니다.
+이제 해커 뉴스 API로 데이터를 가져올 준비가 끝났습니다. `componentDidMount()` 생명주기 메서드 안에 `fetch()` 자바스크립트 네이티브 API를 사용해 요청을 수행할 수 있습니다.
 
 그 전에 URL과 API 요청 분리하여 기본 매개 변수로 설정합시다.
 
@@ -96,7 +95,7 @@ const PARAM_SEARCH = 'query=';
 ...
 ~~~~~~~~
 
-ES6에서는 [템플릿 문자열](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals)로 문자열을 연결합니다. 이를 사용해 URL을 API 엔드 포인트에 연결합니다.
+ES6에서는 [템플릿 문자열](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals)로 문자열을 연결합니다. 이를 사용해 URL을 API 엔드 포인트에 연결합시다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -162,7 +161,7 @@ class App extends Component {
 
 이 코드 속에 정말 많은 일들이 일어났습니다. 더 작은 조각으로 나눌까 싶었지만 그렇다면 다시 각 조각의 관계를 파악하기 어렵다고 판단했습니다. 각 단계를 자세히 설명하겠습니다.
 
-첫째, Hacker News API의 데이터가 사용됨으로 이전의 샘플 데이터는 더 이상 필요없기 때문에 제거합니다. 컴포넌트 초기 상태는 결과 `result`가 비어있고, 검색어 `searchTerm`는 디폴트 값(`DEFAULT_QUERY`)으로 설정되어 있습니다. searchTerm은 Search 컴포넌트의 입력필드와 첫 번째 요청 시 사용됩니다.
+첫째, 해커 뉴스 API의 데이터가 사용됨으로 이전의 샘플 데이터는 더 이상 필요없기 때문에 제거합니다. 컴포넌트 초기 상태는 결과 `result`가 비어있고, 검색어 `searchTerm`는 디폴트 값(`DEFAULT_QUERY`)으로 설정되어 있습니다. searchTerm은 Search 컴포넌트의 입력필드와 첫 번째 요청 시 사용됩니다.
                                                                                     
 둘째, 컴포넌트가 마운트된 후 데이터를 가져오기 위해 `componentDidMount()` 생명주기 메서드를 사용합니다. 첫 번째 요청 시 로컬 상태의 기본 검색어가 사용됩니다. 기본 매개변수(`DEFAULT_QUERY`)값이 "redux"이기 때문에 "redux" 기사를 가져올 것입니다.
 
@@ -203,7 +202,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-컴포넌트 생명주기동안 일어나는 일을 요약하면 다음과 같습니다. 컴포넌트는 생성자로 초기화된 후 렌더링됩니다. 내부 상태  result 값이 null이므로 이 컴포넌트는 아무것도 보이지 않습니다. 그 다음 `componentDidMount()` 메서드가 실행됩니다. 이 메서드에서 Hacker News API를 통해 비동기로 데이터를 가져옵니다. 데이터가 도착하면 `setSearchTopStories()`에서 내부 컴포넌트 상태를 업데이트합니다. 이후 업데이트 생명주기가 시작됩니다. 컴포넌트는 `render()`메소드를 다시 실행하지만 이번에는 상태 result 값이 있기 때문에 나타납니다. 따라서 컴포넌트와 Table 컴포넌트가 렌더링됩니다.
+컴포넌트 생명주기동안 일어나는 일을 요약하면 다음과 같습니다. 컴포넌트는 생성자로 초기화된 후 렌더링됩니다. 내부 상태  result 값이 null이므로 이 컴포넌트는 아무것도 보이지 않습니다. 그 다음 `componentDidMount()` 메서드가 실행됩니다. 이 메서드에서 해커 뉴스 API를 통해 비동기로 데이터를 가져옵니다. 데이터가 도착하면 `setSearchTopStories()`에서 내부 컴포넌트 상태를 업데이트합니다. 이후 업데이트 생명주기가 시작됩니다. 컴포넌트는 `render()`메소드를 다시 실행하지만 이번에는 상태 result 값이 있기 때문에 나타납니다. 따라서 컴포넌트와 Table 컴포넌트가 렌더링됩니다.
 
 대부분 브라우저가 지원하는 `fetch()`로 비동기 요청을 수행했습니다.*create-react-app*은 모든 브라우저를 지원하고 있습니다. `fetch()` 대신 노드패키지인 [superagent](https://github.com/visionmedia/superagent) 또는 [axios](https://github.com/mzabriskie/axios)를 사용할 수 있습니다.
 
@@ -233,7 +232,7 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-지금 `setState()`에서 무슨 일이 있을까요? result는 객체 안에 hits 프로퍼티를 조회해야 합니다. hits는 여러 프로퍼티 중 하나입니다. 그러나 항목이 result 개체에서 제거되면 목록만 업데이트되고 다른 프로퍼티는 그대로 유지됩니다.
+지금 `setState()`에서 무슨 일이 일어날까요? result는 객체 안에 hits 프로퍼티를 조회해야 합니다. hits는 여러 프로퍼티 중 하나입니다. 그러나 항목이 result 개체에서 제거되면 목록만 업데이트되고 다른 프로퍼티는 그대로 유지됩니다.
 
 한 가지 방법은 result 객체안에 있는 hits 프로퍼티를 변경할 수 있겠지만, 이렇게 구현하지 않을 겁니다.
 
@@ -268,9 +267,7 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-Let's examine the ES6 **array** spread operator even though you don't need it yet.
-
-이 것으로 해결되었지만, 앞에서 배운 전개 연산자로 더 간단하게 작성할 수 있습니다. `...`은 배열 또는 객체의 모든 값을 복사합니다.
+해결되었지만, 앞에서 배운 전개 연산자로 더 간단하게 작성할 수 있습니다. `...`은 배열 또는 객체의 모든 값을 복사합니다.
 
 물론 ES6 **배열** 스프레드 연산자가 필요없다고 생각할 수 있겠지만, 아래와 같이 작성할 수 있습니다.
 
@@ -285,7 +282,7 @@ console.log(allUsers);
 // output: ['Robin', 'Andrew', 'Dan', 'Jordan']
 ~~~~~~~~
 
-`allUsers` 변수는 완전히 새로운 배열입니다. 변수 `userList`와 `additionalUser`는 그래로 유지됩니다. 이런 식으로 두 배열을 새 배열로 병합 할 수도 있습니다.
+변수 `allUsers`는 완전히 새로운 배열입니다. 변수 `userList`와 `additionalUser`는 그래로 유지됩니다. 이런 식으로 두 배열을 새 배열로 병합 할 수도 있습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -340,19 +337,18 @@ onDismiss(id) {
 
 `onDismiss()`메서드가 잘 작동하는지 확인합시다. `onDismiss()`메서드는 result 목록에서 각 객체를 식별하고 목록에서 취소된 항목을 업데이트합니다.
 
-### 실습하기
+### 읽어보기
 
 * [[MDN] ES6 Object.assign()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
 * [[MDN]ES6 배열 전개 연산자](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator)
-  * the object spread operator is briefly mentioned
 
-## 조건문 렌더링 Conditional Rendering
+## 조건부 렌더링 Conditional Rendering
 
-The conditional rendering is introduced pretty early in React applications. But not in the case of the book, because there wasn't such an use case yet. The conditional rendering happens when you want to make a decision to render either one or another element. Sometimes it means to render an element or nothing. After all, a conditional rendering simplest usage can be expressed by an if-else statement in JSX.
+앞에서 조건부 렌더링에 대해 일부 설명했습니다. 조건부 렌더링은 하나 또는 다른 요소를 렌더링을 결정합니다. 요소를 렌더링하거나 아무것도 렌더링하지 않는 것을 말합니다. 우리가 잘 알고 있는 if-else 문으로 간단하게 작성할 수 있습니다.
 
-The `result` object in the internal component state is `null` in the beginning. So far, the App component returned no elements when the `result` hasn't arrived from the API. That's already a conditional rendering, because you return earlier from the `render()` lifecycle method for a certain condition. The App component either renders nothing or its elements.
+컴포넌트 내부 상태 `result` 객체 초기값은 `null`입니다. App 컴포넌트에 API에서 `result`가 도착하지 않으면 요소를 반환하지 않습니다. 이 것이 바로 조건부 렌더링입니다. 특정 조건에 대해 이전에`render()` 생명주기 메서드에서  반환하기 때문에 이미 조건부 렌더링에 해당합니다. App 컴포넌트는 아무것도 렌더링하지 않거나 요소를 렌더링하게 됩니다.
 
-But let's go one step further. It makes more sense to wrap the Table component, which is the only component that depends on the `result`, in an independent conditional rendering. Everything else should be displayed, even though there is no `result` yet. You can simply use a ternary operator in your JSX.
+한 단계를 더 나아가봅시다. 독립적인 조건부 렌더링에서 `result`에 의존하는 컴포넌트인 Table도 함께 포함시킵니다. `result`가 없더라도 모든 내용이 표시되어야 합니다. 이를 위해 JSX에서 삼항 조건 연산자(ternary operator)를 사용할 수 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -390,7 +386,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-That's your second option to express a conditional rendering. A third option is the logical `&&` operator. In JavaScript a `true && 'Hello World'` always evaluates to 'Hello World'. A `false && 'Hello World'` always evaluates to false.
+마지막으로 논리 연산자 `&&`를 사용합시다. 자바스크립트에서 `true &&'Hello World'` 경우 'Hello World'로 평가되고, `false && 'Hello World'`경우 항상 거짓으로 평가됩니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -403,7 +399,7 @@ console.log(result);
 // output: false
 ~~~~~~~~
 
-In React you can make use of that behavior. If the condition is true, the expression after the logical `&&` operator will be the output. If the condition is false, React ignores and skips the expression. It is applicable in the Table conditional rendering case, because it should return a Table or nothing.
+리액트에서도 논리 연산자를 사용할 수 있습니다. 조건이 참이면, `&&` 논리 연산자 뒷 부분 내용이 출력됩니다. 조건이 거짓이면 리액트는 표현식을 무시하고 건너 뜁니다. Table을 반환거나 아무것도 반환하지 않도록 조건부 렌더링에 만들어봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -416,17 +412,21 @@ In React you can make use of that behavior. If the condition is true, the expres
 }
 ~~~~~~~~
 
-These were a few approaches to use conditional rendering in React. You can read about [more alternatives in an exhaustive list of examples for conditional rendering approaches](https://www.robinwieruch.de/conditional-rendering-react/). Moreover you will get to know their different use cases and when to apply them.
+지금까지 조건부 렌더링 사용 방법에 대해 알아보았습니다. [저자의 블로그]( (https://www.robinwieruch.de/conditional-rendering-react/))에서 조건부 렌더링에 대한 더 많은 예제를 소개했습니다. 
 
-After all, you should be able to see the fetched data in your application. Everything except the Table is displayed when the data fetching is pending. Once the request resolves the result and stores it into the local state, the Table is displayed because the `render()` method runs again and the condition in the conditional rendering resolves in favor of displaying the Table component.
+마침내 애플리케이션에서 페치한 데이터를 모두 볼 수 있습니다. 데이터 페치가 보류 중일 때를 제외하고 모든 항목이 표시됩니다. 요청이 결과를 해석하여 로컬 상태로 저장하면 `render()` 메서드가 다시 실행되고, 조건부 렌더링의 조건에 따라 Table 컴포넌트가 표시됩니다.
+
 
 ### 읽어보기
 
 * [[리액트 공식문서] 리액트 조건 렌더링](https://facebook.github.io/react/docs/conditional-rendering.html)
 * [[저자 블로그] 조건문 렌더링의 다양한 방법](https://www.robinwieruch.de/conditional-rendering-react/)
 
-## 클라이언트 / 서버 검색 Client-/Server-side Search
+## Search 컴포넌트의 클라이언트와 서버 처리  Client-/Server-side Search
 
+입력 필드의 검색어에 따라 목록 필터링을 구현하겠습니다. 이 일은 클라이언트에서 처리됩니다. 지금은 해커 뉴스 API를 사용해 서버에서 검색을 할 것입니다. `componentDidMount()`에서 기본 검색어 매개변수로 API응답을 처리할 것입니다.
+
+ 
 When you use the Search component with its input field now, you will filter the list. That's happening on the client-side though. Now you are going to use the Hacker News API to search on the server-side. Otherwise you would deal only with the first API response which you got on `componentDidMount()` with the default search term parameter.
 
 You can define an `onSearchSubmit()` method in your App component which fetches results from the Hacker News API when executing a search in the Search component. It will be the same fetch as in your `componentDidMount()` lifecycle method, but this time with a modified search term from the local state and not with the initial default search term.
@@ -584,7 +584,7 @@ onSearchSubmit(event) {
 }
 ~~~~~~~~
 
-Now you should be able to search different Hacker News stories. Perfect, you interact with a real world API. There should be no client-side search anymore.
+해커 뉴스 기사를 검색할 수 있어야 합니다. API가 완벽하게 작동합니다. 더 이상 클라이언트에 검색을 처리하지 않도록 해야합니다.
 
 ### 읽어보기
 
@@ -747,9 +747,9 @@ fetchSearchTopStories(searchTerm, page = 0) {
 
 Afterward, the request to the Hacker News API fetches more list items in one request than before. As you can see, a powerful such as the Hacker News API gives you plenty of ways to experiment with real world data. You should make use of it to make your endeavours when learning something new more exciting. That's [how I learned about the empowerment that APIs provide](https://www.robinwieruch.de/what-is-an-api-javascript/) when learning a new programming language or library.
 
-### Exercises:
+### 실습하기
 
-* experiment with the [Hacker News API parameters](https://hn.algolia.com/api)
+* [해커 뉴스 API 매개변수](https://hn.algolia.com/api)를 바꿔 요청해봅니다.
 
 ## Client Cache
 
@@ -1193,7 +1193,7 @@ Your application should still work, but this time with error handling in case th
   * spread operator for immutable data structures
   * computed property names
 * 일반
-  * Hacker News API interaction
+  * 해커 뉴스 API 인터렉션
   * native fetch browser API
   * client- and server-side search
   * pagination of data
@@ -1201,4 +1201,4 @@ Your application should still work, but this time with error handling in case th
 
 Again it makes sense to take a break. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far.
 
-[깃허브 리퍼지토리](https://github.com/rwieruch/hackernews-client/tree/4.3)에서 소스코드를 확인하세요.
+실습 코드는 [공식 깃허브 리퍼 지토리](https://github.com/rwieruch/hackernews-client/tree/4.2)에서 확인할 수 있습니다.

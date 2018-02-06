@@ -1,12 +1,12 @@
-# Advanced React Components
+# 리액트 컴포넌트 심화
 
-The chapter will focus on the implementation of advanced React components. You will learn about higher order components and how to implement them. In addition you will dive into more advanced topics in React and implement complex interactions with it.
+이번 장에서는 리액트 컴포넌트 심화 내용을 다룹니다. 고차원 컴포넌트를 The chapter will focus on the implementation of advanced React components. You will learn about higher order components and how to implement them. In addition you will dive into more advanced topics in React and implement complex interactions with it.
 
 ## Ref a DOM Element
 
 Sometimes you need to interact with your DOM nodes in React. The `ref` attribute gives you access to a node in your elements. Usually that is an anti pattern in React, because you should use its declarative way of doing things and its unidirectional data flow. You have learned about it when you have introduced your first search input field. But there are certain cases where you need access to the DOM node. The official documentation mentions three use cases:
 
-* to use the DOM API (focus, media playback etc.)
+* DOM API (focus, media playback 등)를 사용하기 위해 
 * to invoke imperative DOM node animations
 * to integrate with third-party library that needs the DOM node (e.g. [D3.js](https://d3js.org/))
 
@@ -279,8 +279,8 @@ Initially the Loading component will show up when you start your application, be
 
 * use a library such as [Font Awesome](http://fontawesome.io/) to show a loading icon instead of the "Loading ..." text
 
-## Higher Order Components
-
+## 고차 컴포넌트 Higher Order Components
+  
 Higher order components (HOC) are an advanced concept in React. HOCs are an equivalent to higher order functions. They take any input - most of the time a component, but also optional arguments - and return a component as output. The returned component is an enhanced version of the input component and can be used in your JSX.
 
 HOCs are used for different use cases. They can prepare properties, manage state or alter the representation of a component. One use case could be to use a HOC as a helper for a conditional rendering. Imagine you have a List component that renders a list of items or nothing, because the list is empty or null. The HOC could shield away that the list would render nothing when there is no list. On the other hand, the plain List component doesn't need to bother anymore about an non existent list. It only cares about rendering the list.
@@ -984,4 +984,4 @@ You have learned advanced component techniques in React! Let's recap the last ch
 * ES6
   * rest destructuring to split up objects and arrays
 
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/4.5).
+실습 코드는 [공식 깃허브 리퍼 지토리](https://github.com/rwieruch/hackernews-client/tree/4.2)에서 확인할 수 있습니다.
