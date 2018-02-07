@@ -798,7 +798,7 @@ If you run your tests again, you might see PropType errors for your components o
 * 다음 장에서 컴포넌트를 추가하거나 수정할 때 PropType도 함께 추가합니다.
 
 ### 읽어보기
-* [[리액트 공식문서]리액트 PropTypes](https://facebook.github.io/react/docs/typechecking-with-proptypes.html)
+* [[리액트 공식문서] 리액트 PropTypes](https://facebook.github.io/react/docs/typechecking-with-proptypes.html)
 
 {pagebreak}
 

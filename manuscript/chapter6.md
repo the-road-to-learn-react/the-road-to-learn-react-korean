@@ -398,7 +398,7 @@ setSearchTopStories(result) {
 }
 ~~~~~~~~
 
-`updateSearchTopStoriesState()` 함수는 함수를 반환하는 고차원 함수입니다. 고차함수는 App 컴포넌트 외부에서 정의할 수 있습니다. 함수 시그니처가 조금 변경되었습니다.
+`updateSearchTopStoriesState()`은 함수를 반환하는 고차 함수입니다. 고차 함수는 App 컴포넌트 외부에서 정의할 수 있습니다. 함수 시그니처가 조금 달라졌다는 것을 유념합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~

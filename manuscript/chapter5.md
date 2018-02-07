@@ -10,11 +10,11 @@
 * 명령형 노드 애니메이션을 호출하하는 경우
 * DOM 노드가 필요한 라이브러리(예: [D3.js](https://d3js.org/))를 사용하는 경우
 
-Search 컴포넌트를 예제로 살펴보겠습니다. 애플리케이션이 처음 렌더링 될 때 입력 필드가 포커스(focus)되어야함으로 DOM API가 필요합니다. 이 장에서는 어떻게 작동하는지 설명할 것이지만 우리가 만들고 있는 애플리케이션에는 실질적인 도움은 되지 않으므로 이후 변경 사항은 생략하겠습니다.
+Search 컴포넌트를 예제로 살펴보겠습니다. 애플리케이션이 처음 렌더링될 때 input 필드를 포커스(focus)하기 위해 DOM API를 필요로 합니다. 이 부분에 대해 자세히 설명하겠지만 우리가 만들고 있는 애플리케이션에는 실질적인 도움은 되지 않으므로 이후 변경 사항은 생략하겠습니다.
 
-일반적으로 함수형 비상태 컴포넌트와 ES6 클래스 컴포넌트 모두 `ref` 속성을 사용할 수 있습니다. 포커스 사용을 위해 생명주기 메서드가 필요합니다. 그래서 ES6 클래스 컴포넌트와 함께 `ref` 속성을 사용하여 보여줍니다.
+일반적으로 함수형 비상태 컴포넌트와 ES6 클래스 컴포넌트 모두 `ref` 속성을 사용할 수 있습니다. 포커스 사용을 위해 생명주기 메서드가 필요합니다. ES6 클래스 컴포넌트와 함께 `ref` 속성을 사용하여 input 필드에 포커스하게 만들어봅시다.
 
-먼저 함수형 비상태 컴포넌트를 ES6 클래스 컴포넌트로 리팩토링합시다.
+먼저 함수형 비상태 컴포넌트를 ES6 클래스 컴포넌트로 리팩토링하겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -47,7 +47,7 @@ class Search extends Component {
 # leanpub-end-insert
 ~~~~~~~~
 
-ES6 클래스 컴포넌트의 `this` 객체는 `ref`의 어트리뷰트로 DOM 노드를 참조할 수 있습니다.
+ES6 클래스 컴포넌트의 `this` 객체는 `ref` 속성으로 DOM 노드를 참조할 수 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -79,9 +79,8 @@ class Search extends Component {
 }
 ~~~~~~~~
 
-`this`객체를 사용해 마운트된 컴포넌트가 생명주기 
+이제 input 필드에 포커스를 주었고 마운트된 컴포넌트에 `this` 객체, 생명주기 메소드와 DOM API를 사용할 수 있습니다.
 
-Now you can focus the input field when the component mounted by using the `this` object, the appropriate lifecycle method, and the DOM API.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -117,9 +116,9 @@ class Search extends Component {
 }
 ~~~~~~~~
 
-The input field should be focused when the application renders. That's it basically for using the `ref` attribute.
+애플리케이션이 렌더링될 때 input 필드에 포커스를 주어야 합니다.이를 위해 기본적으로 `ref` 속성을 사용합니다.
 
-But how would you get access to the `ref` in a functional stateless component without the `this` object? The following functional stateless component demonstrates it.
+그러나 `this` 객체가 없는 함수형 비상태 컴포넌트는 `ref`를 어떻게 접근할 수 있을까요? 아래 함수형 비상태 컴포넌트를 봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -150,7 +149,8 @@ const Search = ({
 }
 ~~~~~~~~
 
-Now you would be able to access the input DOM element. In the example of the focus use case it wouldn't help you, because you have no lifecycle method in a functional stateless component to trigger the focus. But in the future you might come across other use cases where it can make sense to use a functional stateless component with the `ref` attribute.
+이제 DOM 요소에 접근할 수 있습니다. 포커스 예제의 경우 별다른 도움이 되지 않을 겁니다. 함수형 비상태 컴포넌트에서 포커스를 트리거하는 생명주기 메서드가 없기 때문입니다. 그러나 가까운 미래에는 `ref` 속성을 가진 함수형 비상태 컴포넌
+가 가능할지도 모르겠습니다.
 
 ### 읽어보기
 
@@ -159,7 +159,7 @@ Now you would be able to access the input DOM element. In the example of the foc
 
 ## 로딩 Loading
 
-Now let's get back to the application. You might want to show a loading indicator when you submit a search request to the Hacker News API. The request is asynchronous and you should show your user some feedback that something is about to happen. Let's define a reusable Loading component in your *src/App.js* file.
+애플리케이션으로 다시 돌아가봅시다. 해커 뉴스 API로 검색 요청하는 동안 로딩 인디케이터를 보여주고 싶을 겁니다. 비동기 요청임으로 사용자에게 그동안 기다릴 것을 알려줘야합니다. *src/App.js* 파일에 재사용가능한 컴포넌트를 정의봅시다. 
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -167,7 +167,7 @@ const Loading = () =>
   <div>Loading ...</div>
 ~~~~~~~~
 
-Now you will need a property to store the loading state. Based on the loading state you can decide to show the Loading component later on.
+이제 로딩 상태를 저장하는 프로퍼티가 필요합니다. 로딩 상태에 따라 컴포넌트가 보여집니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -194,9 +194,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The initial value of that `isLoading` property is false. You don't load anything before the App component is mounted.
+`isLoading` 프로퍼티의 초기 값은 `false`입니다. App 컴포넌트가 마운트되기 전에는 로딩하지 않습니다.
 
-When you make the request, you set a loading state to true. Eventually the request will succeed and you can set the loading state to false.
+요청할 때, 로딩 상태 값을 `true`로 바꿉니다. 요청이 성공되면 다시 `false`로 설정합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -234,7 +234,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-In the last step, you will use the Loading component in your App. A conditional rendering based on the loading state will decide whether you show a Loading component or the Button component. The latter one is your button to fetch more data.
+마지막으로 App 컴포넌트 안에 Loading 컴포넌트를 사용할 겁니다. 조건부 렌더링으로 로딩 상태에 따라 Loading 컴포넌트 또는 Button 컴포넌트 둘 중 하나를 보여줍니다. Button 컴포넌트는 더 많은 데이터를 가져오는 버튼입니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -275,16 +275,14 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Initially the Loading component will show up when you start your application, because you make a request on `componentDidMount()`. There is no Table component, because the list is empty. When the response returns from the Hacker News API, the result is shown, the loading state is set to false and the Loading component disappears. Instead, the "More" button to fetch more data appears. Once you fetch more data, the button will disappear again and the Loading component will show up.
+초기에 `componentDidMount()`에서 요청하기 때문에 애플리케이션을 시작할 때 Loading 컴포넌트가 나타납니다. 목록이 비어있기 때문에 Table 컴포넌트는 보이지 않습니다. 해커 뉴스 API에서 응답을 받으면 `result`가 표시되고 `isLoading` 상태는 `false`로 설정되며 Loading 컴포넌트는 사라지고 "More" 버튼이 나타납니다. 데이터를 한번 더 가져오면, 이 버튼이 사라지고 다시 Loading 컴포넌트가 보입니다.
 
-### Exercises:
+### 실습하기
 
-* use a library such as [Font Awesome](http://fontawesome.io/) to show a loading icon instead of the "Loading ..." text
+* "Loading ..."  텍스트 대신 [Font Awesome](http://fontawesome.io/) 라이브러리를 사용해 로딩 아이콘을 보여줍니다.
 
-##Higher Order Components
+## 고차 컴포넌트 Higher Order Components
   
-
-
 Higher order components (HOC) are an advanced concept in React. HOCs are an equivalent to higher order functions. They take any input - most of the time a component, but also optional arguments - and return a component as output. The returned component is an enhanced version of the input component and can be used in your JSX.
 
 HOCs are used for different use cases. They can prepare properties, manage state or alter the representation of a component. One use case could be to use a HOC as a helper for a conditional rendering. Imagine you have a List component that renders a list of items or nothing, because the list is empty or null. The HOC could shield away that the list would render nothing when there is no list. On the other hand, the plain List component doesn't need to bother anymore about an non existent list. It only cares about rendering the list.

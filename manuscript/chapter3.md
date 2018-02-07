@@ -615,7 +615,7 @@ console.log(url);
 // output: https://hn.algolia.com/api/v1/search?query=redux&page=
 ~~~~~~~~
 
-`fetchSearchTopStories()` 메서드는 두 번째 인자가 있는데, 이 두 번째 인자가 없으면 기본으로  `0`페이지를 전달합니다. 따라서 `componentDidMount()`와 `onSearchSubmit()`는 첫 번째 요청 시, 첫 번째 페이지를 가져옵니다. 추가 요청이 있을 때마다 두 번째 인자를 통해 다음 페이지를 가져와야 합니다.
+`fetchSearchTopStories()` 메서드는 두 번째 인자가 있는데, 이 두 번째 인자가 없으면 기본으로 `0`페이지를 전달합니다. 따라서 `componentDidMount()`와 `onSearchSubmit()`는 첫 번째 요청 시, 첫 번째 페이지를 가져옵니다. 추가 요청이 있을 때마다 두 번째 인자를 통해 다음 페이지를 가져와야 합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
