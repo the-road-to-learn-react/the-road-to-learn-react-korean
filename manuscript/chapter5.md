@@ -1,20 +1,20 @@
-# 리액트 컴포넌트 심화
+# 리액트 컴포넌트 심화 Advanced React Components
 
-이번 장에서는 리액트 컴포넌트 심화 내용을 다룹니다. 고차원 컴포넌트를 The chapter will focus on the implementation of advanced React components. You will learn about higher order components and how to implement them. In addition you will dive into more advanced topics in React and implement complex interactions with it.
+이번 장에서는 리액트 컴포넌트 심화 내용을 배울 것입니다. 고차 컴포넌트(higher order components)를 학습한 후 실제 구현을 해볼 것입니다. 리액트 고급 주제와 복잡한 인터렉션도 함께 디뤄봅니다.
 
 ## Ref a DOM Element
 
-Sometimes you need to interact with your DOM nodes in React. The `ref` attribute gives you access to a node in your elements. Usually that is an anti pattern in React, because you should use its declarative way of doing things and its unidirectional data flow. You have learned about it when you have introduced your first search input field. But there are certain cases where you need access to the DOM node. The official documentation mentions three use cases:
+종종 리액트에서 DOM 노드를 다룰 일이 있습니다. `ref` 속성으로 DOM 노드를 접근할 수 있습니다. 리액트의 단방향 데이터 흐름과 선언 방식에 위배되기때문에 안티 패턴(anti pattern)이라고도 합니다. 검색 입력 필드를 구현했을 때, 잠시 소개헀습니다. 리액트 공식 문서에는 세 가지 사용 사례가 소개되어있습니다.
 
-* DOM API (focus, media playback 등)를 사용하기 위해 
-* to invoke imperative DOM node animations
-* to integrate with third-party library that needs the DOM node (e.g. [D3.js](https://d3js.org/))
+* DOM API (focus, media playback 등)을 사용하는 경우
+* 명령형 노드 애니메이션을 호출하하는 경우
+* DOM 노드가 필요한 라이브러리(예: [D3.js](https://d3js.org/))를 사용하는 경우
 
-Let's do it by example with the Search component. When the application renders the first time, the input field should be focused. That's one use case where you would need access to the DOM API. This chapter will show you how it works, but since it is not very useful for the application itself, we will omit the changes after the chapter. You can keep it for your own application though.
+Search 컴포넌트를 예제로 살펴보겠습니다. 애플리케이션이 처음 렌더링 될 때 입력 필드가 포커스(focus)되어야함으로 DOM API가 필요합니다. 이 장에서는 어떻게 작동하는지 설명할 것이지만 우리가 만들고 있는 애플리케이션에는 실질적인 도움은 되지 않으므로 이후 변경 사항은 생략하겠습니다.
 
-In general, you can use the `ref` attribute in both functional stateless components and ES6 class components. In the example of the focus use case, you will need a lifecycle method. That's why the approach is first showcased by using the `ref` attribute with an ES6 class component.
+일반적으로 함수형 비상태 컴포넌트와 ES6 클래스 컴포넌트 모두 `ref` 속성을 사용할 수 있습니다. 포커스 사용을 위해 생명주기 메서드가 필요합니다. 그래서 ES6 클래스 컴포넌트와 함께 `ref` 속성을 사용하여 보여줍니다.
 
-The initial step is to refactor the functional stateless component to an ES6 class component.
+먼저 함수형 비상태 컴포넌트를 ES6 클래스 컴포넌트로 리팩토링합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -47,7 +47,7 @@ class Search extends Component {
 # leanpub-end-insert
 ~~~~~~~~
 
-The `this` object of an ES6 class component helps us to reference the DOM node with the `ref` attribute.
+ES6 클래스 컴포넌트의 `this` 객체는 `ref`의 어트리뷰트로 DOM 노드를 참조할 수 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -78,6 +78,8 @@ class Search extends Component {
   }
 }
 ~~~~~~~~
+
+`this`객체를 사용해 마운트된 컴포넌트가 생명주기 
 
 Now you can focus the input field when the component mounted by using the `this` object, the appropriate lifecycle method, and the DOM API.
 
@@ -279,8 +281,10 @@ Initially the Loading component will show up when you start your application, be
 
 * use a library such as [Font Awesome](http://fontawesome.io/) to show a loading icon instead of the "Loading ..." text
 
-## 고차 컴포넌트 Higher Order Components
+##Higher Order Components
   
+
+
 Higher order components (HOC) are an advanced concept in React. HOCs are an equivalent to higher order functions. They take any input - most of the time a component, but also optional arguments - and return a component as output. The returned component is an enhanced version of the input component and can be used in your JSX.
 
 HOCs are used for different use cases. They can prepare properties, manage state or alter the representation of a component. One use case could be to use a HOC as a helper for a conditional rendering. Imagine you have a List component that renders a list of items or nothing, because the list is empty or null. The HOC could shield away that the list would render nothing when there is no list. On the other hand, the plain List component doesn't need to bother anymore about an non existent list. It only cares about rendering the list.
@@ -974,7 +978,7 @@ Finally your advanced sort interaction is complete now.
 
 {pagebreak}
 
-You have learned advanced component techniques in React! Let's recap the last chapters:
+리액트에서 컴포넌트 고급 테크닉을 구사할 수 있게 되었습니다! 이번 장에서 배운 내용을 정리해봅시다.
 
 * React
   * the ref attribute to reference DOM nodes

@@ -1,4 +1,4 @@
-# Code Organization and Testing
+# 코드 구성과 테스트 Code Organization and Testing
 
 규모가 큰 애플리케이션에서 코드를 유지 보수하는 방법에 대해 설명할 것입니다. 모범 예제를 통해 폴더와 파일 구성 방법과 조직적인 코드를 작성하는 방법에 배울 것입니다. 또한 테스트도 알아보겠습니다. 코드를 강력하게 유지하는 것은 중요합니다. 이번 장은 애플리케이션에서 한 걸음 물러나서 이 두 가지 주제를 설명할 것입니다.
 
@@ -8,7 +8,7 @@ ES6에서는 모듈에서 기능을 가져오고(import) 내보낼 수 있습니
 
 처음에 *create-react-app*으로 부트스트래핑한 후, 초기 파일에 `import`과 `export` 문이 있는 것을 보았을 것입니다. 이제 이들에 대해 알아보도록 하겠습니다.
 
-The `import` and `export` statements help you to share code across multiple files. Before there were already several solutions for this in the JavaScript environment. It was a mess, because you would want to follow one standardized way rather than having several approaches for the same thing. Now it is a native behavior since JavaScript ES6.
+`import`와 `export` 선언문으로 여러 파일에 같은 코드를 공유할 수 있습니다. 이에 대한 다양한 방법이 있었지만 표준화된 가이드가 없었기 때문에 혼란스러웠습니다. ES6 이후 `import`와 `export`로 표준화가 되었습니다.
 
 Additionally these statements embrace code splitting. You distribute your code across multiple files to keep it reusable and maintainable. The former is true because you can import the piece of code in multiple files. The latter is true because you have one single source where you maintain the piece of code.
 
@@ -632,11 +632,14 @@ Enzyme has overall three rendering mechanisms in its API. You already know `shal
 
 You could continue to unit test your components. But make sure to keep the tests simple and maintainable. Otherwise you will have to refactor them once you change your components. That's why Facebook introduced snapshot tests with Jest in the first place.
 
-### Exercises:
+### 실습하기
 
-* write a unit test with Enzyme for your Button component
-* keep your unit tests up to date during the following chapters
-* read more about [enzyme and its rendering API](https://github.com/airbnb/enzyme)
+* Button 컴포넌트에 대한 Enzyme 유닛 테스트 코드를 작성해봅니다.
+* 다음 장에서 유닛 테스트를 최신 상태로 유지합니다.
+
+### 읽어보기
+
+* [enzyme과 API 렌더링](https://github.com/airbnb/enzyme)
 
 ## Component Interface with PropTypes
 
@@ -791,23 +794,23 @@ If you run your tests again, you might see PropType errors for your components o
 
 ### 실습하기
 
-* Search 컴포넌트에 PropType 정의하기
-* add and update the PropType interfaces when you add and update components in the next chapters
+* Search 컴포넌트의 PropType를 정의합니다.
+* 다음 장에서 컴포넌트를 추가하거나 수정할 때 PropType도 함께 추가합니다.
 
 ### 읽어보기
 * [[리액트 공식문서]리액트 PropTypes](https://facebook.github.io/react/docs/typechecking-with-proptypes.html)
 
 {pagebreak}
 
-You have learned how to organize your code and how to test it! Let's recap the last chapters:
+여러분은 코드 구성과 테스트 방법을 배웠습니다! 이번 장에서 배운 내용을 정리해봅시다.
 
 * React
-  * PropTypes let you define type checks for components
-  * Jest allows you to write snapshot tests for your components
-  * Enzyme allows you to write unit tests for your components
+  * PropTypes는 컴포넌트의 타입을 정의합니다.
+  * Jest는 컴포넌트의 스냅샷 테스트를 시행합니다.
+  * Enzyme은 컴포넌트 유닛 테스트를 시행합니다.
 * ES6
-  * import and export statements help you to organize your code
+  * `import`와 `export` 선언문을 사용해 코드를 구성합니다.
 * General
-  * code organization allows you to scale your application with best practices
+  * 코드 구성은 애플리케이션을 확장할 수 있는 좋은 방법입니다.
 
-실습 코드는 [공식 깃허브 리퍼 지토리](https://github.com/rwieruch/hackernews-client/tree/4.2)에서 확인할 수 있습니다.
+실습 코드는 [깃허브 리퍼지토리](https://github.com/rwieruch/hackernews-client/tree/4.2)에서 확인할 수 있습니다.

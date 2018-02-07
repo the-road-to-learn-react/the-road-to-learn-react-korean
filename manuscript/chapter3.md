@@ -65,7 +65,7 @@ state나 props가 변경 시, 업데이트 생명주기는 어떨까요? 아래�
 
 `constructor()`와 `render()` 메서드는 이미 사용해봤습니다. ES6 클래스 컴포넌트에서 사용되는 생명주기 입니다. `render()`은 컴포넌트 인스턴스를 반환하기 때문에 반드시 필요한 메서드입니다.
 
-그 외 생명주기 메서드로 `componentDidCatch(error, info)`가 있습니다. 이 메서드는 [React 16](https://www.robinwieruch.de/what-is-new-in-react-16/)에서 도입되었으며 컴포넌트 에러를 캐치합니다. 예를 들어 목록이 표시하는 애플리케이션이 있다고 해봅시다. 외부 API 호출이 실패하여 state가 `null`로 표시되었습니다. 리스트가 비어있지 않고 `null` 상태이기 때문에 filter과 map을 사용할 수 없습니다. 이 경우 에러가 발생하여 컴포넌트가 깨지고 전체 애플리케이션이 작동되지 않습니다. 이 때, `componentDidCatch()`로 에러를 포착하고 내부 상태에 저장하여 사용자에게 에러 메세지를 표시해줄 수 있습니다.
+그 외 생명주기 메서드로 `componentDidCatch(error, info)`가 있습니다. 이 메서드는 [React 16](https://www.robinwieruch.de/what-is-new-in-react-16/)에서 도입되었으며 컴포넌트 에러를 캐치합니다. 예를 들어 목록을 표시하는 애플리케이션이 있다고 해봅시다. 외부 API 호출이 실패하여 state가 `null`로 표시되었습니다. 리스트가 비어있지 않고 `null` 상태이기 때문에 filter과 map을 사용할 수 없습니다. 이 경우 에러가 발생하여 컴포넌트가 깨지고 전체 애플리케이션이 작동되지 않습니다. 이 때, `componentDidCatch()`로 에러를 포착하고 내부 상태에 저장하여 사용자에게 에러 메세지를 표시해줄 수 있습니다.
 
 ### 읽어보기
 
@@ -169,7 +169,7 @@ class App extends Component {
 
 마지막으로 생성자에 컴포넌트 메서드를 바인딩 합니다.
 
-이제 기존 데이터대신 페치한 데이터를 사용할 수 있습니다. 그러나 조심히 사용해야 합니다. result는 데이터 목록이지만 [메타 정보와 인기 목록이 담긴 복잡한 객체입니다.](https://hn.algolia.com/api). `render()` 메서드에서 `console.log(this.state);`를 사용하여 상태를 출력해 개발자 도구에서 확인할 수 있습니다.
+이제 기존 데이터대신 페치한 데이터를 사용할 수 있습니다. 그러나 조심히 사용해야 합니다. result는 데이터 목록으로 [메타 정보와 인기 리스트가 같이 담겨 객체가 복잡합니다.](https://hn.algolia.com/api). `render()` 메서드에서 `console.log(this.state);`를 사용하여 상태를 출력해 개발자 도구에서 확인할 수 있습니다.
 
 다음으로 result를 사용해 렌더링을 처리합니다. 그러나 처음에 result 값이 없는 경우 null을 반환합니다. API 요청이 성공하면 결과값이 내부 상태값에 저장되고 업데이트된 App 컴포넌트를 다시 렌더링됩니다.
 
@@ -424,12 +424,8 @@ console.log(result);
 
 ## Search 컴포넌트의 클라이언트와 서버 처리  Client-/Server-side Search
 
-입력 필드의 검색어에 따라 목록 필터링을 구현하겠습니다. 이 일은 클라이언트에서 처리됩니다. 지금은 해커 뉴스 API를 사용해 서버에서 검색을 할 것입니다. `componentDidMount()`에서 기본 검색어 매개변수로 API응답을 처리할 것입니다.
-
- 
-When you use the Search component with its input field now, you will filter the list. That's happening on the client-side though. Now you are going to use the Hacker News API to search on the server-side. Otherwise you would deal only with the first API response which you got on `componentDidMount()` with the default search term parameter.
-
-You can define an `onSearchSubmit()` method in your App component which fetches results from the Hacker News API when executing a search in the Search component. It will be the same fetch as in your `componentDidMount()` lifecycle method, but this time with a modified search term from the local state and not with the initial default search term.
+클라이언트에서 검색어에 따라 목록 필터링을 구현해보겠습니다. 검색어 기본 매개변수로 해커 뉴스 API에 요청하여 서버에서 검색한 후, 이에 대한 응답을 `componentDidMount()`에서 처리할 것입니다.                                     
+App 컴포넌트에서 `onSearchSubmit()` 메서드를 정의하겠습니다. 이 메서드는 Search 컴포넌트에서 검색을 실행할 때 해커 뉴스 API 요청 결과를 가져옵니다. `componentDidMount()` 생명주기 메소드에서 했던 것과 같습니다. 그러나 이번에는 검색어 기본 매개변수가 아닌 내부 상태 값을 사용합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -465,11 +461,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now the Search component has to add an additional button. The button has to explicitly trigger the search request. Otherwise you would fetch data from the Hacker News API every time when your input field changes. But you want to do it explicitly in a on click handler.
+Search 컴포넌트에 '검색하기' 버튼을 추가해야 합니다. 이 버튼은 검색 요청을 보내고, 해커 뉴스 API에서 데이터를 가져옵니다. 
 
-As alternative you could debounce (delay) the `onChange()` function and spare the button, but it would add more complexity at this time and maybe wouldn't be the desired effect. Let's keep it simple without a debounce for now.
-
-First, pass the `onSearchSubmit()` method to your Search component.
+먼저 Search 컴포넌트에 `onSearchSubmit()` 메서드를 전달합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -505,7 +499,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Second, introduce a button in your Search component. The button has the `type="submit"` and the form uses its `onSubmit()` attribute to pass the `onSubmit()` method. You can reuse the children property, but this time it will be used as the content of the button.
+두 번째로 Search 컴포넌트에 버튼을 추가하겠습니다. 버튼은 `type="submit"`을 가지고, 폼은 `onSubmit()` 메서드를 전달하기 위해 `onSubmit()` 속성을 사용합니다. 자식 프로퍼티는 버튼 내용으로 사용하겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -529,7 +523,7 @@ const Search = ({
 # leanpub-end-insert
 ~~~~~~~~
 
-In the Table, you can remove the filter functionality, because there will be no client-side filter (search) anymore. Don't forget to remove the `isSearched()` function as well. It will not be used anymore. The result comes directly from the Hacker News API now after you have clicked the "Search" button.
+Table 컴포넌트에서 클라이언트의 검색이 필요없기 때문에 필터 기능을 제거합니다. `isSearched()` 함수도 더 이상 사용하지 않기 때문에 제거합니다. 비로소 검색 버튼을 클릭하면 해커 뉴스 API를 통해 결과값을 가져옵니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -569,7 +563,7 @@ const Table = ({ list, onDismiss }) =>
   </div>
 ~~~~~~~~
 
-When you try to search now, you will notice that the browser reloads. That's a native browser behavior for a submit callback in a HTML form. In React you will often come across the `preventDefault()` event method to suppress the native browser behavior.
+검색 버튼을 클릭하면 브라우저가 새로고침되는데 이는 HTML 폼 전송 콜백에 대한 네이티브 브라우저 동작입니다. 리액트에서는 네이티브 브라우저 동작을 방지하기 위해 `preventDefault()` 이벤트 메서드를 자주 사용합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -591,13 +585,13 @@ onSearchSubmit(event) {
 * [[리액트 공식문서] synthetic events in React](https://facebook.github.io/react/docs/events.html)
 
 ### 실습하기
-* [Hacker News API](https://hn.algolia.com/api) 실험하기
+* [해커 뉴스 API](https://hn.algolia.com/api)를 이것저것 실험해봅니다.
 
-## Paginated Fetch
+## 페이지 매김 데이터 가져오기 Paginated Fetch
 
-Did you have a closer look at the returned data structure yet? The [Hacker News API](https://hn.algolia.com/api) returns more than a list of hits. Precisely it returns a paginated list. The page property, which is `0` in the first response, can be used to fetch more paginated sublists as result. You only need to pass the next page with the same search term to the API.
+반환되는 데이터 구조를 자세히 살펴보았나요? [해커 뉴스 API](https://hn.algolia.com/api)는 첫 번째   `hits` 목록만 반환합니다. 처음 응답시, page 프로퍼티 값은 `0`으로 페이지 번호를 말합니다. 이 프로퍼티 값으로 목록을 가져옵니다. 검색어는 유지하고 다음 페이지번호를 API에 전달하면 됩니다.
 
-Let's extend the composable API constants so that it can deal with paginated data.
+페이지 매김 데이터를 처리할 수 있게 요청할 URL를 쪼개어 각 상수로 만들겠습니다. 이렇게 하면 URL를 구성 가능한 형태로 만들 수 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -611,7 +605,7 @@ const PARAM_PAGE = 'page=';
 # leanpub-end-insert
 ~~~~~~~~
 
-Now you can use the new constant to add the page parameter to your API request.
+이제 상수를 매개변수로 추가합시다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -621,7 +615,7 @@ console.log(url);
 // output: https://hn.algolia.com/api/v1/search?query=redux&page=
 ~~~~~~~~
 
-The `fetchSearchTopStories()` method will take the page as second argument. If you don't provide the second argument, it will fallback to the `0` page for the initial request. Thus the `componentDidMount()` and `onSearchSubmit()` methods fetch the first page on the first request. Every additional fetch should fetch the next page by providing the second argument.
+`fetchSearchTopStories()` 메서드는 두 번째 인자가 있는데, 이 두 번째 인자가 없으면 기본으로  `0`페이지를 전달합니다. 따라서 `componentDidMount()`와 `onSearchSubmit()`는 첫 번째 요청 시, 첫 번째 페이지를 가져옵니다. 추가 요청이 있을 때마다 두 번째 인자를 통해 다음 페이지를 가져와야 합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -643,7 +637,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now you can use the current page from the API response in `fetchSearchTopStories()`. You can use this method in a button to fetch more stories on a `onClick` button handler. Let's use the Button to fetch more paginated data from the Hacker News API. You only need to define the `onClick()` handler which takes the current search term and the next page (current page + 1).
+이제 `fetchSearchTopStories()`에서 API 응답을 받아 현재 페이지를 사용할 수 있습니다. 버튼에서 이 메서드를 사용해 `onClick` 버튼 핸들러로 더 많은 목록을 가져올 수 있습니다. 다음으로 버튼을 클릭하면 그 다음 페이지의 데이터를 가져오게 만들어봅시다. `onClick()` 핸들러에서 현재 검색어와 다음 페이지 번호(현재 페이지 + 1)만 정의하면 됩니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -679,9 +673,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-In addition, in your `render()` method you should make sure to default to page 0 when there is no result yet. Remember that the `render()` method is called before the data is fetched asynchronously in the `componentDidMount()` lifecycle method.
+`render()` 메서드에서 `result`가 없을 때 페이지 번호 기본값은 `0`입니다. `render()` 메서드는  `componentDidMount()` 생명주기 메서드에서 비동기로 데이터를 가져오기 전에 실행됨을 잊지 맙시다.
 
-There is one step missing. You fetch the next page of data, but it will override your previous page of data. It would be ideal to concatenate the old and new list of hits from the local state and new result object. Let's adjust the functionality to add the new data rather than to override it.
+아직 한 가지 더 할일이 남아있습니다. 다음 페이지의 데이터를 가져오지만, 이전 데이터에 덮어쓰게되는 문제가 있습니다. 새 데이터를 정의하기보다 기존 상태값에 새 결과 객체 목록을 추가하는 것이 바람직합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -705,15 +699,17 @@ setSearchTopStories(result) {
 }
 ~~~~~~~~
 
-A couple of things happen in the `setSearchTopStories()` method now. First, you get the hits and page from the result.
+`setSearchTopStories()`메서드에서 일어나는 일을 살펴봅시다. 
 
-Second, you have to check if there are already old hits. When the page is 0, it is a new search request from `componentDidMount()` or `onSearchSubmit()`. The hits are empty. But when you click the "More" button to fetch paginated data the page isn't 0. It is the next page. The old hits are already stored in your state and thus can be used.
+첫째, 먼저 `result`에서 `hits`와 `page`를 얻습니다.
 
-Third, you don't want to override the old hits. You can merge old and new hits from the recent API request. The merge of both lists can be done with the JavaScript ES6 array spread operator.
+둘째, 이미 `hits`가 있는지 확인합니다. `page` 번호가 0일 때는 `componentDidMount()`또는 `onSearchSubmit()`에서 새로운 검색 요청이 전달됩니다. `hits` 목록은 비어있지만, "More" 버튼을 클릭하면 0이 아닌 다음 페이지를 요청합니다. 이전 `hits`는 이미 저장되어있으므로 사용가능 합니다.
 
-Fourth, you set the merged hits and page in the local component state.
+셋째, 이전 `hits`에 새로운 `hits`이 덮어쓰기되면 안됩니다. 따라서 두 목록을 병합해야 합니다. 이를 위해 ES6 배열 전개 연산자를 사용합니다.
 
-You can make one last adjustment. When you try the "More" button it only fetches a few list items. The API URL can be extended to fetch more list items with each request. Again, you can add more composable path constants.
+넷째, `hits`와  `hits`를 컴포넌트 내부 상태로 업데이트합니다.
+
+마지막으로 "More" 버튼 클릭할 때 일부 목록만 가져오게 해봅시다. 각 요청에 따라 목록을 가져올 수 있게 API URL를 구성가능한 형태로 만들겠습니다. 각 경로를 상수로 만들어 추가하면 됩니다.   
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -731,7 +727,7 @@ const PARAM_HPP = 'hitsPerPage=';
 # leanpub-end-insert
 ~~~~~~~~
 
-Now you can use the constants to extend the API URL.
+이제 상수를 사용해 API URL를 조합합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -745,19 +741,19 @@ fetchSearchTopStories(searchTerm, page = 0) {
 }
 ~~~~~~~~
 
-Afterward, the request to the Hacker News API fetches more list items in one request than before. As you can see, a powerful such as the Hacker News API gives you plenty of ways to experiment with real world data. You should make use of it to make your endeavours when learning something new more exciting. That's [how I learned about the empowerment that APIs provide](https://www.robinwieruch.de/what-is-an-api-javascript/) when learning a new programming language or library.
+이전보다 더 많은 목록을 가져옵니다. 이번 장에서는 해커 뉴스 API를 통해 실제 데이터를 사용해봤습니다. 새 프로그래밍 언어나 라이브러리를 학습할 때, 외부 API를 사용하면 더 재미있게 배울 수 있을 겁니다. 저도 이렇게 배웠으니까요.
 
 ### 실습하기
 
-* [해커 뉴스 API 매개변수](https://hn.algolia.com/api)를 바꿔 요청해봅니다.
+* [해커 뉴스 API](https://hn.algolia.com/api)의 매개변수를 바꿔 API를 요청해봅니다.
 
-## Client Cache
+## 클라이언트 캐시 Client Cache
 
 Each search submit makes a request to the Hacker News API. You might search for "redux", followed by "react" and eventually "redux" again. In total it makes 3 requests. But you searched for "redux" twice and both times it took a whole asynchronous roundtrip to fetch the data. In a client-sided cache you would store each result. When a request to the API is made, it checks if a result is already there. If it is there, the cache is used. Otherwise an API request is made to fetch the data.
 
 In order to have a client cache for each result, you have to store multiple `results` rather than one `result` in your internal component state. The results object will be a map with the search term as key and the result as value. Each result from the API will be saved by search term (key).
 
-At the moment, your result in the local state looks similar to the following:
+현재 로컬 상태는 아래 코드와 비슷할 겁니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -1021,7 +1017,7 @@ class App extends Component {
 
 Now your client makes a request to the API only once although you search for a search term twice. Even paginated data with several pages gets cached that way, because you always save the last page for each result in the `results` map. Isn't that a powerful approach to introduce caching to your application? The Hacker News API provides you with everything you need to even cache paginated data effectively.
 
-## Error Handling
+## 에러 핸들링 Error Handling
 
 Everything is in place for your interactions with the Hacker News API. You even have introduced an elegant way to cache your results from the API and make use of its paginated list functionality to fetch an endless list of sublists of stories from the API. But there is one piece missing. Unfortunately it is often missed when developing applications nowadays: error handling. It is too easy to implement the happy path without worrying about the errors that can happen along the way.
 
@@ -1180,7 +1176,7 @@ Your application should still work, but this time with error handling in case th
 
 {pagebreak}
 
-리액트에서 API를 사용할 수 있게 되었습니다! 이번 장에서 배운 내용을 정리해봅시다.
+여러분은 리액트에서 API를 사용할 수 있습니다! 이번 장에서 배운 내용을 정리해봅시다.
 
 * React
   * ES6 class component lifecycle methods for different use cases
@@ -1199,6 +1195,4 @@ Your application should still work, but this time with error handling in case th
   * pagination of data
   * client-side caching
 
-Again it makes sense to take a break. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far.
-
-실습 코드는 [공식 깃허브 리퍼 지토리](https://github.com/rwieruch/hackernews-client/tree/4.2)에서 확인할 수 있습니다.
+실습 코드는 [깃허브 리퍼지토리](https://github.com/rwieruch/hackernews-client/tree/4.2)에서 확인할 수 있습니다.

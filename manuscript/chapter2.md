@@ -4,7 +4,7 @@
 
 ## 컴포넌트 내부 상태 Internal component state
 
-컴포넌트 내부 상태(Internal component state)는 컴포넌트에 저장된 상태(state)의 프로퍼티를 수정, 삭제, 저장할 수 있습니다. 다른 말로는 지역 상태(local state)라고도 합니다. ES6 클래스 생성자(class constructor)를 사용해 컴포넌트를 만들고 내부 컴포넌트 상태를 초기화할 수 있습니다. 생성자는 컴포넌트가 초기화될 때 한 번만 호출됩니다.
+컴포넌트 내부 상태(Internal component state)는 컴포넌트에 저장된 상태(state)의 프로퍼티를 수정, 삭제, 저장할 수 있습니다. 다른 말로는 로컬 상태(local state)라고도 합니다. ES6 클래스 생성자(class constructor)를 사용해 컴포넌트를 만들고 내부 컴포넌트 상태를 초기화할 수 있습니다. 생성자는 컴포넌트가 초기화될 때 한 번만 호출됩니다.
 
 이제 클래스에 대해 알아봅시다.
 
@@ -1831,4 +1831,4 @@ const smallColumn = {
 
 잠시 휴식시간을 가집시다. 학습한 내용을 되새기고 적용해보며 이것저것 만들어보며 테스트해보길 바랍니다. [리액트 공식 문서](https://facebook.github.io/react/docs/installation.html)에서 리액트에 관한 자세한 내용을 읽어보길 바랍니다.
 
-실습 코드는 [공식 깃허브 리퍼 지토리](https://github.com/rwieruch/hackernews-client/tree/4.2)에서 확인할 수 있습니다.
+실습 코드는 [공식 깃허브 리퍼지토리](https://github.com/rwieruch/hackernews-client/tree/4.2)에서 확인할 수 있습니다.
