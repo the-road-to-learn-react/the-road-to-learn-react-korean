@@ -1,12 +1,12 @@
-# Basics in React
+# 리액트 기초 다지기 Basics in React
 
-The chapter will guide you through the basics of React. It covers state and interactions in components, because static components are a bit dull, aren't they? Additionally, you will learn about the different ways to declare a component and how to keep components composable and reusable. Be prepared to breathe life into your components.
+이번 장에서는 리액트 기초적인 내용을 알아볼 것입니다. 정적인 컴포넌트보다 동적인 컴포넌트와 인터렉션을 구현해보면서 컴포넌트를 선언과 재사용이 가능한 컴포넌트에 대해 배우고, 마지막으로 컴포넌트에 숨결을 불어넣어 생명체로 만들어 봅시다.
 
-## Internal Component State
+## 컴포넌트 내부 상태 Internal component state
 
-Internal component state, also known as local state, allows you to save, modify and delete properties that are stored in your component. The ES6 class component can use a constructor to initialize internal component state later on. The constructor is called only once when the component initializes.
+컴포넌트 내부 상태(Internal component state)는 컴포넌트에 저장된 상태(state)의 프로퍼티를 수정, 삭제, 저장할 수 있습니다. 다른 말로는 로컬 상태(local state)라고도 합니다. ES6 클래스 생성자(class constructor)를 사용해 컴포넌트를 만들고 내부 컴포넌트 상태를 초기화할 수 있습니다. 생성자는 컴포넌트가 초기화될 때 한 번만 호출됩니다.
 
-Let's introduce a class constructor.
+이제 클래스에 대해 알아봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -23,11 +23,11 @@ class App extends Component {
 }
 ~~~~~~~~
 
-When having a constructor in your ES6 class component, it is mandatory to call `super();` because the App component is a subclass of `Component`. Hence the `extends Component` in your App component declaration. You will learn more about ES6 class components later on.
+ES6 클래스 컴포넌트에 생성자가 있는 경우, App 컴포넌트는 `Component`의 하위 클래스이기 때문에 반드시 `super();`를 호출하고, App 컴포넌트를 선언할 때 `extends Component`로 컴포넌트를 확장시킵니다. 이 부분은 ES6 클래스 컴포넌트 부분에서 좀더 알아보겠습니다.
 
-You can call `super(props);` as well. It sets `this.props` in your constructor in case you want to access them in the constructor. Otherwise, when accessing `this.props` in your constructor, they would be `undefined`. You will learn more about the props of a React component later on.
+또한 `super(props);`도 호출할 수 있습니다. 생성자에 접근하기 원한다면 생성자 내 `this.props`를 설정합니다. 이를 설정하지 않으면 생성자에서 `this.props`를 접근할 때 `undefined`로 출력됩니다. 이 부분은 리액트 props를 설명할 때 자세히 알아보겠습니다.
 
-Now, in your case, the initial state in your component should be the sample list of items.
+아래와 같이 list라는 배열을 만들고 이를 컴포넌트 초기 state로 만듭니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -60,7 +60,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The state is bound to the class by using the `this` object. Thus you can access the local state in your whole component. For instance, it can be used in the `render()` method. Previously you have mapped a static list of items in your `render()` method that was defined outside of your component. Now you are about to use the list from your local state in your component.
+state는 `this`객체를 사용해 클래스에 바인딩됩니다. 따라서 전체 컴포넌트 내 로컬 상태값에 액세스 할 수 있게 됩니다. 때문에 `render()` 메서드에서 state를 사용할 수 있게 됩니다. 앞서 컴포넌트 내부에 list를 정의해 사용했지만, 컴포넌트 state에 정의하여 `render()` 메서드에 사용했습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -89,20 +89,22 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The list is part of the component now. It resides in the internal component state. You could add items, change items or remove items in and from your list. Every time you change your component state, the `render()` method of your component will run again. That's how you can simply change your internal component state and be sure that the component re-renders and displays the correct data that comes from the local state.
+컴포넌트 내부에서도 배열의 내 항목을 추가, 변경 제거를 할 수 있습니다. 컴포넌트 상태를 변경할 때마다 `render()` 메서드가 재실행됩니다. 이를 통해 쉽게 컴포넌트 상태를 변경하고 전달된 데이터가 올바르게 표시되는지 확인할 수 있습니다.
 
-But be careful. Don't mutate the state directly. You have to use a method called `setState()` to modify your state. You will get to know it in a following chapter.
+그러나 절대로 상태를 직접 변경해서는 안됩니다. 상태를 변경하려면 `setState()` 메서드를 사용합니다. 다음 장에서 `setState()` 메서드에 대해 알아보겠습니다. 
 
-### Exercises:
+### 실습하기
 
-* experiment with the local state
-  * define more initial state in the constructor
-  * use and access the state in your `render()` method
-* read more about [the ES6 class constructor](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor)
+* 컴포넌트에 state를 만들고 테스트합니다
+  * 생성자에 초기 상태 값을 할당합니다.
+  * `render()`로 state를 사용하고 표시합니다.
+  
+### 읽어보기 
+* [[MDN] : ES6 클래스 생성자](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor)
 
-## ES6 Object Initializer
+## ES6 객체 초기자 Object Initializer
 
-In JavaScript ES6, you can use a shorthand property syntax to initialize your objects more concisely. Imagine the following object initialization:
+자바스크립트 ES6는 좀더 간결해진 문법으로 객체 초기자를 작성합니다. 기존에는 아래와 같이 객체 정의를 해왔을 것입니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -113,7 +115,7 @@ const user = {
 };
 ~~~~~~~~
 
-When the property name in your object is the same as your variable name, you can do the following:
+ES6에서는 개체 프로퍼티 이름과 변수 이름이 같다면, 축약해 정의할 수 있습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -124,7 +126,7 @@ const user = {
 };
 ~~~~~~~~
 
-In your application, you can do the same. The list variable name and the state property name share the same name.
+리액트 애플리케이션도 동일합니다. state 프로퍼티 이름과 변수 이름이 동일하기 때문에 `list`로 선언하면 됩니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -139,7 +141,7 @@ this.state = {
 };
 ~~~~~~~~
 
-Another neat helper are shorthand method names. In JavaScript ES6, you can initialize methods in an object more concisely.
+ES6에서는 객체 메서드도 축약합니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -158,7 +160,7 @@ const userService = {
 };
 ~~~~~~~~
 
-Last but not least, you are allowed to use computed property names in JavaScript ES6.
+또한 ES6에서는 계산된 프로퍼티를 이름(computed property name)을 사용할 수 있다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -174,18 +176,21 @@ const user = {
 };
 ~~~~~~~~
 
-Perhaps computed property names make no sense for you yet. Why should you need them? In a later chapter, you will come to a point where you can use them to allocate values by key in a dynamic way in an object. It's neat to generate lookup tables in JavaScript.
+계산된 프로퍼티 이름(computed property name)이 이해가 안될 수도 있습니다. 왜 필요할까요? 다음 장에서 키(key)를 사용해 객체에서 동적인 방식으로 값을 할당하는데 이 때 사용하기 위함입니다. 자바스크립트에서 룩업 테이블(lookup tables: 주어진 연산에 대해 미리 계산된 결과들의 배열)을 생성하는 것이 코드 가독성을 높여줍니다.
 
-### Exercises:
+### 읽어보기
+* [[MDN] ES6 객체 초기자 (object initializer)](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Object_initializer)
 
-* experiment with ES6 object initializer
-* read more about [ES6 object initializer](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer)
+### 실습하기
 
-## Unidirectional Data Flow
+* ES6 객체 초기자를 생성해봅니다.
 
-Now you have some internal state in your App component. However, you have not manipulated the local state yet. The state is static and thus is the component. A good way to experience state manipulation is to have some component interaction.
 
-Let's add a button for each item in the displayed list. The button says "Dismiss" and is going to remove the item from the list. It could be useful eventually when you only want to keep a list of unread items and dismiss the items that you are not interested in.
+## 단방향 데이터 흐름 Unidirectional Data Flow
+
+App 컴포넌트에 state가 있지만 그 값이 변동되지 않아 정적인 컴포넌트라 할 수 있습니다. state를 조작하여 동적인 컴포넌트를 만들어 봅시다.
+
+각 배열의 항목마다 `닫기` 버튼을 추가하고, 버튼을 클릭하면 각 대상이 삭제되게 구현해봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -210,7 +215,7 @@ class App extends Component {
                 onClick={() => this.onDismiss(item.objectID)}
                 type="button"
               >
-                Dismiss
+                닫기
               </button>
             </span>
 # leanpub-end-insert
@@ -222,11 +227,11 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The `onDismiss()` class method is not defined yet. We will do it in a moment, but for now the focus should be on the `onClick` handler of the button element. As you can see, the `onDismiss()` method in the `onClick` handler is enclosed by another function. It is an arrow function. That way, you can sneak in the `objectID` property of the `item` object to identify the item that will be dismissed. An alternative way would be to define the function outside of the `onClick` handler and only pass the defined function to the handler. A later chapter will explain the topic of handlers in elements in more detail.
+`onDismiss()` 메서드는 아직 구현하지 않았습니다. 우선 버튼의 `onClick` 핸들러를 살펴봅시다. `onDismiss()` 메서드는 화살표 함수입니다. 각 `item`의  `objectID` 프로퍼티로 삭제될 항목을 식별한다. 다른 방법은 `onClick` 핸들러 밖에서 함수를 정의한 후  이 함수를 핸들러에 전달하는 것입니다. 다음 장에서 핸들러에 대해 배울 것입니다.
 
-Did you notice the multilines for the button element? Note that elements with multiple attributes get messy as one line at some point. That's why the button element is used with multilines and indentations to keep it readable. But it is not mandatory. It is only a code style recommendation that I highly recommend.
+button 요소는 한 줄이 아닌 여러 줄로 작성되었습니다.여러 속성을 한 줄로 나열해 길게 코드를 작성하면 이해하기 어려워집니다. 들여쓰기와 적절한 줄바꿈으로 누가봐도 코드가 읽기 쉽게 작성해야 합니다. 필수사항은 아니지만 권장하는 코드 작성법입니다.
 
-Now you have to implement the `onDismiss()` functionality. It takes an id to identify the item to dismiss. The function is bound to the class and thus becomes a class method. That's why you access it with `this.onDismiss()` and not `onDismiss()`. The `this` object is your class instance. In order to define the `onDismiss()` as class method, you have to bind it in the constructor. Bindings will be explained in another chapter later on.
+`onDismiss()` 함수를 구현하겠습니다. 항목을 식별하기 위해 ID가 필요합니다. 이 함수는 클래스에 바인딩되어있으므로 클래스 메서드입니다. 따라서 `onDismiss()`가 아니라 `this.onDismiss()`로 접근합니다. `this` 객체는 클래스 인스턴스이다. `onDismiss()`를 클래스 메서드로 정의하기 위해서는 생성자에서 바인딩을 해야합니다. 바인딩은 다음 장에서 알아보겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -250,7 +255,8 @@ class App extends Component {
 }
 ~~~~~~~~
 
-In the next step, you have to define its functionality, the business logic, in your class. Class methods can be defined the following way.
+
+이제 클래스 함수와 함수가 할 일을 정의합시다. 클래스 메서드는 아래와 같이 작성합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -278,10 +284,10 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now you are able to define what happens inside of the class method. Basically you want to remove the item identified by the id from the list and store an updated list to your local state. Afterward, the updated list will be used in the re-running `render()` method to display it. The removed item shouldn't appear anymore.
+클래스 메서드 내부에 일어나는 일을 차근차근 설명해봅시다. list에서 ID와 매칭되는 항목을 제거하고 업데이트된 list를 state에 저장합니다. 그 다음 `render()` 메서드가 재 실행되고 업데이트된 list가 브라우저에 표시됩니다. 제거된 항목은 더 이상 보이지 않아야 합니다.
 
-You can remove an item from a list by using the JavaScript built-in filter functionality. The filter function takes a function as input. The function has access to each value in the list, because it iterates over the list. That way, you can evaluate each item in the list based on a filter condition. If the evaluation for an item is true, the item stays in the list. Otherwise it will be filtered from the list. Additionally, it is good to know that the function returns a new list and doesn't mutate the old list. It supports the convention in React of having immutable data structures.
-
+자바스크립트 `filter()` 메서드를 사용해 배열의 요소를 삭제할 수 있습니다. filter 함수는 입력 기능을 사용합니다. 이 함수는 배열을 반복해 각 요소마다 액세스합니다. 이렇게하면 필터 조건에 따라 배열의 각 요소를 대조합니다. 일치하면 배열이 그대로 유지됩니다. 반대로 일치하지 않으면 배열에서 필터링 됩니다. 그러나 반환되는 배열은 원래 배열 값을 변경하지 않는 불변 데이터 구조입니다. 리액트의 관습을 따르고 있습니다.
+ 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 onDismiss(id) {
@@ -293,7 +299,7 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-In the next step, you can extract the function and pass it to the filter function.
+`filter()` 메서드를 보다 간결한 구문으로 작성할 수 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -308,7 +314,7 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-In addition, you can do it more concisely by using a JavaScript ES6 arrow function again.
+ES6 화살표 함수를 사용해 좀더 간결한 구문으로 작성합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -320,7 +326,7 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-You could even inline it again, like you did in the `onClick` handler of the button, but it might get less readable.
+버튼 `onClick` 핸들러 안에 인라인으로 함수를 작성할 수 있지만 코드 가독성이 떨어집니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -331,8 +337,7 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-The list removes the clicked item now. However the state isn't updated yet. Therefore you can finally use the `setState()` class method to update the list in the internal component state.
-
+버튼을 클릭하면 각 항목이 없어지는 것을 볼 수 있습니다. 그러나 state는 업데이트 되지 않았습니다. 마지막에 `setState()` 클래스 메서드로 `this.state.list` 를 업데이트 합시다.
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 onDismiss(id) {
@@ -344,17 +349,17 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-Now run again your application and try the "Dismiss" button. It should work. What you experience now is the **unidirectional data flow** in React. You trigger an action in your view with `onClick()`, a function or class method modifies the internal component state and the `render()` method of the component runs again to update the view.
+애플리케이션을 재실행해 "닫기" 버튼을 클릭해 작동하는지 확인합니다. 지금까지 실습한 내용이 바로 리액트의  __단방향 데이터 흐름(unidirectional data flow)__ 입니다. `onClick()`을 사용해 뷰에서 액션을 트리거하면, 함수 또는 클래스 메서드가 내부 컴포넌트 상태를 수정하고 컴포넌트의 `render()`메서드가 재실행되어 뷰를 업데이트합니다.
 
-![Internal state update with unidirectional data flow](images/set-state-to-render-unidirectional.png)
+![단방향 데이터 흐름으로 내부 상태를 업데이트 합니다.](images/set-state-to-render-unidirectional.png)
 
-### Exercises:
+### 읽어보기
 
-* read more about [the state and lifecycle in React](https://facebook.github.io/react/docs/state-and-lifecycle.html)
+* [[리액트 공식문서] 리액트 state와 생명주기](https://facebook.github.io/react/docs/state-and-lifecycle.html)
 
-## Bindings
+## 바인딩 Bindings
 
-It is important to learn about bindings in JavaScript classes when using React ES6 class components. In the previous chapter, you have bound your class method `onDismiss()` in the constructor.
+리액트에서 ES6 클래스 컴포넌트를 사용할 때 자바스크립트 바인딩(binding) 개념을 잘 알고 있어야 합니다. 이전 장에서 생성자 안에 `onDismiss()` 클래스 메서드를 바인딩했습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -373,7 +378,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Why would you do that in the first place? The binding step is necessary, because class methods don't automatically bind `this` to the class instance. Let's demonstrate it with the help of the following ES6 class component.
+왜 처음부터 바인딩을 했을까요? 클래스 메서드는 클래스 인스턴스에 자동으로 `this`를 바인딩하지 않기 때문에 일일이 바인딩해야 합니다. 아래 ES6 클래스 컴포넌트를 예시로 들겠습니다.
 
 {title="Code Playground",lang=javascript}
 ~~~~~~~~
@@ -395,9 +400,9 @@ class ExplainBindingsComponent extends Component {
 }
 ~~~~~~~~
 
-The component renders just fine, but when you click the button, you will get `undefined` in your developer console log. That's a main source of bugs when using React, because if you want to access `this.state` in your class method, it cannot be retrieved because `this` is `undefined`. So in order to make `this` accessible in your class methods, you have to bind the class methods to `this`.
+위 컴포넌트 렌더링은 잘 되지만, 버튼을 클릭하면 개발자 콘솔 로그에 `undefined`이 출력됩니다. 리액트를 사용할 때 많이 실수하는 버그 중 하나입니다. 클래스 메서드에서`this.state`를 접근하고자 할 때 `this`가 `undefined`이면 접근할 수 없습니다. 따라서 클래스 메서드에서 `this`를 접근할 수 있게 하려면 클래스 메서드를 `this`에 바인딩 해야합니다.
 
-In the following class component the class method is properly bound in the class constructor.
+아래 클래스 컴포넌트의 클래스 메서드는 클래스 생성자에서 올바르게 바인딩했습니다.
 
 {title="Code Playground",lang=javascript}
 ~~~~~~~~
@@ -427,9 +432,9 @@ class ExplainBindingsComponent extends Component {
 }
 ~~~~~~~~
 
-When trying the button again, the `this` object, to be more specific the class instance, should be defined and you would be able to access `this.state`, or as you will later learn `this.props`, now.
+버튼 구현 시, 클래스 인스턴스를 구체적으로 지정하기 위해 `this` 객체를 정의한 후, `this.state`에 접근하거나, `this.props`를 사용해 접근합니다.
 
-The class method binding can happen somewhere else too. For instance, it can happen in the `render()` class method.
+클래스 메서드 바인딩은 어느 곳에서든지 사용할 수 있습니다. 클래스 메서드인 `render()`에서도 사용할 수 있습니다.
 
 {title="Code Playground",lang=javascript}
 ~~~~~~~~
@@ -453,9 +458,10 @@ class ExplainBindingsComponent extends Component {
 }
 ~~~~~~~~
 
-But you should avoid it, because it would bind the class method every time when the `render()` method runs. Basically it runs every time your component updates which leads to performance implications. When binding the class method in the constructor, you bind it only once in the beginning when the component is instantiated. That's a better approach to do it.
 
-Another thing people sometimes come up with is defining the business logic of their class methods in the constructor.
+그러나 `render()` 메서드가 실행될 때마다 클래스 메서드를 바인드하기 때문에, 컴포넌트가 업데이트 될 때마다 실행되어 성능에 영향을 미칩니다. `render()` 메서드에서 바인딩하지 않는 편이 좋습니다. 생성자에서 클래스 메서드를 바인딩해 컴포넌트가 인스턴스화 될 때 처음에 한 번만 바인딩하는 것이 더 좋은 방법입니다.
+
+이외에 생성자에서 바로 클래스 메서드의 할 일을 정의할 수도 있습니다.
 
 {title="Code Playground",lang=javascript}
 ~~~~~~~~
@@ -483,7 +489,7 @@ class ExplainBindingsComponent extends Component {
 }
 ~~~~~~~~
 
-You should avoid it too, because it will clutter your constructor over time. The constructor is only there to instantiate your class with all its properties. That's why the business logic of class methods should be defined outside of the constructor.
+이 방법 또한 앞으로 생성자에게 혼란을 줄 수 있기 때문에 사용하지 않는 것이 좋습니다. 생성자는 클래스의 모든 프로퍼티를 인스턴스화하기 위해서 존재합니다. 따라서 클래스 메서드의 로직은 생성자 외부에서 정의합니다.
 
 {title="Code Playground",lang=javascript}
 ~~~~~~~~
@@ -507,7 +513,7 @@ class ExplainBindingsComponent extends Component {
 }
 ~~~~~~~~
 
-Last but not least, it is worth to mention that class methods can be autobound automatically without binding them explicitly by using JavaScript ES6 arrow functions.
+이외에 ES6 화살표 함수를 사용하면 클래스 메서드를 생성자 내부에 바인딩하지 않고도 자동 바인딩할 수 있습니다.
 
 {title="Code Playground",lang=javascript}
 ~~~~~~~~
@@ -529,15 +535,16 @@ class ExplainBindingsComponent extends Component {
 }
 ~~~~~~~~
 
-If the repetitive binding in the constructor annoys you, you can go ahead with this approach instead. The official React documentation sticks to the class method bindings in the constructor. That's why the book will stick to those as well.
+클래스 메서드 마다 생성자에 바인딩 처리를 하기 번거롭기 때문에 위 방법을 추천합니다. 그러나 리액트 공식 문서는 생성자 내부에 클래스 메서드를 바인딩할 것을 제안하고 있습니다. 따라서 우리도 공식 문서의 지침에 따라 생성자 내부에 클래스 메서드를 바인딩하겠습니다.
 
-### Exercises:
+### 실습하기
 
-* try the different approaches of bindings and console log the `this` object
+* 여러가지 바인딩을 시도하며 콘솔에 `this`를 출력합니다.
 
-## Event Handler
 
-The chapter should give you a deeper understanding of event handlers in elements. In your application, you are using the following button element to dismiss an item from the list.
+## 이벤트 핸들러 Event Handler
+
+이번 장에서는 이벤트 핸들러에 대해 알아봅시다. 각 항목의 버튼을 클릭하면 해당 항목을 삭제하는 기능을 구현해 볼 것입니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -553,7 +560,7 @@ The chapter should give you a deeper understanding of event handlers in elements
 ...
 ~~~~~~~~
 
-That's already a complex use case, because you have to pass a value to the class method and thus you have to wrap it into another (arrow) function. So basically, it has to be a function that is passed to the event handler. The following code wouldn't work, because the class method would be executed immediately when you open the application in the browser.
+위 코드가 복잡하게 보일지도 모르겠습니다. 클래스 메서드 인자를 전달해기 때문에 화살표 함수로 래핑했습니다. 일반적으로 `render()` 밖에서 이벤트 핸들러에 전달되는 함수를 만들어야 합니다. 애플리케이션이 구동되면 클래스 메서드가 즉시 실행되기 때문에 코드는 작동하지 않을 겁니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -569,10 +576,10 @@ That's already a complex use case, because you have to pass a value to the class
 ...
 ~~~~~~~~
 
-When using `onClick={doSomething()}`, the `doSomething()` function would execute immediately when you open the application in your browser. The expression in the handler is evaluated. Since the returned value of the function isn't a function anymore, nothing would happen when you click the button. But when using `onClick={doSomething}` whereas `doSomething` is a function, it would be executed when clicking the button. The same rules apply for the `onDismiss()` class method that is used in your application.
+`onClick={doSomething()}`일 경우, `doSomething()` 함수는 그 즉시 실행됩니다. 핸들러 표현식이 평가되는데, 그 결과를 함수로 반환하지 않기 때문에 버튼을 클릭해도 아무 일도 일어나지 않습니다. 따라서 `onClick={doSomething}`으로 수정하면 실행됩니다. 이를 `onDismiss()`클래스 메서드에 적용해봅시다.
 
-However, using `onClick={this.onDismiss}` wouldn't suffice, because somehow the `item.objectID` property needs to be passed to the class method to identify the item that is going to be dismissed. That's why it can be wrapped into another function to sneak in the property. The concept is called higher order functions in JavaScript and will be explained briefly later on.
-
+`onClick={this.onDismiss}`로 고쳤겠지만 이 역시 문제가 있습니다. 삭제할 항목을 식별하는 `item.objectID`가 빠져있습니다. 함수 인자를 추가합시다.
+ 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 ...
@@ -587,7 +594,7 @@ However, using `onClick={this.onDismiss}` wouldn't suffice, because somehow the 
 ...
 ~~~~~~~~
 
-A workaround would be to define the wrapping function somewhere outside and only pass the defined function to the handler. Since it needs access to the individual item, it has to live in the inside of the map function block.
+`map()` 메서드로 각 항목마다 액션을 실행하도록 아래 코드와 같이 수정합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -632,7 +639,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-After all, it has to be a function that is passed to the element's handler. As an example, try this code instead:
+모든 요소의 핸들러로 함수가 전달되었습니다.
+
+다른 예도 살펴보기 위해 아래 코드로 고쳐 봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -663,8 +672,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-It will run when you open the application in the browser but not when you click the button. Whereas the following code would only run when you click the button. It is a function that is executed when you trigger the handler.
+위 코드에서는 브라우저에서 애플리케이션을 열었을 때 바로 실행되지만 버튼을 클릭하면 실행되지 않는 문제가 있습니다. 
 
+다시 아래 코드로 수정해봅시다. 버튼을 클릭 할 때만 함수가 실행됩니다. 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 ...
@@ -683,7 +693,7 @@ It will run when you open the application in the browser but not when you click 
 ...
 ~~~~~~~~
 
-In order to keep it concise, you can transform it into a JavaScript ES6 arrow function again. That's what we did with the `onDismiss()` class method too.
+클래스 메서드 `onDismiss()`에서 화살표 함수를 작성했듯이 이번에도 화살표 함수로 간결하게 함수를 작성해봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -701,7 +711,7 @@ In order to keep it concise, you can transform it into a JavaScript ES6 arrow fu
 ...
 ~~~~~~~~
 
-Often newcomers to React have difficulties with the topic of using functions in event handlers. That's why I tried to explain it in more detail here. In the end, you should end up with the following code in your button to have a concisely inlined JavaScript ES6 arrow function that has access to the `objectID` property of the `item` object.
+대부분 리액트 입문자들은 이벤트 핸들러 부분에서 함수 사용 방법에 큰 어려움을 겪기 때문에, 이 부분을 자세히 설명하고자 했습니다. 마지막으로 ES6 화살표 함수로 `item` 객체가 `objectID` 프로퍼티에 액세스 가능하게 만들어봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -732,17 +742,17 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Another performance relevant topic, that is often mentioned, are the implications of using arrow functions in event handlers. For instance, the `onClick` handler for the `onDismiss()` method is wrapping the method in another arrow function to be able to pass the item identifier. So every time the `render()` method runs, the handler instantiates the higher order arrow function. It *can* have an impact on your application performance, but in most cases you will not notice it. Imagine you have a huge table of data with 1000 items and each row or column has such an arrow function in an event handler. Then it is worth to think about the performance implications and therefore you could implement a dedicated Button component to bind the method in the constructor. But before that happens it is premature optimization. It is more valuable to focus on learning React itself.
+이벤트 핸들러 내 화살표 함수 사용은 성능 문제와 연관됩니다. 그 예로, `onDismiss()` 내 `onClick` 핸들러는 식별자를 전달하고자 다른 화살표 함수로 메서드를 래핑했습니다. 따라서 `render()`이 실행될 때마다, 핸들러는 고차 함수인 화살표 함수를 인스턴스화 됩니다. 애플리케이션 성능에 영향을 미칠 수 있지만, 실제로 그 효과를 파악할 수 없습니다. 1000개의 항목마다 이벤트 핸들러에 화살표 함수가 있다고 해봅시다. 성능에 미치지 않도록 생성자에서 메서드를 바인딩하는 할 수 있을 겁니다. 하지만 리액트를 시작하는 단계에서 성능 최적화까지 생각하는 것은 시기상조입니다. 우리는 리액트를 배우는 그 자체에 일단 집중하도록 합시다.
 
-### Exercises:
+### 실습하기
 
-* try the different approaches of using functions in the `onClick` handler of your button
+* `onClick` 핸들러에서 여러가지 함수 사용법을 사용해봅니다.
 
-## Interactions with Forms and Events
+## 폼과 이벤트 상호 작용 Interactions with Forms and Events
 
-Let's add another interaction for the application to experience forms and events in React. The interaction is a search functionality. The input of the search field should be used to filter your list temporary based on the title property of an item.
+이번 장에서는 검색 기능을 구현해보면서 폼과 이벤트 인터렉션을 배워봅시다. 검색 필드의 입력된 검색어에 따라 목록을 필터링 합니다.
 
-In the first step, you are going to define a form with an input field in your JSX.
+첫 번째 단계로, JSX에 입력 필드가 있는 폼을 정의합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -767,9 +777,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-In the following scenario you will type into the input field and filter the list temporarily by the search term that is used in the input field. To be able to filter the list based on the value of the input field, you need to store the value of the input field in your local state. But how do you access the value? You can use **synthetic events** in React to access the event payload.
+검색어를 입력할 때마다 즉시 리스트를 필터링해야 합니다. 입력 필드 값이 state에 저장되려면 어떻게 해야할까요? 리액트의  **통합적 이벤트(synthetic event)** 를 사용해 이벤트 페이로드에 접근할 수 있습니다.
 
-Let's define a `onChange` handler for the input field.
+다음으로 입력 필드의 `onChange` 핸들러를 정의합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -795,7 +805,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The function is bound to the component and thus a class method again. You have to bind and define the method.
+이 함수는 컴포넌트 그리고 다시 클래스 메서드에 바운드됨으로, 바인딩이 필요합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -824,7 +834,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-When using a handler in your element, you get access to the synthetic React event in your callback function's signature.
+요소에서 핸들러를 사용할 때 콜백 함수로 통합적 이벤트에 접근할 수 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -842,7 +852,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The event has the value of the input field in its target object. Hence you are able to update the local state with the search term by using `this.setState()` again.
+타켓 객체의 입력 필드 값을 `this.setState()`를 사용해 state를 업데이트합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -860,7 +870,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Additionally, you shouldn't forget to define the initial state for the `searchTerm` property in the constructor. The input field should be empty in the beginning and thus the value should be an empty string.
+생성자에서 `searchTerm` 프로퍼티 초기 값을 설정하는 것을 잊지 말아야 합니다. 처음 입력 필드는 비어 있어야하므로 값은 빈 문자열이 됩니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -884,11 +894,11 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now you store the input value to your internal component state every time the value in the input field changes.
+이제 입력 필드 값이 변경될 때마다 state가 업데이트됩니다.
 
-A brief note about updating the local state in a React component. It would be fair to assume that when updating the `searchTerm` with `this.setState()` the list needs to be passed as well to preserve it. But that isn't the case. React's `this.setState()` is a shallow merge. It preserves the sibling properties in the state object when updating one sole property in it. Thus the list state, even though you have already dismissed an item from it, would stay the same when updating the `searchTerm` property.
+state 업데이트 과정을 간략히 정리해봅시다. `this.setState()`는 특정 프로퍼티가 업데이트 되어도 다른 state 프로퍼티는 그대로 유지됩니다. `searchTerm` 프로퍼티가 업데이트될 때 `list`는 변하지 않습니다.
 
-Let's get back to your application. The list isn't filtered yet based on the input field value that is stored in the local state. Basically you have to filter the list temporarily based on the `searchTerm`. You have everything you need to filter it. So how to filter it temporarily now? In your `render()` method, before you map over the list, you can apply a filter on it. The filter would only evaluate if the `searchTerm` matches title property of the item. You have already used the built-in JavaScript filter functionality, so let's do it again. You can sneak in the filter function before the map function, because the filter function returns a new array and thus the map function can be used on it in such a convenient way.
+App 컴포넌트를 다시 봅시다. `list`를 필터링하기 위해 `searchTerm`을 가지고 목록을 필터링합니다. 이전에 `render()` 메서드에서 `map()`메서드를 사용해 배열의 모든 요소를 접근하고 각 프로퍼티를 표시했었습니다. 이번에도 유사하게 과정에  `filter()` 메서드를 추가할 수 있습니다. `searchTerm`은 각 요소의 `title` 프로퍼티 값과 일치하는지 확인해 리스트를 필터링합니다. `map()` 메서드 앞에 `filter()` 메서드를 같이 사용하는 것이 일반적입니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -916,18 +926,17 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Let's approach the filter function in a different way this time. We want to define the filter argument, the function that is passed to the filter function, outside of the ES6 class component. There we don't have access to the state of the component and thus we have no access to the `searchTerm` property to evaluate the filter condition. We have to pass the `searchTerm` to the filter function and have to return a new function to evaluate the condition. That's called a higher order function.
+좀 더 다른 방법으로 `filter()` 메서드를 다뤄봅시다. 클래스 컴포넌트 외부에서 `filter()` 메서드에 전달되는 인자를 정의합시다. 컴포넌트 상태에 직접 접근할 수 없어 `searchTerm` 프로퍼티를 접근할 수도 없습니다. 따라서 새로운 함수가 필요합니다`filter()`메서드에 `searchTerm`을 전달하고 조건을 확인하는 함수를 반환하는 함수를 만들어보겠습니다. 다른 말로 이 함수는 고차 함수(higher order function)라고 불립니다.
 
-Normally I wouldn't mention higher order functions, but in a React book it makes total sense. It makes sense to know about higher order functions, because React deals with a concept called higher order components. You will get to know the concept later in the book. Now again, let's focus on the filter functionality.
 
-First, you have to define the higher order function outside of your App component.
+이 책에서는 고차 함수에 대해 다루지 않지만, 기본적인 내용을 아는 것이 좋습니다. 리액트는 고차원 컴포넌트(higher order components)를 다루기 때문에 고차 함수에 대해 알고 있어야 합니다. 아마 나중에 이 개념을 알게 될 것입니다. 이제 다시 `filter()` 메서드 부분을 봅시다. 제일 먼저 App 컴포넌트 외부에 고차 함수를 정의합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
 function isSearched(searchTerm) {
   return function(item) {
-    // some condition which returns true or false
+    // 조건에 따라 true 또는 false을 반환
   }
 }
 # leanpub-end-insert
@@ -939,7 +948,8 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The function takes the `searchTerm` and returns another function, because after all the filter function takes a function as its input. The returned function has access to the item object because it is the function that is passed to the filter function. In addition, the returned function will be used to filter the list based on the condition defined in the function. Let's define the condition.
+이 함수는 `searchTerm`을 취하여 다른 함수를 반환합니다. 모든 `filter()` 메서드가 이 함수를 입력으로 사용합니다. 반환된 함수는 `filter()` 메서드에 전달되어 각 개체에 접근할 수 있습니다. 반환된 함수는 조건에 따라 배열을 필터링합니다. 아래와 같이 조건을 추가해봅시다.
+
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -958,9 +968,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The condition says that you match the incoming `searchTerm` pattern with the title property of the item from your list. You can do that with the built-in `includes` JavaScript functionality. Only when the pattern matches, you return true and the item stays in the list. When the pattern doesn't match the item is removed from the list. But be careful with pattern matching: You shouldn't forget to lower case both strings. Otherwise there will be mismatches between a search term 'redux' and an item title 'Redux'. Since we are working on a immutable list and return a new list by using the filter function, the original list in the local state isn't modified at all.
+ES6 `include()` 메서드로 `searchTerm`과 `title`의 값이 일치하는지 확인합니다. 이 때 문자열을 모두 소문자로 바꿔야 합니다. 만약 'redux'와 'Redux'와 불일치하기 때문입니다. `filter()` 메서드는 새 배열을 반환하기 때문에 `this.state.list`는 변경되지 않습니다.
 
-One thing is left to mention: We cheated a bit by using the built-in includes JavaScript functionality. It is already an ES6 feature. How would that look like in JavaScript ES5? You would use the `indexOf()` function to get the index of the item in the list. When the item is in the list, `indexOf()` will return its index in the array.
+ES5의 경우 `indexOf()` 메서드로 배열의 인덱스 값을 조회할 수 있습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -971,7 +981,7 @@ string.indexOf(pattern) !== -1
 string.includes(pattern)
 ~~~~~~~~
 
-Another neat refactoring can be done with an ES6 arrow function again. It makes the function more concise:
+ES6 화살표 함수로 코드를 간결하게 만듭시다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -987,9 +997,9 @@ const isSearched = searchTerm => item =>
   item.title.toLowerCase().includes(searchTerm.toLowerCase());
 ~~~~~~~~
 
-One could argue which function is more readable. Personally I prefer the second one. The React ecosystem uses a lot of functional programming concepts. It happens often that you will use a function which returns a function (higher order functions). In JavaScript ES6, you can express these more concisely with arrow functions.
+ES5와 ES6 중 어떤 것이 더 읽기 쉬운가요? 저는 ES6 화살표 함수를 선호합니다. 리액트는 함수형 프로그래밍과 함수를 반환하는 함수(고차 함수)를 많이 사용하기 때문에 되도록 화살표 함수를 사용하는 것이 좋습니다. 화살표 함수는 코드를 명확하게 표현하며 가독성을 높이기 때문입니다.
 
-Last but not least, you have to use the defined `isSearched()` function to filter your list. You pass it the `searchTerm` property from your local state, it returns the filter input function, and filters your list based on the filter condition. Afterward it maps over the filtered list to display an element for each list item.
+마지막으로 `isSearched()` 함수를 `filter()`메서드에 추가해 목록을 필터링하게 만듭시다. `this.state.searchTerm`를 전달하면, 반환된 함수에서 조건에 `title`과 일치하는지 확인하여 목록을 필터링합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1017,16 +1027,16 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The search functionality should work now. Try it yourself in the browser.
+브라우저를 열어 구현한 검색 기능이 잘 작동되는지 확인합시다.
 
-### Exercises:
+### 읽어보기
 
-* read more about [React events](https://facebook.github.io/react/docs/handling-events.html)
-* read more about [higher order functions](https://en.wikipedia.org/wiki/Higher-order_function)
+* [[리액트 공식문서] 리액트 이벤트](https://facebook.github.io/react/docs/handling-events.html)
+* [[위키피디아] 고차 함수(higher order functions)](https://en.wikipedia.org/wiki/Higher-order_function)
 
-## ES6 Destructuring
+## ES6 구조해체 Destructuring
 
-There is a way in JavaScript ES6 for an easier access to properties in objects and arrays. It's called destructuring. Compare the following snippet in JavaScript ES5 and ES6.
+ES6에서는 구조해체(destructing)로 객체와 배열의 프로퍼티에 쉽게 접근할 수 있습니다. ES5와 ES6 문법을 서로 비교해봅시다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -1049,7 +1059,8 @@ console.log(firstname + ' ' + lastname);
 // output: Robin Wieruch
 ~~~~~~~~
 
-While you have to add an extra line each time you want to access an object property in JavaScript ES5, you can do it in one line in JavaScript ES6. A best practice for readability is to use multilines when you destructure an object into multiple properties.
+ES5에서는 객체 프로퍼티에 접근할 때마다 행이 추가되지만, ES6에서는 코드 한 줄이면 됩니다.
+가독성을 높이기 위해 객체를 해체할 때 각 객체 프로퍼티마다 줄을 바꿔주는 것이 좋습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -1059,7 +1070,7 @@ const {
 } = user;
 ~~~~~~~~
 
-The same goes for arrays. You can destructure them too. Again, multilines will keep your code scannable and readable.
+배열에서도 구조해체가 가능합니다. 여러 행으로 작성하는 것이 좋습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -1074,7 +1085,7 @@ console.log(userOne, userTwo, userThree);
 // output: Robin Andrew Dan
 ~~~~~~~~
 
-Perhaps you have noticed that the local state object in the App component can get destructured the same way. You can shorten the filter and map line of code.
+앞서 만든 App 컴포넌트에서도 state 객체가 동일한 방식으로 구조해체될 수 있음을 알 수 있을 겁니다. 코드가 짧고 간결해졌습니다. 
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1094,7 +1105,7 @@ Perhaps you have noticed that the local state object in the App component can ge
     );
 ~~~~~~~~
 
-You can do it the ES5 or ES6 way:
+ES5 또는 ES6으로 작성 가능합니다. 
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -1106,21 +1117,22 @@ var list = this.state.list;
 const { searchTerm, list } = this.state;
 ~~~~~~~~
 
-But since the book uses JavaScript ES6 most of the time, you should stick to it.
+이 책에서는 ES6를 사용하기 때문에 ES6 문법에 친숙해지길 바랍니다.
 
-### Exercises:
 
-* read more about [ES6 destructuring](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+### 읽기자료
 
-## Controlled Components
+*  [[MDN] ES6 객체구조](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
 
-You already learned about the unidirectional data flow in React. The same law applies for the input field, which updates the local state with the `searchTerm` in order to filter the list. When the state changes, the `render()` method runs again and uses the recent `searchTerm` from the local state to apply the filter condition.
+## 제어되는 컴포넌트 Controlled Components
 
-But didn't we forget something in the input element? A HTML input tag comes with a `value` attribute. The value attribute usually has the value that is shown in the input field. In this case it would be the `searchTerm` property. However, it seems like we don't need that in React.
+앞에서 우리는 이미 단방향 데이터 흐름에 대해 배웠습니다. 검색어 입력 필드 역시 단방향 데이터 흐름 규칙이 적용됩니다. 입력필드는 목록을 필터링하기 위해 `searchTerm`로 state를 업데이트합니다. state가 변경되면 `render()` 메서드가 재실행되고 `searchTerm`에 검색어가 있는지 목록에서 확인 후 필터링합니다.
 
-That's wrong. Form elements such as `<input>`, `<textarea>` and `<select>` hold their own state in plain HTML. They modify the value internally once someone changes it from the outside. In React that's called an **uncontrolled component**, because it handles its own state. In React, you should make sure to make those elements **controlled components**.
+그러나 우리가 놓친 것이 있습니다. HTML input 태그의 `value` 속성은 입력 필드에 표시된 값을 가집니다. 바로 `searchTerm`에 해당합니다. 그렇다면 리액트에서는 `value`를 활용하지 않아도 될까요?
 
-How should you do that? You only have to set the value attribute of the input field. The value is already saved in the `searchTerm` state property. So why not access it from there?
+그렇지 않습니다. `<input>`,`<textarea>`,`<select>` 와 같은 폼 요소는 HTML로 자신의 상태를 유지합니다. 외부에서 그 값이 변경되면 내부 값도 수정되기 때문에, 이러한 컴포넌트를 리액트에서는 **제어되지 않은 컴포넌트(uncontrolled component)** 라 부릅니다. 리액트에서는 제어되지 않는 컴포넌트를 **제어되는 컴포넌트(controlled components)** 로 만들어야 합니다. 리액트 컴포넌트는 초기화 시점 뿐만 아니라, 어떤 시점이라도 반드시 뷰의 state를 나타내야 합니다. 
+
+그렇다면 이제 무엇을 하면 될까요? 입력 필드에 `searchTerm`을 주면 됩니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1148,19 +1160,17 @@ class App extends Component {
 }
 ~~~~~~~~
 
-That's it. The unidirectional data flow loop for the input field is self-contained now. The internal component state is the single source of truth for the input field.
+여기까지입니다. 입력 필드에도 단방향 데이터 흐름 규칙이 적용되었습니다. 내부 컴포넌트 상태는 입력 필드로 부터 단방향으로 데이터를 받습니다. 아직 전체 내부 상태 관리 및 단방향 데이터 흐름이라는 단어가 생소하게 느껴질 수 있습니다. 점차 익숙해지면, 자연스럽게 사용할 수 있을 겁니다. 리액트는 SPA에 단방향 데이터 흐름이 포함된 새로운 패턴을 처음 제시했습니다. 현재 SPA 프레임워크와 라이브러리 역시 리액트의 영향을 받아 단방향 데이터 흐름을 도입했습니다.
 
-The whole internal state management and unidirectional data flow might be new to you. But once you are used to it, it will be your natural flow to implement things in React. In general, React brought a novel pattern with the unidirectional data flow to the world of single page applications. It is adopted by several frameworks and libraries by now.
+### 읽어보기
 
-### Exercises:
+*  [[리액트 공식문서] 폼(Form)](https://facebook.github.io/react/docs/forms.html)
 
-* read more about [React forms](https://facebook.github.io/react/docs/forms.html)
+## 컴포넌트 분리 Split Up Components
 
-## Split Up Components
+어느새 App 컴포넌트가 매우 커졌습니다. 계속해서 기능을 추가하고 개발하다보면 점점 규모가 커질 겁니다. 드디어 이 컴포넌트를 작은 컴포넌트 덩어리로 분리 작업을 시작할 때 입니다.
 
-You have one large App component now. It keeps growing and can become confusing eventually. You can start to split it up into chunks of smaller components.
-
-Let's start to use a component for the search input and a component for the list of items.
+아래와 같이 검색 입력 컴포넌트 `<Search />` 와 리스트를 나열하는 `<Table />` 두 개로 컴포넌트를 분리해봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1182,7 +1192,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-You can pass those components properties which they can use themselves. In the case of the App component it needs to pass the properties managed in the local state and its class methods.
+다음 분리한 컴포넌트에 사용할 프로퍼티를 전달해야 합니다. App 컴포넌트의 state와 클래스 메서드를 전달합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1211,9 +1221,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now you can define the components next to your App component. Those components will be ES6 class components as well. They render the same elements like before.
+이제 App 컴포넌트 옆에 분리시킨 컴포넌트를 정의합시다. 이 컴포넌트 역시 ES6 컴포넌트로 작성합니다.
 
-The first one is the Search component.
+제일 먼저 Search 컴포넌트를 작성합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1239,7 +1249,7 @@ class Search extends Component {
 # leanpub-end-insert
 ~~~~~~~~
 
-The second one is the Table component.
+다음으로 Table 컴포넌트를 작성합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1276,18 +1286,21 @@ class Table extends Component {
 # leanpub-end-insert
 ~~~~~~~~
 
-Now you have three ES6 class components. Perhaps you have noticed the `props` object that is accessible via the class instance by using `this`. The props, short form for properties, have all the values you have passed to the components when you used them in your App component. That way, components can pass properties down the component tree.
+이제 하나였던 컴포넌트가 3개가 되었습니다. 이쯤에서 `props`가 필요하다는 생각이 드는 분도 있을 겁니다. `props`은 프로퍼티(properties)의 약자로 `this`를 사용해 클래스 인스턴스에 접근합니다. App 컴포넌트에서 전달된 모든 값을 가지게 됩니다. 컴포넌트가 또 하위 컴포넌트로 계속해서 프로퍼티를 전달할 수 있습니다.
 
-By extracting those components from the App component, you would be able to reuse them somewhere else. Since components get there values by using the props object, you can pass every time different props to your components when you use them somewhere else. These components became reusable.
+ App 컴포넌트에서 뽑아낸 컴포넌트를 다른 컴포넌트에서도 재사용할 수 있습니다. 컴포넌트는 `props`의 통해 값을 가져오기 때문에, `props` 값을 바꿔 전달할 수 있습니다.
 
-### Exercises:
+### 실습하기
 
-* figure out further components that you could split up as you have done with the Search and Table components
-  * but don't do it now, otherwise you will run into conflicts in the next chapters
+* Search와 Table 컴포넌트로 컴포넌트를 분리한 것처럼 추가적으로 더 분리할 수 있는 컴포넌트 요소를 찾아봅니다.
+  *  다음 장에서 실습 코드와 충돌이 생길 수 있으니 지금 바로 코딩을 하지 마세요.
 
-## Composable Components
+## 구성가능한 컴포넌트 Composable Components
 
-There is one more little property which is accessible in the props object: the `children` prop. You can use it to pass elements to your components from above, which are unknown to the component itself, but make it possible to compose components into each other. Let's see how this looks like when you only pass a text (string) as a child to the Search component.
+`prop` 객체 안을 접근할 수 있는 프로퍼티가 하나 더 있습니다. 바로 `children` prop입니다.
+
+ `children` prop는 자기 자신이 무엇인지 어떤 것이 모르지만, 그 안에 자식 요소가 전달됨을 의미합니다.
+Search 컴포넌트에 텍스트를 자식으로 전달해보겠습니다. 
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1318,9 +1331,8 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now the Search component can destructure the children property from the props object. Then it can specify where the children should be displayed.
+ Search 컴포넌트는 children 객체를 구조해제할 수 있습니다. `children` props가 표시될 곳을 정합시다.
 
-{title="src/App.js",lang=javascript}
 ~~~~~~~~
 class Search extends Component {
   render() {
@@ -1342,17 +1354,17 @@ class Search extends Component {
 }
 ~~~~~~~~
 
-The "Search" text should be visible next to your input field now. When you use the Search component somewhere else, you can choose a different text if you like. After all, it is not only text that you can pass as children. You can pass an element and element trees (which can be encapsulated by components again) as children. The children property makes it possible to weave components into each other.
+입력 필드 옆에 검색어가 보여야 합니다. Search 컴포넌트를 다른 곳에 사용할 때마다, 다른 텍스트를 사용할 수 있습니다. 텍스트를 자식으로 전달했습니다. 이외에도 요소와 요소 트리(다시 컴포넌트로 캡슐화할 수 있습니다)를 자식으로 전달할 수 있습니다. children 프로퍼티를 사용하면 여러 컴포넌트를 서로 끼워넣고 맞물려 사용할 수 있게 됩니다.
 
-### Exercises:
+### 읽어보기
 
-* read more about [the composition model of React](https://facebook.github.io/react/docs/composition-vs-inheritance.html)
+* [[리액트 공식문서] 리액트 컴포지션 모델](https://facebook.github.io/react/docs/composition-vs-inheritance.html)
 
-## Reusable Components
+## 재사용가능한 컴포넌트 Reusable Components
 
-Reusable and composable components empower you to come up with capable component hierarchies. They are the foundation of React's view layer. The last chapters mentioned the term reusability. You can reuse the Table and Search components by now. Even the App component is reusable, because you could instantiate it somewhere else again.
+재사용가능한 컴포넌트와 구성가능한 컴포넌트를 사용해 컴포넌트 간 게층을 만들 수 잇습니다 이 것이 바로 리액트 뷰 레이어의 토대입니다. 마지막 장에서 재사용성(reusability)에 대해 설명하겠습니다. 지금 만든 Table과 Search 컴포넌트도 재사용할 수 있습니다. 물론 App 컴포넌트도 재사용할 수 있습니다. 컴포넌트는 다른 곳에서 다시 인스턴스를 만들 수 있기 때문입니다. 
 
-Let's define one more reusable component, a Button component, which gets reused more often eventually.
+재사용가능한 컴포넌트로 Button 컴포넌트를 만들어보겠습니다. 앞으로 Button은 더 많이 자주 사용되는 컴포넌트가 될 겁니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1377,9 +1389,9 @@ class Button extends Component {
 }
 ~~~~~~~~
 
-It might seem redundant to declare such a component. You will use a `Button` component instead of a `button` element. It only spares the `type="button"`. Except for the type attribute you have to define everything else when you want to use the Button component. But you have to think about the long term investment here. Imagine you have several buttons in your application, but want to change an attribute, style or behavior for the button. Without the component you would have to refactor every button. Instead the Button component ensures to have only one single source of truth. One Button to refactor all buttons at once. One Button to rule them all.
+이미 HTML에 `button`요소가 있어 굳이 컴포넌트로 만들 이유가 없다고 느낄 수도 있습니다. 우리는 `button` 요소 대신에 `button` 컴포넌트를 사용할 것입니다. 이 컴포넌트는 type 속성인 `button`만 사용합니다. 사용하는 곳마다 다시 사용할 수 있도록 모든 내용을 다시 정의할 겁니다. 여기서 우리는 보다 장기적인 안목을 가지고 컴포넌트를 만들어야 합니다. 애플리케이션에 다양한 버튼이 있고 프로퍼티, 스타일, 동작이 모두 제각각일 경우가 있습니다. 컴포넌트가 없다면 모든 버튼을 일일이 리팩토링해야합니다. 대신 Button 컴포넌트는 단일 소스로, 컴포넌트만 수정하면 다른 버튼을 한꺼번에 리팩토링할 수 있습니다. 
 
-Since you already have a button element, you can use the Button component instead. It omits the type attribute, because the Button component specifies it.
+이처럼 기존의 `button`요소를 대체해 `Button` 컴포넌트를 사용할 수 있습니다. 이미 Button 컴포넌트가 button 타입을 가지고 있기 때문에 type 속성은 생략합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1411,9 +1423,7 @@ class Table extends Component {
 }
 ~~~~~~~~
 
-The Button component expects a `className` property in the props. The `className` attribute is another React derivate for the HTML attribute class. But we didn't pass any `className` when the Button was used. In the code it should be more explicit in the Button component that the `className` is optional.
-
-Therefore, you can use the default parameter which is a JavaScript ES6 feature.
+Button 컴포넌트는 props에 `className` 프로퍼티를 전달받습니다. `className`는 HTML 클래스에서 파생된 것으로 클래스명입니다. 아직 우리는 `className`을 전달하지 않았습니다. 보다 명확히 표현하기 위해 ES6 기능인 기본 매개 변수를 사용할 수 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1432,25 +1442,25 @@ class Button extends Component {
 }
 ~~~~~~~~
 
-Now, whenever there is no `className` property specified when using the Button component, the value will be an empty string instead of `undefined`.
+이제 Button 컴포넌트를 사용할 때, `className` 프로퍼티 값이 지정되지 않아도 `undefined` 가 표시되지 않고 빈 문자열로 표시될 겁니다.
 
-### Exercises:
+### 읽어보기
 
-* read more about [ES6 default parameters](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters)
+* [[MDN] ES6 기본 매개변수](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters)
 
-## Component Declarations
+## 컴포넌트 선언 Component Declarations
 
-By now you have four ES6 class components. But you can do better. Let me introduce functional stateless components as alternative for ES6 class components. Before you will refactor your components, let's introduce the different types of components in React.
+지금까지 4가지 ES6 클래스 컴포넌트를 만들어봤습니다. 이제 자신감이 생겼길 바랍니다. 이번 장에서 비상태 함수형 컴포넌트(Functional Stateless Components)를 만들어 보겠습니다. 다시 한번 앞에서 배운 리액트 컴포넌트 유형을 정리해봅시다. 
 
-* **Functional Stateless Components:** These components are functions which get an input and return an output. The input are the props. The output is a component instance thus plain JSX. So far it is quite similar to an ES6 class component. However, functional stateless components are functions (functional) and they have no local state (stateless). You cannot access or update the state with `this.state` or `this.setState()` because there is no `this` object. Additionally, they have no lifecycle methods. You didn't learn about lifecycle methods yet, but you already used two: `constructor()` and `render()`. Whereas the constructor runs only once in the lifetime of a component, the `render()` class method runs once in the beginning and every time the component updates. Keep in mind that functional stateless component have no lifecycle methods, when you arrive at the lifecycle methods chapter later on.
+* **비상태 함수형 컴포넌트** 비상태 함수형 컴포넌트는 props를 입력으로 받고 JSX를 반환하는 함수입니다. 여기까지는 ES6 클래스 컴포넌트와 비슷합니다. 그러나 비상태 함수형 컴포넌트는 state가 없기 때문에 `this.state` 또는 `this.setState()`로 state에 액세서하거나 업데이트 할 수 없습니다. 또한 생명주기 메서드도 없습니다. 아직 생명주기 메서드에 대해 배우지 않았지만, 이미 생명주기 메서드인 `constructor()`과 `render()`을 사용했습니다. 생명주기동안 `constructor()`는 한번만 실행되는 반면, `render()`은 컴포넌트가 업데이트될 때마다 한번 실행됩니다. 비상태 함수형은 생명주기 메서드가 없음을 꼭 기억하길 바랍니다.
 
-* **ES6 Class Components:** You already used this type of component declaration in your four components. In the class definition, they extend from the React component. The `extend` hooks all the lifecycle methods, available in the React component API, to the component. That way you were able to use the `render()` class method. Additionally, you can store and manipulate state in ES6 class components by using `this.state` and `this.setState()`.
+* **ES6 클래스 컴포넌트** 이미 앞에서 ES6 클래스 컴포넌트를 사용했습니다. 클래스 정의 시, `extends Component` 부분은 리액트 컴포넌트로부터 확장한다는 뜻합니다. `extend`는 리액트 컴포넌트 API인 생명주기 메서드를 컴포넌트에 연결합니다. 때문에`render()` 클래스 메서드를 사용할 수 있는 겁니다. 또한 `this.state`와 `this.setState()`를 사용해 ES6 클래스 컴포넌트에서 상태를 저장하고 조작할 수 있게 됩니다.
 
-* **React.createClass:** The component declaration was used in older versions of React and still in JavaScript ES5 React applications. But [Facebook declared it as deprecated](https://facebook.github.io/react/blog/2015/03/10/react-v0.13.html) in favor of JavaScript ES6. They even added a [deprecation warning in version 15.5](https://facebook.github.io/react/blog/2017/04/07/react-v15.5.0.html). You will not use it in the book.
+* **React.createClass:**  `React.createClas`은 리액트 구버전의 클래스 선언문으로 ES5 애플리케이션에서 사용합니다. 페이스북은 ES6을 사용함에 따라 더 이상 `React.createClass`를 지원하지 않는다고 [공고](https://facebook.github.io/react/blog/2015/03/10/react-v0.13.html)했으며, [리액트 15.5 버전에서 비추천 경고문구](https://facebook.github.io/react/blog/2017/04/07/react-v15.5.0.html)를 추가했습니다. 이 책 역시 이 선언문을 사용하지 않습니다.
 
-So basically there are only two component declarations left. But when to use functional stateless components over ES6 class components? A rule of thumb is to use functional stateless components when you don't need local state or component lifecycle methods. Usually you start to implement your components as functional stateless components. Once you need access to the state or lifecycle methods, you have to refactor it to an ES6 class component. In our application, we started the other way around for the sake of learning React.
+따라서 `React.createClass`를 제외하고 비상태 함수형 컴포넌트 또는 ES6 클래스 컴포넌트 사용해 컴포넌트를 선언할 수 있습니다. 그렇다면 언제 비상태 함수형 컴포넌트를 사용해야할까요? 기본 원칙은 컴포넌트에 상태나 생명주기 메서드가 필요 없을 때 비상태 함수형 컴포넌트를 사용합니다. 일반적으로 컴포넌트를 만들 때, 처음 비상태 함수형 컴포넌트로 만들고 이후 state와 생명주기 메서드가 필요할 때 ES6 클래스로 리팩토링합니다. 
 
-Let's get back to your application. The App component uses internal state. That's why it has to stay as an ES6 class component. But the other three of your ES6 class components are stateless. They don't need access to `this.state` or `this.setState()`. Even more, they have no lifecycle methods. Let's refactor together the Search component to a stateless functional component. The Table and Button component refactoring will remain as your exercise.
+개발 중인 애플리케이션으로 돌아갑시다. App 컴포넌트는 state를 사용하기 때문에 ES6 클래스 컴포넌트가 되어야 합니다. 그러나 나머지 세 컴포넌트는 state가 없으며 `this.state` 또는 `this.setState()`를 사용하지 않습니다. 또한 생명주기 메서드도 없습니다. Search 컴포넌트를 비상태 컴포넌트로 만들어 봅시다. 이후 스스로 Table과 Button 컴포넌트도 비상태 컴포넌트를 리팩토링해봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1470,7 +1480,7 @@ function Search(props) {
 # leanpub-end-insert
 ~~~~~~~~
 
-That's basically it. The props are accessible in the function signature and the return value is JSX. But you can do more code wise in a functional stateless component. You already know the ES6 destructuring. The best practice is to use it in the function signature to destructure the props.
+기본적인 코드입니다. props는 함수 시그니처(function signature: 함수의 원형에 명시되는 매개변수 리스트)에 액서스할 수 있고 JSX를 반환합니다. 앞에서 ES6 구조해체를 배웠습니다. 가장 좋은 방법은 함수 시그니처로 props를 구조해제하는 것입니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1489,8 +1499,7 @@ function Search({ value, onChange, children }) {
 }
 ~~~~~~~~
 
-But it can get better. You know already that ES6 arrow functions allow you to keep your functions concise. You can remove the block body of the function. In a concise body an implicit return is attached thus you can remove the return statement. Since your functional stateless component is a function, you can keep it concise as well.
-
+함수형 비상태 컴포넌트를 ES6 화살표 함수로 바꿔 간결하게 작성해봅시다. 블록을 제거하고 return을 제거합니다.  
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
@@ -1505,13 +1514,12 @@ const Search = ({ value, onChange, children }) =>
 # leanpub-end-insert
 ~~~~~~~~
 
-The last step was especially useful to enforce only to have props as input and JSX as output. Nothing in between. Still, you could *do something* in between by using a block body in your ES6 arrow function.
-
+지금 만든 함수는 props를 입력으로 사용하고 JSX를 반환하는 경우에만 사용할 수 있습니다. 이들 사이에 *해야할 일*을 추가할 수 있습니다. 
 {title="Code Playground",lang=javascript}
 ~~~~~~~~
 const Search = ({ value, onChange, children }) => {
 
-  // do something
+  // 해야할 일
 
   return (
     <form>
@@ -1525,20 +1533,23 @@ const Search = ({ value, onChange, children }) => {
 }
 ~~~~~~~~
 
-But you don't need it for now. That's why you can keep the previous version without the block body. When using block bodies, people often tend to do too many things in the function. By leaving the block body out, you can focus on the input and output of your function.
+그러나 지금 필요하지 않기 때문에 위 코드로 변경하지 않을 겁니다. 대부분이 하나의 함수가 많은 기능을 하도록 코드를 작성하기 때문에 , 되도록 블록 부분을 걷어내 함수의 입력과 출력을 집중하여 개발하는 것이 좋습니다. 
 
-Now you have one lightweight functional stateless component. Once you would need access to its internal component state or lifecycle methods, you would refactor it to an ES6 class component. In addition you saw how JavaScript ES6 can be used in React components to make them more concise and elegant.
+이번 장에서 가벼운 비상태 함수 컴포넌트를 만들었고, 내부 상태나 생명주기 메서드가 필요한 경우 ES6 클래스 컴포넌트로 리팩토링하면 된다는 것을 배웠습니다. 그리고 ES6로 리액트 컴포넌트를 간결하고 보기 좋게 만들어보았습니다.
 
-### Exercises:
 
-* refactor the Table and Button component to stateless functional components
-* read more about [ES6 class components and functional stateless components](https://facebook.github.io/react/docs/components-and-props.html)
+### 실습하기
 
-## Styling Components
+* Table과 Button컴포넌트를 비상태 함수 컴포넌트로 리팩토링합니다.
+ 
+### 읽어보기
+* [[리액트 공식문서] ES6 클래스 컴포넌트와 비상태 함수 컴포넌트](https://facebook.github.io/react/docs/components-and-props.html)
 
-Let's add some basic styling to your application and components. You can reuse the *src/App.css* and *src/index.css* files. These files should already be in your project since you have bootstrapped it with *create-react-app*. They should be imported in your *src/App.js* and *src/index.js* files too. I prepared some CSS which you can simply copy and paste to these files, but feel free to use your own style at this point.
+## 컴포넌트 스타일링 Styling Components
 
-First, styling for your overall application.
+애플리케이션과 컴포넌트를 에쁘게 꾸며 봅시다. *src/App.css* 과 *src/index.css* 파일을 사용할 겁니다. 이 파일은 *create-react-app*를 사용하여 부트스트랩했기 때문에 이미 프로젝트 폴더에 있을 겁니다. CSS 파일은 *src/App.js* 및 *src/index.js*로 가져와야 합니다. 아래 CSS 코드를 그대로 사용할수 있지만 내가 원하는데로 자유롭게 고칠 수 있습니다.
+
+먼저 전반적인 애플리케이션의 스타일링을 수정합시다.
 
 {title="src/index.css",lang="css"}
 ~~~~~~~~
@@ -1588,7 +1599,7 @@ button:hover {
 }
 ~~~~~~~~
 
-Second, styling for your components in the App file.
+이어서 App 파일에서 컴포넌트 스타일를 지정합니다.
 
 {title="src/App.css",lang="css"}
 ~~~~~~~~
@@ -1657,9 +1668,9 @@ Second, styling for your components in the App file.
 }
 ~~~~~~~~
 
-Now you can use the style in some of your components. Don't forget to use React `className` instead of `class` as HTML attribute.
+이제 컴포넌트에 스타일이 적용되었습니다. HTML 속성인 `class` 대신에 JSX에서는 `className`을 사용합니다.
 
-First, apply it in your App ES6 class component.
+먼저 ES6 클래스 컴포넌트인 App 컴포넌트에 적용해봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1696,7 +1707,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Second, apply it in your Table functional stateless component.
+이어서 비상태 함수형 컴포넌트인 Tab 컴포넌트에도 적용해봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1733,9 +1744,9 @@ const Table = ({ list, pattern, onDismiss }) =>
 # leanpub-end-insert
 ~~~~~~~~
 
-Now you have styled your application and components with basic CSS. It should look quite decent. As you know, JSX mixes up HTML and JavaScript. Now one could argue to add CSS in the mix as well. That's called inline style. You can define JavaScript objects and pass them to the style attribute of an element.
+CSS로 애플리케이션과 컴포넌트 스타일을 지정했습니다. 이제 좀 괜찮게 보일 겁니다. JSX문법은 HTML과 자바스크립트를 섞어 사용하기 때문에 CSS를 추가할 수도 있습니다. 이를 인라인 스타일(Inline Style)이라고 합니다. 스타일을 자바스크립트 객체로 만든 다음 스타일 속성에 전달합니다. 
 
-Let's keep the Table column width flexible by using inline style.
+인라인 스타일로 테이블의 열 가로 넓이를 조절해봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1770,7 +1781,8 @@ const Table = ({ list, pattern, onDismiss }) =>
   </div>
 ~~~~~~~~
 
-The style is inlined now. You could define the style objects outside of your elements to make it cleaner.
+
+인라인 스타일을 적용해보았습니다. 다음으로 외부에 스타일 객체를 정의해 좀더 코드를 깔끔하게 만듭시다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -1787,35 +1799,36 @@ const smallColumn = {
 };
 ~~~~~~~~
 
-After that you would use them in your columns: `<span style={smallColumn}>`.
+그리고 각 열에 적용하면 됩니다. 가로넓이가 10%인 `smallColumn` 객체에 해당되면 `<span style={smallColumn}>`이라고 수정합니다.
 
-In general, you will find different opinions and solutions for style in React. You used pure CSS and inline style now. That's sufficient to get started.
+리액트의 스타일링 방법은 매우 다양합니다. 지금은 순수한 CSS와 인라인 스타일로 스타일을 정의했습니다. 이 정도로도 충분합니다.
 
-I don't want to be opinionated here, but I want to leave you some more options. You can read about them and apply them on your own. But if you are new to React, I would recommend to stick to pure CSS and inline style for now.
+앞으로 여러 리액트 컴포넌트 스타일링 라이브러리을 스스로 찾아보고 적용해보길 바랍니다. 그러나 입문 수준에서는 순수한 CSS와 인라인 스타일만을 사용할 것을 권장합니다.
 
-* [styled-components](https://github.com/styled-components/styled-components)
-* [CSS Modules](https://github.com/css-modules/css-modules)
+* [[리액트 컴포넌트 스타일링 라이브러리] styled-components](https://github.com/styled-components/styled-components)
+* [[리액트 컴포넌트 스타일링 라이브러리] CSS Modules](https://github.com/css-modules/css-modules)
 
 {pagebreak}
 
-You have learned the basics to write your own React application! Let's recap the last chapters:
+마침내 기본적인 리액트 애플리케이션을 만들 수 있게 되었습니다! 지금까지 배운 내용을 정리해봅시다.
 
 * React
-  * use `this.state` and `setState()` to manage your internal component state
-  * pass functions or class methods to your element handler
-  * use forms and events in React to add interactions
-  * unidirectional data flow is an important concept in React
-  * embrace controlled components
-  * compose components with children and reusable components
-  * usage and implementation of ES6 class components and functional stateless components
-  * approaches to style your components
+  * `this.state`와 `setState()`를 사용해 컴포넌트 내부 상태 관리
+  * 이벤트 핸들러로 함수 또는 클래스 메서드를 전달하는 방법
+  * 폼과 이벤트 처리
+  * 리액트의 단뱡향 데이터 흐름 원칙
+  * 제어되지 않은 컴포넌트를 제어되는 컴포넌트로 만들기
+  * 자식 컴포넌트와 재사용 가능한 컴포넌트 구현
+  * ES6 클래스 컴포넌트 및 비상태 함수형 컴포넌트의 사용과 구현
+  * 컴포넌트 스타일링 방법
 * ES6
-  * functions that are bound to a class are class methods
-  * destructuring of objects and arrays
-  * default parameters
-* General
-  * higher order functions
+  * 클래스 메서드에 함수 바인딩 방법
+  * 객체와 배열의 구조해체
+  * 기본 매개변수
+* 기본
+  * 고차 함수
 
-Again it makes sense to take a break. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far. Additionally you can read more in the official [documentation](https://facebook.github.io/react/docs/installation.html).
 
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/4.2).
+잠시 휴식시간을 가집시다. 학습한 내용을 되새기고 적용해보며 이것저것 만들어보며 테스트해보길 바랍니다. [리액트 공식 문서](https://facebook.github.io/react/docs/installation.html)에서 리액트에 관한 자세한 내용을 읽어보길 바랍니다.
+
+실습 코드는 [공식 깃허브 리퍼지토리](https://github.com/rwieruch/hackernews-client/tree/4.2)에서 확인할 수 있습니다.

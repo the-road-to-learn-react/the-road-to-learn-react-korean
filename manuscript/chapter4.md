@@ -1,22 +1,22 @@
-# Code Organization and Testing
+# 코드 구성과 테스트 Code Organization and Testing
 
-The chapter will focus on important topics to keep your code maintainable in a scaling application. You will learn about code organization to embrace best practices when structuring your folders and files. Another aspect you will learn is testing, which is important to keep your code robust. The whole chapter will take a step back from the practical application and explain a couple of these topics for you.
+규모가 큰 애플리케이션에서 코드를 유지 보수하는 방법에 대해 설명할 것입니다. 모범 예제를 통해 폴더와 파일 구성 방법과 조직적인 코드를 작성하는 방법에 배울 것입니다. 또한 테스트도 알아보겠습니다. 코드를 강력하게 유지하는 것은 중요합니다. 이번 장은 애플리케이션에서 한 걸음 물러나서 이 두 가지 주제를 설명할 것입니다.
 
-## ES6 Modules: Import and Export
+## ES6 모듈: Import/Export Modules: Import/Export
 
-In JavaScript ES6 you can import and export functionalities from modules. These functionalities can be functions, classes, components, constants and others. Basically everything that you can assign to a variable. The modules can be single files or whole folders with one index file as entry point.
+ES6에서는 모듈에서 기능을 가져오고(import) 내보낼 수 있습니다(export). 이 기능은 변수를 지정할 수 있는 함수, 클래스 컴포넌트, 상수 등이 해당됩니다. 모듈은 단일 파일이거나 index 파일이 있는 폴더 전체가 될 수 있습니다.
 
-In the beginning of the book, after you have bootstrapped your application with *create-react-app*, you already had several `import` and `export` statements across your initial files. Now it is the appropriate time to explain these.
+처음에 *create-react-app*으로 부트스트래핑한 후, 초기 파일에 `import`과 `export` 문이 있는 것을 보았을 것입니다. 이제 이들에 대해 알아보도록 하겠습니다.
 
-The `import` and `export` statements help you to share code across multiple files. Before there were already several solutions for this in the JavaScript environment. It was a mess, because you would want to follow one standardized way rather than having several approaches for the same thing. Now it is a native behavior since JavaScript ES6.
+`import`와 `export` 문으로 여러 파일에 같은 코드를 공유할 수 있습니다. 이에 대한 다양한 방법이 있었지만 표준화된 가이드가 없었기 때문에 혼란스러웠습니다. ES6 이후 `import`와 `export`로 표준화가 되었습니다.
 
-Additionally these statements embrace code splitting. You distribute your code across multiple files to keep it reusable and maintainable. The former is true because you can import the piece of code in multiple files. The latter is true because you have one single source where you maintain the piece of code.
+`import`와 `export`으로 코드 분할이 가능합니다. 코드를 여러 파일에 분산하면 재사용 및 유지 관리가 편리해집니다. 지금은 한 파일에서 코드를 작성하고 있기 때문에 나중에 꼭 해보길 바랍니다.
 
-Last but not least, it helps you to think about code encapsulation. Not every functionality needs to get exported from a file. Some of these functionalities should only be used in the file where they have been defined. The exports of a file are basically the public API to the file. Only the exported functionalities are available to be reused somewhere else. It follows the best practice of encapsulation.
+하지만 적어도 코드 캡슐화를 생각하는데 도움이 됩니다. 파일에 있는 모든 함수를 밖으로 내보내야하는 것은 아닙니다. 많은 기능 중 일부만 파일에 정의하여 사용하면 됩니다. 파일 내보내기(exports)는 기본적으로 모든 파일에서 사용 가능한 공용 API와 같은 개념입니다. 내보내진 함수만 다른 곳에서 재사용할 수 있습니다. 캡슐화를 보여주는 좋은 예이지요.
 
-But let's get practical. How do these `import` and `export` statements work? The following examples showcase the statements by sharing one or multiple variables across two files. In the end, the approach can scale to multiple files and could share more than simple variables.
+실제 `import`와 `export` 문을 어떻게 사용하는지 알아봅시다. 아래 예제는 두 파일(file1.js와 file2.js)에서 하나 이상의 변수를 공유합니다. 이처럼 여러 파일에서 `import`와 `export` 문으로 많은 변수들을 서로 공유할 수 있습니다. 
 
-You can export one or multiple variables. It is called a named export.
+`export`문으로 하나 또는 그 이상의 변수를 내보낼 수 있습니다.
 
 {title="Code Playground: file1.js",lang="javascript"}
 ~~~~~~~~
@@ -26,7 +26,7 @@ const lastname = 'wieruch';
 export { firstname, lastname };
 ~~~~~~~~
 
-And import them in another file with a relative path to the first file.
+첫 번째 파일의 상대 경로를 지정해 다른 파일로 가져와봅시다.
 
 {title="Code Playground: file2.js",lang="javascript"}
 ~~~~~~~~
@@ -36,7 +36,7 @@ console.log(firstname);
 // output: robin
 ~~~~~~~~
 
-You can also import all exported variables from another file as one object.
+또한 내보내진 변수를 다른 파일에서 한 객체로 가져올 수 있습니다.
 
 {title="Code Playground: file2.js",lang="javascript"}
 ~~~~~~~~
@@ -46,7 +46,7 @@ console.log(person.firstname);
 // output: robin
 ~~~~~~~~
 
-Imports can have an alias. It can happen that you import functionalities from multiple files that have the same named export. That's why you can use an alias.
+import 문에서 별명을 만들 수 있습니다. 여러 파일에 함수 이름이 중복될 경우, 별명을 만들어 가져올 수 있습니다. 아래와 같이 별명을 지정합니다.
 
 {title="Code Playground: file2.js",lang="javascript"}
 ~~~~~~~~
@@ -56,11 +56,11 @@ console.log(foo);
 // output: robin
 ~~~~~~~~
 
-Last but not least there exists the `default` statement. It can be used for a few use cases:
+마지막으로  `default` 문이 있습니다. 몇 가지 사용 사례가 있습니다.
 
-* to export and import a single functionality
-* to highlight the main functionality of the exported API of a module
-* to have a fallback import functionality
+* 단일 함수를 가져오고 내보낼 때
+* 모듈 API 내 주요 함수임을 강조하기 위해 
+* 폴백 import 기능(fallback import functionality)을 위해
 
 {title="Code Playground: file1.js",lang="javascript"}
 ~~~~~~~~
@@ -72,7 +72,7 @@ const robin = {
 export default robin;
 ~~~~~~~~
 
-You can leave out the curly braces for the import to import the default export.
+중괄호를 생략하고 기본값 가져오기(default export)를 import로 가져올 수 있습니다.
 
 {title="Code Playground: file2.js",lang="javascript"}
 ~~~~~~~~
@@ -82,7 +82,7 @@ console.log(developer);
 // output: { firstname: 'robin', lastname: 'wieruch' }
 ~~~~~~~~
 
-Furthermore, the import name can differ from the exported default name. You can also use it in conjunction with the named export and import statements.
+가져온 이름값과 기본 값으로 내보낼 이름값을 서로 다르게 처리할 수 있습니다. 명명된 export와 import 문을 붙여 사용할 수 있습니다. 
 
 {title="Code Playground: file1.js",lang="javascript"}
 ~~~~~~~~
@@ -112,7 +112,8 @@ console.log(firstname, lastname);
 // output: robin wieruch
 ~~~~~~~~
 
-In named exports you can spare additional lines and export the variables directly.
+
+명명된 exports에서 직접 변수를 내보낼 수 있습니다.
 
 {title="Code Playground: file1.js",lang="javascript"}
 ~~~~~~~~
@@ -120,20 +121,20 @@ export const firstname = 'robin';
 export const lastname = 'wieruch';
 ~~~~~~~~
 
-These are the main functionalities for ES6 modules. They help you to organize your code, to maintain your code and to design reusable module APIs. You can also export and import functionalities to test them. You will do that in one of the following chapters.
+ES6 모듈의 주요 기능을 살펴보았습니다. 짜임새있는 코드를 구성하고 유지 관리는 물론 재사용 가능한 모듈 API를 설계를 할 수 있습니다. 함수를 내보내고 가져와서 테스트를 할 수 있습니다. 다음 장에서 이 내용에 대해 알아보겠습니다.
 
-### Exercises:
+### 읽어보기
 
-* read more about [ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
-* read more about [ES6 export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)
+* [[MDN] ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
+* [[MDN] ES6 export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)
 
-## Code Organization with ES6 Modules
+## ES6 모듈로 코드 구성하기 Code Organization with ES6 Modules
 
-You might wonder: Why didn't we follow the best practices of code splitting for the *src/App.js* file? In the file we already have multiple components which could be defined in their own files/folders (modules). For the sake of learning React, it is practical to keep these things at one place. But once your React application grows, you should consider to split up these components into multiple modules. Only that way your application scales.
+*src/App.js* 파일에서 코드 분할을 하지 않은 이유에 대해 궁금할 겁니다. 이 파일의 코드는 파일/폴더(모듈)로 구분할 수 있는 여러 컴포넌트가 있습니다. 처음 리액트를 배울 떄는 모든 컴포넌트를 한 파일에 모으는 것이 좋습니다. 하지만 애플리케이션 규모가 커지면 컴포넌트를 모듈로 분할하는 것을 고려해야합니다. 규모가 큰 애플리케이션에서 사용하도록 합니다.
 
-In the following, I will propose several module structures you *could* apply. I would recommend to apply them as an exercise at the end of the book. To keep the book itself simple, I will not perform the code splitting and will continue the following chapters with the *src/App.js* file.
+아래와 같이 모듈로 나눠 볼 수 있을 겁니다. 이 책을 다 끝내고 실습하길 바랍니다. 책 내용을 단순하게 만들기 위해 코드 분할을 하지 않고 *src/App.js* 파일만을 계속 사용하겠습니다.
 
-One possible module structure could be:
+제가 제안하는 모듈 구조는 아래와 같습니다.
 
 {title="Folder Structure",lang="text"}
 ~~~~~~~~
@@ -154,7 +155,7 @@ src/
   Search.css
 ~~~~~~~~
 
-It separates the components into their own files, but it doesn't look too promising. You can see a lot of naming duplications and only the file extension differs. Another module structure could be:
+하지만 컴포넌트를 파일로 분리시켰을 뿐, 파일명은 같지만 확장자만 다른 파일들이 여러 있습니다. 아래와 같이 좀더 체계화된 모듈 구조로 만들 수 있습니다.
 
 {title="Folder Structure",lang="text"}
 ~~~~~~~~
@@ -179,9 +180,9 @@ src/
     index.css
 ~~~~~~~~
 
-It looks cleaner than before. The index naming of a file describes it as an entry point file to the folder. It is just a common naming convention, but you can use your own naming as well. In this module structure, a component is defined by its component declaration in the JavasScript file, but also by its style and tests.
+이전보다 훨씬 깨끗해 보입니다. `index.js`은 폴더의 첫 진입점인 파일을 말합니다. 일반적인 네이밍 컨벤션으로 다른 이름을 사용해도 괜찮습니다. 한 모듈은 컴포넌트가 정의된 자바스크립트 파일, 스타일 파일, 테스트 파일로 구성되어 있습니다.
 
-Another step could be extracting the constant variables from the App component. These constants were used to compose the Hacker News API URL.
+다음 단계는 App 컴포넌트에서 상수와 변수를 꺼내는 것입니다. 상수는 해커 뉴스 URL를 구성할 때 사용한 상수를 말합니다.
 
 {title="Folder Structure",lang="text"}
 ~~~~~~~~
@@ -204,7 +205,7 @@ src/
     ...
 ~~~~~~~~
 
-Naturally the modules would split up into *src/constants/* and *src/components/*. Now the *src/constants/index.js* file could look like the following:
+자연스럽게 *src/constants/* 와 *src/components/* 로 나뉩니다. 이제 *src/constants/index.js* 파일은 아래와 같을 겁니다.
 
 {title="Code Playground: src/constants/index.js",lang="javascript"}
 ~~~~~~~~
@@ -217,7 +218,7 @@ export const PARAM_PAGE = 'page=';
 export const PARAM_HPP = 'hitsPerPage=';
 ~~~~~~~~
 
-The *App/index.js* file could import these variables in order to use them.
+그리고  *App/index.js* 파일에서 사용할 변수를 가져옵니다.
 
 {title="Code Playground: src/components/App/index.js",lang=javascript}
 ~~~~~~~~
@@ -234,7 +235,7 @@ import {
 ...
 ~~~~~~~~
 
-When you use the *index.js* naming convention, you can omit the filename from the relative path.
+*index.js* 네이밍 컨벤션을 사용하면 상대 경로에서 파일 이름을 생략할 수 있습니다.
 
 {title="Code Playground: src/components/App/index.js",lang=javascript}
 ~~~~~~~~
@@ -253,7 +254,8 @@ import {
 ...
 ~~~~~~~~
 
-But what's behind the *index.js* file naming? The convention was introduced in the node.js world. The index file is the entry point to a module. It describes the public API to the module. External modules are only allowed to use the *index.js* file to import shared code from the module. Consider the following made up module structure to demonstrate it:
+*index.js* 파일에 어떤 일이 숨겨져있는 걸까요? 이 컨벤션은 node.js에서 도입되었습니다. index 파일은 모듈의 진입점으로 모듈의 퍼블릭 API를 말합니다. 외부 모듈은 *index.js* 파일을 사용해 모듈에서 퍼블릭 코드를 가져올 수 있습니다. 아래와 같은 구조를 예를 들어봅시다.
+
 
 {title="Folder Structure",lang="text"}
 ~~~~~~~~
@@ -268,7 +270,7 @@ src/
     CancelButton.js
 ~~~~~~~~
 
-The *Buttons/* folder has multiple button components defined in its distinct files. Each file can `export default` the specific component making it available to *Buttons/index.js*. The *Buttons/index.js* file imports all different button representations and exports them as public module API.
+The *Buttons/* 폴더에는 여튼 버튼 컴포넌트가 있습니다. 각 파일에  `export default`문으로 컴포넌트를 내고 *Buttons/index.js*으로 가져올 수 있습니다. *Buttons/index.js* 파일은 모든 버튼을 가져와 퍼블릭 모듈 API로서 내보냅니다.
 
 {title="Code Playground: src/Buttons/index.js",lang="javascript"}
 ~~~~~~~~
@@ -283,7 +285,7 @@ export {
 };
 ~~~~~~~~
 
-Now the *src/App/index.js* can import the buttons from the public module API located in the *index.js* file.
+*src/App/index.js*는 *index.js* 파일에 있는 퍼블릭 모듈 API에서 버튼을 가져올 수 있습니다.
 
 {title="Code Playground: src/App/index.js",lang=javascript}
 ~~~~~~~~
@@ -294,33 +296,33 @@ import {
 } from '../Buttons';
 ~~~~~~~~
 
-By going with this constraint, it would be a bad practice to reach into other files than the *index.js* in the module. It would break the rules of encapsulation.
+이렇게 제약조건을 두면, 모듈 내 *index.js*가 아닌 다른 파일로 접근하는 것은 좋지 않습니다. 캡슐화 규칙을 깨트리기 때문입니다.
 
 {title="Code Playground: src/App/index.js",lang=javascript}
 ~~~~~~~~
-// bad practice, don't do it
+// 이렇게 하지 마세요.
 import SubmitButton from '../Buttons/SubmitButton';
 ~~~~~~~~
 
-Now you know how you could refactor your source code in modules with the constraints of encapsulation. As I said, for the sake of keeping the book simple I will not apply these changes. But you should do the refactoring when you finished reading the book.
+여러분은 이번 장에서 캡슐화 제약으로 소스 코드를 리팩토링을 할 수 있는 방법을 배웠습니다. 앞에서 말씀드렸듯이, 이 책의 내용을 복잡하게 만들지 않고 간결하게 하기 위해 리팩토링하지 않을 겁니다. 이 책을 모두 마치고 숙제로 해보길 바랍니다.
 
-### Exercises:
+### 실습하기
 
-* refactor your *src/App.js* file into multiple component modules when you finished the book
+* 책을 다 마친 후 *src/App.js*파일을 여러 파일로 나누어 컴포넌트 모듈로 만듭니다.
 
-## Snapshot Tests with Jest
+## Jest 스냅샷테스트 Snapshot Tests with Jest
 
-The book will not dive deeply into the topic of testing, but it shouldn't be unmentioned. Testing your code in programming is essential and should be seen as mandatory. You want to keep the quality of your code high and an assurance that everything works.
+이 책에서 테스트를 깊게 다루지 않지만, 꼭 알고 있어야할 주제입니다. 프로그래밍에서 테스트는 필수입니다. 테스트야 말로 코드의 품질을 높이고 모든 것이 문제없이 잘 작동함을 보장합니다.
 
-Perhaps you have heard about the testing pyramid. There are end-to-end tests, integration tests and unit tests. If you are not familiar with those, the book gives you a quick and basic overview. A unit test is used to test an isolated and small block of code. It can be a single function that is tested by an unit test. However, sometimes the units work well in isolation yet don't work in combination with other units. They need to be tested as a group as units. That's where integration tests can help out by covering whether units work well together. Last but not least, an end-to-end test is the simulation of a real user scenario. It could be an automated setup in a browser simulating the login flow of an user in a web application. While unit tests are fast and easy to write and to maintain, end-to-end tests are the opposite of this spectrum.
+테스트 피라미드(testing pyramid)를 한 번쯤 들어봤을 겁니다. 테스트 미드는 종단간 테스트(end-to-end test), 통합 테스트(integration test), 단위 테스트(unit test)로 구성됩니다. 익숙하지 못한 분들을 위해 간략히 설명하겠습니다. 단위 테스트는 독립적이고 작은 코드 블록을 테스트 합니다. 단위 테스트 함수는 단일 함수가 됩니다. 그러나 독립적으로 문제가 없지만 여러 유닛을 결합하는 경우 잘 작동하지 않기도 합니다. 유닛을 그룹으로 묶어 테스트를 진행해야 합니다. 이를 위해 통합 테스트는 각 유닛들이 잘 작동하는지 확인할 수 있습니다. 마지막으로 실제 사용자 시나리오 시물레이션하는 종단간 테스트를합니다. 그 예로 로그인과 같은 기능을 웹 자동화 테스트(Web Automation Testing)로 수행할 수 있습니다.
 
-How many tests do I need of each type? You want to have many unit tests to cover your isolated functions. After that, you can have several integration tests to cover that the most important functions work in combination as expected. Last but not least, you might want to have only a few end-to-end tests to simulate critical scenarios in your web application. That's it for the general excursion in the world of testing.
+그렇다면 각 유형별로 몇 개의 테스트가 필요할까요? 독립적인 함수를 위해 일 경우 많은 단위 테스트를 필요합니다. 그 다음 잘 작동하는 지 확인하기 위해 몇 가지 통합 테스트를 수행할 수 있습니다. 마지막으로 최종 사용자 시나리오를 점검하기 위해 몇 가지 종단간 테스트만 수행하는 것이 좋습니다. 지금까지 일반적인 테스트 과정에 대해 설명했습니다.
 
-So how do you apply this knowledge in testing your React application? The foundation for testing in React are component tests which can be generalized as unit tests and a part of it as snapshot tests. You will conduct unit tests for your components in the next chapter by using a library called Enzyme. In this chapter, you will focus on another kind of tests: snapshot tests. That's were Jest comes into play.
+그렇다면 리액트 애플리케이션에 테스트를 어떻게 진행해야 할까요? 기본적인 리액트 테스트는 컴포넌트 테스트로 테스트로 유닛 테스트와 스냅샷 테스트입에 해당합니다. 다음 장에서 Enzyme 라이브러리로 테스트 코드를 작성해보겠습니다. 이번 장에서는 또다른 테스트 유형인 [Jest(제스트)](https://facebook.github.io/jest/)을 가지고 스냅샷 테스트에(snapshot test) 대해 알아보겠습니다.  
 
-[Jest](https://facebook.github.io/jest/) is a JavaScript testing framework that is used at Facebook. In the React community, it is used for React component tests. Fortunately *create-react-app* already comes with Jest, so you don't need to worry about setting it up.
+[제스트](https://facebook.github.io/jest/)은 페이스북에서 사용하는 자바스크립트 테스트 프레임워크로 컴포넌트 테스트를 위해 사용합니다. *create-react-app*에 이미 제스트가 있어서 새로 설치할 필요가 없습니다.
 
-Let's start to test your first components. Before you can do that, you have to export the components, which you are going to test, from your *src/App.js* file. Afterward you can test them in a different file. You have learned about this in the code organization chapter.
+첫 번째 컴포넌트를 테스트해봅시다. 그 전에  *src/App.js*파일에서 테스트할 컴포넌트를 내보내야 합니다. 그렇게 해야 다른 파일에서 테스트할 수 있기 때문입니다. 이 내용은 이전 장에서 배웠던 것입니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -343,8 +345,8 @@ export {
 # leanpub-end-insert
 ~~~~~~~~
 
-In your *App.test.js* file, you will find a first test that came with *create-react-app*. It verifies that the App component would render without any errors.
-
+ *create-react-app*에서제공하는 *App.test.js* 파일이 바로 첫 번째 테스트 파일입니다. 이 테스트는 App 컴포넌트가 오류없이 렌더링되고 있는지를 확인합니다.
+ 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
 import React from 'react';
@@ -357,32 +359,34 @@ it('renders without crashing', () => {
 });
 ~~~~~~~~
 
-The "it"-block describes one test case. It comes with a test description and when you test it, it can either succeed or fail. Furthermore, you could wrap it into a "describe"-block that defines your test suit. A test suit could include a bunch of the "it"-blocks for one specific component. You will see those "describe"-blocks later on. Both blocks are used to separated and organize your test cases.
+"it"문은 테스트 케이스 입니다. 테스트 내용이 뒤따르고 테스트 시 성공 또는 실패합니다. 추후에 "describe" 문으로 "it" 전체를 테스트 슈트(test suit)로 감쌀 수 있습니다. 테스트 슈트는 하나의 특정 컴포넌트의 "it"문이 포함됩니다. 나중에 "describe"문을 확인하길 바랍니다. 이들 모두 테스트 케이스를 분리하고 구성하는데 사용합니다.
 
-You can run your test cases by using the interactive *create-react-app* test script on the command line. You will get the output for all test cases on your command line interface.
+커맨드 라인에서  *create-react-app* 테스트 스크립트를 사용해 테스트를 진행할 수 있습니다. 모든 테스트 케이스에 대한 출력을 볼 수 있습니다. 아래 명령어로 확인해봅시다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm test
 ~~~~~~~~
 
-**Note:** If errors show up when you run the single test for the App component for the first time, it could be because of the unsupported fetch method that is used in `fetchSearchTopStories()` which is triggered in `componentDidMount()`. You can make it work by following these two steps:
+**중요** App 컴포넌트 유닛 테스트에서 오류가 발생하면, `componentDidMount()`메서드 안에 `fetchSearchTopStories()`에서 fetch 메서드가 작동하지 않음을 말합니다. 위 경우 아래 가이드를 참고해 해결합시다.
 
-* On the command line, install the following package: `npm install isomorphic-fetch`
-* Include it in your *App.js* file: `import fetch from 'isomorphic-fetch';`
+* 커맨드 라인에서 다음 명령어로 패키지를 설치합니다. `npm install isomorphic-fetch`
+* *App.js* 파일에 다음 코드를 추가합니다: `import fetch from 'isomorphic-fetch';`
 
-Now Jest enables you to write snapshot tests. These tests make a snapshot of your rendered component and run this snapshot against future snapshots. When a future snapshot changes, you will get notified in the test. You can either accept the snapshot change, because you changed the component implementation on purpose, or deny the change and investigate for the error. It complements unit tests very well, because you only test the diffs of the rendered output. It doesn't add big maintenance costs, because you can simply accept changed snapshots when you changed something on purpose for the rendered output in your component.
+제스트를 사용해 스냅샷 테스트를 작성해봅시다. 이 테스트는 렌더링된 테스트의 스냅샷 만들어 차기 스냡샷(future snapshot)에 대해 기존 스냡샷을 실행합니다. 차기 스냡샷이 변경되면, 테스트가 알려줍니다. 오류 의도적으로 컴포넌트를 수정했을 경우, 또는 수정을 원치않은 경우에 스냅샷 변경을 수락할 수 있습니다. 렌더링 결과와 diffs(차이)만 테스트하기 때문에 단위 테스트를 잘 보완합니다.
 
-Jest stores the snapshots in a folder. Only that way it can validate the diff against a future snapshot. Additionally, the snapshots can be shared across teams by having them in one folder.
+컴포넌트 내 렌더된 출력을 위해 수정할 때, 변경된 스냅샷만 간단히 수락하면 되기 때문에 관리하기 어렵지 않습니다.
 
-Before writing your first snapshot test with Jest, you have to install an utility library.
+제스트는 스냅샷을 폴더에 저장합니다. 이런 방법으로 차기 스냡샷과 비교해 diff를 검증합니다. 또한 단일 폴더에 스냅샷을 공유할 수 있습니다.
+
+제스트로 첫 번째 스냅샷 테스트를 작성하기 전, `react-test-renderer` 유틸리티 라이브러리를 설치합시다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm install --save-dev react-test-renderer
 ~~~~~~~~
 
-Now you can extend the App component test with your first snapshot test. First, import the new functionality from the node package and wrap your previous "it"-block for the App component into a descriptive "describe"-block. In this case, the test suit is only for the App component.
+이제 첫 번째 스냡샷 테스트로 App 컴포넌트를 확장합시다. 먼저 노드 패키지에서 설치한 라이브러리를 가져오고, App 컴포넌트를 "it" 문으로 감싼 다음, 다시 "describe" 문으로 감쌉니다. 이 경우 테스트 수트는 App 컴포넌트입니다.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -407,7 +411,7 @@ describe('App', () => {
 # leanpub-end-insert
 ~~~~~~~~
 
-Now you can implement your first snapshot test by using a "test"-block.
+이제 "test" 블록으로 첫 번째 스냅샷 테스트를 작성합시다.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -436,11 +440,13 @@ describe('App', () => {
 });
 ~~~~~~~~
 
-Run your tests again and see how the tests either succeed or fail. They should succeed. Once you change the output of the render block in your App component, the snapshot test should fail. Then you can decide to update the snapshot or investigate in your App component.
+다시 테스트를 실행해 테스트가 성공 또는 실패했는지 확인하세요. 성공해야 합니다. App 컴포넌트 내 렌더 내 출력을 변경하면 스냅샷 테스트가 실패합니다. 스냅샷을 업데이트하거나 App 컴포넌트를 확인할 수 있습니다.
 
-Basically the `renderer.create()` function creates a snapshot of your App component. It renders it virtually and stores the DOM into a snapshot. Afterward, the snapshot is expected to match the previous snapshot from when you ran your snapshot tests the last time. This way, you can assure that your DOM stays the same and doesn't change anything by accident.
+`renderer.create()` 함수는 App 컴포넌트 스냅샷을 생성합니다. 가상으로 렌더링하여 스냅샷에 DOM을 저장합니다. 스냅샷은 마지막 실행한 스냡샷과 일치하는지 확인합니다. 이런 방식으로 DOM이 동일하게 유지되고 실수로 아무것도 변경되지 않은 것을 확인합니다.
 
-Let's add more tests for our independent components. First, the Search component:
+독립적인 컴포넌트를 대상으로 테스트를 작성해봅시다. 
+
+첫 번째, Search 컴포넌트부터 시작합시다.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -473,9 +479,9 @@ describe('Search', () => {
 # leanpub-end-insert
 ~~~~~~~~
 
-The Search component has two tests similar to the App component. The first test simply renders the Search component to the DOM and verifies that there is no error during the rendering process. If there would be an error, the test would break even though there isn't any assertion (e.g. expect, match, equal) in the test block. The second snapshot test is used to store a snapshot of the rendered component and to run it against a previous snapshot. It fails when the snapshot has changed.
+Search 컴포넌트는 App 컴포넌트와 비슷한 두 가지 테스트가 있습니다. 첫 번째 테스트는 Search 컴포넌트를 DOM에 렌더링하고 렌더링 프로세스 중에 오류가 없는지 확인합니다. 오류가 있는 경우, 테스트 블록 내 expect, match, equal 등 어설(assertion)이 없어도 테스트가 중단됩니다. 두 번째 스냅샷 테스트는 렌더링된 컴포넌트의 스냅샷을 저장하고 이전 스냅샷과 비교하여 실행합니다. 스냅샷이 번경되면 실패합니다.
 
-Second, you can test the Button component whereas the same test rules as in the Search component apply.
+두 번째, Button 컴포넌트는 Search 컴포넌트와 동일한 테스트 규칙이 적용되지만 테스트를 할 수 있습니다.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -506,7 +512,7 @@ describe('Button', () => {
 # leanpub-end-insert
 ~~~~~~~~
 
-Last but not least, the Table component that you can pass a bunch of initial props to render it with a sample list.
+마지막으로 Table 컴포넌트는 목록을 렌더링하기 위해 초기 props를 전달합니다.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -544,27 +550,29 @@ describe('Table', () => {
 # leanpub-end-insert
 ~~~~~~~~
 
-Snapshot tests usually stay pretty basic. You only want to cover that the component doesn't change its output. Once it changes the output, you have to decide if you accept the changes. Otherwise you have to fix the component when the output is not the desired output.
+스냅샷 테스트는 매우 기본적인 것만 다룹니다. 컴포넌트가 출력을 변경하지 않는지만 확인하면 됩니다. 일단 출력을 변경하면 변경 사항을 수락할지 여부를 결정해야 합니다. 그렇지 않으면 원하는 출력이 아닐 경우, 컴포넌트를 수정해야 합니다.
 
-### Exercises:
+### 실습하기
 
-* see how a snapshot test fails once you change your component's return value in the `render()` method
-  * either accept or deny the snapshot change
-* keep your snapshots tests up to date when the implementation of components change in next chapters
-* read more about [Jest in React](https://facebook.github.io/jest/docs/tutorial-react.html)
+* `render()`메서드에서 컴포넌트 리턴 값을 변경하면 스냅샷 테스트가 실패하는지 확인합니다.
+  * 스냅샷 변경을 수락하거나 거부합니다.
+* 다음 장에서 컴포넌트가 변경될 때마다 스냅샷 테스트를 최신 상태로 유지합니다.
 
-## Unit Tests with Enzyme
+### 읽어보기
+* [[리액트 공식문서] Jest](https://facebook.github.io/jest/docs/tutorial-react.html)
 
-[Enzyme](https://github.com/airbnb/enzyme) is a testing utility by Airbnb to assert, manipulate and traverse your React components. You can use it to conduct unit tests to complement your snapshot tests in React.
+## Enzyme 유닛 테스트
 
-Let's see how you can use enzyme. First you have to install it since it doesn't come by default with *create-react-app*. It comes also with an extension to use it in React.
+[Enzyme(엔자임)](https://github.com/airbnb/enzyme)는 에어비앤비가 만든 테스트 유틸리티로 리액트 컴포넌트를 확인, 조작, 통과시킵니다. 엔자임은 스냅샷 테스트를 보완하여 단위 테스트를 수행합니다.
+
+엔자임을 어떻게 사용하는지 알아봅시다. 첫째, 엔자임은 *create-react-app*에서 제공하지 않기 때문에 먼저 설치합시다. 리액트 확장판도 함께 설치합니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm install --save-dev enzyme react-addons-test-utils enzyme-adapter-react-16
 ~~~~~~~~
 
-Second, you need to include it in your test setup and initialize its Adapter for using it in React.
+둘째, 엔자임을 테스트 설정에 추가하고 리액트가 사용할 수 있게 어댑터를 초기화합시다.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -582,7 +590,7 @@ Enzyme.configure({ adapter: new Adapter() });
 # leanpub-end-insert
 ~~~~~~~~
 
-Now you can write your first unit test in the Table "describe"-block. You will use `shallow()` to render your component and assert that the Table has two items, because you pass it two list items. The assertion simply checks if the element has two elements with the class `table-row`.
+Table 컴포넌트의 "describe"블록에 첫 번째 단위 테스트를 작성합시다. You will use `shallow()`를 사용하여 컴포넌트를 렌더링하고 두 개의 목록을 전달하기 때문에 두 항목이 있다고 주장합니다. 어설션은 `table-row` 클래스에 두 요소가 있는지 간단히 체크합니다. 
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -621,39 +629,42 @@ describe('Table', () => {
 });
 ~~~~~~~~
 
-Shallow renders the component without its child components. That way, you can make the test very dedicated to one component.
+`shallow()`는 자식 컴포넌트가 없는 컴포넌트를 렌더링합니다. 이런 방식으로 하나의 컴포넌트를 전담해 테스트를 실시합니다.
 
-Enzyme has overall three rendering mechanisms in its API. You already know `shallow()`, but there also exist `mount()` and `render()`. Both instantiate instances of the parent component and all child components. Additionally `mount()` gives you access to the component lifecycle methods. But when to use which render mechanism? Here some rules of thumb:
+엔자임은 API에 세 가지 렌더링 메커니즘을 가지고 있습니다. `shallow()`이외에 `mount()`와 `render()`도 있습니다. 두 인스턴스 모두 부모 컴포넌트 및 하위 컴포넌트의 인스턴스를 인스턴스화합니다. 또한 `mount()`는 컴포넌트 생명주기 메서드를 접근할 수 있습니다. 어떤 렌더링 매커니즘을 사용해야 할까요? 아래 몇 가지 규칙이 있습니다.
 
-* Always begin with a shallow test
-* If `componentDidMount()` or `componentDidUpdate()` should be tested, use `mount()`
-* If you want to test component lifecycle and children behavior, use `mount()`
-* If you want to test a component's children rendering with less overhead than `mount()` and you are not interested in lifecycle methods, use `render()`
+* shallow 테스트를 제일 먼저 시작합니다. 
+* `componentDidMount()` 또는 `componentDidUpdate()` 테스트 시, `mount()`를 사용합니다.
+* 컴포넌트의 생명주기와 자식 컴포넌트를 테스트 시, `mount()`를 사용합니다.
+* `mount()`보다 적은 오버헤드(overhead)로 자식 렌터링을 테스트하고 생명주기 메서드와 무관하다면 `render()`을 사용합니다.
 
-You could continue to unit test your components. But make sure to keep the tests simple and maintainable. Otherwise you will have to refactor them once you change your components. That's why Facebook introduced snapshot tests with Jest in the first place.
+컴포넌트 테스트를 계속할 수 있습니다. 테스트를 간단하고 유지가능하게 만들도록 합니다. 그렇지 않으면 컴포넌트를 변경한 후에 리팩토링해야 합니다. 페이스북이 제스트와 함께 스냅샷 테스트를 도입한 이유가 바로 이 때문입니다.
 
-### Exercises:
+### 실습하기
 
-* write a unit test with Enzyme for your Button component
-* keep your unit tests up to date during the following chapters
-* read more about [enzyme and its rendering API](https://github.com/airbnb/enzyme)
+* Button 컴포넌트에 대한 Enzyme 유닛 테스트 코드를 작성해봅니다.
+* 다음 장에서 유닛 테스트를 최신 상태로 유지합니다.
 
-## Component Interface with PropTypes
+### 읽어보기
 
-You may know [TypeScript](https://www.typescriptlang.org/) or [Flow](https://flowtype.org/) to introduce a type interface to JavaScript. A typed language is less error prone, because the code gets validated based on its program text. Editors and other utilities can catch these errors before the program runs. It makes your program more robust.
+* [enzyme과 API 렌더링](https://github.com/airbnb/enzyme)
 
-In the book, you will not introduce Flow or TypeScript, but another neat way to check your types in components. React comes with a built-in type checker to prevent bugs. You can use PropTypes to describe your component interface. All the props that get passed from a parent component to a child component get validated based on the PropTypes interface assigned to the child component.
+## PropTypes 컴포넌트 인터페이스 Component Interface with PropTypes
 
-The chapter will show you how you can make all your components type safe with PropTypes. I will omit the changes for the following chapters, because they add unnecessary code refactorings. But you should keep and update them along the way to keep your components interface type safe.
+자바스크립트 타입 인터페이스인 [타입스크립트(TypeScript)](https://www.typescriptlang.org/) 또는 [플로우(Flow)](https://flowtype.org/)에 대해 한 번쯤 들어보았을 겁니다. 프로그래밍 된 텍스트는 프로그램 텍스트를 기반으로 유효성을 검사하므로 입력 오류가 발생하기 쉽습니다. 프로그램이 실행되기 전 에디터와 유틸리티로 오류를 체크할 수 있습니다. 프로그램을 더 강력하게 만들어 줍니다. 
 
-First, you have to install a separate package for React.
+이 책에서는 Flow 또는 TypeScript를 소개하지 않지만 컴포넌트 유형을 체크하는 방법으로 PropType를 사용합니다. 리액트는 버그를 방지하고자 내장된 타입 검사기가 있습니다. PropType는 컴포넌트 인터페이스입니다. 부모 컴포넌트에서 하위 컴퍼넌트로 전달되는 모든 props는 PropTypes 인터페이스에 따라 유효 여부를 점검받습니다. 
+
+이 장에서는 PropType을 사용하여 모든 컴포넌트 타입을 안전하게 만들 수 있는 방법을 배웁니다. 다음 장을 위해 변경 내용을 생략할 것입니다. 불필요한 코드 리팩터링을 추가하기 때문입니다. 그러나 컴퍼넌트 인터페이스 타입을 안전하게 유지하기 위해 지속적으로 업데이트해야 합니다. 
+
+먼저 리액트와 별도로 PropType 패키지를 설치합니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm install prop-types
 ~~~~~~~~
 
-Now, you can import the PropTypes.
+다음 PropTypes를 불러옵니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -662,7 +673,7 @@ import PropTypes from 'prop-types';
 # leanpub-end-insert
 ~~~~~~~~
 
-Let's start to assign a props interface to the components:
+컴포넌트에 props 인터페이스를 할당해봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -684,7 +695,7 @@ Button.propTypes = {
 # leanpub-end-insert
 ~~~~~~~~
 
-Basically that's it. You take every argument from the function signature and assign a PropType to it. The basic PropTypes for primitives and complex objects are:
+기본적으로 이 것이 다 입니다. 함수 시그니처에서 모든 인자를 가져와 PropType을 할당합니다. PropType 은 아래와 같습니다.
 
 * PropTypes.array
 * PropTypes.bool
@@ -693,14 +704,14 @@ Basically that's it. You take every argument from the function signature and ass
 * PropTypes.object
 * PropTypes.string
 
-Additionally you have two more PropTypes to define a renderable fragment (node), e.g. a string, and a React element:
+또한 렌더링 가능한 노드(문자열, 리액트 요소 등)를 정의하는 PropType가 있습니다.
 
 * PropTypes.node
 * PropTypes.element
 
-You already used the `node` PropType for the Button component. Overall there are more PropType definitions that you can read up in the official React documentation.
+Button 컴포넌트에 이미 `node` PropType를 사용했습니다. 리액트 공식문서에서 더 PropType의 정의가 더 많이 있습니다.
 
-At the moment all of the defined PropTypes for the Button are optional. The parameters can be null or undefined. But for several props you want to enforce that they are defined. You can make it a requirement that these props are passed to the component.
+Button에 정의된 모든 PropTypes은 선택 사항입니다. 매개 변수는 null이거나 정의되지 않을 수 있습니다. 그러나 여러 Props가 있는 경우, props를 반드시 정의해야 합니다. 컴포넌트로 props를 전달하는 것이 필수사항으로 설정할 수 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -715,7 +726,7 @@ Button.propTypes = {
 };
 ~~~~~~~~
 
-The `className` is not required, because it can default to an empty string. Next you will define a PropType interface for the Table component:
+`className`의 기본값이 빈 문자열임으로 필수가 아닙니다. 다음 Table 컴포넌트의 PropType를 작성합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -727,7 +738,7 @@ Table.propTypes = {
 # leanpub-end-insert
 ~~~~~~~~
 
-You can define the content of an array PropType more explicit:
+`list` 내 각 프로퍼티의 PropType는 배열로 간결하게 정의합시다. 
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -745,9 +756,9 @@ Table.propTypes = {
 };
 ~~~~~~~~
 
-Only the `objectID` is required, because you know that some of your code depends on it. The other properties are only displayed, thus they are not necessarily required. Moreover you cannot be sure that the Hacker News API has always a defined property for each object in the array.
+다른 프로퍼티 중 `objectID`의 PropTypes은 필수항목입니다. 왜냐하면 코드 일부가 `objectID`에 의존하기 때문입니다. 다른 프로퍼티는 애플리케이션에 표시만 때문에 필수항목은 아닙니다. 또한 해커 뉴스 API가 배열 내 각 객체에 대해 항상 정의된 프로퍼티를 가지고 있다고 단언할 수 없습니다.
 
-That's it for PropTypes. But there is one more aspect. You can define default props in your component. Let's take again the Button component. The `className` property has an ES6 default parameter in the component signature.
+지금까지 PropTypes에 대해 알아보았습니다. 그러나 한 가지가 더 남았습니다. 컴포넌트에 디폴트 props를 정의할 수 있습니다. Button 컴포넌트를 다시 봅시다. `className` 프로퍼티는 컴포넌트 시그니처에 기본 매개 변수를 가지고 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -759,8 +770,7 @@ const Button = ({
   ...
 ~~~~~~~~
 
-You could replace it with the internal React default prop:
-
+기본 매개 변수를 리액트 기본값 props으로 바꿔봅시다.
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
@@ -785,27 +795,29 @@ Button.defaultProps = {
 # leanpub-end-insert
 ~~~~~~~~
 
-Same as the ES6 default parameter, the default prop ensures that the property is set to a default value when the parent component didn't specify it. The PropType type check happens after the default prop is evaluated.
+ES6 기본 매개 변수와 동일하게, default prop은 부모 컴포넌트가 지정하지 않은 경우, 프로퍼티가 기본 값을 설정합니다. PropType 타입 검사는 default prop가 평가된 후에 수행됩니다.   Same as the ES6 default parameter,  the default prop ensures that the property is set to a default value when the parent component didn't specify it. The PropType type check happens after the default prop is evaluated.
+. 
+테스트를 다시 실행해, 커맨드 라인에서 컴포넌트 PropType 오류가 있는지 확인합니다. PropType 정의가 필수적인 테스트에서는 컴포넌트의 모든 props가 정의되지 않았기 때문에 오류가 발생할 수 있습니다. 테스트 자체는 통과됩니다. 이 오류를 피하기 위해 요구되는 모든 props를 전달합니다.
 
-If you run your tests again, you might see PropType errors for your components on your command line. It can happen because you didn't define all props for your components in the tests that are defined as required in your PropType definition. The tests themselves all pass correctly though. You can pass all required props to avoid these errors.
+### 실습하기
 
-### Exercises:
+* Search 컴포넌트의 PropType를 정의합니다.
+* 다음 장에서 컴포넌트를 추가하거나 수정할 때 PropType도 함께 추가합니다.
 
-* define the PropType interface for the Search component
-* add and update the PropType interfaces when you add and update components in the next chapters
-* read more about [React PropTypes](https://facebook.github.io/react/docs/typechecking-with-proptypes.html)
+### 읽어보기
+* [[리액트 공식문서] 리액트 PropTypes](https://facebook.github.io/react/docs/typechecking-with-proptypes.html)
 
 {pagebreak}
 
-You have learned how to organize your code and how to test it! Let's recap the last chapters:
+여러분은 코드 구성과 테스트 방법을 배웠습니다! 이번 장에서 배운 내용을 정리해봅시다.
 
-* React
-  * PropTypes let you define type checks for components
-  * Jest allows you to write snapshot tests for your components
-  * Enzyme allows you to write unit tests for your components
+* 리액트
+  * PropTypes는 컴포넌트의 타입을 정의합니다.
+  * Jest는 컴포넌트의 스냅샷 테스트를 시행합니다.
+  * Enzyme은 컴포넌트 유닛 테스트를 시행합니다.
 * ES6
-  * import and export statements help you to organize your code
-* General
-  * code organization allows you to scale your application with best practices
+  * `import`와 `export` 문으로 코드를 구성합니다.
+* 일반
+  * 코드 구성은 애플리케이션을 확장할 수 있는 좋은 방법입니다.
 
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/4.4).
+실습 코드는 [깃허브 리퍼지토리](https://github.com/rwieruch/hackernews-client/tree/4.2)에서 확인할 수 있습니다.

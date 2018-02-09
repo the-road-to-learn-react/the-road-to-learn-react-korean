@@ -1,35 +1,36 @@
-# Getting Real with an API
+# API 실제 사용 Getting Real with an API
 
-Now it's time to get real with an API, because it can get boring to deal with sample data.
+이제 API로 데이터를 요청하고 받아봅시다.
 
-If you are not familiar with APIs, I encourage you [to read my journey where I got to know APIs](https://www.robinwieruch.de/what-is-an-api-javascript/).
+API에 잘 모른다면, 저자가 쓴 [아무도 나에게 API를 알려주지 않았다](https://www.robinwieruch.de/what-is-an-api-javascript/) 글을 읽어보길 바랍니다. 
 
-Do you know the [Hacker News](https://news.ycombinator.com/) platform? It's a great news aggregator about tech topics. In this book, you will use the Hacker News API to fetch trending stories from the platform. There is a [basic](https://github.com/HackerNews/API) and [search](https://hn.algolia.com/api) API to get data from the platform. The latter one makes sense in the case of this application in order to search stories on Hacker News. You can visit the API specification to get an understanding of the data structure.
+[해커 뉴스(Hacker News)](https://news.ycombinator.com/) 플랫폼은 기술 주제 관련 우수 기사를 큐레이션하는 플랫폼입니다. 이 책에서는 해커 뉴스 API를 사용해 플랫폼에서 인기 급상승 중인 글 리스트를 보여줄 것입니다. 해커 뉴스는 [데이터](https://github.com/HackerNews/API) 조회 API와 [검색](https://hn.algolia.com/api) API를 제공합니다. 사이트에서 API 명세서를 읽어본다면 데이터 구조를 이해할 수 있을 겁니다.
 
-## Lifecycle Methods
+## 생명주기 메서드 Lifecycle Methods
 
-You will need to know about React lifecycle methods before you can start to fetch data in your components by using an API. These methods are a hook into the lifecycle of a React component. They can be used in ES6 class components, but not in functional stateless components.
+API를 사용하기 전 컴포넌트 생명주기 메서드에 대해 알아봅시다. 생명주기 메서드는 ES6 클래스 컴포넌트에서 사용할 수 있지만 비상태 컴포넌트에서는 사용할 수 없습니다. 
 
-Do you remember when a previous chapter taught you about JavaScript ES6 classes and how they are used in React? Apart from the `render()` method, there are several methods that can be overridden in a React ES6 class component. All of these are the lifecycle methods. Let's dive into them:
+이전 장에서 E6 클래스와 리액트에서 사용법을 배웠습니다. `render()`외에, 리액트 ES6 클래스 컴포넌트에서 오버라이드가 가능한 메서드가 있습니다. 바로 생명주기 메서드입니다.
 
-You already know two lifecycle methods that can be used in an ES6 class component: `constructor()` and `render()`.
+우리는 이미 ES6 클래스 컴포넌트에서 사용하는 두 생명주기 메서드 `constructor()`와  `render()`를 알고 있습니다.
 
-The constructor is only called when an instance of the component is created and inserted in the DOM. The component gets instantiated. That process is called mounting of the component.
+컴포넌트 인스턴스가 만들어져 DOM에 삽입 될 때 생성자가 호출됩니다. 컴포넌트가 인스턴스화됩니다. 이 프로세스를 컴포넌트가 탑재됐다(mounting)고 말합니다.
 
-The `render()` method is called during the mount process too, but also when the component updates. Each time when the state or the props of a component change, the `render()` method of the component is called.
+`render()`는 마운트 프로세스 중에도 호출되지만 컴포넌트가 업데이트 될 때도 호출됩니다. 컴포넌트의 state와 props가 변경될 때마다 `render()`이 호출됩니다.
 
-Now you know more about the two lifecycle methods and when they are called. You already used them as well. But there are more of them.
+아마 이전 장에서 두 메서드를 사용해봤을 겁니다. 그 외 더 많은 생명주기 메서드가 있습니다
+ 
+컴포넌트 마운트에는` componentWillMount()`와`componentDidMount()` 두 메서드가 있습니다. `constructor()`가 호출되면, `componentWillMount()`가 호출되고, 그 후 `render()`이 호출되며, 마지막에 `componentDidMount()`가 호출됩니다.
 
-The mounting of a component has two more lifecycle methods: `componentWillMount()` and `componentDidMount()`. The constructor is called first, `componentWillMount()` gets called before the `render()` method and `componentDidMount()` is called after the `render()` method.
-
-Overall the mounting process has 4 lifecycle methods. They are invoked in the following order:
+일반적인 마운팅 프로세스에서 생명주기 메서드는 아래 순서대로 호출됩니다.
 
 * constructor()
 * componentWillMount()
 * render()
 * componentDidMount()
 
-But what about the update lifecycle of a component that happens when the state or the props change? Overall it has 5 lifecycle methods in the following order:
+
+state나 props가 변경 시, 업데이트 생명주기는 어떨까요? 아래와 같은 순서로 5개의 생명주기 메서드가 호출됩니다.
 
 * componentWillReceiveProps()
 * shouldComponentUpdate()
@@ -37,43 +38,46 @@ But what about the update lifecycle of a component that happens when the state o
 * render()
 * componentDidUpdate()
 
-Last but not least there is the unmounting lifecycle. It has only one lifecycle method: `componentWillUnmount()`.
+마지막으로 마운트 해제 메서드 componentWillUnmount()가 호출됩니다.
 
-After all, you don't need to know all of these lifecycle methods from the beginning. It can be intimidating yet you will not use all of them. Even in a larger React application you will only use a few of them apart from the `constructor()` and the `render()` method. Still, it is good to know that each lifecycle method can be used for specific use cases:
+* componentWillUnmount()
 
-* **constructor(props)** - It is called when the component gets initialized. You can set an initial component state and bind class methods during that lifecycle method.
+처음부터 모든 생명주기 메서드를 사용하지 않아도 됩니다. 아직 많이 다뤄보지 않았기 때문에 익숙해지지 않았을 뿐입니다. 대규모 애플리케이션에도 `constructor()`과 `render()`만 사용할 경우가 많습니다. 앞서 알아본 생명주기 메서드를 언제 사용해야 하는지 정리해봅시다.
 
-* **componentWillMount()** - It is called before the `render()` lifecycle method. That's why it could be used to set internal component state, because it will not trigger a second rendering of the component. Generally it is recommended to use the `constructor()` to set the initial state.
+* **constructor(props)** - 컴포넌트 초기화 시 호출됩니다. 초기 컴포넌트 상태 및 클래스 메서드를 정의합니다.
 
-* **render()** - The lifecycle method is mandatory and returns the elements as an output of the component. The method should be pure and therefore shouldn't modify the component state. It gets an input as props and state and returns an element.
+* **componentWillMount()** - `render()` 전에 호출됩니다. 컴포넌트의 두 번째 렌더링을 트리거하지 않아 컴포넌트 상태를 설정하기 적합합니다. `constructor()`을 사용해 초기 상태를 설정하는 것이 좋습니다.
 
-* **componentDidMount()** - It is called only once when the component mounted. That's the perfect time to do an asynchronous request to fetch data from an API. The fetched data would get stored in the internal component state to display it in the `render()` lifecycle method.
+* **render()** - 컴포넌트의 출력을 반환하기 때문에 필수로 사용합 반환합 그것은 소품 및 상태로 입력을 가져오고 요소를 반환합니다.
 
-* **componentWillReceiveProps(nextProps)** - The lifecycle method is called during an update lifecycle. As input you get the next props. You can diff the next props with the previous props, by using `this.props`, to apply a different behavior based on the diff. Additionally, you can set state based on the next props.
+* **componentDidMount()** - 컴포넌트가 마운트 될 때 한 번만 호출됩니다. 이 메서드에서 API에서 데이터를 가져 오기 위해 비동기 요청을 수행할 수 있습니다. 가져온 데이터는 내부 컴포넌트 상태에 저장되어 `render()`로 컴포넌트가 업데이트 됩니다.
 
-* **shouldComponentUpdate(nextProps, nextState)** - It is always called when the component updates due to state or props changes. You will use it in mature React applications for performance optimizations. Depending on a boolean that you return from this lifecycle method, the component and all its children will render or will not render on an update lifecycle. You can prevent the render lifecycle method of a component.
+* **componentWillReceiveProps(nextProps)** - 업데이트 생명주기 동안 호출됩니다. `nextProps`는 다음 props를, `this.props`로 이전 props를 조회해 서로 차이를 알 수 있습니다. nextProps를 컴포넌트의 state로 사용할 수 있습니다.
+ 
+* **shouldComponentUpdate(nextProps, nextState)** - props 또는 state의 변경으로 컴포넌트가 업데이트 될 때 호출됩니다. 성능 최적화를 위해 고도화된 리액트 애플리케이션에서 사용됩니다. 생명주기 메서드에서 반환하는 부울 값(boolean)에 컴포넌트와 모든 자식이 업데이트 주기에 렌더링되거나 반대로 그렇지 않을 수 있습니다. 문제가 되는 특정 컴포넌트의 렌더링 생명주기 렌더링을 막을 수 있습니다.명주기 메서드를 방지 할 수 있습니다.
 
-* **componentWillUpdate(nextProps, nextState)** - The lifecycle method is immediately invoked before the `render()` method. You already have the next props and next state at your disposal. You can use the method as last opportunity to perform preparations before the render method gets executed. Note that you cannot trigger `setState()` anymore. If you want to compute state based on the next props, you have to use `componentWillReceiveProps()`.
+* **componentWillUpdate(nextProps, nextState)** - `render()` 메서드 전에 바로 호출됩니다. `nextProps`는 다음 props를, `nextState`로 다음 state를 조회할 수 있습니다. `render()` 메서드가 실행되기 전에 마지막으로 상태를 업데이트 할 수 있는 기회입니다. 이후에는 `setState()`를 더 이상 사용할 수 없습니다. nextProps를 state 값으로 사용하려면 `componentWillReceiveProps()`를 사용합니다.
 
-* **componentDidUpdate(prevProps, prevState)** - The lifecycle method is immediately invoked after the `render()` method. You can use it as opportunity to perform DOM operations or to perform further asynchronous requests.
+* **componentDidUpdate(prevProps, prevState)** - `render()` 후에 즉시 호출됩니다. DOM조작을 하거나 추가 비동기 요청을 수행할 수 있습니다.
 
-* **componentWillUnmount()** - It is called before you destroy your component. You can use the lifecycle method to perform any clean up tasks.
+* **componentWillUnmount()** - 컴포넌트를 해체하기 전에 호출 됩니다. 테스크를 초기화하는 작업을 수행할 수 있습니다.
 
-The `constructor()` and `render()` lifecycle methods are already used by you. These are the commonly used lifecycle methods for ES6 class components. Actually the `render()` method is required, otherwise you wouldn't return a component instance.
 
-There is one more lifecycle method: `componentDidCatch(error, info)`. It was introduced in [React 16](https://www.robinwieruch.de/what-is-new-in-react-16/) and is used to catch errors in components. For instance, displaying the sample list in your application works just fine. But there could be a case when the list in the local state is set to `null` by accident (e.g. when fetching the list from an external API, but the request failed and you set the local state of the list to null). Afterward, it wouldn't be possible to filter and map the list anymore, because it is `null` and not an empty list. The component would be broken and the whole application would fail. Now, by using `componentDidCatch()`, you can catch the error, store it in your local state, and show an optional message to your application user that an error has happened.
+`constructor()`와 `render()` 메서드는 이미 사용해봤습니다. ES6 클래스 컴포넌트에서 사용되는 생명주기 입니다. `render()`은 컴포넌트 인스턴스를 반환하기 때문에 반드시 필요한 메서드입니다.
 
-### Exercises:
+그 외 생명주기 메서드로 `componentDidCatch(error, info)`가 있습니다. 이 메서드는 [React 16](https://www.robinwieruch.de/what-is-new-in-react-16/)에서 도입되었으며 컴포넌트 에러를 캐치합니다. 예를 들어 목록을 표시하는 애플리케이션이 있다고 해봅시다. 외부 API 호출이 실패하여 state가 `null`로 표시되었습니다. 리스트가 비어있지 않고 `null` 상태이기 때문에 filter과 map을 사용할 수 없습니다. 이 경우 에러가 발생하여 컴포넌트가 깨지고 전체 애플리케이션이 작동되지 않습니다. 이 때, `componentDidCatch()`로 에러를 포착하고 내부 상태에 저장하여 사용자에게 에러 메세지를 표시해줄 수 있습니다.
 
-* read more about [lifecycle methods in React](https://facebook.github.io/react/docs/react-component.html)
-* read more about [the state related to lifecycle methods in React](https://facebook.github.io/react/docs/state-and-lifecycle.html)
-* read more about [error handling in components](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
+### 읽어보기
 
-## Fetching Data
+* [[리액트 공식문서] 리액트 생명주기](https://facebook.github.io/react/docs/react-component.html)
+* [[리액트 공식문서] 리액트 생명주기 메서드와 상태 관리](https://facebook.github.io/react/docs/state-and-lifecycle.html)
+* [[reactjs.org] 컴포넌트 에러 핸들링](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
 
-Now you are prepared to fetch data from the Hacker News API. There was one lifecycle method mentioned that can be used to fetch data: `componentDidMount()`. You will use the native fetch API in JavaScript to perform the request.
+## 데이터 가져오기 Fetching Data
 
-Before we can use it, let's set up the URL constants and default parameters to breakup the API request into chunks.
+이제 해커 뉴스 API로 데이터를 가져올 준비가 끝났습니다. `componentDidMount()` 생명주기 메서드 안에 `fetch()` 자바스크립트 네이티브 API를 사용해 요청을 수행할 수 있습니다.
+
+그 전에 URL과 API 요청 분리하여 기본 매개 변수로 설정합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -91,7 +95,7 @@ const PARAM_SEARCH = 'query=';
 ...
 ~~~~~~~~
 
-In JavaScript ES6, you can use [template strings](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals) to concatenate strings. You will use it to concatenate your URL for the API endpoint.
+ES6에서는 [템플릿 문자열](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals)로 문자열을 연결합니다. 이를 사용해 URL을 API 엔드 포인트에 연결합시다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -105,9 +109,9 @@ console.log(url);
 // output: https://hn.algolia.com/api/v1/search?query=redux
 ~~~~~~~~
 
-That will keep your URL composition flexible in the future.
+이렇게 하면 나중에 URL 구성을 좀더 편하게 관리할 수 있습니다.
 
-But let's get to the API request where you will use the url. The whole data fetch process will be presented at once, but each step will be explained afterward.
+API 요청을 시작합시다. 전체 데이터가 한 번에 가져올 것인데, 각 단계는 이후에 설명하겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -155,19 +159,19 @@ class App extends Component {
 }
 ~~~~~~~~
 
-A lot of things happen in the code. I thought about breaking it into smaller pieces. Then again it would be difficult to grasp the relations of each piece to each other. Let me explain each step in detail.
+이 코드 속에 정말 많은 일들이 일어났습니다. 더 작은 조각으로 나눌까 싶었지만 그렇다면 다시 각 조각의 관계를 파악하기 어렵다고 판단했습니다. 각 단계를 자세히 설명하겠습니다.
 
-First, you can remove the sample list of items, because you return a real list from the Hacker News API. The sample data is not used anymore. The initial state of your component has an empty result and default search term now. The same default search term is used in the input field of the Search component and in your first request.
+첫째, 해커 뉴스 API의 데이터가 사용됨으로 이전의 샘플 데이터는 더 이상 필요없기 때문에 제거합니다. 컴포넌트 초기 상태는 결과 `result`가 비어있고, 검색어 `searchTerm`는 디폴트 값(`DEFAULT_QUERY`)으로 설정되어 있습니다. searchTerm은 Search 컴포넌트의 입력필드와 첫 번째 요청 시 사용됩니다.
+                                                                                    
+둘째, 컴포넌트가 마운트된 후 데이터를 가져오기 위해 `componentDidMount()` 생명주기 메서드를 사용합니다. 첫 번째 요청 시 로컬 상태의 기본 검색어가 사용됩니다. 기본 매개변수(`DEFAULT_QUERY`)값이 "redux"이기 때문에 "redux" 기사를 가져올 것입니다.
 
-Second, you use the `componentDidMount()` lifecycle method to fetch the data after the component did mount. In the very first fetch, the default search term from the local state is used. It will fetch "redux" related stories, because that is the default parameter.
+세 번째, 자바스크립트 네이티브 fetch API가 사용됩니다. ES6 템플릿 문자열로  `searchTerm`과 함께 URL를 만듭니다. 이 URL는 fetch API로 인자로 사용합니다. 응답은 JSON 데이터 구조로 변환하고 컴포넌트 내부 `result` 상태 값에 저장됩니다. 요청 중에 오류가 발생하면 함수는 `then()` 아닌 catch 블록으로 실행됩니다. 다음 장에서 오류 처리에 대해 설명합니다.
 
-Third, the native fetch API is used. The JavaScript ES6 template strings allow it to compose the URL with the `searchTerm`. The URL is the argument for the native fetch API function. The response needs to get transformed to a JSON data structure, which is a mandatory step in a native fetch function when dealing with JSON data structures, and can finally be set as result in the internal component state. In addition, the catch block is used in case of an error. If an error happens during the request, the function will run into the catch block instead of the then block. In a later chapter of the book, you will include the error handling.
+마지막으로 생성자에 컴포넌트 메서드를 바인딩 합니다.
 
-Last but not least, don't forget to bind your new component methods in the constructor.
+이제 기존 데이터대신 페치한 데이터를 사용할 수 있습니다. 그러나 조심히 사용해야 합니다. result는 데이터 목록으로 [메타 정보와 인기 리스트가 같이 담겨 객체가 복잡합니다.](https://hn.algolia.com/api). `render()` 메서드에서 `console.log(this.state);`를 사용하여 상태를 출력해 개발자 도구에서 확인할 수 있습니다.
 
-Now you can use the fetched data instead of the sample list of items. However, you have to be careful again. The result is not only a list of data. [It's a complex object with meta information and a list of hits which are in our case the stories](https://hn.algolia.com/api). You can output the internal state with `console.log(this.state);` in your `render()` method to visualize it.
-
-In the next step, you will use the result to render it. But we will prevent it from rendering anything, so we will return null, when there is no result in the first place. Once the request to the API succeeded, the result is saved to the state and the App component will re-render with the updated state.
+다음으로 result를 사용해 렌더링을 처리합니다. 그러나 처음에 result 값이 없는 경우 null을 반환합니다. API 요청이 성공하면 결과값이 내부 상태값에 저장되고 업데이트된 App 컴포넌트를 다시 렌더링됩니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -198,21 +202,22 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Let's recap what happens during the component lifecycle. Your component gets initialized by the constructor. After that, it renders for the first time. But you prevent it from displaying anything, because the result in the local state is null. It is allowed to return null for a component in order to display nothing. Then the `componentDidMount()` lifecycle method runs. In that method you fetch the data from the Hacker News API asynchronously. Once the data arrives, it changes your internal component state in `setSearchTopStories()`. Afterward, the update lifecycle comes into play because the local state was updated. The component runs the `render()` method again, but this time with populated result in your internal component state. The component and thus the Table component with its content will be rendered.
+컴포넌트 생명주기동안 일어나는 일을 요약하면 다음과 같습니다. 컴포넌트는 생성자로 초기화된 후 렌더링됩니다. 내부 상태  result 값이 null이므로 이 컴포넌트는 아무것도 보이지 않습니다. 그 다음 `componentDidMount()` 메서드가 실행됩니다. 이 메서드에서 해커 뉴스 API를 통해 비동기로 데이터를 가져옵니다. 데이터가 도착하면 `setSearchTopStories()`에서 내부 컴포넌트 상태를 업데이트합니다. 이후 업데이트 생명주기가 시작됩니다. 컴포넌트는 `render()`메소드를 다시 실행하지만 이번에는 상태 result 값이 있기 때문에 나타납니다. 따라서 컴포넌트와 Table 컴포넌트가 렌더링됩니다.
 
-You used the native fetch API that is supported by most browsers to perform an asynchronous request to an API. The *create-react-app* configuration makes sure that it is supported in every browser. There are third-party node packages that you can use to substitute the native fetch API: [superagent](https://github.com/visionmedia/superagent) and [axios](https://github.com/mzabriskie/axios).
+대부분 브라우저가 지원하는 `fetch()`로 비동기 요청을 수행했습니다.*create-react-app*은 모든 브라우저를 지원하고 있습니다. `fetch()` 대신 노드패키지인 [superagent](https://github.com/visionmedia/superagent) 또는 [axios](https://github.com/mzabriskie/axios)를 사용할 수 있습니다.
 
-Back to your application: The list of hits should be visible now. However, there are two regression bugs in the application now. First, the "Dismiss" button is broken. It doesn't know about the complex result object and still operates on the plain list from the local state when dismissing an item. Second, when the list is displayed but you try to search for something else, the list gets filtered on the client-side even though the initial search was made by searching for stories on the server-side. The perfect behvaior would be to fetch another result object from the API when using the Search component. Both regression bugs will be fixed in the following chapters.
+다시 애플리케이션으로 돌아갑시다. 인기 목록이 보일 겁니다. 두 가지 버그가 생겼습니다. 첫째, "닫기" 버튼입니다. 이 버튼은 새로 받은 객체를 식별하지 못해 작동하지 않습니다. 둘째, 초기에 서버에서 검색한 기사 목록을 가져왔지만, 이후 다른 검색어로 요청하면 클라이언트에서 리스트를 필터링합니다. 가장 좋은 방법은 Search 컴포넌트에서 API로 result 객체를 가져오는 것입니다. 버그는 다음 장에서 해결하겠습니다.
 
-### Exercises:
 
-* read more about [ES6 template strings](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals)
-* read more about [the native fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API)
-* read more about [data fetching in React](https://www.robinwieruch.de/react-fetching-data/)
+### 읽어보기
 
-## ES6 Spread Operators
+* [[MDN] ES6 템플릿 문자열](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals)
+* [[MDN] the native fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API)
+* [[저자 블로그] 리액트에서 데이터 호출하기](https://www.robinwieruch.de/react-fetching-data/)
 
-The "Dismiss" button doesn't work because the `onDismiss()` method is not aware of the complex result object. It only knows about a plain list in the local state. But it isn't a plain list anymore. Let's change it to operate on the result object instead of the list itself.
+## ES6 전개 연산자 Spread Operators
+
+`onDismiss()` 메서드는 요청받은 데이터 객체를 인식하지 못하기 때문에 "취소"버튼이 작동하지 않습니다. 지금은 전체 목록만 알고 있을 뿐입니다. 목록 내 각 객체를 식별할 수 있게 변경해보겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -227,19 +232,19 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-But what happens in `setState()` now? Unfortunately the result is a complex object. The list of hits is only one of multiple properties in the object. However, only the list gets updated, when an item gets removed in the result object, while the other properties stay the same.
+지금 `setState()`에서 무슨 일이 일어날까요? result는 객체 안에 hits 프로퍼티를 조회해야 합니다. hits는 여러 프로퍼티 중 하나입니다. 그러나 항목이 result 개체에서 제거되면 목록만 업데이트되고 다른 프로퍼티는 그대로 유지됩니다.
 
-One approach could be to mutate the hits in the result object. I will demonstrate it, but we won't do it that way.
+한 가지 방법은 result 객체안에 있는 hits 프로퍼티를 변경할 수 있겠지만, 이렇게 구현하지 않을 겁니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
-// don`t do this
+// 이렇게 하지마세요. 
 this.state.result.hits = updatedHits;
 ~~~~~~~~
 
-React embraces immutable data structures. Thus you shouldn't mutate an object (or mutate the state directly). A better approach is to generate a new object based on the information you have. Thereby none of the objects get altered. You will keep the immutable data structures. You will always return a new object and never alter an object.
+리액트는 불변 데이터 구조가 원칙입니다. 객체를 변경하거나, 상태를 직접 변경해서는 안됩니다. 다른 방법은 새로운 객체를 생성해 어떤 객체도 변경하지 않아 불변 데이터 구조를 유지합니다. 항상 새 객체를 반환하고 객체를 변경하지 않도록 합니다.
 
-Therefore you can use JavaScript ES6 `Object.assign()`. It takes as first argument a target object. All following arguments are source objects. These objects are merged into the target object. The target object can be an empty object. It embraces immutability, because no source object gets mutated. It would look similar to the following:
+이를 위해 ES6 `Object.assign()` 메서드를 사용합니다. 첫 번째 인자에 타겟 객체이고, 나머지 인수는 소스 객체입니다. 이 객체를 병함해 타겟 객체에 병합합니다. 타겟 객체는 빈 객체가 될 수 있습니다. 소스 객체는 변경되지 않기 때문에 불변성 원칙을 고수합니다. 아래 코드를 작성해봅시다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -247,7 +252,7 @@ const updatedHits = { hits: updatedHits };
 const updatedResult = Object.assign({}, this.state.result, updatedHits);
 ~~~~~~~~
 
-Latter objects will override former merged objects when they share the same property names. Now let's do it in the `onDismiss()` method:
+동일한 프로퍼티 명을 공유할 때, 후자 객체는 전자의 병합 객체를 덮어 씁니다. 이제 `onDismiss()` 메서드에서 해보겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -262,9 +267,10 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-That would already be the solution. But there is a simpler way in JavaScript ES6 and future JavaScript releases. May I introduce the spread operator to you? It only consists of three dots: `...` When it is used, every value from an array or object gets copied to another array or object.
+해결되었지만, 앞에서 배운 전개 연산자로 더 간단하게 작성할 수 있습니다. `...`은 배열 또는 객체의 모든 값을 복사합니다.
 
-Let's examine the ES6 **array** spread operator even though you don't need it yet.
+물론 ES6 **배열** 스프레드 연산자가 필요없다고 생각할 수 있겠지만, 아래와 같이 작성할 수 있습니다.
+
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -276,7 +282,7 @@ console.log(allUsers);
 // output: ['Robin', 'Andrew', 'Dan', 'Jordan']
 ~~~~~~~~
 
-The `allUsers` variable is a completely new array. The other variables `userList` and `additionalUser` stay the same. You can even merge two arrays that way into a new array.
+변수 `allUsers`는 완전히 새로운 배열입니다. 변수 `userList`와 `additionalUser`는 그래로 유지됩니다. 이런 식으로 두 배열을 새 배열로 병합 할 수도 있습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -288,9 +294,9 @@ console.log(allUsers);
 // output: ['Robin', 'Andrew', 'Dan', 'Jordan']
 ~~~~~~~~
 
-Now let's have a look at the object spread operator. It is not JavaScript ES6. It is a [proposal for a next JavaScript version](https://github.com/sebmarkbage/ecmascript-rest-spread) yet already used by the React community. That's why *create-react-app* incorporated the feature in the configuration.
+이제 객체 스프레드 연산자(object spread operator)를 살펴보겠습니다. ES6이 아닌, 리액트 커뮤니티에서 이미 사용하고있는 [다음 자바 스크립트 버전 제안](https://github.com/sebmarkbage/ecmascript-rest-spread)을 말합니다. *create-react-app*에서는 이 기능을 도입했습니다.
 
-Basically it is the same as the JavaScript ES6 array spread operator but with objects. It copies each key value pair into a new object.
+ES6 배열 전개 연산자와 같지만 객체가 있습니다. 각 키 값 쌍을 새 객체에 복사합니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -302,7 +308,7 @@ console.log(user);
 // output: { firstname: 'Robin', lastname: 'Wieruch', age: 28 }
 ~~~~~~~~
 
-Multiple objects can be spread like in the array spread example.
+배열 전개 예제와 같이 여러 객체를 펼칠 수 있습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -314,7 +320,7 @@ console.log(user);
 // output: { firstname: 'Robin', lastname: 'Wieruch', age: 28 }
 ~~~~~~~~
 
-After all, it can be used to replace `Object.assign()`.
+결국 `Object.assign()` 메서드를 대체할 수 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -329,21 +335,20 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-Now the "Dismiss" button should work again, because the `onDismiss()` method is aware of the complex result object and how to update it after dismissing an item from the list.
+`onDismiss()`메서드가 잘 작동하는지 확인합시다. `onDismiss()`메서드는 result 목록에서 각 객체를 식별하고 목록에서 취소된 항목을 업데이트합니다.
 
-### Exercises:
+### 읽어보기
 
-* read more about the [ES6 Object.assign()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
-* read more about the [ES6 array spread operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator)
-  * the object spread operator is briefly mentioned
+* [[MDN] ES6 Object.assign()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
+* [[MDN]ES6 배열 전개 연산자](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator)
 
-## Conditional Rendering
+## 조건부 렌더링 Conditional Rendering
 
-The conditional rendering is introduced pretty early in React applications. But not in the case of the book, because there wasn't such an use case yet. The conditional rendering happens when you want to make a decision to render either one or another element. Sometimes it means to render an element or nothing. After all, a conditional rendering simplest usage can be expressed by an if-else statement in JSX.
+앞에서 조건부 렌더링에 대해 일부 설명했습니다. 조건부 렌더링은 하나 또는 다른 요소를 렌더링을 결정합니다. 요소를 렌더링하거나 아무것도 렌더링하지 않는 것을 말합니다. 우리가 잘 알고 있는 if-else 문으로 간단하게 작성할 수 있습니다.
 
-The `result` object in the internal component state is `null` in the beginning. So far, the App component returned no elements when the `result` hasn't arrived from the API. That's already a conditional rendering, because you return earlier from the `render()` lifecycle method for a certain condition. The App component either renders nothing or its elements.
+컴포넌트 내부 상태 `result` 객체 초기값은 `null`입니다. App 컴포넌트에 API에서 `result`가 도착하지 않으면 요소를 반환하지 않습니다. 이 것이 바로 조건부 렌더링입니다. 특정 조건에 대해 이전에`render()` 생명주기 메서드에서  반환하기 때문에 이미 조건부 렌더링에 해당합니다. App 컴포넌트는 아무것도 렌더링하지 않거나 요소를 렌더링하게 됩니다.
 
-But let's go one step further. It makes more sense to wrap the Table component, which is the only component that depends on the `result`, in an independent conditional rendering. Everything else should be displayed, even though there is no `result` yet. You can simply use a ternary operator in your JSX.
+한 단계를 더 나아가봅시다. 독립적인 조건부 렌더링에서 `result`에 의존하는 컴포넌트인 Table도 함께 포함시킵니다. `result`가 없더라도 모든 내용이 표시되어야 합니다. 이를 위해 JSX에서 삼항 조건 연산자(ternary operator)를 사용할 수 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -381,7 +386,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-That's your second option to express a conditional rendering. A third option is the logical `&&` operator. In JavaScript a `true && 'Hello World'` always evaluates to 'Hello World'. A `false && 'Hello World'` always evaluates to false.
+마지막으로 논리 연산자 `&&`를 사용합시다. 자바스크립트에서 `true &&'Hello World'` 경우 'Hello World'로 평가되고, `false && 'Hello World'`경우 항상 거짓으로 평가됩니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -394,7 +399,7 @@ console.log(result);
 // output: false
 ~~~~~~~~
 
-In React you can make use of that behavior. If the condition is true, the expression after the logical `&&` operator will be the output. If the condition is false, React ignores and skips the expression. It is applicable in the Table conditional rendering case, because it should return a Table or nothing.
+리액트에서도 논리 연산자를 사용할 수 있습니다. 조건이 참이면, `&&` 논리 연산자 뒷 부분 내용이 출력됩니다. 조건이 거짓이면 리액트는 표현식을 무시하고 건너 뜁니다. Table을 반환거나 아무것도 반환하지 않도록 조건부 렌더링에 만들어봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -407,20 +412,20 @@ In React you can make use of that behavior. If the condition is true, the expres
 }
 ~~~~~~~~
 
-These were a few approaches to use conditional rendering in React. You can read about [more alternatives in an exhaustive list of examples for conditional rendering approaches](https://www.robinwieruch.de/conditional-rendering-react/). Moreover you will get to know their different use cases and when to apply them.
+지금까지 조건부 렌더링 사용 방법에 대해 알아보았습니다. [저자의 블로그]( (https://www.robinwieruch.de/conditional-rendering-react/))에서 조건부 렌더링에 대한 더 많은 예제를 소개했습니다. 
 
-After all, you should be able to see the fetched data in your application. Everything except the Table is displayed when the data fetching is pending. Once the request resolves the result and stores it into the local state, the Table is displayed because the `render()` method runs again and the condition in the conditional rendering resolves in favor of displaying the Table component.
+마침내 애플리케이션에서 페치한 데이터를 모두 볼 수 있습니다. 데이터 페치가 보류 중일 때를 제외하고 모든 항목이 표시됩니다. 요청이 결과를 해석하여 로컬 상태로 저장하면 `render()` 메서드가 다시 실행되고, 조건부 렌더링의 조건에 따라 Table 컴포넌트가 표시됩니다.
 
-### Exercises:
 
-* read more about [React conditional rendering](https://facebook.github.io/react/docs/conditional-rendering.html)
-* read more about [different ways for conditional renderings](https://www.robinwieruch.de/conditional-rendering-react/)
+### 읽어보기
 
-## Client- or Server-side Search
+* [[리액트 공식문서] 리액트 조건 렌더링](https://facebook.github.io/react/docs/conditional-rendering.html)
+* [[저자 블로그] 조건문 렌더링의 다양한 방법](https://www.robinwieruch.de/conditional-rendering-react/)
 
-When you use the Search component with its input field now, you will filter the list. That's happening on the client-side though. Now you are going to use the Hacker News API to search on the server-side. Otherwise you would deal only with the first API response which you got on `componentDidMount()` with the default search term parameter.
+## Search 컴포넌트의 클라이언트와 서버 처리  Client-/Server-side Search
 
-You can define an `onSearchSubmit()` method in your App component which fetches results from the Hacker News API when executing a search in the Search component. It will be the same fetch as in your `componentDidMount()` lifecycle method, but this time with a modified search term from the local state and not with the initial default search term.
+클라이언트에서 검색어에 따라 목록 필터링을 구현해보겠습니다. 검색어 기본 매개변수로 해커 뉴스 API에 요청하여 서버에서 검색한 후, 이에 대한 응답을 `componentDidMount()`에서 처리할 것입니다.                                     
+App 컴포넌트에서 `onSearchSubmit()` 메서드를 정의하겠습니다. 이 메서드는 Search 컴포넌트에서 검색을 실행할 때 해커 뉴스 API 요청 결과를 가져옵니다. `componentDidMount()` 생명주기 메소드에서 했던 것과 같습니다. 그러나 이번에는 검색어 기본 매개변수가 아닌 내부 상태 값을 사용합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -456,11 +461,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now the Search component has to add an additional button. The button has to explicitly trigger the search request. Otherwise you would fetch data from the Hacker News API every time when your input field changes. But you want to do it explicitly in a on click handler.
+Search 컴포넌트에 '검색하기' 버튼을 추가해야 합니다. 이 버튼은 검색 요청을 보내고, 해커 뉴스 API에서 데이터를 가져옵니다. 
 
-As alternative you could debounce (delay) the `onChange()` function and spare the button, but it would add more complexity at this time and maybe wouldn't be the desired effect. Let's keep it simple without a debounce for now.
-
-First, pass the `onSearchSubmit()` method to your Search component.
+먼저 Search 컴포넌트에 `onSearchSubmit()` 메서드를 전달합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -496,7 +499,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Second, introduce a button in your Search component. The button has the `type="submit"` and the form uses its `onSubmit()` attribute to pass the `onSubmit()` method. You can reuse the children property, but this time it will be used as the content of the button.
+두 번째로 Search 컴포넌트에 버튼을 추가하겠습니다. 버튼은 `type="submit"`을 가지고, 폼은 `onSubmit()` 메서드를 전달하기 위해 `onSubmit()` 속성을 사용합니다. 자식 프로퍼티는 버튼 내용으로 사용하겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -520,7 +523,7 @@ const Search = ({
 # leanpub-end-insert
 ~~~~~~~~
 
-In the Table, you can remove the filter functionality, because there will be no client-side filter (search) anymore. Don't forget to remove the `isSearched()` function as well. It will not be used anymore. The result comes directly from the Hacker News API now after you have clicked the "Search" button.
+Table 컴포넌트에서 클라이언트의 검색이 필요없기 때문에 필터 기능을 제거합니다. `isSearched()` 함수도 더 이상 사용하지 않기 때문에 제거합니다. 비로소 검색 버튼을 클릭하면 해커 뉴스 API를 통해 결과값을 가져옵니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -560,7 +563,7 @@ const Table = ({ list, onDismiss }) =>
   </div>
 ~~~~~~~~
 
-When you try to search now, you will notice that the browser reloads. That's a native browser behavior for a submit callback in a HTML form. In React you will often come across the `preventDefault()` event method to suppress the native browser behavior.
+검색 버튼을 클릭하면 브라우저가 새로고침되는데 이는 HTML 폼 전송 콜백에 대한 네이티브 브라우저 동작입니다. 리액트에서는 네이티브 브라우저 동작을 방지하기 위해 `preventDefault()` 이벤트 메서드를 자주 사용합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -575,18 +578,20 @@ onSearchSubmit(event) {
 }
 ~~~~~~~~
 
-Now you should be able to search different Hacker News stories. Perfect, you interact with a real world API. There should be no client-side search anymore.
+해커 뉴스 기사를 검색할 수 있어야 합니다. API가 완벽하게 작동합니다. 더 이상 클라이언트에 검색을 처리하지 않도록 해야합니다.
 
-### Exercises:
+### 읽어보기
 
-* read more about [synthetic events in React](https://facebook.github.io/react/docs/events.html)
-* experiment with the [Hacker News API](https://hn.algolia.com/api)
+* [[리액트 공식문서] synthetic events in React](https://facebook.github.io/react/docs/events.html)
 
-## Paginated Fetch
+### 실습하기
+* [해커 뉴스 API](https://hn.algolia.com/api)를 이것저것 실험해봅니다.
 
-Did you have a closer look at the returned data structure yet? The [Hacker News API](https://hn.algolia.com/api) returns more than a list of hits. Precisely it returns a paginated list. The page property, which is `0` in the first response, can be used to fetch more paginated sublists as result. You only need to pass the next page with the same search term to the API.
+## 페이지 매김 데이터 가져오기 Paginated Fetch
 
-Let's extend the composable API constants so that it can deal with paginated data.
+반환되는 데이터 구조를 자세히 살펴보았나요? [해커 뉴스 API](https://hn.algolia.com/api)는 첫 번째   `hits` 목록만 반환합니다. 처음 응답시, page 프로퍼티 값은 `0`으로 페이지 번호를 말합니다. 이 프로퍼티 값으로 목록을 가져옵니다. 검색어는 유지하고 다음 페이지번호를 API에 전달하면 됩니다.
+
+페이지 매김 데이터를 처리할 수 있게 요청할 URL를 쪼개어 각 상수로 만들겠습니다. 이렇게 하면 URL를 구성 가능한 형태로 만들 수 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -600,7 +605,7 @@ const PARAM_PAGE = 'page=';
 # leanpub-end-insert
 ~~~~~~~~
 
-Now you can use the new constant to add the page parameter to your API request.
+이제 상수를 매개변수로 추가합시다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -610,7 +615,7 @@ console.log(url);
 // output: https://hn.algolia.com/api/v1/search?query=redux&page=
 ~~~~~~~~
 
-The `fetchSearchTopStories()` method will take the page as second argument. If you don't provide the second argument, it will fallback to the `0` page for the initial request. Thus the `componentDidMount()` and `onSearchSubmit()` methods fetch the first page on the first request. Every additional fetch should fetch the next page by providing the second argument.
+`fetchSearchTopStories()` 메서드는 두 번째 인자가 있는데, 이 두 번째 인자가 없으면 기본으로 `0`페이지를 전달합니다. 따라서 `componentDidMount()`와 `onSearchSubmit()`는 첫 번째 요청 시, 첫 번째 페이지를 가져옵니다. 추가 요청이 있을 때마다 두 번째 인자를 통해 다음 페이지를 가져와야 합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -632,7 +637,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now you can use the current page from the API response in `fetchSearchTopStories()`. You can use this method in a button to fetch more stories on a `onClick` button handler. Let's use the Button to fetch more paginated data from the Hacker News API. You only need to define the `onClick()` handler which takes the current search term and the next page (current page + 1).
+이제 `fetchSearchTopStories()`에서 API 응답을 받아 현재 페이지를 사용할 수 있습니다. 버튼에서 이 메서드를 사용해 `onClick` 버튼 핸들러로 더 많은 목록을 가져올 수 있습니다. 다음으로 버튼을 클릭하면 그 다음 페이지의 데이터를 가져오게 만들어봅시다. `onClick()` 핸들러에서 현재 검색어와 다음 페이지 번호(현재 페이지 + 1)만 정의하면 됩니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -668,9 +673,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-In addition, in your `render()` method you should make sure to default to page 0 when there is no result yet. Remember that the `render()` method is called before the data is fetched asynchronously in the `componentDidMount()` lifecycle method.
+`render()` 메서드에서 `result`가 없을 때 페이지 번호 기본값은 `0`입니다. `render()` 메서드는  `componentDidMount()` 생명주기 메서드에서 비동기로 데이터를 가져오기 전에 실행됨을 잊지 맙시다.
 
-There is one step missing. You fetch the next page of data, but it will override your previous page of data. It would be ideal to concatenate the old and new list of hits from the local state and new result object. Let's adjust the functionality to add the new data rather than to override it.
+아직 한 가지 더 할일이 남아있습니다. 다음 페이지의 데이터를 가져오지만, 이전 데이터에 덮어쓰게되는 문제가 있습니다. 새 데이터를 정의하기보다 기존 상태값에 새 결과 객체 목록을 추가하는 것이 바람직합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -694,15 +699,17 @@ setSearchTopStories(result) {
 }
 ~~~~~~~~
 
-A couple of things happen in the `setSearchTopStories()` method now. First, you get the hits and page from the result.
+`setSearchTopStories()`메서드에서 일어나는 일을 살펴봅시다. 
 
-Second, you have to check if there are already old hits. When the page is 0, it is a new search request from `componentDidMount()` or `onSearchSubmit()`. The hits are empty. But when you click the "More" button to fetch paginated data the page isn't 0. It is the next page. The old hits are already stored in your state and thus can be used.
+첫째, 먼저 `result`에서 `hits`와 `page`를 얻습니다.
 
-Third, you don't want to override the old hits. You can merge old and new hits from the recent API request. The merge of both lists can be done with the JavaScript ES6 array spread operator.
+둘째, 이미 `hits`가 있는지 확인합니다. `page` 번호가 0일 때는 `componentDidMount()`또는 `onSearchSubmit()`에서 새로운 검색 요청이 전달됩니다. `hits` 목록은 비어있지만, "More" 버튼을 클릭하면 0이 아닌 다음 페이지를 요청합니다. 이전 `hits`는 이미 저장되어있으므로 사용가능 합니다.
 
-Fourth, you set the merged hits and page in the local component state.
+셋째, 이전 `hits`에 새로운 `hits`이 덮어쓰기되면 안됩니다. 따라서 두 목록을 병합해야 합니다. 이를 위해 ES6 배열 전개 연산자를 사용합니다.
 
-You can make one last adjustment. When you try the "More" button it only fetches a few list items. The API URL can be extended to fetch more list items with each request. Again, you can add more composable path constants.
+넷째, `hits`와  `hits`를 컴포넌트 내부 상태로 업데이트합니다.
+
+마지막으로 "More" 버튼 클릭할 때 일부 목록만 가져오게 해봅시다. 각 요청에 따라 목록을 가져올 수 있게 API URL를 구성가능한 형태로 만들겠습니다. 각 경로를 상수로 만들어 추가하면 됩니다.   
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -720,7 +727,7 @@ const PARAM_HPP = 'hitsPerPage=';
 # leanpub-end-insert
 ~~~~~~~~
 
-Now you can use the constants to extend the API URL.
+이제 상수를 사용해 API URL를 조합합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -734,19 +741,19 @@ fetchSearchTopStories(searchTerm, page = 0) {
 }
 ~~~~~~~~
 
-Afterward, the request to the Hacker News API fetches more list items in one request than before. As you can see, a powerful such as the Hacker News API gives you plenty of ways to experiment with real world data. You should make use of it to make your endeavours when learning something new more exciting. That's [how I learned about the empowerment that APIs provide](https://www.robinwieruch.de/what-is-an-api-javascript/) when learning a new programming language or library.
+이전보다 더 많은 목록을 가져옵니다. 이번 장에서는 해커 뉴스 API를 통해 실제 데이터를 사용해봤습니다. 새 프로그래밍 언어나 라이브러리를 학습할 때, 외부 API를 사용하면 더 재미있게 배울 수 있을 겁니다. 저도 이렇게 배웠으니까요.
 
-### Exercises:
+### 실습하기
 
-* experiment with the [Hacker News API parameters](https://hn.algolia.com/api)
+* [해커 뉴스 API](https://hn.algolia.com/api)의 매개변수를 바꿔 API를 요청해봅니다.
 
-## Client Cache
+## 클라이언트 캐시 Client Cache
 
-Each search submit makes a request to the Hacker News API. You might search for "redux", followed by "react" and eventually "redux" again. In total it makes 3 requests. But you searched for "redux" twice and both times it took a whole asynchronous roundtrip to fetch the data. In a client-sided cache you would store each result. When a request to the API is made, it checks if a result is already there. If it is there, the cache is used. Otherwise an API request is made to fetch the data.
+해커 뉴스 API에 검색 요청을 보냅니다. 처음에는 "redux"를 검색하고, 그 다음 "react"를, 그리고 다시 "redux" 검색을 할 수 있습니다. 총 세 번 요청을 보냅니다. "redux" 를 두번 검색하여 모든 데이터를 한번에 가져오기 위해 비동기 왕복 여행(asynchronous roundtrip)을 합니다. 클라이언트 캐시에서 각 결과를 저장합니다. API 요청을 받으면 이미 결과가 있는지 확인합니다. 이미 캐시가 있으면 캐시를 사용합니다. 캐시가 없다면 데이터를 가져오기 위해 API를 요청합니다.
 
-In order to have a client cache for each result, you have to store multiple `results` rather than one `result` in your internal component state. The results object will be a map with the search term as key and the result as value. Each result from the API will be saved by search term (key).
+각 결과마다 클라이언트 캐시를 가지려면, 컴포넌트 내부 상태에 `results`를 하나가 아닌 여러 `results`를 저장해야 합니다. `results` 객체는 키(key)가 검색어이고, 값(value)이 `hits` 입니다. 각 API 결과는 키를 검색어로 개별로 저장됩니다.
 
-At the moment, your result in the local state looks similar to the following:
+현재 로컬 상태는 아래 코드와 비슷할 것입니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -756,7 +763,7 @@ result: {
 }
 ~~~~~~~~
 
-Imagine you have made two API requests. One for the search term "redux" and another one for "react". The results object should look like the following:
+예를 들어, 두 개의 API를 요청한다고 해봅시다. 첫 번째 검색어는 "redux"이고 두 번째는 "react"입니다. `results`객체는 아래와 같을 것입니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -773,7 +780,9 @@ results: {
 }
 ~~~~~~~~
 
-Let's implement a client-side cache with React `setState()`. First, rename the `result` object to `results` in the initial component state. Second, define a temporary `searchKey` which is used to store each `result`.
+`setState()`로 클라이언트 캐시를 구현해봅시다.
+
+첫째, 컴포넌트 초기 상태의 `result` 객체를 `results`로 변경합니다. 둘째, 각 `result`를 저장할 때 사용될 임시  `searchKey`를 정의합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -799,7 +808,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The `searchKey` has to be set before each request is made. It reflects the `searchTerm`. You might wonder: Why don't we use the `searchTerm` in the first place? That's a crucial part to understand before continuing with the implementation. The `searchTerm` is a fluctuant variable, because it gets changed every time you type into the Search input field. However, in the end you will need a non fluctuant variable. It determines the recent submitted search term to the API and can be used to retrieve the correct result from the map of results. It is a pointer to your current result in the cache and thus can be used to display the current result in your `render()` method.
+요청을 보내기 전에 `searchTerm`를 반영하는 `searchKey`를 설정해야합니다. 왜 `searchTerm`을 사용하지 않을까요? 구현하기 전 충분히 이해를 하고 넘어가야합니다. `searchTerm`은 Search 컴포넌트의 입력 필드에 입력을 할 때마다 그 값이 변경되는 변경 변수(fluctuant variable)입니다.우리는 값이 변경되지 않는 고정 변수가 필요합니다. 캐시 안에 저장된 현재 `result`가 해당됩니다. 따라서 `render()` 메서드에 현재 `result`를 표시할 수 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -821,7 +830,7 @@ onSearchSubmit(event) {
 }
 ~~~~~~~~
 
-Now you have to adjust the functionality where the result is stored to the internal component state. It should store each result by `searchKey`.
+다음으로 `result`가 컴포넌트 내부 상태에 저장되도록 함수를 수정해야 합니다. `searchKey`로 각  `result`를 저장해야 합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -859,13 +868,13 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The `searchKey` will be used as the key to save the updated hits and page in a `results` map.
+`searchKey`는 업데이트된 `hits`와 `page`를 `results`에 저장하기 위한 키로 사용됩니다. 
 
-First, you have to retrieve the `searchKey` from the component state. Remember that the `searchKey` gets set on `componentDidMount()` and `onSearchSubmit()`.
+첫째, 컴포넌트 상태에서 `searchKey`를 검색해야 합니다. `searchKey`는 `componentDidMount()`와 `onSearchSubmit()`에 설정되어 있습니다.
 
-Second, the old hits have to get merged with the new hits as before. But this time the old hits get retrieved from the `results` map with the `searchKey` as key.
+둘째, 이전 `hits`는 새로 받은 `hits`와 합쳐져야 합니다. 하지만 이번에는 `searchKey` 키로 `results`의 이전 `hits`를 가져옵니다.
 
-Third, a new result can be set in the `results` map in the state. Let's examine the `results` object in `setState()`.
+셋째, 새`result`는 상태 `results`로 매핑됩니다. `setState()`에 있는 `results`객체를 살펴봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -875,11 +884,11 @@ results: {
 }
 ~~~~~~~~
 
-The bottom part makes sure to store the updated result by `searchKey` in the results map. The value is an object with a hits and page property. The `searchKey` is the search term. You already learned the `[searchKey]: ...` syntax. It is an ES6 computed property name. It helps you to allocate values dynamically in an object.
+아래 부분은 `searchKey`에 의해 업데이트된 `results`를 저장합니다. 값은 `hits`와 `page` 프로퍼티가 있는 객체입니다. `searchKey`는 검색어입니다. 이미 여러분은 `[searchKey]: ...` 구문을 배웠습니다. ES6를 통해 계산된 프로퍼티 이름입니다. 이를 통해 객체에서 값을 동적으로 할당할 수 있습니다.
 
-The upper part needs to spread all other results by `searchKey` in the state by using the object spread operator. Otherwise you would lose all results that you have stored before.
+윗 부분은 객체 전개 연산자를 사용해 `searchKey`로 모든 `results`를 전파해야합니다. 그렇지 않으면 이전에 저장한 모든 `results`가 손실됩니다.
 
-Now you store all results by search term. That's the first step to enable your cache. In the next step, you can retrieve the result depending on the non fluctuant `searchKey` from your map of results. That's why you had to introduce the `searchKey` in the first place as non fluctuant variable. Otherwise the retrieval would be broken when you would use the fluctuant `searchTerm` to retrieve the current result, because this value might change when you would use the Search component.
+이제 검색어 별로 모든 `results`를 저장합시다. 먼저 캐시를 활성화합니다. 다음 단계는 변경되지 않는 `searchKey`에 따라 `results`를 검색합니다. 때문에 변경이 없는 변수로 `searchKey`를 사용했습니다. 그렇지 않으면 Search 컴포넌트를 사용할 때 값이 변경될 수 있으므로, 변경되는 `searchTerm`를 사용할 경우 검색이 중단되는 문제가 발생합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -932,11 +941,12 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Since you default to an empty list when there is no result by `searchKey`, you can spare the conditional rendering for the Table component now. Additionally you will need to pass the `searchKey` rather than the `searchTerm` to the "More" button. Otherwise your paginated fetch depends on the `searchTerm` value which is fluctuant. Moreover make sure to keep the fluctuant `searchTerm` property for the input field in the "Search" component.
+`searchKey`로 찾은 결과가 없을 때, 목록이 비어있는 것이 초기 설정이기 때문에, Table 컴포넌트를 조건부 렌더링으로 처리할 수 있습니다. 이제 `searchTerm`이 아닌 `searchKey`를 "More"버튼에 전달하겠습니다. 이렇게 하지 않으면  `searchTerm`의 변경 값에 따라 페이지 매김 데이터를 가져옵니다. Search 컴포넌트 내 입력 필드의`searchTerm` 프로퍼티는 유지합니다. 
 
-The search functionality should work again. It stores all results from the Hacker News API.
+검색 기능이 다시 잘 작동해야 합니다. 해커 뉴스 API에서 받은 모든 결과를 저장합니다.
 
-Additionally the `onDismiss()` method needs to get improved. It still deals with the `result` object. Now it has to deal with multiple `results`.
+`onDismiss()`메서드도 수정하겠습니다. 이 메서드는 `result` 객체를 다루는데, 여러 `results`를 다루게 해봅시다.
+
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -960,9 +970,10 @@ Additionally the `onDismiss()` method needs to get improved. It still deals with
   }
 ~~~~~~~~
 
-The "Dismiss" button should work again.
+ "Dismiss" 버튼이 잘 동작해야 합니다.
 
-However, nothing stops the application from sending an API request on each search submit. Even though there might be already a result, there is no check that prevents the request. Thus the cache functionality is not complete yet. It caches the results, but it doesn't make use of them. The last step would be to prevent the API request when a result is available in the cache.
+그러나 각 검색 제출 시, API 요청을 방지하는 장치는 없습니다. 이미 `result`가 있는 경우 API가 요청되지 않도록 해야 합니다. 따라서 현재 캐시 함수는 완벽하지 않습니다. `results`를 캐시하지만 실제 사용하지 않습니다. 캐시에서 `result`가 이미 있다면 API 요청을 보내지 않게 해봅시다.
+
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1008,13 +1019,16 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now your client makes a request to the API only once although you search for a search term twice. Even paginated data with several pages gets cached that way, because you always save the last page for each result in the `results` map. Isn't that a powerful approach to introduce caching to your application? The Hacker News API provides you with everything you need to even cache paginated data effectively.
+클라이언트는 검색어를 두 번 검색하지만 API에 한 번만 요청합니다. 페이지 매김 데이터도 같은 방법으로 캐시됩니다. 
+`results`의 각 `result`에 대한 마지막 페이지를 항상 저장하기 때문입니다. 바로 이 접근 방법이 애플리케이션에 캐시를 도입하는 가장 좋은 방법입니다. 해커 뉴스 API는 매기잊 매김 데이터를 효과적으로 캐시하는데 필요한 것을 제공합니다. 
 
-## Error Handling
+## 오류 처리 Error Handling
 
-Everything is in place for your interactions with the Hacker News API. You even have introduced an elegant way to cache your results from the API and make use of its paginated list functionality to fetch an endless list of sublists of stories from the API. But there is one piece missing. Unfortunately it is often missed when developing applications nowadays: error handling. It is too easy to implement the happy path without worrying about the errors that can happen along the way.
+해커 뉴스 API와 인터렉션을 위한 모든 준비가 끝났습니다. 프로그램을 만들다 보면 수없이 많은 오류를 만나게 된다. API 결과를 캐싱하고 페이지 매김된 목록 기능을 시용하여 API에서 하위 목록을 끊임없이 가져올 수 있습니다. 그러나 아직 할 일이 남아 있습니다. 프로그램을 만들다 보면 수없이 많은 오류를 만나게 됩니다. 하지만 대부분 애플리케이션을 개발하면서 오류 처리를 간과하기도 합니다. 오류 처리가 없는 개발은 정말 쉽습니다.
 
-In this chapter, you will introduce an efficient solution to add error handling for your application in case of an erroneous API request. You have already learned about the necessary building blocks in React to introduce error handling: local state and conditional rendering. Basically, the error is only another state in React. When an error occurs, you will store it in the local state and display it with a conditional rendering in your component. That's it. Let's implement it in the App component, because it's the component that is used to fetch the data from the Hacker News API in the first place. First, you have to introduce the error in the local state. It is initialized as null, but will be set to the error object in case of an error.
+이번 장에서는 API 요청 시, 효과적인 오류 처리 방법을 소개합니다. 이전 장에서 로컬 상태와 조건부 렌더링으로 오류 처리하는 방법을 배웠습니다. 기본적으로 오류는 리액트에서 또다른 상태라고 볼 수 있습니다. 오류가 발생하면 로컬 상태로 저장하고 컴포넌트의 조건부 렌더링을 통해 보여집니다. 이것이 전부입니다. App 컴포넌트에 작성하겠습니다. App 컴포넌트는 해커 뉴스 API로 데이터를 받는 곳이기 때문입니다. 
+
+첫째, 로컬 상태에 오류를 도입해봅시다. null이 초기값이지만 오류가 발생하면 오류 객체로 설정됩니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1039,7 +1053,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Second, you can use the catch block in your native fetch to store the error object in the local state by using `setState()`. Every time the API request isn't successful, the catch block would be executed.
+둘째, 네이티브 fetch에서 catch 블록 안에 `setState()`로 오류 객체를 로컬 상태로 저장합니다. API 요청이 성공하지 못하면 catch 블록이 실행됩니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1061,7 +1075,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Third, you can retrieve the error object from your local state in the `render()` method and display a message in case of an error by using React's conditional rendering.
+셋째, `render()` 내 로컬 상태 내 error 객체를 가져오고 조건문 렌더링으로 에러 메시지를 표시할 수 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1096,14 +1110,14 @@ class App extends Component {
 }
 ~~~~~~~~
 
-That's it. If you want to test that your error handling is working, you can change the API URL to something else that is non existent.
+여기까지입니다. 오류 처기라 잘 작동하는지 테스트하려면 API URL을 존재하지 않는 URL로 바꿔서 테스트해보세요.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 const PATH_BASE = 'https://hn.foo.bar.com/api/v1';
 ~~~~~~~~
 
-Afterward, you should get the error message instead of your application. It is up to you where you want to place the conditional rendering for the error message. In this case, the whole app isn't displayed anymore. That wouldn't be the best user experience. So what about displaying either the Table component or the error message? The remaining application would still be visible in case of an error.
+애플리케이션 대신, 오류 메시지가 나타납니다. 원하는 곳에 조건부 렌더링으로 오류 메시지를 표시하면 됩니다. 이 경우 전체 앱이 보이지 않기 때문에, 사용자 경험에 문제가 있습니다. 그렇다면 Table 컴포넌트나 에러 메시지 둘 중 하나를 표시하면 어떨까요? 오류가 발생한 후에도 나머지 애플리케이션은 계속 표시됩니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1154,40 +1168,38 @@ class App extends Component {
 }
 ~~~~~~~~
 
-In the end, don't forget to revert the URL for the API to the existent one.
+URL을 기존 URL로 되돌리는 것을 잊지 마세요.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 const PATH_BASE = 'https://hn.algolia.com/api/v1';
 ~~~~~~~~
 
-Your application should still work, but this time with error handling in case the API request fails.
+애플리케이션이 잘 작동하는지 확인해봅시다. API 요청이 실패할 경우 오류 처리를 추가해야 합니다.
 
-### Exercises:
+### 읽어보기
 
-* read more about [React's Error Handling for Components](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
+* [[reactjs.org] 리액트 컴포넌트 오류 처리](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
 
 {pagebreak}
 
-You have learned to interact with an API in React! Let's recap the last chapters:
+앞으로 여러분은 리액트에서 API를 사용할 수 있습니다. 이번 장에서 배운 내용을 정리해봅시다.
 
-* React
-  * ES6 class component lifecycle methods for different use cases
-  * componentDidMount() for API interactions
-  * conditional renderings
-  * synthetic events on forms
-  * error handling
+* 리액트
+  * ES6 클래스 컴포넌트의 생명주기 메소드와 사용 사례
+  * componentDidMount() 메서드에서 API 호출
+  * 조건부 렌더링
+  * 폼 이벤트
+  * 에러 핸들링
 * ES6
-  * template strings to compose strings
-  * spread operator for immutable data structures
-  * computed property names
-* General
-  * Hacker News API interaction
-  * native fetch browser API
-  * client- and server-side search
-  * pagination of data
-  * client-side caching
+  * 템플릿 문자열 구성
+  * 전개 연산자로 불변 데이터 구조 작성
+  * 프로퍼티 이름 계산
+* 일반
+  * 해커 뉴스 API 인터렉션
+  * 네이티브 브라우저 fetch API
+  * 클라이언트 및 서버 내 검색 기능
+  * 데이터 페이지네이션
+  * 클라이언트 렌더
 
-Again it makes sense to take a break. Internalize the learnings and apply them on your own. You can experiment with the source code you have written so far.
-
-You can find the source code in the [official repository](https://github.com/rwieruch/hackernews-client/tree/4.3).
+실습 코드는 [깃허브 리퍼지토리](https://github.com/rwieruch/hackernews-client/tree/4.2)에서 확인할 수 있습니다.
