@@ -14,7 +14,7 @@ API를 사용하기 전 컴포넌트 생명주기 메서드에 대해 알아봅�
 
 우리는 이미 ES6 클래스 컴포넌트에서 사용하는 두 생명주기 메서드 `constructor()`와  `render()`를 알고 있습니다.
 
-컴포넌트 인스턴스가 만들어져 DOM에 삽입 될 때 생성자가 호출됩니다. 컴포넌트가 인스턴스화됩니다. 이 프로세스를 컴포넌트 탑재됐다(mounting)고 말합니다.
+컴포넌트 인스턴스가 만들어져 DOM에 삽입 될 때 생성자가 호출됩니다. 컴포넌트가 인스턴스화됩니다. 이 프로세스를 컴포넌트가 탑재됐다(mounting)고 말합니다.
 
 `render()`는 마운트 프로세스 중에도 호출되지만 컴포넌트가 업데이트 될 때도 호출됩니다. 컴포넌트의 state와 props가 변경될 때마다 `render()`이 호출됩니다.
 
@@ -749,11 +749,11 @@ fetchSearchTopStories(searchTerm, page = 0) {
 
 ## 클라이언트 캐시 Client Cache
 
-Each search submit makes a request to the Hacker News API. You might search for "redux", followed by "react" and eventually "redux" again. In total it makes 3 requests. But you searched for "redux" twice and both times it took a whole asynchronous roundtrip to fetch the data. In a client-sided cache you would store each result. When a request to the API is made, it checks if a result is already there. If it is there, the cache is used. Otherwise an API request is made to fetch the data.
+해커 뉴스 API에 검색 요청을 보냅니다. 처음에는 "redux"를 검색하고, 그 다음 "react"를, 그리고 다시 "redux" 검색을 할 수 있습니다. 총 세 번 요청을 보냅니다. "redux" 를 두번 검색하여 모든 데이터를 한번에 가져오기 위해 비동기 왕복 여행(asynchronous roundtrip)을 합니다. 클라이언트 캐시에서 각 결과를 저장합니다. API 요청을 받으면 이미 결과가 있는지 확인합니다. 이미 캐시가 있으면 캐시를 사용합니다. 캐시가 없다면 데이터를 가져오기 위해 API를 요청합니다.
 
-In order to have a client cache for each result, you have to store multiple `results` rather than one `result` in your internal component state. The results object will be a map with the search term as key and the result as value. Each result from the API will be saved by search term (key).
+각 결과마다 클라이언트 캐시를 가지려면, 컴포넌트 내부 상태에 `results`를 하나가 아닌 여러 `results`를 저장해야 합니다. `results` 객체는 키(key)가 검색어이고, 값(value)이 `hits` 입니다. 각 API 결과는 키를 검색어로 개별로 저장됩니다.
 
-현재 로컬 상태는 아래 코드와 비슷할 겁니다.
+현재 로컬 상태는 아래 코드와 비슷할 것입니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -763,7 +763,7 @@ result: {
 }
 ~~~~~~~~
 
-Imagine you have made two API requests. One for the search term "redux" and another one for "react". The results object should look like the following:
+예를 들어, 두 개의 API를 요청한다고 해봅시다. 첫 번째 검색어는 "redux"이고 두 번째는 "react"입니다. `results`객체는 아래와 같을 것입니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -780,7 +780,9 @@ results: {
 }
 ~~~~~~~~
 
-Let's implement a client-side cache with React `setState()`. First, rename the `result` object to `results` in the initial component state. Second, define a temporary `searchKey` which is used to store each `result`.
+`setState()`로 클라이언트 캐시를 구현해봅시다.
+
+첫째, 컴포넌트 초기 상태의 `result` 객체를 `results`로 변경합니다. 둘째, 각 `result`를 저장할 때 사용될 임시  `searchKey`를 정의합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -806,7 +808,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The `searchKey` has to be set before each request is made. It reflects the `searchTerm`. You might wonder: Why don't we use the `searchTerm` in the first place? That's a crucial part to understand before continuing with the implementation. The `searchTerm` is a fluctuant variable, because it gets changed every time you type into the Search input field. However, in the end you will need a non fluctuant variable. It determines the recent submitted search term to the API and can be used to retrieve the correct result from the map of results. It is a pointer to your current result in the cache and thus can be used to display the current result in your `render()` method.
+요청을 보내기 전에 `searchTerm`를 반영하는 `searchKey`를 설정해야합니다. 왜 `searchTerm`을 사용하지 않을까요? 구현하기 전 충분히 이해를 하고 넘어가야합니다. `searchTerm`은 Search 컴포넌트의 입력 필드에 입력을 할 때마다 그 값이 변경되는 변경 변수(fluctuant variable)입니다.우리는 값이 변경되지 않는 고정 변수가 필요합니다. 캐시 안에 저장된 현재 `result`가 해당됩니다. 따라서 `render()` 메서드에 현재 `result`를 표시할 수 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -828,7 +830,7 @@ onSearchSubmit(event) {
 }
 ~~~~~~~~
 
-Now you have to adjust the functionality where the result is stored to the internal component state. It should store each result by `searchKey`.
+다음으로 `result`가 컴포넌트 내부 상태에 저장되도록 함수를 수정해야 합니다. `searchKey`로 각  `result`를 저장해야 합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -866,13 +868,13 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The `searchKey` will be used as the key to save the updated hits and page in a `results` map.
+`searchKey`는 업데이트된 `hits`와 `page`를 `results`에 저장하기 위한 키로 사용됩니다. 
 
-First, you have to retrieve the `searchKey` from the component state. Remember that the `searchKey` gets set on `componentDidMount()` and `onSearchSubmit()`.
+첫째, 컴포넌트 상태에서 `searchKey`를 검색해야 합니다. `searchKey`는 `componentDidMount()`와 `onSearchSubmit()`에 설정되어 있습니다.
 
-Second, the old hits have to get merged with the new hits as before. But this time the old hits get retrieved from the `results` map with the `searchKey` as key.
+둘째, 이전 `hits`는 새로 받은 `hits`와 합쳐져야 합니다. 하지만 이번에는 `searchKey` 키로 `results`의 이전 `hits`를 가져옵니다.
 
-Third, a new result can be set in the `results` map in the state. Let's examine the `results` object in `setState()`.
+셋째, 새`result`는 상태 `results`로 매핑됩니다. `setState()`에 있는 `results`객체를 살펴봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -882,11 +884,11 @@ results: {
 }
 ~~~~~~~~
 
-The bottom part makes sure to store the updated result by `searchKey` in the results map. The value is an object with a hits and page property. The `searchKey` is the search term. You already learned the `[searchKey]: ...` syntax. It is an ES6 computed property name. It helps you to allocate values dynamically in an object.
+아래 부분은 `searchKey`에 의해 업데이트된 `results`를 저장합니다. 값은 `hits`와 `page` 프로퍼티가 있는 객체입니다. `searchKey`는 검색어입니다. 이미 여러분은 `[searchKey]: ...` 구문을 배웠습니다. ES6를 통해 계산된 프로퍼티 이름입니다. 이를 통해 객체에서 값을 동적으로 할당할 수 있습니다.
 
-The upper part needs to spread all other results by `searchKey` in the state by using the object spread operator. Otherwise you would lose all results that you have stored before.
+윗 부분은 객체 전개 연산자를 사용해 `searchKey`로 모든 `results`를 전파해야합니다. 그렇지 않으면 이전에 저장한 모든 `results`가 손실됩니다.
 
-Now you store all results by search term. That's the first step to enable your cache. In the next step, you can retrieve the result depending on the non fluctuant `searchKey` from your map of results. That's why you had to introduce the `searchKey` in the first place as non fluctuant variable. Otherwise the retrieval would be broken when you would use the fluctuant `searchTerm` to retrieve the current result, because this value might change when you would use the Search component.
+이제 검색어 별로 모든 `results`를 저장합시다. 먼저 캐시를 활성화합니다. 다음 단계는 변경되지 않는 `searchKey`에 따라 `results`를 검색합니다. 때문에 변경이 없는 변수로 `searchKey`를 사용했습니다. 그렇지 않으면 Search 컴포넌트를 사용할 때 값이 변경될 수 있으므로, 변경되는 `searchTerm`를 사용할 경우 검색이 중단되는 문제가 발생합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -939,11 +941,12 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Since you default to an empty list when there is no result by `searchKey`, you can spare the conditional rendering for the Table component now. Additionally you will need to pass the `searchKey` rather than the `searchTerm` to the "More" button. Otherwise your paginated fetch depends on the `searchTerm` value which is fluctuant. Moreover make sure to keep the fluctuant `searchTerm` property for the input field in the "Search" component.
+`searchKey`로 찾은 결과가 없을 때, 목록이 비어있는 것이 초기 설정이기 때문에, Table 컴포넌트를 조건부 렌더링으로 처리할 수 있습니다. 이제 `searchTerm`이 아닌 `searchKey`를 "More"버튼에 전달하겠습니다. 이렇게 하지 않으면  `searchTerm`의 변경 값에 따라 페이지 매김 데이터를 가져옵니다. Search 컴포넌트 내 입력 필드의`searchTerm` 프로퍼티는 유지합니다. 
 
-The search functionality should work again. It stores all results from the Hacker News API.
+검색 기능이 다시 잘 작동해야 합니다. 해커 뉴스 API에서 받은 모든 결과를 저장합니다.
 
-Additionally the `onDismiss()` method needs to get improved. It still deals with the `result` object. Now it has to deal with multiple `results`.
+`onDismiss()`메서드도 수정하겠습니다. 이 메서드는 `result` 객체를 다루는데, 여러 `results`를 다루게 해봅시다.
+
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -967,9 +970,10 @@ Additionally the `onDismiss()` method needs to get improved. It still deals with
   }
 ~~~~~~~~
 
-The "Dismiss" button should work again.
+ "Dismiss" 버튼이 잘 동작해야 합니다.
 
-However, nothing stops the application from sending an API request on each search submit. Even though there might be already a result, there is no check that prevents the request. Thus the cache functionality is not complete yet. It caches the results, but it doesn't make use of them. The last step would be to prevent the API request when a result is available in the cache.
+그러나 각 검색 제출 시, API 요청을 방지하는 장치는 없습니다. 이미 `result`가 있는 경우 API가 요청되지 않도록 해야 합니다. 따라서 현재 캐시 함수는 완벽하지 않습니다. `results`를 캐시하지만 실제 사용하지 않습니다. 캐시에서 `result`가 이미 있다면 API 요청을 보내지 않게 해봅시다.
+
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1015,13 +1019,16 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Now your client makes a request to the API only once although you search for a search term twice. Even paginated data with several pages gets cached that way, because you always save the last page for each result in the `results` map. Isn't that a powerful approach to introduce caching to your application? The Hacker News API provides you with everything you need to even cache paginated data effectively.
+클라이언트는 검색어를 두 번 검색하지만 API에 한 번만 요청합니다. 페이지 매김 데이터도 같은 방법으로 캐시됩니다. 
+`results`의 각 `result`에 대한 마지막 페이지를 항상 저장하기 때문입니다. 바로 이 접근 방법이 애플리케이션에 캐시를 도입하는 가장 좋은 방법입니다. 해커 뉴스 API는 매기잊 매김 데이터를 효과적으로 캐시하는데 필요한 것을 제공합니다. 
 
-## 에러 핸들링 Error Handling
+## 오류 처리 Error Handling
 
-Everything is in place for your interactions with the Hacker News API. You even have introduced an elegant way to cache your results from the API and make use of its paginated list functionality to fetch an endless list of sublists of stories from the API. But there is one piece missing. Unfortunately it is often missed when developing applications nowadays: error handling. It is too easy to implement the happy path without worrying about the errors that can happen along the way.
+해커 뉴스 API와 인터렉션을 위한 모든 준비가 끝났습니다. 프로그램을 만들다 보면 수없이 많은 오류를 만나게 된다. API 결과를 캐싱하고 페이지 매김된 목록 기능을 시용하여 API에서 하위 목록을 끊임없이 가져올 수 있습니다. 그러나 아직 할 일이 남아 있습니다. 프로그램을 만들다 보면 수없이 많은 오류를 만나게 됩니다. 하지만 대부분 애플리케이션을 개발하면서 오류 처리를 간과하기도 합니다. 오류 처리가 없는 개발은 정말 쉽습니다.
 
-In this chapter, you will introduce an efficient solution to add error handling for your application in case of an erroneous API request. You have already learned about the necessary building blocks in React to introduce error handling: local state and conditional rendering. Basically, the error is only another state in React. When an error occurs, you will store it in the local state and display it with a conditional rendering in your component. That's it. Let's implement it in the App component, because it's the component that is used to fetch the data from the Hacker News API in the first place. First, you have to introduce the error in the local state. It is initialized as null, but will be set to the error object in case of an error.
+이번 장에서는 API 요청 시, 효과적인 오류 처리 방법을 소개합니다. 이전 장에서 로컬 상태와 조건부 렌더링으로 오류 처리하는 방법을 배웠습니다. 기본적으로 오류는 리액트에서 또다른 상태라고 볼 수 있습니다. 오류가 발생하면 로컬 상태로 저장하고 컴포넌트의 조건부 렌더링을 통해 보여집니다. 이것이 전부입니다. App 컴포넌트에 작성하겠습니다. App 컴포넌트는 해커 뉴스 API로 데이터를 받는 곳이기 때문입니다. 
+
+첫째, 로컬 상태에 오류를 도입해봅시다. null이 초기값이지만 오류가 발생하면 오류 객체로 설정됩니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1046,7 +1053,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Second, you can use the catch block in your native fetch to store the error object in the local state by using `setState()`. Every time the API request isn't successful, the catch block would be executed.
+둘째, 네이티브 fetch에서 catch 블록 안에 `setState()`로 오류 객체를 로컬 상태로 저장합니다. API 요청이 성공하지 못하면 catch 블록이 실행됩니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1068,7 +1075,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Third, you can retrieve the error object from your local state in the `render()` method and display a message in case of an error by using React's conditional rendering.
+셋째, `render()` 내 로컬 상태 내 error 객체를 가져오고 조건문 렌더링으로 에러 메시지를 표시할 수 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1103,14 +1110,14 @@ class App extends Component {
 }
 ~~~~~~~~
 
-That's it. If you want to test that your error handling is working, you can change the API URL to something else that is non existent.
+여기까지입니다. 오류 처기라 잘 작동하는지 테스트하려면 API URL을 존재하지 않는 URL로 바꿔서 테스트해보세요.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 const PATH_BASE = 'https://hn.foo.bar.com/api/v1';
 ~~~~~~~~
 
-Afterward, you should get the error message instead of your application. It is up to you where you want to place the conditional rendering for the error message. In this case, the whole app isn't displayed anymore. That wouldn't be the best user experience. So what about displaying either the Table component or the error message? The remaining application would still be visible in case of an error.
+애플리케이션 대신, 오류 메시지가 나타납니다. 원하는 곳에 조건부 렌더링으로 오류 메시지를 표시하면 됩니다. 이 경우 전체 앱이 보이지 않기 때문에, 사용자 경험에 문제가 있습니다. 그렇다면 Table 컴포넌트나 에러 메시지 둘 중 하나를 표시하면 어떨까요? 오류가 발생한 후에도 나머지 애플리케이션은 계속 표시됩니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1161,14 +1168,14 @@ class App extends Component {
 }
 ~~~~~~~~
 
-In the end, don't forget to revert the URL for the API to the existent one.
+URL을 기존 URL로 되돌리는 것을 잊지 마세요.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 const PATH_BASE = 'https://hn.algolia.com/api/v1';
 ~~~~~~~~
 
-Your application should still work, but this time with error handling in case the API request fails.
+애플리케이션이 잘 작동하는지 확인해봅시다. API 요청이 실패할 경우 오류 처리를 추가해야 합니다.
 
 ### 읽어보기
 
@@ -1176,23 +1183,23 @@ Your application should still work, but this time with error handling in case th
 
 {pagebreak}
 
-여러분은 리액트에서 API를 사용할 수 있습니다! 이번 장에서 배운 내용을 정리해봅시다.
+앞으로 여러분은 리액트에서 API를 사용할 수 있습니다. 이번 장에서 배운 내용을 정리해봅시다.
 
-* React
-  * ES6 class component lifecycle methods for different use cases
-  * componentDidMount() for API interactions
-  * conditional renderings
-  * synthetic events on forms
-  * error handling
+* 리액트
+  * ES6 클래스 컴포넌트의 생명주기 메소드와 사용 사례
+  * componentDidMount() 메서드에서 API 호출
+  * 조건부 렌더링
+  * 폼 이벤트
+  * 에러 핸들링
 * ES6
-  * template strings to compose strings
-  * spread operator for immutable data structures
-  * computed property names
+  * 템플릿 문자열 구성
+  * 전개 연산자로 불변 데이터 구조 작성
+  * 프로퍼티 이름 계산
 * 일반
   * 해커 뉴스 API 인터렉션
-  * native fetch browser API
-  * client- and server-side search
-  * pagination of data
-  * client-side caching
+  * 네이티브 브라우저 fetch API
+  * 클라이언트 및 서버 내 검색 기능
+  * 데이터 페이지네이션
+  * 클라이언트 렌더
 
 실습 코드는 [깃허브 리퍼지토리](https://github.com/rwieruch/hackernews-client/tree/4.2)에서 확인할 수 있습니다.

@@ -1,8 +1,8 @@
-# 리액트 컴포넌트 심화 Advanced React Components
+# 심화: 컴포넌트 Advanced React Components
 
 이번 장에서는 리액트 컴포넌트 심화 내용을 배울 것입니다. 고차 컴포넌트(higher order components)를 학습한 후 실제 구현을 해볼 것입니다. 리액트 고급 주제와 복잡한 인터렉션도 함께 디뤄봅니다.
 
-## Ref a DOM Element
+## Ref와 DOM Refs and the DOM
 
 종종 리액트에서 DOM 노드를 다룰 일이 있습니다. `ref` 속성으로 DOM 노드를 접근할 수 있습니다. 리액트의 단방향 데이터 흐름과 선언 방식에 위배되기때문에 안티 패턴(anti pattern)이라고도 합니다. 검색 입력 필드를 구현했을 때, 잠시 소개헀습니다. 리액트 공식 문서에는 세 가지 사용 사례가 소개되어있습니다.
 
@@ -157,7 +157,7 @@ const Search = ({
 * [[리액트 공식문서] the ref attribute in general in React](https://facebook.github.io/react/docs/refs-and-the-dom.html)
 * [[리액트 공식문서] the usage of the ref attribute in React](https://www.robinwieruch.de/react-ref-attribute-dom-node/)
 
-## 로딩 Loading
+## 로딩 컴포넌트 Loading Component
 
 애플리케이션으로 다시 돌아가봅시다. 해커 뉴스 API로 검색 요청하는 동안 로딩 인디케이터를 보여주고 싶을 겁니다. 비동기 요청임으로 사용자에게 그동안 기다릴 것을 알려줘야합니다. *src/App.js* 파일에 재사용가능한 컴포넌트를 정의봅시다. 
 
@@ -283,11 +283,11 @@ class App extends Component {
 
 ## 고차 컴포넌트 Higher Order Components
   
-Higher order components (HOC) are an advanced concept in React. HOCs are an equivalent to higher order functions. They take any input - most of the time a component, but also optional arguments - and return a component as output. The returned component is an enhanced version of the input component and can be used in your JSX.
+고차 컴포넌트(HOCs: Higher order components)는 리액트의 고급 주제입니다. HOCs는 고차 함수와 동일한 개념입니다. HOCs는 함수와 같이 입력, 선택적 인자를 받아 컴포넌트를 출력합니다. 반환된 컴포넌트는 입력된 컴포넌트입며 JSX에서 사용됩니다.
 
-HOCs are used for different use cases. They can prepare properties, manage state or alter the representation of a component. One use case could be to use a HOC as a helper for a conditional rendering. Imagine you have a List component that renders a list of items or nothing, because the list is empty or null. The HOC could shield away that the list would render nothing when there is no list. On the other hand, the plain List component doesn't need to bother anymore about an non existent list. It only cares about rendering the list.
+HOCs는 여러 사용 사례가 있습니다. 프로퍼티 준비, 상태 관리, 컴포넌트 표시 변경을 할 수 있습니다. 또는 조건부 렌더링에서 HOCs를 헬퍼로 사용할 수 있습니다. 예를 들어 List 컴포넌트가 있는데, 이 컴포넌트는 목록을 반환하거나 목록이 없거나 null일 경우 아무것도 반환하지 않는다고 합니다. HOCs는 목록이 없을 때 렌더링하지 못하게 할 수 있습니다. 이렇게 하면 List 컴포넌트는 목록이 없을 경우를 체크하지 않아도 됩니다. 그저 List 컴포넌트는 목록을 렌더링하는 역할에만 충실하면 됩니다.
 
-Let's do a simple HOC which takes a component as input and returns a component. You can place it in your *src/App.js* file.
+컴포넌트를 입력으로 사용하고, 컴포넌트를 반환하는 간단한 HOC를 만들어봅시다. *src/App.js* 파일에서 작성하면 됩니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -298,7 +298,7 @@ function withFoo(Component) {
 }
 ~~~~~~~~
 
-One neat convention is to prefix the naming of a HOC with `with`. Since you are using JavaScript ES6, you can express the HOC more concisely with an ES6 arrow function.
+관례로 HOC 변수명 앞에 `with` 접두어를 붙입니다. ES6 화살표 함수로 HOC를 간결하게 작성합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -306,7 +306,7 @@ const withFoo = (Component) => (props) =>
   <Component { ...props } />
 ~~~~~~~~
 
-In the example, the input component would stay the same as the output component. Nothing happens. It renders the same component instance and passes all of the props to the output component. But that's useless. Let's enhance the output component. The output component should show the Loading component, when the loading state is true, otherwise it should show the input component. A conditional rendering is a great use case for a HOC.
+이 예제에서 입력 컴포넌트는 출력 컴포넌트와 동일하게 유지됩니다. 아무일도 일어나지 않습니다. 동일한 컴포넌트 인스턴스를 렌더링하고 모든 props를 출력 컴포넌트로 전달합니다. 그러나 유용하지 않습니다. 출력 컴포넌트를 개선해봅시다. 출력 컴포넌트는 로딩 상태가 true일 때 Loading 컴포넌트를 보여주고, 그렇지 않을 때 입력 컴포넌트를 보여줘야합니다. 조건부 렌더링에서 HOC을 사용하는 것이 좋습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -318,21 +318,21 @@ const withLoading = (Component) => (props) =>
 # leanpub-end-insert
 ~~~~~~~~
 
-Based on the loading property you can apply a conditional rendering. The function will return the Loading component or the input component.
+로딩 프로퍼티에 따라 조건부 렌더링을 적용할 수 있습니다. 이 함수는 Loading 컴포넌트 또는 입력 컴포넌트를 반환합니다.
 
-In general it can be very efficient to spread an object, like the props object in the previous example, as input for a component. See the difference in the following code snippet.
+일반적으로 위 예제처럼 props와 같이 컴포넌트를 입력과 같이 전파하는 것이 매우 효과적입니다. 아래 코드를 보고 서로 차이점을 비교해보세요.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
-// before you would have to destructure the props before passing them
+// props를 전달하기 전 구조 해체를 해야합니다.
 const { foo, bar } = props;
 <SomeComponent foo={foo} bar={bar} />
 
-// but you can use the object spread operator to pass all object properties
+// 객체 전개 연산자를 사용해 모든 객체 프로퍼티를 전달합니다.
 <SomeComponent { ...props } />
 ~~~~~~~~
 
-There is one little thing that you should avoid. You pass all the props including the `isLoading` property, by spreading the object, into the input component. However, the input component may not care about the `isLoading` property. You can use the ES6 rest destructuring to avoid it.
+`isLoading`를 포함한 모든 props를 객체를 전개해서 입력 컴포넌트에 전달했습니다. 그러나 입력 컴포넌트는 `isLoading` 프로퍼티를 신경쓰지 않습니다. 이를 피하기 위해 ES6 구조 해체를 사용합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -344,9 +344,9 @@ const withLoading = (Component) => ({ isLoading, ...rest }) =>
 # leanpub-end-insert
 ~~~~~~~~
 
-It takes one property out of the object, but keeps the remaining object. It works with multiple properties as well. You might have already read about it in the [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment).
+객체에서 프로퍼티 하나를 가져오지만 나머지 객체는 유지됩니다. 또한 여러 프로퍼티와 함께 사용됩니다. 이미 여러분들은 [[MDN] 구조 해체 할당](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) 부분을 읽었을 겁니다.
 
-Now you can use the HOC in your JSX. An use case in the application could be to show either the "More" button or the Loading component. The Loading component is already encapsulated in the HOC, but an input component is missing. In the use case of showing a Button component or a Loading component, the Button is the input component of the HOC. The enhanced output component is a ButtonWithLoading component.
+이제 JSX에서 HOC를 사용해봅시다. 우리는 "More" 버튼 또는 Loading 컴포넌트 둘 중 하나를 보여줄 겁니다. Loading 컴포넌트는 HOC에 캡슐화되어있지만 입력 컴포넌트는 빠져있습니다. 입력 컴포넌트를 Button 컴포넌트로, 출력 컴포넌트는 ButtonWithLoading 컴포넌트로 추가합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -372,7 +372,7 @@ const ButtonWithLoading = withLoading(Button);
 # leanpub-end-insert
 ~~~~~~~~
 
-Everything is defined now. As a last step, you have to use the ButtonWithLoading component, which receives the loading state as an additional property. While the HOC consumes the loading property, all other props get passed to the Button component.
+마지막으로 ButtonWithLoading 컴포넌트가 loading 상태를 프로퍼티로 받게 만듭시다. HOC가 loading 프로퍼티를 사용하는 동안, 나머지 props 전체는 Button 컴포넌트로 전달됩니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -400,7 +400,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-When you run your tests again, you will notice that your snapshot test for the App component fails. The diff might look like the following on the command line:
+테스트를 다시 실행하면, App 컴포넌트의 스냅샷 테스트가 실패함을 알 수 있습니다. 커맨드 라인에서 diff가 아래와 같이 보일 것입니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -416,31 +416,33 @@ When you run your tests again, you will notice that your snapshot test for the A
 +    </div>
 ~~~~~~~~
 
-You can either fix the component now, when you think there is something wrong about it, or can accept the new snapshot of it. Because you introduced the Loading component in this chapter, you can accept the altered snapshot test on the command line in the interactive test.
+잘못되었다고 생각되면 지금 바로 컴포넌트를 수정할 수 있습니다. 또는 스냡샷을 수락할 수 있습니다. Loading 컴포넌트를 만들었기 때문에 커맨드 라인에서 변경된 스냅샷 테스트를 수락할 수 있습니다.
 
-Higher order components are an advanced technique in React. They have multiple purposes like improved reusability of components, greater abstraction, composability of components and manipulations of props, state and view. Don't worry if you don't understand them immediately. It takes time to get used to them.
+고차 컴포넌트는 리액트에서 고급 테크닉입니다. 고차 컴포넌트는 컴포넌트의 재사용성 향상, 강화된 추상화, 컴포넌트의 조합성과 props, 상태 및 뷰 조작 등 여러 목적을 가지고 있습니다. 지금 모든 것을 이해하지 못한다고 해도 걱정하지 않길 바랍니다. 익숙해지기까지 시간이 걸립니다.
 
-I encourage you to read the [gentle introduction to higher order components](https://www.robinwieruch.de/gentle-introduction-higher-order-components/). It gives you another approach to learn them, shows you an elegant way to use them a functional programming way and solves specifically the problem of conditional rendering with higher order components.
+저자가 쓴 [고차 컴포넌트 시작하기](https://www.robinwieruch.de/gentle-introduction-higher-order-components/) 글을 읽어보길 바랍니다. 고차 컴포넌트를 배우는 방법을 설명하고 함수형 프로그래밍과 조건부 렌더링 내 고차 컴포넌트 문제를 해결할 수 있는 방법을 소개했습니다.
 
-### Exercises:
+### 읽어보기
 
-* read [a gentle introduction to higher order components](https://www.robinwieruch.de/gentle-introduction-higher-order-components/)
-* experiment with the HOC you have created
-* think about a use case where another HOC would make sense
-  * implement the HOC, if there is a use case
+* [[저자 블로그] 고차 컴포넌트 시작하기](https://www.robinwieruch.de/gentle-introduction-higher-order-components/)
 
-## Advanced Sorting
+### 실습하기
+* HOC를 실험해봅니다.
+* 그 외 더 많은 HOC 사용 사례를 생각해봅시다.
+  * 직접 HOC를 구현해봅시다.
 
-You have already implemented a client- and server-side search interaction. Since you have a Table component, it would make sense to enhance the Table with advanced interactions. What about introducing a sort functionality for each column by using the column headers of the Table?
+## 심화: 정렬 Advance Sorting
 
-It would be possible to write your own sort function, but personally I prefer to use a utility library for such cases. [Lodash](https://lodash.com/) is one of these utility libraries, but you can use whatever library suits you. Let's install Lodash and use it for the sort functionality.
+클라이언트와 서버 모두 검색 인터렉션을 다뤄봤습니다. Table 컴포넌트로 좀더 한층 심화된 인터렉션을 다뤄보겠습니다. Table 컴포넌트의 각 첫 행에 라벨을 추가하고 이를 활용해 정렬 기능을 만들어보겠습니다.
+
+저는 정렬 기능 구현 시, 직접 함수를 만드는 것보다 유틸리티 라이브러리를 사용하는 것을 선호합니다. 그 중 가장 대표적인 유틸리티 라이브러리난 [로대쉬(Lodash)](https://lodash.com/)이며 다른 라이브러리를 사용해도 좋습니다. 먼저 로대쉬를 설치합시다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm install lodash
 ~~~~~~~~
 
-Now you can import the sort functionality of Lodash in your *src/App.js* file.
+그리고 *src/App.js* 파일에서 로대쉬의 정렬 함수를 가져옵니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -452,7 +454,7 @@ import { sortBy } from 'lodash';
 import './App.css';
 ~~~~~~~~
 
-You have several columns in your Table. There are title, author, comments and points columns. You can define sort functions whereas each function takes a list and returns a list of items sorted by a specific property. Additionally, you will need one default sort function which doesn't sort but only returns the unsorted list. That will be your initial state.
+Table 컴포넌트에는 title, author, comments, points 열이 있습니다. 정렬 함수는 특정 프로퍼티에 따라 정렬된 목록을 반환합니다. 또한 정렬되지 않는 목록을 반환하는 기본 정렬 함수가 필요합니다. 기본 정렬 함수는 초기 상태 값이 됩니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -474,11 +476,11 @@ class App extends Component {
 ...
 ~~~~~~~~
 
-You can see that two of the sort functions return a reversed list. That's because you want to see the items with the highest comments and points rather than to see the items with the lowest counts when you sort the list for the first time.
+두 개의 정렬 함수가 역순으로 나열되었습니다. 처음 목록을 정렬할 때, 댓글 수와 점수가 높은 순으로 정렬됩니다. 
 
-The `SORTS` object allows you to reference any sort function now.
+`SORTS`객체로 정렬 함수를 사용합니다.
 
-Again your App component is responsible for storing the state of the sort. The initial state will be the initial default sort function, which doesn't sort at all and returns the input list as output.
+App 컴포넌트는 정렬 상태를 저장합니다 초기 상태는 초기 정렬 함수이며, 정렬되지 않은 입력 리스트를 반환합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -494,9 +496,10 @@ this.state = {
 };
 ~~~~~~~~
 
-Once you choose a different `sortKey`, let's say the `AUTHOR` key, you will sort the list with the appropriate sort function from the `SORTS` object.
 
-Now you can define a new class method in your App component that simply sets a `sortKey` to your local component state. Afterward, the `sortKey` can be used to retrieve the sorting function to apply it on your list.
+다른 `sortKey`로 `AUTHOR` 키를 선택해봅시다, `SORTS` 객체의 `AUTHOR` 함수를 통해 목록을 정렬합니다.
+
+다음 App 컴포넌트에서 새로운 클래스 메서드를 만들어봅시다. 이 메서드는 `sortKey`로 정렬 함수를 찾아 목록에 적용합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -528,7 +531,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The next step is to pass the method and `sortKey` to your Table component.
+그리고 Table 컴포넌트에 메서드와 `sortKey`을 전달합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -568,7 +571,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The Table component is responsible for sorting the list. It takes one of the `SORT` functions by `sortKey` and passes the list as input. Afterward it keeps mapping over the sorted list.
+Table 컴포넌트는 목록 정렬을 담당합니다. `sortKey` 로 `SORT` 함수 중 하나를 취해 목록을 입력으로 전달합니다. 정렬된 목록은 유지됩니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -591,7 +594,7 @@ const Table = ({
   </div>
 ~~~~~~~~
 
-In theory the list would get sorted by one of the functions. But the default sort is set to `NONE`, so nothing is sorted yet. So far, no one executes the `onSort()` method to change the `sortKey`. Let's extend the Table with a row of column headers that use Sort components in columns to sort each column.
+이론적으로 목록은 특정 함수에 의해 정렬됩니다. 기본 정렬은 `NONE`이기 때문에 아직 정렬이 되지 않았습니다. `sortKey`를 바꾸기 위해 `onSort()` 메서드를 실행하지 않았습니다.  Sort 컴포넌트로 열 헤더를 기반으로 정렬할 수 있게 합시다. Table 안에 Sort 컴포넌트를 사용해 확장해봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -647,7 +650,7 @@ const Table = ({
   </div>
 ~~~~~~~~
 
-Each Sort component gets a specific `sortKey` and the general `onSort()` function. Internally it calls the method with the `sortKey` to set the specific key.
+Sort 컴포넌트는 특정 `sortKey`와 `onSort()`메서드를 갖고 있습니다. 내부에서 특정 키를 설정하기 위해  `sortKey` 메서드를 호출합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -657,9 +660,9 @@ const Sort = ({ sortKey, onSort, children }) =>
   </Button>
 ~~~~~~~~
 
-As you can see, the Sort component reuses your common Button component. On a button click each individual passed `sortKey` will get set by the `onSort()` method. Now you should be able to sort the list when you click on the column headers.
+보시다시피 Sort 컴포넌트는 공통인 Button 컴포넌트를 다시 사용했습니다. `onSort()`메서드에서 버튼 클릭시 전달된 각각의 `sortKey`가 설정됩니다. 열 헤더를 클릭할 때 목록이 정렬되는지 확인해봅시다.
 
-There is one minor improvement for an improved look. So far, the button in a column header looks a bit silly. Let's give the button in the Sort component a proper `className`.
+좀더 예쁘게 꾸며야할 부분이 있습니다. 지금있는 헤더 버튼이 보기 좋지 않습니다. Sort 컴포넌트 옆에 `className`을 지정하겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -674,7 +677,7 @@ const Sort = ({ sortKey, onSort, children }) =>
   </Button>
 ~~~~~~~~
 
-It should look nice now. The next goal would be to implement a reverse sort as well. The list should get reverse sorted once you click a Sort component twice. First, you need to define the reverse state with a boolean. The sort can be either reversed or non reversed.
+이제 멋지게 보입니다. 다음 목표는 역 정렬을 구현하는 것입니다. Sort 컴포넌트를 두 번 클릭하면 목록이 역순으로 정렬 됩니다. 먼저 불리언 값을 사용해 `isSortReverse` 상태를 정의하겠습니다. `isSortReverse`가 `true`일 경우 역순으로 정렬되며, 반대로 `false`일 경우 정렬되지 않습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -691,7 +694,7 @@ this.state = {
 };
 ~~~~~~~~
 
-Now in your sort method, you can evaluate if the list is reverse sorted. It is reverse if the `sortKey` in the state is the same as the incoming `sortKey` and the reverse state is not already set to true.
+`onSort()` 메서드에서 목록이 역순으로 정렬되었는지 평가할 수 있습니다. `sortKey` 상태값이 입력된 `sortKey`와 같으며 반대 상태가 `true`로 설정되지 않을 경우 정렬하게 됩니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -703,7 +706,7 @@ onSort(sortKey) {
 }
 ~~~~~~~~
 
-Again you can pass the reverse prop to your Table component.
+다시 Table 컴포넌트에 역정렬된 props를 전달합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -745,7 +748,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-The Table has to have an arrow function block body to compute the data now.
+Table 컴포넌트에 데이터를 계산하는 화살표 함수 블록 본문이 있어야 합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -780,11 +783,11 @@ const Table = ({
 # leanpub-end-insert
 ~~~~~~~~
 
-The reverse sort should work now.
+목록이 역순으로 잘 정렬됩니다.
 
-Last but not least, you have to deal with one open question for the sake of an improved user experience. Can a user distinguish which column is actively sorted? So far, it is not possible. Let's give the user a visual feedback.
+마지막으로 사용자 경험 향상을 위해 개선할 사항이 남았습니다. 지금 어떤 열을 기준으로 정렬했는지 알 수가 없습니다. 사용자가 올바르게 인식하려면 어떻게 해야할까요? 바로 시각적인 효과를 줄 수 있습니다.
 
-Each Sort component gets its specific `sortKey` already. It could be used to identify the activated sort. You can pass the `sortKey` from the internal component state as active sort key to your Sort component.
+각 Sort 컴포넌트는 특정 `sortKey`를 가져옵니다. 이 키로 현재 선택된 정렬을 식별하는 사용할 수 있습니다. 컴포넌트 내부 상태의 `sortKey`를 선택된 정렬 키로 Sort 컴포넌트로 전달합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -859,7 +862,7 @@ const Table = ({
 }
 ~~~~~~~~
 
-Now in your Sort component, you know based on the `sortKey` and `activeSortKey` whether the sort is active. Give your Sort component an extra `className` attribute, in case it is sorted, to give the user a visual feedback.
+이제 Sort 컴포넌트에서 `sortKey`와 `activeSortKey`를 근거로 정렬이 활성화되었는지 알 수 있습니다. 시각적인 효과를 주기 위해 Sort 컴포넌트에 `className` 속성을 지정합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -888,14 +891,16 @@ const Sort = ({
 # leanpub-end-insert
 ~~~~~~~~
 
-The way to define the `sortClass` is a bit clumsy, isn't it? There is a neat little library to get rid of this. First you have to install it.
+`sortClass`를 정의하는 방법이 꽤 좋아보지지 않습니다. classnames 라이브러리를 사용해서 이를 해결해보겠습니다.
+
+classnames 라이브러리를 설치합시다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm install classnames
 ~~~~~~~~
 
-And second you have to import it on top of your *src/App.js* file.
+이어서 *src/App.js* 파일에서 라이브러리를 선언해 가져옵니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -908,7 +913,7 @@ import classNames from 'classnames';
 import './App.css';
 ~~~~~~~~
 
-Now you can use it to define your component `className` with conditional classes.
+classname 라이브러리를 사용해 `className` 컴포넌트를 조건부 클래스로 정의합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -938,7 +943,7 @@ const Sort = ({
 }
 ~~~~~~~~
 
-Again, when you run your tests, you should see failing snapshot tests but also failing unit tests for the Table component. Since you changed again your component representations, you can accept the snapshot tests. But you have to fix the unit test. In your *src/App.test.js* file, you need to provide a `sortKey` and the `isSortReverse` boolean for the Table component.
+테스트를 실행하면 스냅샷 테스트 뿐만 아니라 Table 컴포넌트의 유닛 테스트가 실패한 것도 확인해야 합니다. 컴포넌트를 다시 변경했기 때문에, 스냅샷 테스트를 수락할 수 있습니다만, 유닛 테스트를 수정해야 합니다. *src/App.test.js* 파일에서 아래와 같이 Table 컴포넌트 부분에 `sortKey`과 `isSortReverse` 불리언을 추가합시다.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -962,9 +967,9 @@ describe('Table', () => {
 });
 ~~~~~~~~
 
-Once again you might need to accept the failing snapshot tests for your Table component, because you provided extended props for the Table component.
+Table 컴포넌트에 확장된 prop가 있기 때문에 한번 더 Table 컴포넌트 스냅샷 테스트 실패를 승인해야할 수도 있습니다.
 
-Finally your advanced sort interaction is complete now.
+드디어 어려운 정렬 기능을 모두 완성했습니다.
 
 ### 실습하기
 
@@ -978,12 +983,12 @@ Finally your advanced sort interaction is complete now.
 
 리액트에서 컴포넌트 고급 테크닉을 구사할 수 있게 되었습니다! 이번 장에서 배운 내용을 정리해봅시다.
 
-* React
-  * the ref attribute to reference DOM nodes
-  * higher order components are a common way to build advanced components
-  * implementation of advanced interactions in React
-  * conditional classNames with a neat helper library
+* 리액트
+  * ref 속성으로 DOM 노드를 접근할 수 있습니다.
+  * 고차 컴포넌트는 고급 컴포넌트을 위한 일반적인 테크닉입니다.
+  * 리액트에서 어려운 인터렉션을 구현했습니다.
+  * 조건부 클래스명을 위해 `classnames` 라이브러리를 사용했습니다.
 * ES6
-  * rest destructuring to split up objects and arrays
-
+  * 객체와 배열을 분리하기 위해 구조 해체를 했습니다.
+  
 실습 코드는 [공식 깃허브 리퍼 지토리](https://github.com/rwieruch/hackernews-client/tree/4.2)에서 확인할 수 있습니다.
