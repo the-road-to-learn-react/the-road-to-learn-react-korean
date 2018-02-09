@@ -318,9 +318,9 @@ import SubmitButton from '../Buttons/SubmitButton';
 
 그렇다면 각 유형별로 몇 개의 테스트가 필요할까요? 독립적인 함수를 위해 일 경우 많은 단위 테스트를 필요합니다. 그 다음 잘 작동하는 지 확인하기 위해 몇 가지 통합 테스트를 수행할 수 있습니다. 마지막으로 최종 사용자 시나리오를 점검하기 위해 몇 가지 종단간 테스트만 수행하는 것이 좋습니다. 지금까지 일반적인 테스트 과정에 대해 설명했습니다.
 
-그렇다면 리액트 애플리케이션에 테스트를 어떻게 진행해야 할까요? 기본적인 리액트 테스트는 컴포넌트 테스트로 테스트로 유닛 테스트와 스냅샷 테스트입에 해당합니다. 다음 장에서 Enzyme 라이브러리로 테스트 코드를 작성해보겠습니다. 이번 장에서는 또다른 테스트 유형인 [Jest](https://facebook.github.io/jest/)을 가지고 스냅샷 테스트에(snapshot test) 대해 알아보겠습니다.  
+그렇다면 리액트 애플리케이션에 테스트를 어떻게 진행해야 할까요? 기본적인 리액트 테스트는 컴포넌트 테스트로 테스트로 유닛 테스트와 스냅샷 테스트입에 해당합니다. 다음 장에서 Enzyme 라이브러리로 테스트 코드를 작성해보겠습니다. 이번 장에서는 또다른 테스트 유형인 [Jest(제스트)](https://facebook.github.io/jest/)을 가지고 스냅샷 테스트에(snapshot test) 대해 알아보겠습니다.  
 
-[Jest](https://facebook.github.io/jest/)은 페이스북에서 사용하는 자바스크립트 테스트 프레임워크로 컴포넌트 테스트를 위해 사용합니다. *create-react-app*에 이미 Jest가 있어서 새로 설치할 필요가 없습니다.
+[제스트](https://facebook.github.io/jest/)은 페이스북에서 사용하는 자바스크립트 테스트 프레임워크로 컴포넌트 테스트를 위해 사용합니다. *create-react-app*에 이미 제스트가 있어서 새로 설치할 필요가 없습니다.
 
 첫 번째 컴포넌트를 테스트해봅시다. 그 전에  *src/App.js*파일에서 테스트할 컴포넌트를 내보내야 합니다. 그렇게 해야 다른 파일에서 테스트할 수 있기 때문입니다. 이 내용은 이전 장에서 배웠던 것입니다.
 
@@ -359,33 +359,34 @@ it('renders without crashing', () => {
 });
 ~~~~~~~~
 
-"it"-block describes one test case. It comes with a test description and when you test it, it can either succeed or fail. Furthermore, you could wrap it into a "describe"-block that defines your test suit. A test suit could include a bunch of the "it"-blocks for one specific component. You will see those "describe"-blocks later on. Both blocks are used to separated and organize your test cases.
+"it"문은 테스트 케이스 입니다. 테스트 내용이 뒤따르고 테스트 시 성공 또는 실패합니다. 추후에 "describe" 문으로 "it" 전체를 테스트 슈트(test suit)로 감쌀 수 있습니다. 테스트 슈트는 하나의 특정 컴포넌트의 "it"문이 포함됩니다. 나중에 "describe"문을 확인하길 바랍니다. 이들 모두 테스트 케이스를 분리하고 구성하는데 사용합니다.
 
-커맨드 라인에 
-You can run your test cases by using the interactive *create-react-app* test script on the command line. You will get the output for all test cases on your command line interface.
+커맨드 라인에서  *create-react-app* 테스트 스크립트를 사용해 테스트를 진행할 수 있습니다. 모든 테스트 케이스에 대한 출력을 볼 수 있습니다. 아래 명령어로 확인해봅시다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm test
 ~~~~~~~~
 
-**Note:** If errors show up when you run the single test for the App component for the first time, it could be because of the unsupported fetch method that is used in `fetchSearchTopStories()` which is triggered in `componentDidMount()`. You can make it work by following these two steps:
+**중요** App 컴포넌트 유닛 테스트에서 오류가 발생하면, `componentDidMount()`메서드 안에 `fetchSearchTopStories()`에서 fetch 메서드가 작동하지 않음을 말합니다. 위 경우 아래 가이드를 참고해 해결합시다.
 
 * 커맨드 라인에서 다음 명령어로 패키지를 설치합니다. `npm install isomorphic-fetch`
 * *App.js* 파일에 다음 코드를 추가합니다: `import fetch from 'isomorphic-fetch';`
 
-Now Jest enables you to write snapshot tests. These tests make a snapshot of your rendered component and run this snapshot against future snapshots. When a future snapshot changes, you will get notified in the test. You can either accept the snapshot change, because you changed the component implementation on purpose, or deny the change and investigate for the error. It complements unit tests very well, because you only test the diffs of the rendered output. It doesn't add big maintenance costs, because you can simply accept changed snapshots when you changed something on purpose for the rendered output in your component.
+제스트를 사용해 스냅샷 테스트를 작성해봅시다. 이 테스트는 렌더링된 테스트의 스냅샷 만들어 차기 스냡샷(future snapshot)에 대해 기존 스냡샷을 실행합니다. 차기 스냡샷이 변경되면, 테스트가 알려줍니다. 오류 의도적으로 컴포넌트를 수정했을 경우, 또는 수정을 원치않은 경우에 스냅샷 변경을 수락할 수 있습니다. 렌더링 결과와 diffs(차이)만 테스트하기 때문에 단위 테스트를 잘 보완합니다.
 
-Jest stores the snapshots in a folder. Only that way it can validate the diff against a future snapshot. Additionally, the snapshots can be shared across teams by having them in one folder.
+컴포넌트 내 렌더된 출력을 위해 수정할 때, 변경된 스냅샷만 간단히 수락하면 되기 때문에 관리하기 어렵지 않습니다.
 
-Jest로 첫 번째 스냅샷 테스트를 작성하기 전에 유틸리티 라이브러리를 설치해야 합니다.
+제스트는 스냅샷을 폴더에 저장합니다. 이런 방법으로 차기 스냡샷과 비교해 diff를 검증합니다. 또한 단일 폴더에 스냅샷을 공유할 수 있습니다.
+
+제스트로 첫 번째 스냅샷 테스트를 작성하기 전, `react-test-renderer` 유틸리티 라이브러리를 설치합시다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm install --save-dev react-test-renderer
 ~~~~~~~~
 
-Now you can extend the App component test with your first snapshot test. First, import the new functionality from the node package and wrap your previous "it"-block for the App component into a descriptive "describe"-block. In this case, the test suit is only for the App component.
+이제 첫 번째 스냡샷 테스트로 App 컴포넌트를 확장합시다. 먼저 노드 패키지에서 설치한 라이브러리를 가져오고, App 컴포넌트를 "it" 문으로 감싼 다음, 다시 "describe" 문으로 감쌉니다. 이 경우 테스트 수트는 App 컴포넌트입니다.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -439,11 +440,13 @@ describe('App', () => {
 });
 ~~~~~~~~
 
-Run your tests again and see how the tests either succeed or fail. They should succeed. Once you change the output of the render block in your App component, the snapshot test should fail. Then you can decide to update the snapshot or investigate in your App component.
+다시 테스트를 실행해 테스트가 성공 또는 실패했는지 확인하세요. 성공해야 합니다. App 컴포넌트 내 렌더 내 출력을 변경하면 스냅샷 테스트가 실패합니다. 스냅샷을 업데이트하거나 App 컴포넌트를 확인할 수 있습니다.
 
-Basically the `renderer.create()` function creates a snapshot of your App component. It renders it virtually and stores the DOM into a snapshot. Afterward, the snapshot is expected to match the previous snapshot from when you ran your snapshot tests the last time. This way, you can assure that your DOM stays the same and doesn't change anything by accident.
+`renderer.create()` 함수는 App 컴포넌트 스냅샷을 생성합니다. 가상으로 렌더링하여 스냅샷에 DOM을 저장합니다. 스냅샷은 마지막 실행한 스냡샷과 일치하는지 확인합니다. 이런 방식으로 DOM이 동일하게 유지되고 실수로 아무것도 변경되지 않은 것을 확인합니다.
 
-독립적인 컴포넌트를 대상으로 테스트를 더 작성합시다. 먼저 Search 컴포넌트부터 시작합시다.
+독립적인 컴포넌트를 대상으로 테스트를 작성해봅시다. 
+
+첫 번째, Search 컴포넌트부터 시작합시다.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -476,9 +479,9 @@ describe('Search', () => {
 # leanpub-end-insert
 ~~~~~~~~
 
-The Search component has two tests similar to the App component. The first test simply renders the Search component to the DOM and verifies that there is no error during the rendering process. If there would be an error, the test would break even though there isn't any assertion (e.g. expect, match, equal) in the test block. The second snapshot test is used to store a snapshot of the rendered component and to run it against a previous snapshot. It fails when the snapshot has changed.
+Search 컴포넌트는 App 컴포넌트와 비슷한 두 가지 테스트가 있습니다. 첫 번째 테스트는 Search 컴포넌트를 DOM에 렌더링하고 렌더링 프로세스 중에 오류가 없는지 확인합니다. 오류가 있는 경우, 테스트 블록 내 expect, match, equal 등 어설(assertion)이 없어도 테스트가 중단됩니다. 두 번째 스냅샷 테스트는 렌더링된 컴포넌트의 스냅샷을 저장하고 이전 스냅샷과 비교하여 실행합니다. 스냅샷이 번경되면 실패합니다.
 
-Second, you can test the Button component whereas the same test rules as in the Search component apply.
+두 번째, Button 컴포넌트는 Search 컴포넌트와 동일한 테스트 규칙이 적용되지만 테스트를 할 수 있습니다.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -509,7 +512,7 @@ describe('Button', () => {
 # leanpub-end-insert
 ~~~~~~~~
 
-Last but not least, the Table component that you can pass a bunch of initial props to render it with a sample list.
+마지막으로 Table 컴포넌트는 목록을 렌더링하기 위해 초기 props를 전달합니다.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -547,30 +550,29 @@ describe('Table', () => {
 # leanpub-end-insert
 ~~~~~~~~
 
-Snapshot tests usually stay pretty basic. You only want to cover that the component doesn't change its output. Once it changes the output, you have to decide if you accept the changes. Otherwise you have to fix the component when the output is not the desired output.
+스냅샷 테스트는 매우 기본적인 것만 다룹니다. 컴포넌트가 출력을 변경하지 않는지만 확인하면 됩니다. 일단 출력을 변경하면 변경 사항을 수락할지 여부를 결정해야 합니다. 그렇지 않으면 원하는 출력이 아닐 경우, 컴포넌트를 수정해야 합니다.
 
 ### 실습하기
 
-* see how a snapshot test fails once you change your component's return value in the `render()` method
-  * either accept or deny the snapshot change
-* keep your snapshots tests up to date when the implementation of components change in next chapters
-
+* `render()`메서드에서 컴포넌트 리턴 값을 변경하면 스냅샷 테스트가 실패하는지 확인합니다.
+  * 스냅샷 변경을 수락하거나 거부합니다.
+* 다음 장에서 컴포넌트가 변경될 때마다 스냅샷 테스트를 최신 상태로 유지합니다.
 
 ### 읽어보기
 * [[리액트 공식문서] Jest](https://facebook.github.io/jest/docs/tutorial-react.html)
 
 ## Enzyme 유닛 테스트
 
-[Enzyme](https://github.com/airbnb/enzyme) is a testing utility by Airbnb to assert, manipulate and traverse your React components. You can use it to conduct unit tests to complement your snapshot tests in React.
+[Enzyme(엔자임)](https://github.com/airbnb/enzyme)는 에어비앤비가 만든 테스트 유틸리티로 리액트 컴포넌트를 확인, 조작, 통과시킵니다. 엔자임은 스냅샷 테스트를 보완하여 단위 테스트를 수행합니다.
 
-Let's see how you can use enzyme. First you have to install it since it doesn't come by default with *create-react-app*. It comes also with an extension to use it in React.
+엔자임을 어떻게 사용하는지 알아봅시다. 첫째, 엔자임은 *create-react-app*에서 제공하지 않기 때문에 먼저 설치합시다. 리액트 확장판도 함께 설치합니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm install --save-dev enzyme react-addons-test-utils enzyme-adapter-react-16
 ~~~~~~~~
 
-Second, you need to include it in your test setup and initialize its Adapter for using it in React.
+둘째, 엔자임을 테스트 설정에 추가하고 리액트가 사용할 수 있게 어댑터를 초기화합시다.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -588,7 +590,7 @@ Enzyme.configure({ adapter: new Adapter() });
 # leanpub-end-insert
 ~~~~~~~~
 
-Now you can write your first unit test in the Table "describe"-block. You will use `shallow()` to render your component and assert that the Table has two items, because you pass it two list items. The assertion simply checks if the element has two elements with the class `table-row`.
+Table 컴포넌트의 "describe"블록에 첫 번째 단위 테스트를 작성합시다. You will use `shallow()`를 사용하여 컴포넌트를 렌더링하고 두 개의 목록을 전달하기 때문에 두 항목이 있다고 주장합니다. 어설션은 `table-row` 클래스에 두 요소가 있는지 간단히 체크합니다. 
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -627,16 +629,16 @@ describe('Table', () => {
 });
 ~~~~~~~~
 
-Shallow renders the component without its child components. That way, you can make the test very dedicated to one component.
+`shallow()`는 자식 컴포넌트가 없는 컴포넌트를 렌더링합니다. 이런 방식으로 하나의 컴포넌트를 전담해 테스트를 실시합니다.
 
-Enzyme has overall three rendering mechanisms in its API. You already know `shallow()`, but there also exist `mount()` and `render()`. Both instantiate instances of the parent component and all child components. Additionally `mount()` gives you access to the component lifecycle methods. But when to use which render mechanism? Here some rules of thumb:
+엔자임은 API에 세 가지 렌더링 메커니즘을 가지고 있습니다. `shallow()`이외에 `mount()`와 `render()`도 있습니다. 두 인스턴스 모두 부모 컴포넌트 및 하위 컴포넌트의 인스턴스를 인스턴스화합니다. 또한 `mount()`는 컴포넌트 생명주기 메서드를 접근할 수 있습니다. 어떤 렌더링 매커니즘을 사용해야 할까요? 아래 몇 가지 규칙이 있습니다.
 
-* Always begin with a shallow test
-* If `componentDidMount()` or `componentDidUpdate()` should be tested, use `mount()`
-* If you want to test component lifecycle and children behavior, use `mount()`
-* If you want to test a component's children rendering with less overhead than `mount()` and you are not interested in lifecycle methods, use `render()`
+* shallow 테스트를 제일 먼저 시작합니다. 
+* `componentDidMount()` 또는 `componentDidUpdate()` 테스트 시, `mount()`를 사용합니다.
+* 컴포넌트의 생명주기와 자식 컴포넌트를 테스트 시, `mount()`를 사용합니다.
+* `mount()`보다 적은 오버헤드(overhead)로 자식 렌터링을 테스트하고 생명주기 메서드와 무관하다면 `render()`을 사용합니다.
 
-You could continue to unit test your components. But make sure to keep the tests simple and maintainable. Otherwise you will have to refactor them once you change your components. That's why Facebook introduced snapshot tests with Jest in the first place.
+컴포넌트 테스트를 계속할 수 있습니다. 테스트를 간단하고 유지가능하게 만들도록 합니다. 그렇지 않으면 컴포넌트를 변경한 후에 리팩토링해야 합니다. 페이스북이 제스트와 함께 스냅샷 테스트를 도입한 이유가 바로 이 때문입니다.
 
 ### 실습하기
 
@@ -649,20 +651,20 @@ You could continue to unit test your components. But make sure to keep the tests
 
 ## PropTypes 컴포넌트 인터페이스 Component Interface with PropTypes
 
-[타입스크립트(TypeScript)](https://www.typescriptlang.org/) 또는 [플로우(Flow)](https://flowtype.org/)에 대해 한 번쯤 들어보았을 겁니다. 이  to introduce a type interface to JavaScript. A typed language is less error prone, because the code gets validated based on its program text. Editors and other utilities can catch these errors before the program runs. It makes your program more robust.
+자바스크립트 타입 인터페이스인 [타입스크립트(TypeScript)](https://www.typescriptlang.org/) 또는 [플로우(Flow)](https://flowtype.org/)에 대해 한 번쯤 들어보았을 겁니다. 프로그래밍 된 텍스트는 프로그램 텍스트를 기반으로 유효성을 검사하므로 입력 오류가 발생하기 쉽습니다. 프로그램이 실행되기 전 에디터와 유틸리티로 오류를 체크할 수 있습니다. 프로그램을 더 강력하게 만들어 줍니다. 
 
-In the book, you will not introduce Flow or TypeScript, but another neat way to check your types in components. React comes with a built-in type checker to prevent bugs. You can use PropTypes to describe your component interface. All the props that get passed from a parent component to a child component get validated based on the PropTypes interface assigned to the child component.
+이 책에서는 Flow 또는 TypeScript를 소개하지 않지만 컴포넌트 유형을 체크하는 방법으로 PropType를 사용합니다. 리액트는 버그를 방지하고자 내장된 타입 검사기가 있습니다. PropType는 컴포넌트 인터페이스입니다. 부모 컴포넌트에서 하위 컴퍼넌트로 전달되는 모든 props는 PropTypes 인터페이스에 따라 유효 여부를 점검받습니다. 
 
-The chapter will show you how you can make all your components type safe with PropTypes. I will omit the changes for the following chapters, because they add unnecessary code refactorings. But you should keep and update them along the way to keep your components interface type safe.
+이 장에서는 PropType을 사용하여 모든 컴포넌트 타입을 안전하게 만들 수 있는 방법을 배웁니다. 다음 장을 위해 변경 내용을 생략할 것입니다. 불필요한 코드 리팩터링을 추가하기 때문입니다. 그러나 컴퍼넌트 인터페이스 타입을 안전하게 유지하기 위해 지속적으로 업데이트해야 합니다. 
 
-First, you have to install a separate package for React.
+먼저 리액트와 별도로 PropType 패키지를 설치합니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm install prop-types
 ~~~~~~~~
 
-Now, you can import the PropTypes.
+다음 PropTypes를 불러옵니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -671,7 +673,7 @@ import PropTypes from 'prop-types';
 # leanpub-end-insert
 ~~~~~~~~
 
-Let's start to assign a props interface to the components:
+컴포넌트에 props 인터페이스를 할당해봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -693,7 +695,7 @@ Button.propTypes = {
 # leanpub-end-insert
 ~~~~~~~~
 
-Basically that's it. You take every argument from the function signature and assign a PropType to it. The basic PropTypes for primitives and complex objects are:
+기본적으로 이 것이 다 입니다. 함수 시그니처에서 모든 인자를 가져와 PropType을 할당합니다. PropType 은 아래와 같습니다.
 
 * PropTypes.array
 * PropTypes.bool
@@ -702,14 +704,14 @@ Basically that's it. You take every argument from the function signature and ass
 * PropTypes.object
 * PropTypes.string
 
-Additionally you have two more PropTypes to define a renderable fragment (node), e.g. a string, and a React element:
+또한 렌더링 가능한 노드(문자열, 리액트 요소 등)를 정의하는 PropType가 있습니다.
 
 * PropTypes.node
 * PropTypes.element
 
-You already used the `node` PropType for the Button component. Overall there are more PropType definitions that you can read up in the official React documentation.
+Button 컴포넌트에 이미 `node` PropType를 사용했습니다. 리액트 공식문서에서 더 PropType의 정의가 더 많이 있습니다.
 
-At the moment all of the defined PropTypes for the Button are optional. The parameters can be null or undefined. But for several props you want to enforce that they are defined. You can make it a requirement that these props are passed to the component.
+Button에 정의된 모든 PropTypes은 선택 사항입니다. 매개 변수는 null이거나 정의되지 않을 수 있습니다. 그러나 여러 Props가 있는 경우, props를 반드시 정의해야 합니다. 컴포넌트로 props를 전달하는 것이 필수사항으로 설정할 수 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -724,7 +726,7 @@ Button.propTypes = {
 };
 ~~~~~~~~
 
-The `className` is not required, because it can default to an empty string. Next you will define a PropType interface for the Table component:
+`className`의 기본값이 빈 문자열임으로 필수가 아닙니다. 다음 Table 컴포넌트의 PropType를 작성합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -736,7 +738,7 @@ Table.propTypes = {
 # leanpub-end-insert
 ~~~~~~~~
 
-You can define the content of an array PropType more explicit:
+`list` 내 각 프로퍼티의 PropType는 배열로 간결하게 정의합시다. 
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -754,9 +756,9 @@ Table.propTypes = {
 };
 ~~~~~~~~
 
-Only the `objectID` is required, because you know that some of your code depends on it. The other properties are only displayed, thus they are not necessarily required. Moreover you cannot be sure that the Hacker News API has always a defined property for each object in the array.
+다른 프로퍼티 중 `objectID`의 PropTypes은 필수항목입니다. 왜냐하면 코드 일부가 `objectID`에 의존하기 때문입니다. 다른 프로퍼티는 애플리케이션에 표시만 때문에 필수항목은 아닙니다. 또한 해커 뉴스 API가 배열 내 각 객체에 대해 항상 정의된 프로퍼티를 가지고 있다고 단언할 수 없습니다.
 
-That's it for PropTypes. But there is one more aspect. You can define default props in your component. Let's take again the Button component. The `className` property has an ES6 default parameter in the component signature.
+지금까지 PropTypes에 대해 알아보았습니다. 그러나 한 가지가 더 남았습니다. 컴포넌트에 디폴트 props를 정의할 수 있습니다. Button 컴포넌트를 다시 봅시다. `className` 프로퍼티는 컴포넌트 시그니처에 기본 매개 변수를 가지고 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -768,8 +770,7 @@ const Button = ({
   ...
 ~~~~~~~~
 
-You could replace it with the internal React default prop:
-
+기본 매개 변수를 리액트 기본값 props으로 바꿔봅시다.
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
@@ -794,9 +795,10 @@ Button.defaultProps = {
 # leanpub-end-insert
 ~~~~~~~~
 
-ES6 기본 매개 변수와 동일하기 기본 r, Same as the ES6 default parameter,  the default prop ensures that the property is set to a default value when the parent component didn't specify it. The PropType type check happens after the default prop is evaluated.
-
+ES6 기본 매개 변수와 동일하게, default prop은 부모 컴포넌트가 지정하지 않은 경우, 프로퍼티가 기본 값을 설정합니다. PropType 타입 검사는 default prop가 평가된 후에 수행됩니다.   Same as the ES6 default parameter,  the default prop ensures that the property is set to a default value when the parent component didn't specify it. The PropType type check happens after the default prop is evaluated.
+. 
 테스트를 다시 실행해, 커맨드 라인에서 컴포넌트 PropType 오류가 있는지 확인합니다. PropType 정의가 필수적인 테스트에서는 컴포넌트의 모든 props가 정의되지 않았기 때문에 오류가 발생할 수 있습니다. 테스트 자체는 통과됩니다. 이 오류를 피하기 위해 요구되는 모든 props를 전달합니다.
+
 ### 실습하기
 
 * Search 컴포넌트의 PropType를 정의합니다.
