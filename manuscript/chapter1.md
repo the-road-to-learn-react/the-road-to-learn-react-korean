@@ -1,12 +1,12 @@
-# 리액트 시작하기 Introduction to React
+# 리액트 입문 Introduction to React
 
-첫 장에서는 리액트의 기본적인 내용을 배웁니다. 아직도 리액트를 배워야 하는 이유를 모르겠다면 이번 장을 마칠 때쯤, 그 답을 찾을 수 있을 것이라 확신합니다. 리액트 애플리케이션 설치를 시작으로 리액트의 세계에 첫 발을 내디뎌봅시다. JSX와 ReactDOM를 배우고 첫 번째 리액트 컴포넌트를 만들어 봅시다.
+첫 장에서는 리액트 개발 시작 전 아주 기초적인 내용을 배웁니다. 아직도 리액트를 배워야 하는 이유를 모르겠다면 이번 장을 마칠 때쯤, 그 답을 찾을 수 있을 것이라 확신합니다. 리액트 애플리케이션 설치를 시작으로 리액트의 세계에 첫 발을 내디뎌봅시다. JSX와 ReactDOM를 배우고 첫 번째 리액트 컴포넌트를 만들어 봅시다.
 
-## 왜 리액트인가 Why React?
+## 왜 리액트인가? Why React?
 
-**왜 리액트를 배워야 할까요?** 최근 몇 년 간 단일 페이지 애플리케이션([SPA: Single Page Application](https://en.wikipedia.org/wiki/Single-page_application))이 각광받고 있습니다. Angular, Ember 및 Backbone 등 자바스크립트 프레임워크의 등장은 바닐라 자바스크립트(Vanilla JavaScript: 타 라이브러리나 프레임워크 사용 없이 순수한 자바스크립트로 개발하는 것을 말함)와 jQuery를 사용하지 않고도 최신 웹 응용 프로그램을 구축할 수 있게 되었습니다. 이외에도 SPA 프레임워크의 종류는 매우 다양합니다. Angular 2010, Backbone 2010, Ember 2011 등 배포된 대부분 SPA 프레임워크는 1세대입니다.
+**왜 리액트를 배워야 할까요?** 최근 몇 년 간 단일 페이지 애플리케이션([SPA: Single Page Application](https://en.wikipedia.org/wiki/Single-page_application))이 각광받고 있습니다. 앵귤러(Angular), 엠버(Ember) 및 백본(Backbone) 등 자바스크립트 프레임워크의 등장은 바닐라 자바스크립트(Vanilla JavaScript: 타 라이브러리나 프레임워크 사용 없이 순수한 자바스크립트로 개발하는 것을 말함)와 제이쿼리(jQuery)를 사용하지 않고도 최신 웹 응용 프로그램을 구축할 수 있게 되었습니다. 이외에도 SPA 프레임워크의 종류는 매우 다양합니다. 앵귤러 2010, 백본 2010, 엠버 2011 등 배포된 대부분 SPA 프레임워크는 1세대입니다.
 
-리액트는 페이스북이 만들고 2013년 공개한 라이브러리입니다. 리액트는 SAP 프레임워크가 아닌, 뷰 라이브러리(View Library)입니다. 여기서 뷰(View)란 [MVC](https://de.wikipedia.org/wiki/Model_View_Controller) (Model–View–Controller, MVC는 소프트웨어 공학에서 사용되는 소프트웨어 디자인 패턴을 말함) 패턴의 'V'를 지칭합니다. 뷰는 브라우저 내 특정 컴포넌트를 보여주는 역할을 하지만, 리액트로 단일 페이지 애플리케이션을 제작할 수 있습니다.
+리액트는 페이스북이 만든 라이브러리로 2013년 공개되었습니다. 리액트는 SAP 프레임워크가 아닌, 뷰 라이브러리(View Library)입니다. 여기서 뷰(View)란 [MVC](https://de.wikipedia.org/wiki/Model_View_Controller) (Model–View–Controller, MVC는 소프트웨어 공학에서 사용되는 소프트웨어 디자인 패턴을 말함) 패턴의 'V'를 지칭합니다. 뷰는 브라우저 내 특정 컴포넌트를 보여주는 역할을 하지만, 리액트로 단일 페이지 애플리케이션을 제작할 수 있습니다.
 
 그렇다면 수많은 1세대 SPA 프레임워크 중 리액트를 선택해야 하는 이유는 무엇일까요? 1세대 프레임워크는 한 번에 많은 테스크를 해결하려 했지만, 리액트는 뷰 레이어를 만드는 역할만 합니다. 앞서 말했듯이 리액트는 프레임워크가 아닌 라이브러리입니다. 뷰는 컴포넌트로서 다른 컴포넌트와 함께 계층구조를 이룹니다.
 
@@ -18,7 +18,7 @@
 
 SPA 프레임 워크의 1세대는 이미 상용화 단계에 이르렀고 더욱 견고해졌습니다. 리액트는 여전히 혁신적입니다. [페이스북은 물론 에어비앤비, 넷플릭스](https://github.com/facebook/react/wiki/Sites-Using-React) 등 선도적인 테크 회사들이 리액트를 도입해 플랫폼 개발을 하고 있습니다. 그들 모두가 리액트와 생태계에 만족하고 있으며 리액트의 미래에 투자하고 있습니다.
 
-최신 웹 애플리케이션 개발을 접하고 싶다면 리액트는 가장 좋은 선택이 될 겁니다. 리액트 자체는 뷰 레이어의 역할을 하지만 [거의 모든 프레임워크와 서로 상호 교환 가능합니다.](https://www.robinwieruch.de/essential-react-libraries-framework/) 리액트는 간결한 API, 놀라운 생태계, 훌륭한 커뮤니티를 갖추고 있습니다. ["왜 나는 앵귤러(Angular)에서 리액트로 옮겼는가](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)" 블로그에서 리액트를 선택한 개인적인 경험을 작성했습니다. 그러나 리액트를 배우기 이전에 다른 프레임워크나 라이브러리가 아닌, 리액트를 선택한 이유를 스스로에게 물어보기 바랍니다. 본인이 리액트를 사용해야하는 이유를 잘 알고 있어야, 더 많은 사람들이 앞으로 리액트의 발전과 행보에 관심을 가지게 될 것이니까요.
+최신 웹 애플리케이션 개발을 접하고 싶다면 리액트는 가장 좋은 선택이 될 겁니다. 리액트 자체는 뷰 레이어의 역할을 하지만 [거의 모든 프레임워크와 서로 상호 교환 가능합니다.](https://www.robinwieruch.de/essential-react-libraries-framework/) 리액트는 간결한 API, 놀라운 생태계, 훌륭한 커뮤니티를 갖추고 있습니다. ["왜 나는 앵귤러에서 리액트로 옮겼는가](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)" 블로그에서 리액트를 선택한 개인적인 소견을 작성했습니다. 그러나 리액트를 배우기 이전에 다른 프레임워크나 라이브러리가 아닌, 리액트를 선택한 이유를 스스로에게 물어보기 바랍니다. 본인이 리액트를 사용해야하는 이유를 잘 알고 있어야, 더 많은 사람들이 앞으로 리액트의 발전과 행보에 관심을 가지게 될 것이니까요.
 
 
 ### 읽어보기
@@ -122,7 +122,7 @@ npm install --save-dev <package>
 ### CDN
 CDN이란 [콘텐츠 전송 네트워크(Content Delivery Network)](https://en.wikipedia.org/wiki/Content_delivery_network)를 말합니다. 많은 회사들이 CDN를 사용해 라이브러리를 공개하고 있습니다. 이 파일들은 리액트와 같은 라이브러리입니다. 리액트 역시 라이브러리인데, 번들링 된 파일은 *react.js* 자바스크립트 파일 하나뿐이기 때문입니다. CDN을 별도로 호스팅 하거나 응용 프로그램 내에 설치하여 사용 가능합니다. 
 
-CDN을 사용하려면 리액트를 시작하기 위해 HTML 파일 내 `<script>` 인라인 태그로 CDN url을 작성하면 됩니다. *react*와 *react-dom* 두 라이브러리 url을 추가합니다.
+CDN을 사용하려면 HTML 파일 내 `<script>` 인라인 태그로 CDN url을 작성하면 됩니다. *react*와 *react-dom* 두 라이브러리 url을 추가합니다.
 
 
 {title="Code Playground",lang="javascript"}
@@ -132,10 +132,11 @@ CDN을 사용하려면 리액트를 시작하기 위해 HTML 파일 내 `<script
 ~~~~~~~~
 
 ### npm
-npm으로 리액트를 설치하는 방법을 알아봅시다. 애플리케이션 내 *package.json* 파일이 있다면, npm 명령어로 *react*와 *react-dom*을 설치할 수 있습니다. 제일 먼저 *npm init -y* 명령어를 입력해 *package.json*을 초기화합니다. npm 명령어 한 줄로 여러 노드 패키지를 한 번에 설치해봅시다.
+npm으로 리액트를 설치하는 방법을 알아봅시다. 애플리케이션 내 *package.json* 파일이 있다면, npm 명령어로 *react*와 *react-dom*을 설치할 수 있습니다. 제일 먼저 *npm init -y* 명령어를 입력해 *package.json*을 초기화합니다. 그 다음 npm 명령어 한 줄로 여러 노드 패키지를 한 번에 설치해봅시다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
+npm init -y
 npm install react react-dom
 ~~~~~~~~
 
@@ -151,9 +152,9 @@ npm install react react-dom
 
 ## 제로 구성 설치 Zero-Configuration Setup
 
-이 책에서는 [create-react-app](https://github.com/facebookincubator/create-react-app)으로 애플리케이션을 부트스트래핑합니다. 부트스트래핑(bootstrapping)이라는 뜻은 애플리케이션을 최초 생성하여 브라우저에서 실행하는 과정을 말합니다. *create-react-app*은 2016년 페이스북이 제안한 리액트 제로 구성 설치 스타터 킷(Zero-Configuration Setup Starter Kit)입니다. 트위터에서 진행한 [조사](https://twitter.com/dan_abramov/status/806985854099062785)에 따르면 96% 이상의 개발자들이 리액트 입문자의 경우 create-react-app를 사용하여 리액트 개발할 것을 권장하고 있습니다.
+이 책에서는 [create-react-app](https://github.com/facebookincubator/create-react-app)으로 애플리케이션을 부트스트래핑합니다. 부트스트래핑(bootstrapping)이라는 뜻은 애플리케이션을 최초 생성하여 브라우저에서 실행하는 과정을 말합니다. *create-react-app*은 2016년 페이스북이 제안한 리액트 제로 구성 설치 스타터 킷(Zero-Configuration Setup Starter Kit)입니다. 트위터에서 진행한 한 [조사](https://twitter.com/dan_abramov/status/806985854099062785)에 따르면 96% 이상의 리액트 개발자들이 입문자의 경우 create-react-app을 사용할 것을 권장하고 있습니다.
 
-*create-react-app*는 리액트 개발 도구와 환경 설정이 이미 세팅되어 있기 때문에, 오롯이 애플리케이션 구현에만 신경 쓰면 됩니다. 
+*create-react-app*는 리액트 개발 도구와 환경 설정이 이미 세팅되어 있기 때문에, 우리는 오롯이 애플리케이션 구현에만 신경 쓰면 됩니다. 
 
 이제 전역 노드 패키지에 *create-react-app*패키지를 설치합시다.
 
@@ -162,7 +163,7 @@ npm install react react-dom
 npm install -g create-react-app
 ~~~~~~~~
 
-*create-reaction-app* 버전을 확인해, 성공적으로 패키지가 설치되었는지 확인합니다.
+*create-reaction-app* 버전을 확인해, 성공적으로 패키지가 설치되었는지 확인합시다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -170,9 +171,9 @@ create-react-app --version
 *v1.4.1
 ~~~~~~~~
 
-우리의 첫 번째 리액트 애플리케이션을 시작해봅시다.  앞으로 새로운 리액트 애플리케이션을 부트스트랩 할 때마다 `create-react-app <name>` 명령어를 입력하면 됩니다.
+첫 번째 리액트 애플리케이션을 시작해봅시다. 앞으로 새로운 리액트 애플리케이션을 부트스트랩 할 때마다 `create-react-app <name>` 명령어를 입력하면 됩니다.
 
-우리가 만들 애플리케이션은 해커 뉴스 플랫폼임으로 프로젝트 이름을 *hackernews*라 합시다. 물론 다른 이름을 사용해도 괜찮습니다. 몇 초 후에 부트스트래핑이 완료될 것입니다. 설치가 완료되면 생성된 폴더 안으로 들어갑니다.
+우리가 만들 애플리케이션은 해커 뉴스 플랫폼임으로 프로젝트 이름을 *hackernews*라 합시다. 물론 다른 이름을 사용해도 괜찮습니다. 몇 초 후에 부트스트래핑이 완료될 것입니다. 설치가 완료되면 생성된 폴더 안으로 들어갑시다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -203,7 +204,7 @@ hackernews/
 
 각 파일과 폴더 단위가 무엇을 지칭하는지 알아봅시다. 처음부터 모든 것을 이해하지 않아도 됩니다.
 
-* **README.md:** .md 확장자는 파일이 마크다운(markdown) 파일입니다. 일반 텍스트와 함께 간단한 마크업 언어로 작성합니다. 대부분의 프로젝트에는 *README.md* 파일에 프로젝트 설명 및 설치 방법 등 안내 사항이 작성되어 있습니다. 깃허브 리퍼지토리 페이지의 첫 화면에  *README.md*을 보았을 겁니다. *create-react-app*을 설치한 후 바로 깃허브에 프로젝트를 올린다면 *README.md*는 공식 [create-react-app 깃허브 리퍼지토리](https://github.com/facebookincubator/create-react-app)와 동일할 겁니다.
+* **README.md:** .md 확장자는 파일이 마크다운(markdown) 파일입니다. 일반 텍스트와 함께 간단한 마크업 언어로 작성합니다. 대부분의 프로젝트에는 *README.md* 파일에 프로젝트 설명 및 설치 방법 등 안내 사항이 작성되어 있습니다. 깃허브 리퍼지토리 페이지의 첫 화면에  *README.md*을 보았을 겁니다. *create-react-app*을 설치한 후 바로 깃허브에 프로젝트를 올린다면 *README.md*는 공식 [create-react-app 깃허브 리퍼지토리](https://github.com/facebookincubator/create-react-app)와 내용이 같을 것입니다.
 
 * **node_modules/:** 이 폴더에는 npm을 통해 설치되었던 모든 노드 패키지를 포함합니다. 이미 *create-react-app*를 사용했으므로 이미 여러 개의 노드 모듈이 설치되어있어야 합니다. 이 폴더는 절대로 건드리지 말아야 합니다. npm 명령어를 사용해 패키지를 설치 또는 제거합니다.
 
@@ -247,7 +248,7 @@ npm run build
 
 ## JSX 들어가기 Introduction to JSX
 
-리액트 구문인 JSX 문법에 대해 알아봅시다. *create-react-app*로 애플리케이션을 부트스트래핑을 하면 애플리케이션이 이미 구현되어 있습니다. *src/App.js* 소스 코드를 살펴봅시다.
+리액트 구문인 JSX 문법에 대해 알아봅시다. *create-react-app*로 애플리케이션을 부트스트래핑을 하면 리액트 애플리케이션이 이미 구현되어 있습니다. *src/App.js* 소스 코드를 열어봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -451,13 +452,13 @@ ReactDOM.render(
 ### 읽어보기
 * [[리액트 공식문서] - 리액트 내 렌더링 되는 요소](https://facebook.github.io/react/docs/rendering-elements.html)
 
-## Hot Module Replacement
+## 핫 모듈 리플레이스먼트 Hot Module Replacement
 
 더 나은 개발 환경을 위해 *src/index.js*에서 할 일이 더 있습니다. 이 내용은 필수가 아니라 옵션이기 때문에 리액트 입문자가 꼭 해야 할 내용은 아닙니다. 
 
 *create-react-app*은 소스 코드 변경 시, 자동으로 브라우저를 새로고침 합니다. *src/App.js* 파일 내 `helloWorld`를 다른 변수로 변경해보면 브라우저가 자동으로 새로고침 되기 때문에 매번 수정 후 새로고침을 하지 않아도 됩니다. 그러나 더 좋은 방법이 있습니다. 
 
-Hot Module Replacement(HMR)란 브라우저 내 애플리케이션을 재실행하는 도구입니다. *create-reaction-app*에서 쉽게 사용할 수 있습니다. *src/index.js*에서 아래와 같이 약간의 설정을 추가합니다.
+핫 모듈 리플레이스먼트(Hot Module Replacement)(이하 HMR)란 브라우저 내 애플리케이션을 재실행하는 도구입니다. *create-reaction-app*에서 쉽게 사용할 수 있습니다. *src/index.js*에서 아래와 같이 약간의 설정을 추가합니다.
 
 {title="src/index.js",lang=javascript}
 ~~~~~~~~
@@ -495,7 +496,7 @@ if (module.hot) {
 
 ## JSX 내 복잡한 자바스크립트 작성 Complex JavaScript in JSX
 
-App 컴포넌트로 다시 돌아갑시다. 지금까지 JSX에서 초기 변수를 렌더링 했습니다. 이제 배열의 각 항목을 차례로 렌더링 해봅시다. 지금은 샘플 데이터를 사용하지만 앞으로 외부 [API](https://www.robinwieruch.de/what-is-an-api-javascript/)를 통해 데이터를 가져올 것입니다. 앞으로 점점 재밌고 흥미 있을 겁니다. 
+App 컴포넌트로 다시 돌아갑시다. 지금까지 JSX에서 초기 변수를 렌더링 했습니다. 이제 배열의 각 항목을 차례로 렌더링 해봅시다. 지금은 샘플 데이터를 사용하지만 앞으로 외부 [API](https://www.robinwieruch.de/what-is-an-api-javascript/)를 통해 데이터를 가져올 것입니다. 앞으로 점점 재밌고 흥미 있어질 거니 기대해도 좋습니다.
 
 먼저 아래와 같이 `list`를 정의합시다.
 
@@ -631,9 +632,9 @@ export default App;
 ### 실습하기
 * JSX 내 자바스크립트 표현식(expression)을 작성합니다.
 
-## ES6 화살표 함수 
+## ES6 화살표 함수 ES6 Arrow function
 
-ES6는 함수 표현식을 위해 새로운 문법인 화살표 함수를 도입했습니다. 화살표 함수를 사용하면 기존 함수 표현식보다 코드가 간결해집니다.
+자바스크립트 ES6에서 함수 표현식을 위해 새로운 문법인 화살표 함수가 도입되었습니다. 화살표 함수를 사용하면 기존 함수 표현식보다 코드가 간결해집니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -644,7 +645,7 @@ function () { ... }
 () => { ... }
 ~~~~~~~~
 
-그러나 화살표(`=>`)가 하는 일을 알고 있어야 합니다. 화살표 함수는 기존 함수 표현식과 `this`를 다르게 정의합니다. 기존 함수 표현식은 자기 자신을 `this` 객체로 정의하지만, 화살표 함수 표현식은 자기 자신을 `this`를 생성하지 않고, 감싸고 있는 본문 컨텍스트로에서 의미를 갖습니다. 화살표 함수에서 `this` 사용을 혼동하지 맙시다.
+화살표(`=>`)가 하는 일을 알고 있어야 합니다. 화살표 함수는 기존 함수 표현식과 `this`를 다르게 정의합니다. 기존 함수 표현식은 자기 자신을 `this` 객체로 정의하지만, 화살표 함수 표현식은 자기 자신을 `this`를 생성하지 않고, 감싸고 있는 본문 컨텍스트로에서 의미를 갖습니다. 화살표 함수에서 `this` 사용을 혼동하지 맙시다.
 
 화살표 함수 내 괄호 사용도 유의해야 합니다. 단일 매개변수라면 괄호 생략이 가능하지만, 복수 매개변수이거나 매개변수가 없는 함수는 괄호를 생략할 수 없습니다.
 
