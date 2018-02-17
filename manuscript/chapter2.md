@@ -1296,11 +1296,8 @@ class Table extends Component {
 
 ## 구성가능한 컴포넌트 Composable Components
 
-`prop` 객체 안을 접근할 수 있는 프로퍼티가 하나 더 있습니다. 바로 `children` prop입니다.
-
- `children` prop는 자기 자신이 어떤 내용인지 모르지만, 그 안에 자식 요소가 전달됨을 의미합니다.
-Search 컴포넌트에 텍스트를 자식으로 전달해보겠습니다. 
-
+`prop` 객체 안을 접근할 수 있는 프로퍼티가 하나 더 있습니다. 바로 `children` prop입니다. `children` prop는 알 수 없는 데이터 구조가 자식 요소가 전달됨을 의미합니다. 컴포넌트에 텍스트(문자열)를 `children` props로 전달할 때 어떻게 보이는지 보겠습니다.
+ 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
@@ -1330,7 +1327,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
- Search 컴포넌트는 `children` 객체를 구조 해제할 수 있습니다. `children` props가 표시될 곳을 정합시다.
+이제 Search 컴포넌트는 props 객체에서 `children` 프로퍼티를 구조 해제할 수 있습니다. `children` props가 표시될 곳을 정합시다.
 
 ~~~~~~~~
 class Search extends Component {
@@ -1353,7 +1350,7 @@ class Search extends Component {
 }
 ~~~~~~~~
 
-입력 필드에 검색어 텍스트가 보여야 합니다. Search 컴포넌트를 다른 곳에 사용할 때마다, 다른 텍스트를 사용할 수 있습니다. 텍스트를 자식으로 전달했습니다. 이외에도 요소와 요소 트리(다시 컴포넌트로 캡슐화할 수 있습니다)를 자식으로 전달할 수 있습니다. `children` 프로퍼티를 사용해 여러 컴포넌트를 서로 끼워 넣고 맞물려 구성할 수 있습니다. 
+이제 입력 필드 옆에 "Search"라는 글씨가 보여야 합니다. Search 컴포넌트를 다른 곳에 재사용할 때마다, 매번 다른 텍스트를 사용할 수 있습니다. 텍스트(문자열) 뿐만 아니라 요소와 요소 트리(다시 컴포넌트로 캡슐화할 수 있습니다)를 자식으로 전달할 수 있습니다. `children` 프로퍼티를 사용해 여러 컴포넌트를 서로 끼워 넣고 맞물려 구성할 수 있습니다. 
 
 ### 읽어보기 
 
@@ -1831,4 +1828,4 @@ const smallColumn = {
 
 잠시 휴식시간을 가집시다. 학습한 내용을 되새기고 적용해보며 이것저것 만들어보며 테스트해보길 바랍니다. [리액트 공식 문서](https://facebook.github.io/react/docs/installation.html)에서 리액트에 관한 자세한 내용을 읽어보길 바랍니다.
 
-실습 코드는 [공식 깃허브 리퍼지토리](https://github.com/rwieruch/hackernews-client/tree/4.2)에서 확인할 수 있습니다.
+실습 코드는 [공식 깃허브 리퍼지토리](https://github.com/the-road-to-learn-react/hackernews-client/tree/4.2)에서 확인할 수 있습니다.
