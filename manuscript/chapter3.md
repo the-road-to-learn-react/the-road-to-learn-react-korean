@@ -62,15 +62,15 @@ state나 props가 변경 시, 업데이트 프로세스가 시작되고, 아래�
 
 * **`componentWillUnmount()`** - 컴포넌트를 해체하기 전에 호출됩니다. 테스트를 초기화하는 작업을 수행할 수 있습니다.
 
-`constructor()`와 `render()` 메서드는 이미 사용해봤습니다. ES6 클래스 컴포넌트에서 사용되는 생명주기입니다. `render()` 메서드는 컴포넌트 인스턴스를 반환하기 때문에 반드시 필요한 메서드입니다.
+`constructor()`와 `render()` 메서드는 이미 사용해봤습니다. ES6 클래스 컴포넌트에서 자주 사용되는 생명주기입니다. `render()` 메서드는 컴포넌트 인스턴스를 반환하기 때문에 반드시 필요한 메서드입니다.
 
-그 외 생명주기 메서드로 `componentDidCatch(error, info)`가 있습니다. 이 메서드는 [React 16](https://www.robinwieruch.de/what-is-new-in-react-16/)에서 도입되었으며 컴포넌트 에러를 캐치합니다. 예를 들어 목록을 표시하는 애플리케이션이 있다고 해봅시다. 외부 API 호출이 실패하여 state가 `null`로 표시되었습니다. 리스트가 비어있지 않고 값이 `null`이 때문에 filter과 map을 사용할 수 없습니다. 이 경우 오류가 발생하여 컴포넌트가 깨지고 전체 애플리케이션이 작동되지 않습니다. 이 때, `componentDidCatch()`로 오류를 포착하고 내부 상태에 저장하여 사용자에게 오류 메세지를 표시해줄 수 있습니다.
+그 외 생명주기 메서드로 `componentDidCatch(error, info)`가 있습니다. 이 메서드는 [리액트 16](https://www.robinwieruch.de/what-is-new-in-react-16/)에서 도입되었으며 컴포넌트 에러를 캐치합니다. 예를 들어 목록을 표시하는 애플리케이션이 있다고 해봅시다. 외부 API 호출이 실패하여 state가 `null`로 표시되었습니다. 리스트가 비어있지 않고 값이 `null`이 때문에 filter과 map을 사용할 수 없습니다. 이 경우 오류가 발생하여 컴포넌트가 깨지고 전체 애플리케이션이 작동되지 않습니다. 이 때, `componentDidCatch()`로 오류를 포착하고 내부 상태에 저장하여 사용자에게 오류 메세지를 표시해줄 수 있습니다.
 
 ### 읽어보기
 
 * [[리액트 공식문서] 리액트 생명주기](https://reactjs.org/docs/react-component.html)
 * [[리액트 공식문서] 리액트 생명주기 메서드와 상태 관리](https://reactjs.org/docs/state-and-lifecycle.html)
-* [[reactjs.org] 컴포넌트 에러 핸들링](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
+* [[리액트 공식문서] 컴포넌트 에러 핸들링](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
 
 ## 데이터 가져오기 Fetching Data
 
@@ -129,7 +129,6 @@ class App extends Component {
 
 # leanpub-start-insert
     this.setSearchTopStories = this.setSearchTopStories.bind(this);
-    this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
 # leanpub-end-insert
     this.onSearchChange = this.onSearchChange.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
@@ -140,16 +139,13 @@ class App extends Component {
     this.setState({ result });
   }
 
-  fetchSearchTopStories(searchTerm) {
+  componentDidMount() {
+    const { searchTerm } = this.state;
+
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
-      .catch(e => e);
-  }
-
-  componentDidMount() {
-    const { searchTerm } = this.state;
-    this.fetchSearchTopStories(searchTerm);
+      .catch(error => error);
   }
 # leanpub-end-insert
 
@@ -317,7 +313,7 @@ console.log(user);
 // output: { firstname: 'Robin', lastname: 'Wieruch', age: 28 }
 ~~~~~~~~
 
-결국 `Object.assign()` 메서드를 대체할 수 있습니다.
+따라서 `Object.assign()` 메서드를 대체해 사용할 수 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -423,7 +419,7 @@ console.log(result);
 
 클라이언트에서 검색어에 따라 목록 필터링을 구현해보겠습니다. 검색어 기본 매개변수로 해커 뉴스 API에 요청하여 서버에서 검색한 후, 이에 대한 응답을 `componentDidMount()` 생명주기 메서드에서 처리할 것입니다. 
 
-App 컴포넌트에서 `onSearchSubmit()` 메서드를 정의하겠습니다. 이 메서드는 Search 컴포넌트에서 검색을 실행할 때 해커 뉴스 API 요청 결과를 가져옵니다. `componentDidMount()` 생명주기 메서드에서 했던 것과 같습니다. 그러나 이번에는 검색어 기본 매개변수가 아닌 내부 상태 값을 사용합니다.
+App 컴포넌트에서 `onSearchSubmit()` 메서드를 정의하겠습니다. 이 메서드는 Search 컴포넌트에서 검색을 실행할 때 해커 뉴스 API 요청 결과를 가져옵니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -438,7 +434,6 @@ class App extends Component {
     };
 
     this.setSearchTopStories = this.setSearchTopStories.bind(this);
-    this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
 # leanpub-start-insert
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
@@ -451,17 +446,73 @@ class App extends Component {
 # leanpub-start-insert
   onSearchSubmit() {
     const { searchTerm } = this.state;
-    this.fetchSearchTopStories(searchTerm);
   }
 # leanpub-end-insert
 
   ...
 }
+
 ~~~~~~~~
 
-Search 컴포넌트에 'Search' 버튼을 추가해야 합니다. 이 버튼은 검색 요청을 보내고, 해커 뉴스 API에서 데이터를 가져옵니다. 
+ `onSearchSubmit()` 메서드는 `componentDidMount()` 생명주기 메서드안에 있어야 합니다. 그러나 이번에는 검색어 기본 매개변수가 아닌 내부 상태 값을 사용합니다. 따라서 재사용 가능한 클래스 메소드로 함수를 만들 수 있습니다.
+ 
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
 
-먼저 Search 컴포넌트에 `onSearchSubmit()` 메서드를 전달합시다.
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      result: null,
+      searchTerm: DEFAULT_QUERY,
+    };
+
+    this.setSearchTopStories = this.setSearchTopStories.bind(this);
+# leanpub-start-insert
+    this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
+# leanpub-end-insert
+    this.onSearchChange = this.onSearchChange.bind(this);
+    this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.onDismiss = this.onDismiss.bind(this);
+  }
+
+  ...
+
+# leanpub-start-insert
+  fetchSearchTopStories(searchTerm) {
+    fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
+      .then(response => response.json())
+      .then(result => this.setSearchTopStories(result))
+      .catch(error => error);
+  }
+# leanpub-end-insert
+
+  componentDidMount() {
+    const { searchTerm } = this.state;
+# leanpub-start-insert
+    this.fetchSearchTopStories(searchTerm);
+# leanpub-end-insert
+  }
+
+  ...
+
+  onSearchSubmit() {
+    const { searchTerm } = this.state;
+# leanpub-start-insert
+    this.fetchSearchTopStories(searchTerm);
+# leanpub-end-insert
+  }
+
+  ...
+}
+~~~~~~~~
+
+다음으로 Search 컴포넌트에 'Search' 버튼을 추가해야 합니다. 이 버튼은 검색 요청을 보내고, 해커 뉴스 API에서 데이터를 가져오게 합시다. 
+
+물론 입력 필드 값이 변경 될 때마다 해커 뉴스 API에서 데이터를 가져오게 할 수도 있습니다. 이를 위해 `onChange()` 핸들러를 사용할 수 있겠지만, 구현이 더 복잡할 뿐더러 원하는 것이 아니기 때문에 사용하지 않았습니다. 우리는 `onClick()` 핸들러에서 이 기능을 수행하도록 구현하겠습니다.
+
+첫째, Search 컴포넌트에 `onSearchSubmit()` 메서드를 전달합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -497,7 +548,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-두 번째로 Search 컴포넌트에 버튼을 추가하겠습니다. 버튼은 `type="submit"`을 가지고, 폼은 `onSubmit()` 메서드를 전달하기 위해 `onSubmit()` 속성을 사용합니다. 자식 프로퍼티는 버튼 내용으로 사용하겠습니다.
+둘째, Search 컴포넌트에 버튼을 추가하겠습니다. 버튼은 `type="submit"`을 가지고, 폼은 `onSubmit()` 메서드를 전달하기 위해 `onSubmit()` 속성을 사용합니다. 자식 프로퍼티는 버튼 내용으로 사용하겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -628,7 +679,7 @@ class App extends Component {
 # leanpub-end-insert
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
-      .catch(e => e);
+      .catch(error => error);
   }
 
   ...
@@ -736,7 +787,7 @@ fetchSearchTopStories(searchTerm, page = 0) {
 # leanpub-end-insert
     .then(response => response.json())
     .then(result => this.setSearchTopStories(result))
-    .catch(e => e);
+    .catch(error => error);
 }
 ~~~~~~~~
 
@@ -1065,7 +1116,7 @@ class App extends Component {
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
 # leanpub-start-insert
-      .catch(e => this.setState({ error: e }));
+      .catch(error => this.setState({ error }));
 # leanpub-end-insert
   }
 
@@ -1078,6 +1129,7 @@ class App extends Component {
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
+class App extends Component {
 class App extends Component {
 
   ...
@@ -1182,6 +1234,128 @@ const PATH_BASE = 'https://hn.algolia.com/api/v1';
 
 {pagebreak}
 
+## Fetch 대신 Axios 사용 Axios instead of Fetch
+
+ In one of the previous chapters, you have introduced the native fetch API to perform a request to the Hacker News platform. The browser enables you to use this native fetch API. However, not all browsers, especially older browsers, support it. In addition, once you start to test your application in a headless browser environment (there is no browser, instead it is only mocked), there can be issues regarding the fetch API. Such a headless browser environment can happen when writing and executing tests for your application which don't run in a real browser. There are a couple of ways to make fetch work in older browsers (polyfills) and in tests ([isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch)), but we won't go down this rabbit hole in this book.
+
+An alternative way to solve it would be to substitute the native fetch API with a stable library such as [axios](https://github.com/axios/axios). Axios is a library that solves only one problem, but it solves it with a high quality: performing asynchronous requests to remote APIs. That's why you will use it in this book. On a concrete level, the chapter should show you how you can substitute a library (which is a native API of the browser in this case) with another library. On an abstract level, it should show you how you can always find a solution for the quirks (e.g. old browsers, headless browser tests) in web development. So never stop to look for solutions if anything gets in your way.
+
+Let's see how the native fetch API can be substituted with axios. Actually everything said before sounds more difficult than it is. First, you have to install axios on the command line:
+
+{title="Command Line",lang="text"}
+~~~~~~~~
+npm install axios
+~~~~~~~~
+
+Second, you can import axios in your App component's file:
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+import React, { Component } from 'react';
+# leanpub-start-insert
+import axios from 'axios';
+# leanpub-end-insert
+import './App.css';
+
+...
+~~~~~~~~
+
+And last but not least, you can use it instead of `fetch()`. Its usage looks almost identical to the native fetch API. It takes the URL as argument and returns a promise. You don't have to transform the returned response to JSON anymore. Axios is doing it for you and wraps the result into a `data` object in JavaScript. Thus make sure to adapt your code to the returned data structure.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  fetchSearchTopStories(searchTerm, page = 0) {
+# leanpub-start-insert
+    axios(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
+      .then(result => this.setSearchTopStories(result.data))
+# leanpub-end-insert
+      .catch(error => this.setState({ error }));
+  }
+
+  ...
+
+}
+~~~~~~~~
+
+That's it for replacing fetch with axios in this chapter. In your code, you are calling `axios()` which uses by default a HTTP GET request. You can make the GET request explicit by calling `axios.get()`. Also you can use another HTTP method such as HTTP POST with `axios.post()` instead. There you can already see how axios is a powerful library to perform requests to remote APIs. I often recommend to use it over the native fetch API when your API requests become complex or you have to deal with web development quirks with promises. In addition, in a later chapter, you will introduce testing in your application. Then you don't need to worry anymore about a browser or headless browser environment.
+
+I want to introduce another improvement for the Hacker News request in the App component. Imagine your component mounts when the page is rendered for the first time in the browser. In `componentDidMount()` the component starts to make the request, but then, because your application introduced some kind of navigation, you navigate away from this page to another page. Your App component unmounts, but there is still a pending request from your `componentDidMount()` lifecycle method. It will attempt to use `this.setState()` eventually in the `then()` or `catch()` block of the promise. Perhaps then it's the first time you will see the following warning on your command line or in your browser's developer output:
+
+{title="Command Line",lang="text"}
+~~~~~~~~
+Warning: Can only update a mounted or mounting component. This usually means you called setState, replaceState, or forceUpdate on an unmounted component. This is a no-op.
+~~~~~~~~
+
+You can deal with this issue by aborting the request when your component unmounts or preventing to call `this.setState()` on an unmounted component. It's a best practice in React, even though it's not followed by many developers, to preserve an clean application without any annoying warnings. However, the current promise API doesn't implement aborting a request. Thus you need to help yourself on this issue. This might also be the case why not many developers are following this best practice. The following implementation seems more like a workaround than a sustainable implementation. Because of that, you can decide on your own if you want to implement it to work around the warning because of an unmounted component. Nevertheless, keep the warning in mind in case it comes up in a later chapter of this book or in your own application one day. Then you know how to deal with it.
+
+Let's start to work around it. You can introduce a class field which holds the lifecycle state of your component. It can be initialized as `false` when the component initializes, changed to `true` when the component mounted, but then again set to `false` when the component unmounted. This way, you can keep track of your component's lifecycle state. It has nothing to do with the local state stored and modified with `this.state` and `this.setState()`, because you should be able to access it directly on the component instance without relying on React's local state management. Moreover, it doesn't lead to any re-rendering of the component when the class field is changed this way.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
+# leanpub-start-insert
+  _isMounted = false;
+# leanpub-end-insert
+
+  constructor(props) {
+    ...
+  }
+
+  ...
+
+  componentDidMount() {
+# leanpub-start-insert
+    this._isMounted = true;
+# leanpub-end-insert
+
+    const { searchTerm } = this.state;
+    this.setState({ searchKey: searchTerm });
+    this.fetchSearchTopStories(searchTerm);
+  }
+
+# leanpub-start-insert
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+# leanpub-end-insert
+
+  ...
+
+}
+~~~~~~~~
+
+Finally, you can use this knowledge not to abort the request itself but to avoid calling `this.setState()` on your component instance even though the component already unmounted. It will prevent the mentioned warning.
+
+{title="src/App.js",lang=javascript}
+~~~~~~~~
+class App extends Component {
+
+  ...
+
+  fetchSearchTopStories(searchTerm, page = 0) {
+    axios(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
+# leanpub-start-insert
+      .then(result => this._isMounted && this.setSearchTopStories(result.data))
+      .catch(error => this._isMounted && this.setState({ error }));
+# leanpub-end-insert
+  }
+
+  ...
+
+}
+~~~~~~~~
+
+Overall the chapter has shown you how you can replace one library with another library in React. If you run into any issues, you can use the vast library ecosystem in JavaScript to help yourself. In addition, you have seen a way how you can avoid calling `this.setState()` in React on an unmounted component. If you dig deeper into the axios library, you will find a way to prevent the cancel the request in the first place too. It's up to you to read up more about this topic.
+
+### 읽어보기
+
+* [[저자 블로그] 왜 프레임워크가 중요한가](https://www.robinwieruch.de/why-frameworks-matter/)
+* [[저자 리퍼지토리] 리액트 컴포넌트 대체 문법](https://github.com/rwieruch/react-alternative-class-component-syntax)
+
 앞으로 여러분은 리액트에서 API를 사용할 수 있습니다. 이번 장에서 배운 내용을 정리해봅시다.
 
 * 리액트
@@ -1200,5 +1374,6 @@ const PATH_BASE = 'https://hn.algolia.com/api/v1';
   * 클라이언트 및 서버 내 검색 기능
   * 데이터 페이지네이션
   * 클라이언트 렌더
+  * fetch 대신 axios 사용 
 
 실습 코드는 [깃허브 리퍼지토리](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.1)에서 확인할 수 있습니다.
