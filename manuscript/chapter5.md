@@ -154,7 +154,7 @@ const Search = ({
 
 ### 읽어보기
 
-* [[리액트 공식문서] the ref attribute in general in React](https://facebook.github.io/react/docs/refs-and-the-dom.html)
+* [[리액트 공식문서] the ref attribute in general in React](https://reactjs.org/docs/refs-and-the-dom.html)
 * [[리액트 공식문서] the usage of the ref attribute in React](https://www.robinwieruch.de/react-ref-attribute-dom-node/)
 
 ## 로딩 컴포넌트 Loading Component
@@ -991,4 +991,4 @@ Table 컴포넌트에 확장된 prop가 있기 때문에 한번 더 Table 컴포
 * ES6
   * 객체와 배열을 분리하기 위해 구조 해체를 했습니다.
   
-실습 코드는 [공식 깃허브 리퍼 지토리](https://github.com/rwieruch/hackernews-client/tree/4.2)에서 확인할 수 있습니다.
+실습 코드는 [공식 깃허브 리퍼지토리](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.1)에서 확인할 수 있습니다.

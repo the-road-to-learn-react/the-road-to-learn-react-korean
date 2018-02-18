@@ -68,8 +68,8 @@ state나 props가 변경 시, 업데이트 프로세스가 시작되고, 아래�
 
 ### 읽어보기
 
-* [[리액트 공식문서] 리액트 생명주기](https://facebook.github.io/react/docs/react-component.html)
-* [[리액트 공식문서] 리액트 생명주기 메서드와 상태 관리](https://facebook.github.io/react/docs/state-and-lifecycle.html)
+* [[리액트 공식문서] 리액트 생명주기](https://reactjs.org/docs/react-component.html)
+* [[리액트 공식문서] 리액트 생명주기 메서드와 상태 관리](https://reactjs.org/docs/state-and-lifecycle.html)
 * [[reactjs.org] 컴포넌트 에러 핸들링](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
 
 ## 데이터 가져오기 Fetching Data
@@ -416,7 +416,7 @@ console.log(result);
 
 ### 읽어보기
 
-* [[리액트 공식문서] 리액트 조건 렌더링](https://facebook.github.io/react/docs/conditional-rendering.html)
+* [[리액트 공식문서] 리액트 조건 렌더링](https://reactjs.org/docs/conditional-rendering.html)
 * [[저자 블로그] 조건문 렌더링의 다양한 방법](https://www.robinwieruch.de/conditional-rendering-react/)
 
 ## Search 컴포넌트의 클라이언트와 서버 처리  Client-/Server-side Search
@@ -580,7 +580,7 @@ onSearchSubmit(event) {
 
 ### 읽어보기
 
-* [[리액트 공식문서] synthetic events in React](https://facebook.github.io/react/docs/events.html)
+* [[리액트 공식문서] synthetic events in React](https://reactjs.org/docs/events.html)
 
 ### 실습하기
 
@@ -1178,7 +1178,7 @@ const PATH_BASE = 'https://hn.algolia.com/api/v1';
 
 ### 읽어보기
 
-* [[reactjs.org] 리액트 컴포넌트 오류 처리](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
+* [[리액트 공식문서] 리액트 컴포넌트 오류 처리](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
 
 {pagebreak}
 
@@ -1201,4 +1201,4 @@ const PATH_BASE = 'https://hn.algolia.com/api/v1';
   * 데이터 페이지네이션
   * 클라이언트 렌더
 
-실습 코드는 [깃허브 리퍼지토리](https://github.com/rwieruch/hackernews-client/tree/4.2)에서 확인할 수 있습니다.
+실습 코드는 [깃허브 리퍼지토리](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.1)에서 확인할 수 있습니다.

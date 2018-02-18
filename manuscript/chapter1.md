@@ -6,7 +6,7 @@
 
 **왜 리액트를 배워야 할까요?** 최근 몇 년 간 단일 페이지 애플리케이션([SPA: Single Page Application](https://en.wikipedia.org/wiki/Single-page_application))이 각광받고 있습니다. 앵귤러(Angular), 엠버(Ember) 및 백본(Backbone) 등 자바스크립트 프레임워크의 등장은 바닐라 자바스크립트(Vanilla JavaScript: 타 라이브러리나 프레임워크 사용 없이 순수한 자바스크립트로 개발하는 것을 말함)와 제이쿼리(jQuery)를 사용하지 않고도 최신 웹 응용 프로그램을 구축할 수 있게 되었습니다. 이외에도 SPA 프레임워크의 종류는 매우 다양합니다. 앵귤러 2010, 백본 2010, 엠버 2011 등 배포된 대부분 SPA 프레임워크는 1세대입니다.
 
-리액트는 페이스북이 만든 라이브러리로 2013년 공개되었습니다. 리액트는 SAP 프레임워크가 아닌, 뷰 라이브러리(View Library)입니다. 여기서 뷰(View)란 [MVC](https://de.wikipedia.org/wiki/Model_View_Controller) (Model–View–Controller, MVC는 소프트웨어 공학에서 사용되는 소프트웨어 디자인 패턴을 말함) 패턴의 'V'를 지칭합니다. 뷰는 브라우저 내 특정 컴포넌트를 보여주는 역할을 하지만, 리액트로 단일 페이지 애플리케이션을 제작할 수 있습니다.
+리액트는 페이스북이 만든 라이브러리로 2013년 공개되었습니다. 리액트는 SAP 프레임워크가 아닌, 뷰 라이브러리(View Library)입니다. 여기서 뷰(View)란 [MVC](https://en.wikipedia.org/wiki/Model–view–controller) (Model–View–Controller, MVC는 소프트웨어 공학에서 사용되는 소프트웨어 디자인 패턴을 말함) 패턴의 'V'를 지칭합니다. 뷰는 브라우저 내 특정 컴포넌트를 보여주는 역할을 하지만, 리액트로 단일 페이지 애플리케이션을 제작할 수 있습니다.
 
 그렇다면 수많은 1세대 SPA 프레임워크 중 리액트를 선택해야 하는 이유는 무엇일까요? 1세대 프레임워크는 한 번에 많은 테스크를 해결하려 했지만, 리액트는 뷰 레이어를 만드는 역할만 합니다. 앞서 말했듯이 리액트는 프레임워크가 아닌 라이브러리입니다. 뷰는 컴포넌트로서 다른 컴포넌트와 함께 계층구조를 이룹니다.
 
@@ -18,13 +18,15 @@
 
 SPA 프레임 워크의 1세대는 이미 상용화 단계에 이르렀고 더욱 견고해졌습니다. 리액트는 여전히 혁신적입니다. [페이스북은 물론 에어비앤비, 넷플릭스](https://github.com/facebook/react/wiki/Sites-Using-React) 등 선도적인 테크 회사들이 리액트를 도입해 플랫폼 개발을 하고 있습니다. 그들 모두가 리액트와 생태계에 만족하고 있으며 리액트의 미래에 투자하고 있습니다.
 
-최신 웹 애플리케이션 개발을 접하고 싶다면 리액트는 가장 좋은 선택이 될 겁니다. 리액트 자체는 뷰 레이어의 역할을 하지만 [거의 모든 프레임워크와 서로 상호 교환 가능합니다.](https://www.robinwieruch.de/essential-react-libraries-framework/) 리액트는 간결한 API, 놀라운 생태계, 훌륭한 커뮤니티를 갖추고 있습니다. ["왜 나는 앵귤러에서 리액트로 옮겼는가](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)" 블로그에서 리액트를 선택한 개인적인 소견을 작성했습니다. 그러나 리액트를 배우기 이전에 다른 프레임워크나 라이브러리가 아닌, 리액트를 선택한 이유를 스스로에게 물어보기 바랍니다. 본인이 리액트를 사용해야하는 이유를 잘 알고 있어야, 더 많은 사람들이 앞으로 리액트의 발전과 행보에 관심을 가지게 될 것이니까요.
+최신 웹 애플리케이션 개발을 접하고 싶다면 리액트는 가장 좋은 선택이 될 겁니다. 리액트 자체는 뷰 레이어의 역할을 하지만 [거의 모든 프레임워크와 서로 상호 교환 가능합니다.](https://www.robinwieruch.de/essential-react-libraries-framework/) 리액트는 간결한 API, 놀라운 생태계, 훌륭한 커뮤니티를 갖추고 있습니다. 개인 블로그에 ["앵귤러에서 리액트로 옮긴 이유](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)"에 대해 개인적인 소견을 작성했습니다. 그러나 리액트를 배우기 이전에 다른 프레임워크나 라이브러리가 아닌, 리액트를 선택한 이유를 스스로에게 물어보기 바랍니다. 본인이 리액트를 사용해야하는 이유를 잘 알고 있어야, 더 많은 사람들이 앞으로 리액트의 발전과 행보에 관심을 가지게 될 것이니까요.
 
 
 ### 읽어보기
 
 * [[저자 블로그] 왜 나는 앵귤러에서 리액트로 옮겼는가](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)
 * [[저자 블로그] 유연한 리액트 생태계](https://www.robinwieruch.de/essential-react-libraries-framework/)
+* [[저자 블로그] 프레임워크 학습 방법](https://www.robinwieruch.de/how-to-learn-framework/)
+
 
 ## 준비사항 Requirements
 
@@ -45,9 +47,9 @@ SPA 프레임 워크의 1세대는 이미 상용화 단계에 이르렀고 더�
 {title="Command Line",lang="text"}
 ~~~~~~~~
 node --version
-*v8.3.0
+*v8.9.4
 npm --version
-*v5.5.1
+*v5.6.0
 ~~~~~~~~
 
 ## node, npm
@@ -148,7 +150,7 @@ npm install react react-dom
 
 ### 읽어보기
 
-* [[리액트 공식문서] 리액트 설치](https://facebook.github.io/react/docs/installation.html)
+* [[리액트 공식문서] 리액트 설치](https://reactjs.org/docs/try-react.html)
 
 ## 제로 구성 설치 Zero-Configuration Setup
 
@@ -168,7 +170,7 @@ npm install -g create-react-app
 {title="Command Line",lang="text"}
 ~~~~~~~~
 create-react-app --version
-*v1.4.1
+*v1.5.1
 ~~~~~~~~
 
 첫 번째 리액트 애플리케이션을 시작해봅시다. 앞으로 새로운 리액트 애플리케이션을 부트스트랩 할 때마다 `create-react-app <name>` 명령어를 입력하면 됩니다.
@@ -332,7 +334,7 @@ export default App;
 
 다시 `npm start` 명령어를 실행해 애플리케이션을 시작합니다. 
 
-아마 `className`가 속성(attribute) 임을 눈치챘을 겁니다. `className`은 HTML 표준 `class`에 영향을 받았습니다. 기술적인 이유로 JSX는 몇 가지 내부 HTML 속성을 바꿔야 했습니다. 리액트 공식문서에서 [지원하는 HTML 속성](https://facebook.github.io/react/docs/dom-elements.html)에서 읽어보길 바랍니다. HTML 속성은 카멜 케이스(camelCase) 표기법을 따릅니다. 앞으로 몇 가지 JSX 속성을 좀 더 다뤄볼 것입니다.
+아마 `className`가 속성(attribute) 임을 눈치챘을 겁니다. `className`은 HTML 표준 `class`에 영향을 받았습니다. 기술적인 이유로 JSX는 몇 가지 내부 HTML 속성을 바꿔야 했습니다. 리액트 공식문서에서 [지원하는 HTML 속성](https://reactjs.org/docs/dom-elements.html)에서 읽어보길 바랍니다. HTML 속성은 카멜 케이스(camelCase) 표기법을 따릅니다. 앞으로 몇 가지 JSX 속성을 좀 더 다뤄볼 것입니다.
 
 ### 실습하기
 
@@ -341,8 +343,8 @@ export default App;
   * `render()`메서드 안에 `user` 프로퍼티를 사용합니다. 
   
 ### 읽어보기  
-* [[리액트 공식문서] JSX](https://facebook.github.io/react/docs/introducing-jsx.html)에 대해 읽어봅니다. 
-* [[리액트 공식문서] 리액트 컴포넌트, 요소, 인스턴스](https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html)에 대해 읽어봅니다.
+* [[리액트 공식문서] JSX](https://reactjs.org/docs/introducing-jsx.html)에 대해 읽어봅니다. 
+* [[리액트 공식문서] 리액트 컴포넌트, 요소, 인스턴스](https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html)에 대해 읽어봅니다.
 
 ## ES6 const, let
 
@@ -450,7 +452,7 @@ ReactDOM.render(
 * *public/index.html*을 열어 HTML 안에 리액트 애플리케이션 들어가는 곳을 찾아봅니다.
 
 ### 읽어보기
-* [[리액트 공식문서] - 리액트 내 렌더링 되는 요소](https://facebook.github.io/react/docs/rendering-elements.html)
+* [[리액트 공식문서] - 리액트 내 렌더링 되는 요소](https://reactjs.org/docs/dom-elements.html#all-supported-html-attributes)
 
 ## 핫 모듈 리플레이스먼트 Hot Module Replacement
 
@@ -509,7 +511,7 @@ import './App.css';
 const list = [
   {
     title: 'React',
-    url: 'https://facebook.github.io/react/',
+    url: 'https://reactjs.org/',
     author: 'Jordan Walke',
     num_comments: 3,
     points: 4,
@@ -626,7 +628,7 @@ export default App;
 
 ### 읽어보기
 
-* [[리액트 공식문서] 리액트 리스트(lists)와 키(keys)](https://facebook.github.io/react/docs/lists-and-keys.html)
+* [[리액트 공식문서] 리액트 리스트(lists)와 키(keys)](https://reactjs.org/docs/lists-and-keys.html)
 * [[MND] 자바스크립트 map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
 ### 실습하기
@@ -792,4 +794,4 @@ App 클래스는 `Component` 클래스의 기능을 확장함으로, `Component`
 
 잠시 휴식 시간을 가집시다. 학습 내용을 되새기고 적용해보며 지금까지 작성한 코드와 배운 내용을 내 것으로 만듭시다. 이것저것 만들어보며 테스트해보길 바랍니다. 
 
-앞으로 만들어볼 애플리케이션이 궁금하다면 [깃허브 리퍼 지토리](https://github.com/the-road-to-learn-react/hackernews-client/tree/4.1)를 확인하세요.
+앞으로 만들어볼 애플리케이션이 궁금하다면 [깃허브 리퍼 지토리](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.1)를 확인하세요.

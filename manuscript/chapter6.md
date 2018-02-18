@@ -269,7 +269,7 @@ class Table extends Component {
 
 ### 읽어보기
 
-* [[리액트 공식문서] 리액트 상태 옮기기](https://facebook.github.io/react/docs/lifting-state-up.html)
+* [[리액트 공식문서] 리액트 상태 옮기기](https://reactjs.org/docs/lifting-state-up.html)
 * [[저자 블로그] Redux 사용 전 알아야 할 것들](https://www.robinwieruch.de/learn-react-before-using-redux/)
 
 ## 다시보는 `setState()` Revisited: `setState()`
@@ -434,7 +434,7 @@ class App extends Component {
 
 ### 읽어보기
 
-* [[리액트 공식문서] 올바른 상태 사용법](https://facebook.github.io/react/docs/state-and-lifecycle.html#using-state-correctly)
+* [[리액트 공식문서] 올바른 상태 사용법](https://reactjs.org/docs/state-and-lifecycle.html#using-state-correctly)
 
 ### 실습하기
 * `setState()`가 함수를 사용할 수 있게 리팩토링합니다.
@@ -467,4 +467,4 @@ Redux와 MobX는 이 책에서 다루지 않았습니다. 이 책을 마치면 �
   * setState는 오래된 상태 버그를 방지하기 위해 별도 함수를 사용할 수 있습니다.
   * 상태 관리 라이브러리를 사용해 외부에서 상태 관리를 할 수 있습니다.
   
-실습 코드는 [깃허브 리퍼지토리](https://github.com/rwieruch/hackernews-client/tree/4.2)에서 확인할 수 있습니다.
+실습 코드는 [깃허브 리퍼지토리](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.1)에서 확인할 수 있습니다.

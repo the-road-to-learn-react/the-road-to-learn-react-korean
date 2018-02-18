@@ -34,7 +34,7 @@ ES6 클래스 컴포넌트에 생성자가 있으면, 반드시 `super();`를 �
 const list = [
   {
     title: 'React',
-    url: 'https://facebook.github.io/react/',
+    url: 'https://reactjs.org/',
     author: 'Jordan Walke',
     num_comments: 3,
     points: 4,
@@ -355,7 +355,7 @@ onDismiss(id) {
 
 ### 읽어보기
 
-* [[리액트 공식문서] 리액트 상태와 생명주기](https://facebook.github.io/react/docs/state-and-lifecycle.html)
+* [[리액트 공식문서] 리액트 상태와 생명주기](https://reactjs.org/docs/state-and-lifecycle.html)
 
 ## 바인딩 Bindings
 
@@ -1030,7 +1030,7 @@ class App extends Component {
 
 ### 읽어보기
 
-* [[리액트 공식문서] 리액트 이벤트](https://facebook.github.io/react/docs/handling-events.html)
+* [[리액트 공식문서] 리액트 이벤트](https://reactjs.org/docs/handling-events.html)
 * [[위키피디아] 고차 함수(higher order functions)](https://en.wikipedia.org/wiki/Higher-order_function)
 
 ## ES6 구조해체 Destructuring
@@ -1163,7 +1163,7 @@ class App extends Component {
 
 ### 읽어보기
 
-*  [[리액트 공식문서] 폼(Form)](https://facebook.github.io/react/docs/forms.html)
+*  [[리액트 공식문서] 폼(Form)](https://reactjs.org/docs/forms.html)
 
 ## 컴포넌트 분리 Split Up Components
 
@@ -1354,7 +1354,7 @@ class Search extends Component {
 
 ### 읽어보기 
 
-* [[리액트 공식문서] 리액트 컴포지션 모델](https://facebook.github.io/react/docs/composition-vs-inheritance.html) 
+* [[리액트 공식문서] 리액트 컴포지션 모델](https://reactjs.org/docs/composition-vs-inheritance.html) 
 
 ## 재사용 가능한 컴포넌트 Reusable Components 
 
@@ -1453,7 +1453,7 @@ class Button extends Component {
 
 * **ES6 클래스 컴포넌트** 우리는 이미 ES6 클래스 컴포넌트를 사용해봤습니다. 클래스 정의 시, `extends Component`란 리액트 컴포넌트로 확장한다는 것을 뜻합니다. `extend`는 리액트 컴포넌트 API인 생명주기 메서드를 컴포넌트로 연결시킵니다. 때문에 `render()` 클래스 메서드를 사용할 수 있는 겁니다. 또한 `this.state`와 `this.setState()`메서드로 상태를 저장하고 조작합니다.
 
-* **React.createClass:** `React.createClas`은 리액트 구버전의 클래스 선언문으로 ES5 애플리케이션에서 사용합니다. 페이스북은 ES6을 사용함에 따라 [더 이상 `React.createClass`를 지원하지 않습니다.](https://facebook.github.io/react/blog/2015/03/10/react-v0.13.html) [리액트 15.5 버전에서 비추천 경고문구로](https://facebook.github.io/react/blog/2017/04/07/react-v15.5.0.html) 등록되었습니다. 이 책 역시사용하지 않습니다. 
+* **React.createClass:** `React.createClas`은 리액트 구버전의 클래스 선언문으로 ES5 애플리케이션에서 사용합니다. 페이스북은 ES6을 사용함에 따라 [더 이상 `React.createClass`를 지원하지 않습니다.](https://reactjs.org/blog/2015/03/10/react-v0.13.html) [리액트 15.5 버전에서 비추천 경고문구로](https://reactjs.org/blog/2017/04/07/react-v15.5.0.html) 등록되었습니다. 이 책 역시사용하지 않습니다. 
 
 따라서 `React.createClass`를 제외하고 비 상태 함수형 컴포넌트 또는 ES6 클래스 컴포넌트 사용해 컴포넌트를 선언합니다. 그렇다면 언제 비 상태 함수형 컴포넌트를 사용해야 할까요? 기본 원칙은 컴포넌트에 상태나 생명주기 메서드가 필요 없을 때 비 상태 함수형 컴포넌트를 사용합니다. 일반적으로 컴포넌트를 만들 때, 처음 비 상태 함수형 컴포넌트로 만들고 이후 state와 생명주기 메서드가 필요할 때 ES6 클래스로 리팩터링 합니다. 
 
@@ -1540,7 +1540,7 @@ const Search = ({ value, onChange, children }) => {
 * Table과 Button컴포넌트를 비 상태 함수 컴포넌트로 리팩토링합니다.
  
 ### 읽어보기
-* [[리액트 공식문서] ES6 클래스 컴포넌트와 비상태 함수 컴포넌트](https://facebook.github.io/react/docs/components-and-props.html)
+* [[리액트 공식문서] ES6 클래스 컴포넌트와 비상태 함수 컴포넌트](https://reactjs.org/docs/components-and-props.html)
 
 ## 컴포넌트 스타일링 Styling Components
 
@@ -1826,6 +1826,6 @@ const smallColumn = {
   * 고차 함수
 
 
-잠시 휴식시간을 가집시다. 학습한 내용을 되새기고 적용해보며 이것저것 만들어보며 테스트해보길 바랍니다. [리액트 공식 문서](https://facebook.github.io/react/docs/installation.html)에서 리액트에 관한 자세한 내용을 읽어보길 바랍니다.
+잠시 휴식시간을 가집시다. 학습한 내용을 되새기고 적용해보며 이것저것 만들어보며 테스트해보길 바랍니다. [리액트 공식 문서](https://reactjs.org/docs/installation.html)에서 리액트에 관한 자세한 내용을 읽어보길 바랍니다.
 
-실습 코드는 [공식 깃허브 리퍼지토리](https://github.com/the-road-to-learn-react/hackernews-client/tree/4.2)에서 확인할 수 있습니다.
+실습 코드는 [공식 깃허브 리퍼지토리](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.1)에서 확인할 수 있습니다.

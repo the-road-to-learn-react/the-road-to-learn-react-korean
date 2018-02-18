@@ -805,7 +805,7 @@ ES6 기본 매개 변수(default parameter)와 동일하게, default prop은 부
 * 다음 장에서 컴포넌트를 추가하거나 수정할 때 PropType도 함께 추가합니다.
 
 ### 읽어보기
-* [[리액트 공식문서] 리액트 PropTypes](https://facebook.github.io/react/docs/typechecking-with-proptypes.html)
+* [[리액트 공식문서] 리액트 PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)
 
 {pagebreak}
 
@@ -820,4 +820,4 @@ ES6 기본 매개 변수(default parameter)와 동일하게, default prop은 부
 * 일반
   * 코드 구성은 애플리케이션을 확장할 수 있는 좋은 방법입니다.
 
-실습 코드는 [깃허브 리퍼지토리](https://github.com/rwieruch/hackernews-client/tree/4.2)에서 확인할 수 있습니다.
+실습 코드는 [깃허브 리퍼지토리](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.1)에서 확인할 수 있습니다.
