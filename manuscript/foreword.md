@@ -111,6 +111,17 @@
 * 총 190+ 이상
 * [+9 프로젝트 예제 소스 코드](https://roadtoreact.com/course-details?courseId=THE_ROAD_TO_LEARN_REACT)
 
++**2018년 2월 17일:**
+
+* node 8.9.4 업그레이드
+* npm 5.6.0 업그레이드
+* create-react-app 1.5.1 업그레이드
+* [v5 풀 리퀘스트](https://github.com/the-road-to-learn-react/the-road-to-learn-react/pull/105)
+* 학습 공부 방법 추가
+* 읽기 자료 추가
+* 신규 1장 추가 (Fetch 대신 Axios 사용)
+
+
 {pagebreak}
 
 # 이 책을 읽는 방법
