@@ -9,6 +9,7 @@
 {pagebreak}
 
 # 추천사
+[로드 투 리액트(Road to React)](https://roadtoreact.com/), [굿리드](https://www.goodreads.com/book/show/37503118-the-road-to-learn-react), [아마존](https://www.amazon.com/dp/B077HJFCQX)에서 많은 독자들이 추천사를 작성해주셨습니다.
 
 **[무하마드 카쉬프(Muhammad Kashif)](https://twitter.com/appsdevpk/status/848625244956901376):** "이 책은 리액트 입문자부터 전문가에 이르기까지 관심있는 학생, 전문가 모두가 읽을 수 있는 책입니다. 다른 곳에서 얻을 수 없는 통찰과 기술을 이 책에서 만날 수 있습니다. 문제 해결을 위한 참고자료와 예제가 구성 또한 완벽합니다. 지난 17년 간 웹과 데스크톱 응용 프로그램 개발 분야에 몸담고있던 나조차 리액트에 처음 시작할 때 어려움을 겪없습니다. 이 책은 마법입니다."
 
