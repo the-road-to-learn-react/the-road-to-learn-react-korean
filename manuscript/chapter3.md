@@ -1236,18 +1236,19 @@ const PATH_BASE = 'https://hn.algolia.com/api/v1';
 
 ## Fetch 대신 Axios 사용 Axios instead of Fetch
 
- In one of the previous chapters, you have introduced the native fetch API to perform a request to the Hacker News platform. The browser enables you to use this native fetch API. However, not all browsers, especially older browsers, support it. In addition, once you start to test your application in a headless browser environment (there is no browser, instead it is only mocked), there can be issues regarding the fetch API. Such a headless browser environment can happen when writing and executing tests for your application which don't run in a real browser. There are a couple of ways to make fetch work in older browsers (polyfills) and in tests ([isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch)), but we won't go down this rabbit hole in this book.
+이전 장에서 fetch API로 해커 뉴스 데이터를 가져왔습니다. 일반 브라우저에서는 fetch API를 사용할 수 있으나, 모든 브라우저에서 지원하는 것은 아닙니다. 특히 오래된 브라우저는 fetch API를 지원하지 않습니다. 헤드리스 브라우저(Headless Browser)에서 애플리케이션을 테스트할 때, fetch API와 관련된 문제가 발생할 수 있습니다. 헤드리스 브라우저 실제 애플리케이션이 구동되는 브라우저가 아닌 테스트용 브라우저로 테스트 자동화에 사용됩니다. 물론 구버전 브라우저(폴리필)와 테스트([isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch))에서 fetch API를 사용할 수 있는 방법이 있지만, 이 책에서는 이 내용을 다루지 않겠습니다.
 
-An alternative way to solve it would be to substitute the native fetch API with a stable library such as [axios](https://github.com/axios/axios). Axios is a library that solves only one problem, but it solves it with a high quality: performing asynchronous requests to remote APIs. That's why you will use it in this book. On a concrete level, the chapter should show you how you can substitute a library (which is a native API of the browser in this case) with another library. On an abstract level, it should show you how you can always find a solution for the quirks (e.g. old browsers, headless browser tests) in web development. So never stop to look for solutions if anything gets in your way.
+보다 간단히 문제를 해결하고자 fetch API를 대신하는 [액시오스(axios)](https://github.com/axios/axios) 라이브러리와 같이 안정된 라이브러리를 도입할 수 있습니다. Axios는 비동기 API 요청을 수행하는 우수한 라이브러리입니다. 따라서 우리는 Axios를 사용하겠습니다. 실제적으로 이번 장에서 라이브러리를 대체하는 방법을 설명하겠습니다. 추상적인 레벨에서 웹 개발의 고질적인 문제점(구버전 브라우저 헤드리스 브라우저 테스트)을 해결할 수 있는 방법을 제시합니다. 지금은 이외에 다른 해결방법을 도입하지 마십시오.
 
-Let's see how the native fetch API can be substituted with axios. Actually everything said before sounds more difficult than it is. First, you have to install axios on the command line:
+fetch API를 axios로 대체해보겠습니다. 꽤 까다롭습니다. 
+ 첫째, 커맨드 라인에 axios를 설치합니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm install axios
 ~~~~~~~~
 
-Second, you can import axios in your App component's file:
+둘째, App 컴포넌트 파일에 axios를 가져옵니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1260,7 +1261,7 @@ import './App.css';
 ...
 ~~~~~~~~
 
-And last but not least, you can use it instead of `fetch()`. Its usage looks almost identical to the native fetch API. It takes the URL as argument and returns a promise. You don't have to transform the returned response to JSON anymore. Axios is doing it for you and wraps the result into a `data` object in JavaScript. Thus make sure to adapt your code to the returned data structure.
+이제 `fetch()` 대신 사용할 수 있습니다. 사용법은 fetch API와 거의 동일합니다. 인자로 URL을 가져와 프로미스(promise)를 반환합니다. 반환된 응답을 JSON으로 변환할 필요가 없습니다. Axios는 자바스크립트에서 `data` 객체로 결과를 래핑합니다. 따라서 반환된 데이터 구조를 그대로 사용하면 됩니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1281,18 +1282,21 @@ class App extends Component {
 }
 ~~~~~~~~
 
-That's it for replacing fetch with axios in this chapter. In your code, you are calling `axios()` which uses by default a HTTP GET request. You can make the GET request explicit by calling `axios.get()`. Also you can use another HTTP method such as HTTP POST with `axios.post()` instead. There you can already see how axios is a powerful library to perform requests to remote APIs. I often recommend to use it over the native fetch API when your API requests become complex or you have to deal with web development quirks with promises. In addition, in a later chapter, you will introduce testing in your application. Then you don't need to worry anymore about a browser or headless browser environment.
+이번 장에서 fetch를 대체해 axios를 사용했습니다. `axios()` 은 디폴트로 HTTP GET 요청을 합니다.  `axios.get()` 메서드로 GET 요청을 명시적으로 표시할 수 있습니다. HTTP POST 요청의 경우 `axios.post()` 메서드를 사용합니다. 이처럼 axios는 원격 API 요청을 수행하는 강력한 라이브러리입니다. API 요청이 복잡하거나 프로미스의 단점을 처리해야 하는 경우 fetch API 대신 axios를 사용하는 것이 훨씬 좋습니다. 앞으로 테스트에 관한 애플리케이션 테스트도 배울 것입니다. 이때 브라우저나 헤드리스 브라우저 환경에 대해 더 이상 걱정하지 않아도 됩니다. 
 
 I want to introduce another improvement for the Hacker News request in the App component. Imagine your component mounts when the page is rendered for the first time in the browser. In `componentDidMount()` the component starts to make the request, but then, because your application introduced some kind of navigation, you navigate away from this page to another page. Your App component unmounts, but there is still a pending request from your `componentDidMount()` lifecycle method. It will attempt to use `this.setState()` eventually in the `then()` or `catch()` block of the promise. Perhaps then it's the first time you will see the following warning on your command line or in your browser's developer output:
+
+
+App 컴포넌트에서 해커 뉴스 API를 요청할 때 개선할 점이 있습니다. 페이지가 브라우저에서 처음 렌더링 될 때 컴포넌트가 마운트됩니다.  `componentDidMount()` 생명주기 메서드에서 컴포넌트가 요청을 시작하지만, 애플리케이션에서 다른 네비게이션이 있어 다른 페이지로 이동한다고 해봅시다. 앱 컴포넌트가 마운트 해제되었지만 여전히 `componentDidMount()` 메서드에서는 보류 중인 요청이 존재합니다. 따라서 `then()` 또는 `catch()`블록에서`this.setState()`를 사용해야 합니다. 이 경우 브라우저 개발자 도구나 커맨드 라인에서 아래와 같은 경고가 표시됩니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 Warning: Can only update a mounted or mounting component. This usually means you called setState, replaceState, or forceUpdate on an unmounted component. This is a no-op.
 ~~~~~~~~
 
-You can deal with this issue by aborting the request when your component unmounts or preventing to call `this.setState()` on an unmounted component. It's a best practice in React, even though it's not followed by many developers, to preserve an clean application without any annoying warnings. However, the current promise API doesn't implement aborting a request. Thus you need to help yourself on this issue. This might also be the case why not many developers are following this best practice. The following implementation seems more like a workaround than a sustainable implementation. Because of that, you can decide on your own if you want to implement it to work around the warning because of an unmounted component. Nevertheless, keep the warning in mind in case it comes up in a later chapter of this book or in your own application one day. Then you know how to deal with it.
+이 문제를 컴포넌트가 마운트 해제될 때 요청을 중단하거나, 마운트 해제된 컴포넌트에서 `this.setState()` 메서드 호출을 방지함으로써 처리할 수 있습니다. 리액트 개발에서는 경고 메시지가 없게 깨끗한 애플리케이션을 유지하는 것이 매우 중요합니다. 현재 promise API에서 요청을 중단하지 않습니다. 따라서 별도로 처리해야 합니다. 아래 제가 소개하는 방법은 많은 개발자들이 따르고  있는 모범 사례입니다. 사실 마운트 되지 않은 컴포넌트에서 비롯된 경고 메시지 내용을 해결할지 말지는 개발자 본인의 몫입니다. 이 책의 후반부에도 비슷한 경고 메시지가 나올 때마다 아래 방법으로 해결하면 됩니다.
 
-Let's start to work around it. You can introduce a class field which holds the lifecycle state of your component. It can be initialized as `false` when the component initializes, changed to `true` when the component mounted, but then again set to `false` when the component unmounted. This way, you can keep track of your component's lifecycle state. It has nothing to do with the local state stored and modified with `this.state` and `this.setState()`, because you should be able to access it directly on the component instance without relying on React's local state management. Moreover, it doesn't lead to any re-rendering of the component when the class field is changed this way.
+이제 해결해봅시다. 컴포넌트 생명주기 상태를 가리키는 클래스 필드를 만들겠습니다. 컴포넌트가 초기화될 때, `false`로 초기화되고, 컴포넌트가 마운트 될 때 `true`로 변경되며, 컴포넌트가 마운트 해제될 때 다시 `false`로 변경됩니다. 이렇게 하면 컴포넌트 생명주기를 추적할 수 있습니다. 리액트 로컬 상태에 의존하지 않고 컴포넌트 인스턴스에서 직접 접근할 수 있어 `this.state`와 `this.setState()`로 저장 및 수정된 로컬 상태와 관련이 없습니다. 따라서 클래스 필드가 변경되어도 컴포넌트가 다시 렌더링 되지 않습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1328,7 +1332,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Finally, you can use this knowledge not to abort the request itself but to avoid calling `this.setState()` on your component instance even though the component already unmounted. It will prevent the mentioned warning.
+마지막으로 요청 자체를 중단하지 않고 컴포넌트가 이미 마운트 해제되었다면 `this.setState()` 메서드 호출을 피할 수 있습니다. 이를 통해 경고 메시지를 피할 수 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1349,14 +1353,14 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Overall the chapter has shown you how you can replace one library with another library in React. If you run into any issues, you can use the vast library ecosystem in JavaScript to help yourself. In addition, you have seen a way how you can avoid calling `this.setState()` in React on an unmounted component. If you dig deeper into the axios library, you will find a way to prevent the cancel the request in the first place too. It's up to you to read up more about this topic.
+이번 장에서는 리액트에서 다른 라이브러리로 대체하는 방법을 설명했습니다. 문제가 생기면, 자바스크립트 생태계 내 방대한 라이브러리를 탐색하고 적용해 해결할 수 있습니다. 또한 마운트 해제된 컴포넌트에서 `this.setState()` 호출을 피하는 방법을 배웠습니다. axios 라이브러리를 더 깊이 파고 들면, 첫 번째 요청 취소를 방지하는 방법을 알게 될 것입니다. 나중에 이 주제에 대해 더 자세히 알아보길 바랍니다.
 
 ### 읽어보기
 
 * [[저자 블로그] 왜 프레임워크가 중요한가](https://www.robinwieruch.de/why-frameworks-matter/)
 * [[저자 리퍼지토리] 리액트 컴포넌트 대체 문법](https://github.com/rwieruch/react-alternative-class-component-syntax)
 
-앞으로 여러분은 리액트에서 API를 사용할 수 있습니다. 이번 장에서 배운 내용을 정리해봅시다.
+이번 장에서는 외부 API를 사용하는 방법을 배웠습니다. 지금까지 학습한 내용을 정리해봅시다.
 
 * 리액트
   * ES6 클래스 컴포넌트의 생명주기 메소드와 사용 사례
