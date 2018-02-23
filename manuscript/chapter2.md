@@ -100,7 +100,7 @@ class App extends Component {
   * `render()`로 state를 사용하고 표시합니다.
   
 ### 읽어보기 
-* [[MDN] : ES6 클래스 생성자](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor)
+* [[MDN] ES6 클래스 생성자](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor)
 
 ## ES6 객체 초기자 Object Initializer
 
@@ -226,7 +226,7 @@ class App extends Component {
   }
 }
 ~~~~~~~~
-`onDismiss()` 메서드는 아직 구현하지 않았습니다. 우선 버튼의 `onClick` 핸들러를 살펴봅시다. `onDismiss()` 메서드는 화살표 함수입니다. 각 `item`의 `objectID` 프로퍼티로 삭제될 아이템을 식별합니다. 다른 방법은 `onClick` 핸들러 밖에서 함수를 정의한 후 이 함수를 핸들러에 전달하는 것입니다. 다음 장에서 핸들러에 대해 배울 것입니다. 
+`onDismiss()` 메서드는 아직 구현하지 않았습니다. 우선 버튼의 `onClick` 핸들러부터 살펴봅시다. `onDismiss()` 메서드는 화살표 함수입니다. 각 `item`의 `objectID` 프로퍼티로 삭제될 아이템을 식별합니다. 다른 방법은 `onClick` 핸들러 밖에서 함수를 정의한 후 이 함수를 핸들러에 전달하는 것입니다. 다음 장에서 핸들러에 대해 배울 것입니다. 
 
 button 요소는 한 줄이 아닌 여러 줄로 작성되었습니다. 여러 속성을 한 줄로 나열해 길게 코드를 작성하면 이해하기 어려워집니다. 들여 쓰기와 적절한 줄 바꿈으로 누가 봐도 코드가 읽기 쉽게 작성해야 합니다. 필수사항은 아니지만 권장하는 코드 작성법입니다. 
 
