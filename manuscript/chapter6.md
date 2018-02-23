@@ -4,7 +4,7 @@
 
 ## 상태 끌어올리기 Lifting State
 
-App 컴포넌트는 상태가 있는 ES6 컴포넌트입니다 클래스 메서드에서 상태와 로직을 처리합니다. Table 컴포넌트로 많은 프로퍼티를 props로 넘겼습니다. 이 props는 Table 컴포넌트에서만 사용합니다. 결론적으로 App 컴포넌트가 Table 컴포넌트가 사용하고 있는지 모릅니다. 
+App 컴포넌트는 상태가 있는 ES6 컴포넌트입니다. 클래스 메서드에서 상태와 로직을 처리합니다. Table 컴포넌트로 많은 프로퍼티를 props로 넘겼습니다. 이 props는 Table 컴포넌트에서만 사용합니다. 결론적으로 App 컴포넌트가 Table 컴포넌트가 사용하고 있는지 모릅니다. 
 
 전체 정렬 기능은 Table 컴포넌트에서만 사용됩니다. App 컴포넌트가 Table 컴포넌트를 모르기 때문에, 이 기능을 Table 컴포넌트로 옮길 수 있습니다. 특정 컴포넌트에 에서 다른 컴포넌트로 전달한 하위 상태를 리팩터링 하는 프로세스를 *상태 끌어올리기(lifting state)*라고 합니다. 우리는 App 컴포넌트에서 사용하지 않는 상태를 Table 컴포넌트로 옮기려고 합니다. 즉 상태는 상위 컴포넌트에서 하위 컴포넌트로 이동됩니다. 
 
@@ -290,7 +290,7 @@ this.setState((prevState, props) => {
 });
 ~~~~~~~~
 
-왜 이렇게 해야 할까요? 단일 객체가 아닌 함수를 사용할 때 문제가 되기 때문입니다. 바로 이전 상태 또는 props에 따라 상태를 업데이트하는 경우가 있습니다. 이때 함수를 사용하지 않으면 내부 상태로 인해 버그가 발생할 수 있습니다. `setState()`메서드는 비동기입니다. 리액트는 `setState()` 호출하고 이를 실행합니다. `setState()`가 호출될 때, 이전 state나 props가 때 변경할 수 있습니다.
+왜 이렇게 해야 할까요? 단일 객체가 아닌 함수를 사용할 때 문제가 되기 때문입니다. 바로 이전 상태 또는 props에 따라 상태를 업데이트하는 경우가 있습니다. 이때 함수를 사용하지 않으면 내부 상태로 인해 버그가 발생. `setState()` 메서드는 비동기입니다. 리액트는 `setState()` 메서드를 호출하고 이를 실행합니다. `setState()`가 호출될 때, 이전 state나 props를 변경할 수 있습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -299,9 +299,9 @@ const { barCount } = this.props;
 this.setState({ count: fooCount + barCount });
 ~~~~~~~~
 
-`fooCount`과 `barCount`가 있다고 가정해봅시다. 그리고 `setState()` 메서드를 호출할 때 state나 props에 따라 어떤 곳이 변경된다고 합시다. 애플리케이션 규모가 커지면서 한 개 이상의 `setState()`가 호출해야 하는 일이 생겼습니다. `setState()`는 비동기적으로 실행되기 때문에, 이전 상태 값을 의존할 수 있습니다. 
+`fooCount`과 `barCount`가 있다고 가정해봅시다. 그리고 `setState()` 메서드를 호출할 때 state나 props에 따라 어떤 곳이 변경된다고 합시다. 애플리케이션 규모가 커지면서 한 개 이상의 `setState()`가 호출해야 하는 일이 생깁니다. `setState()`는 비동기적으로 실행되기 때문에, 이전 상태 값을 의존할 수 있습니다. 
 
-`setState()`메서드는 state와 props를 처리하는 비동기 콜백 함수입니다. `setState()`메서드는 비동기로 실행될 때 이전 state와 props를 변경합니다.
+`setState()` 메서드는 state와 props를 처리하는 비동기 콜백 함수입니다. `setState()` 메서드는 비동기로 실행될 때 이전 state와 props를 변경합니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -312,7 +312,7 @@ this.setState((prevState, props) => {
 });
 ~~~~~~~~
 
-이제 문제를 해결해봅시다. `setState()`메서드를 사용하는 곳을 수정해 state와 props를 의존하게 만듭시다. 나중에 다른 곳도 수정할 수 있습니다.
+이제 문제를 해결해봅시다. `setState()` 메서드를 사용하는 곳을 수정해 state와 props를 의존하게 만들겠습니다. 나중에 다른 곳도 수정할 수 있습니다.
 
 `setSearchTopStories()`메서드는 이전 상태를 의존함으로 `setState()`에서 함수를 사용할 수 있습니다. 지금 현재 코드는 아래와 같을 것입니다.
 
@@ -341,7 +341,7 @@ setSearchTopStories(result) {
 }
 ~~~~~~~~
 
-상태 값을 가져오지만 비동기로 이전 상태를 업데이트합니다. 이전 상태로 인해 버그가 발생하지 않도록 함수를 만들어봅시다.
+상태 값을 가져오지만 비동기로 이전 상태를 업데이트합니다. 이전 상태로 인해 버그가 발생하지 않게 함수를 만들어봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -356,7 +356,7 @@ setSearchTopStories(result) {
 }
 ~~~~~~~~
 
-여기서 구현한 블록 전체를 함수 안으로 옮길 수 있습니다. 수정할 것은 `this.state`을 `prevState`으로 바꾸는 것뿐입니다.
+여기서 구현한 블록 전체를 함수 안으로 옮길 수 있습니다. `this.state`을 `prevState`으로 바꾸면 됩니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -388,7 +388,7 @@ setSearchTopStories(result) {
 }
 ~~~~~~~~
 
-한 가지 더 개선할 것이 있습니다. 가독성을 높이기 위해 함수를 밖으로 빼낼 수 있습니다. 객체에 대한 함수의 장점입니다. 이 함수는 컴포넌트 외부로 빼낼 수 있지만, 고차 함수를 만들어 결과를 전달할 수 있게 해야 합니다. API에서 가져온 `result`를 가지고 상태를 업데이트하는 것입니다.
+한 가지 더 개선할 점이 있습니다. 코드 가독성을 높이기 위해 함수를 밖으로 빼낼 수 있습니다. 객체에 대한 함수의 장점입니다. 이 함수는 컴포넌트 외부로 빼낼 수 있지만, 고차 함수를 만들어 결과를 전달할 수 있게 해야 합니다. API에서 가져온 `result`를 가지고 상태를 업데이트하도록 말이지요.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -398,7 +398,7 @@ setSearchTopStories(result) {
 }
 ~~~~~~~~
 
-`updateSearchTopStoriesState()`은 함수를 반환하는 고차 함수입니다. 고차 함수는 App 컴포넌트 외부에서 정의할 수 있습니다. 함수 시그니처가 조금 달라졌다는 것을 유념하세요.
+`updateSearchTopStoriesState()` 함수는 함수를 반환하는 고차 함수입니다. 고차 함수는 App 컴포넌트 외부에서 정의해도 됩니다. 함수 시그니처가 조금 달라졌다는 점만 유념합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -437,8 +437,8 @@ class App extends Component {
 * [[리액트 공식문서] 올바른 상태 사용법](https://reactjs.org/docs/state-and-lifecycle.html#using-state-correctly)
 
 ### 실습하기
-* `setState()`가 함수를 사용할 수 있게 리팩토링합니다.
-  * 의존하는 props 또는 상태가 있는 경우에만
+* `setState()` 메서드에서 함수를 사용할 수 있게 리팩토링합니다.
+  * 의존된 props 또는 state가 있는 경우에만
 * 테스트를 재실행하고 업데이트되었는지 확인합니다.
 
 ## 상태 제어 Taming the State
@@ -449,9 +449,9 @@ class App extends Component {
 
 이미 고도화된 애플리케이션의 경우 상태 변경을 파악하기가 어렵습니다. `setState()`를 통해 상태를 조작하다보면 버그가 생길 수 있습니다. 컴포넌트 간 필요한 상태를 공유하거나, 혹은 불필요한 상태를 삭제하기 위해서 상태를 여러번 옮겨야 합니다. 또한 형제 컴포넌트가 종속되어 있는 경우 상태를 옮겨야 할 경우가 생깁니다. 컴포넌트가 최상위 컴포넌트에서 아주 멀리 떨어져 있는 경우에도 전체 컴포넌트에 상태를 공유하기 위해 상태를 또 옮겨야 할 겁니다. 결론적으로 컴포넌트는 상태 관리가 문제입니다. 그러나 컴포넌트의 본래 목적은 UI를 보여주는 것입니다.
 
-이러한 모든 이유를 해결하기 위해 상태 관리를 처리할 수 있는 독립형 솔루션이 있습니다. 이 솔루션은 리액트에만 허용된 것이 아니라 타 프레임워크에서도 사용가능합니다. 이러한 점이 바로 리액트 생태계를 풍부하고 강력하게 만들어 줍니다. 상태 관리 라이브러리인 [리덕스(Redux)](http://redux.js.org/docs/introduction/)와 [모브엑스(MobX)](https://mobx.js.org/)에 대해 들어봤을 겁니다. 둘 중 하나를 선택해 리액트 애플리케이션에 사용할 수 있습니다. [react-redux](https://github.com/reactjs/react-redux) 또는 [mobx-react](https://github.com/mobxjs/mobx-react)를 도입해 리액트 뷰 레이어에 통합시킬 수 있습니다.
+이러한 모든 이유를 해결하기 위해 상태 관리를 처리할 수 있는 독립형 솔루션이 있습니다. 이 솔루션은 리액트에만 허용된 것이 아니라 타 프레임워크에서도 사용가능합니다. 이러한 점이 바로 리액트 생태계를 풍부하고 강력하게 만들어 줍니다. 상태 관리 라이브러리인 [리덕스(Redux)](http://redux.js.org/docs/introduction/)와 [모브엑스(MobX)](https://mobx.js.org/)에 대해 들어봤을 겁니다. 둘 중 하나를 선택해 리액트 애플리케이션에 사용할 수 있습니다. [react-redux](https://github.com/reactjs/react-redux) 또는 [mobx-react](https://github.com/mobxjs/mobx-react) 라이브러리를 도입해 리액트 뷰 레이어에 통합시킬 수 있습니다.
  
-Redux와 MobX는 이 책에서 다루지 않았습니다. 이 책을 마치면 리액트와 그 생태계를 계속 탐험할 수 있는 방법을 스스로 깨우치게 될 것입니다. 이 책을 마치고 난 후 리덕스를 배울 수 있습니다. 외부 상태 관리로 넘어가지 전에 저자의 [Redux와 MobX에 대해 바로알기](https://www.robinwieruch.de/redux-mobx-confusion/) 블로그 글을 읽길 바랍니다. 외부 상태 관리 학습 방법을 소개했습니다.
+리덕스와 모브엑스는 이 책에서 다루지 않습니다. 이 책을 마친 여러분들은 리액트와 그 생태계를 계속 탐험할 수 있는 방법을 스스로 깨우치게 될 것입니다. 이 책을 마친 후 리덕스 학습을 시작할 수 있습니다. 외부 상태 관리로 넘어가지 전에 저자의 ['Redux와 MobX에 대해 바로알기'](https://www.robinwieruch.de/redux-mobx-confusion/) 글을 참고하길 바랍니다. 외부 상태 관리 학습 방법에 대해 자세히 기술했습니다.
 
 ### 읽어보기
 
