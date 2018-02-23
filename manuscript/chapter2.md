@@ -1420,7 +1420,8 @@ class Table extends Component {
 }
 ~~~~~~~~
 
-Button 컴포넌트는 props에 `className` 프로퍼티를 전달받습니다. `className`는 HTML 클래스에서 파생된 것으로 클래스 이름을 지칭합니다. 아직 우리는 `className`을 전달하지 않았습니다. 클래스 이름을 명확히 표현하기 위해 ES6 기능인 기본 매개 변수를 사용할 수 있습니다.
+Button 컴포넌트는 props에 `className` 프로퍼티를 전달받습니다. `className`는 HTML 클래스에서 파생된 것으로 클래스 이름을 지칭합니다. 아직 우리는 `className`을 전달하지 않았습니다. `className`이 선택 사항임을 명시하기 위해 객체 구조할당 내 기본 값을 할당할 수 있습니다.
+
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1440,10 +1441,6 @@ class Button extends Component {
 ~~~~~~~~
 
 이제 Button 컴포넌트를 사용할 때, `className` 프로퍼티 값이 지정되지 않아도 `undefined` 가 표시되지 않고 빈 문자열로 표시됩니다.
-
-### 읽어보기
-
-* [[MDN] ES6 기본 매개변수](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters)
 
 ## 컴포넌트 선언 Component Declarations
 

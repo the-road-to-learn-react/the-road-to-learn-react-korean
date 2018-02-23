@@ -1,6 +1,6 @@
 # 코드 구성과 테스트 Code Organization and Testing
 
-이번 장에서는 규모가 큰 애플리케이션에서 코드를 유지 보수하는 방법에 대해 알아보겠습니다. 모범 예제를 통해 폴더와 파일 구성 방법과 조직적인 코드 작성법에 배우고, 테스트 코드 작성법도 알아보겠습니다. 코드 품질 향상은 매우 중요합니다. 이번 장은 애플리케이션 구현은 잠시 뒤로 미루겠습니다.
+이번 장에서는 규모가 큰 애플리케이션에서 코드를 유지 보수하는 방법에 대해 알아보겠습니다. 모범 예제를 통해 폴더와 파일 구성 방법과 조직화된 코드 작성법을 배우고, 마지막으로 테스트 코드 작성법에 대해 알아보겠습니다. 소프트웨어 개발에 있어 코드 품질 향상은 매우 중요합니다. 이번 장은 애플리케이션 구현은 잠시 뒤로 미루겠습니다.
 
 ## ES6 모듈: Import/Export Modules: Import/Export
 
@@ -512,7 +512,7 @@ describe('Button', () => {
 # leanpub-end-insert
 ~~~~~~~~
 
-마지막으로 Table 컴포넌트는 목록을 렌더링하기 위해 초기 props를 전달합니다.
+마지막으로 Table 컴포넌트는 리스트를 렌더링하기 위해 초기 props를 전달합니다.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -590,7 +590,7 @@ Enzyme.configure({ adapter: new Adapter() });
 # leanpub-end-insert
 ~~~~~~~~
 
-Table 컴포넌트의 "describe"블록에 첫 번째 단위 테스트를 작성합시다. You will use `shallow()`를 사용하여 컴포넌트를 렌더링하고 두 개의 목록을 전달하기 때문에 두 항목이 있다고 주장합니다. 어설션은 `table-row` 클래스에 두 요소가 있는지 간단히 체크합니다. 
+Table 컴포넌트의 "describe"블록에 첫 번째 단위 테스트를 작성합시다. You will use `shallow()`를 사용하여 컴포넌트를 렌더링하고 두 개의 리스트를 전달하기 때문에 두 항목이 있다고 주장합니다. 어설션은 `table-row` 클래스에 두 요소가 있는지 간단히 체크합니다. 
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
