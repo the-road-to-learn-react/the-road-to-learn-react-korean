@@ -23,7 +23,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-ES6 클래스 컴포넌트에 생성자가 있으면, 반드시 `super();`를 호출해야 합니다.  App 컴포넌트는 `Component`의 하위 클래스이기 때문입니다. 따라서 App 컴포넌트를 선언할 때 `extends Component`로 컴포넌트를 확장시켜야 합니다. 이 부분은 ES6 클래스 컴포넌트 부분에서 좀 더 알아보겠습니다.
+ES6 클래스 컴포넌트에 생성자가 있으면, 반드시 `super();`를 호출해야 합니다.  App 컴포넌트는 `Component`의 하위 클래스이기 때문입니다. 따라서 App 컴포넌트를 선언할 때 `extends Component`로 컴포넌트를 확장시킵니다. 이 부분은 ES6 클래스 컴포넌트 부분에서 좀 더 알아보겠습니다.
 
 생성자에서 `super(props);`을 호출할 수 있습니다. 생성자에서 `this.props`를 사용하려면 생성자에서 `this.props`를 설정해야 합니다. 그렇지 않으면, 생성자에서 `this.props`를 접근할 때, `undefined`로 출력됩니다. 이 부분은 props를 설명할 때 보다 자세히 알아보겠습니다.
 
@@ -34,7 +34,7 @@ ES6 클래스 컴포넌트에 생성자가 있으면, 반드시 `super();`를 �
 const list = [
   {
     title: 'React',
-    url: 'https://facebook.github.io/react/',
+    url: 'https://reactjs.org/',
     author: 'Jordan Walke',
     num_comments: 3,
     points: 4,
@@ -89,7 +89,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-컴포넌트 내부 상태에서 배열 내 아이템을 추가, 변경 제거를 할 수 있습니다. 상태를 변경할 때마다 `render()` 메서드가 재실행됩니다. 이를 통해 쉽게 컴포넌트 상태를 변경하고 전달된 데이터가 올바르게 표시되는지 확인할 수 있습니다. 
+컴포넌트 내부 상태에서 배열 내 아이템을 추가, 변경 제거를 할 수 있습니다. 상태를 변경할 때마다 `render()` 메서드가 재실행됩니다. 이로써 쉽게 컴포넌트 상태를 변경하고 전달된 데이터가 올바르게 표시되는지 확인할 수 있습니다. 
 
 그러나 절대로 상태를 직접 변경해서는 안됩니다. 반드시 `setState()` 메서드를 사용해 상태를 변경해야 합니다. 다음 장에서 `setState()` 메서드에 대해 알아보겠습니다. 
 
@@ -100,7 +100,7 @@ class App extends Component {
   * `render()`로 state를 사용하고 표시합니다.
   
 ### 읽어보기 
-* [[MDN] : ES6 클래스 생성자](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor)
+* [[MDN] ES6 클래스 생성자](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor)
 
 ## ES6 객체 초기자 Object Initializer
 
@@ -115,7 +115,7 @@ const user = {
 };
 ~~~~~~~~
 
-ES6에서는 개체 프로퍼티 이름과 변수 이름이 같다면, 축약해 정의할 수 있습니다.
+ES6에서는 개체 프로퍼티 이름과 변수 이름이 같다면, 하나로 축약해 정의합니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -126,7 +126,7 @@ const user = {
 };
 ~~~~~~~~
 
-리액트 애플리케이션도 동일합니다. state 프로퍼티 이름과 변수 이름이 동일하면 `list` 하나만 작성하면 됩니다.
+리액트 애플리케이션 역시 동일합니다. state 프로퍼티 이름과 변수 이름이 동일하면 `list` 하나만 작성하면 됩니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -160,7 +160,7 @@ const userService = {
 };
 ~~~~~~~~
 
-또한 ES6에서는 계산된 프로퍼티를 이름(computed property name)을 사용할 수 있습니다.
+또한 ES6에서는 계산된 프로퍼티 이름(computed property name)을 사용할 수 있습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -176,19 +176,19 @@ const user = {
 };
 ~~~~~~~~
 
-계산된 프로퍼티 이름(computed property name)은 왜 필요할까요? 다음 장에서 키(key)를 사용해 객체에서 동적인 방식으로 값을 할당하는데 이 때 사용하기 위함입니다. 자바스크립트에서 룩업 테이블(lookup tables: 주어진 연산에 대해 미리 계산된 결과들의 배열)을 생성하는 것이 코드 가독성을 높여줍니다.
+그렇다면 계산된 프로퍼티 이름(computed property name)은 언제 필요할까요? 다음 장에서 키(key)를 사용해 객체에서 동적인 방식으로 값을 할당할 것인데 이 때 사용될 것입니다. 자바스크립트에서 룩업 테이블(lookup tables: 주어진 연산에 대해 미리 계산된 결과들의 배열)을 생성하게 되면 코드 가독성이 높아집니다.
 
 ### 읽어보기
 * [[MDN] ES6 객체 초기자 (Object Initializer)](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Object_initializer)
 
 ### 실습하기
 
-* ES6 객체 초기자를 생성해봅니다.
+* ES6 객체 초기자를 생성합니다.
 
 
 ## 단방향 데이터 흐름 Unidirectional Data Flow
 
-App 컴포넌트에 state가 있지만 그 값이 변동되지 않아 현재는 정적인 컴포넌트라 할 수 있습니다. state를 조작하여 동적인 컴포넌트를 만들어 봅시다.
+App 컴포넌트에 state가 있지만 그 값이 변동되지 않아 아직은 정적인 컴포넌트라 할 수 있습니다. state를 조작하여 동적인 컴포넌트를 만들어 봅시다.
 
 각 배열의 아이템마다 `dismiss` 버튼을 추가하고, 버튼을 클릭하면 각 대상이 삭제되게 구현해봅시다.
 
@@ -226,11 +226,11 @@ class App extends Component {
   }
 }
 ~~~~~~~~
-`onDismiss()` 메서드는 아직 구현하지 않았습니다. 우선 버튼의 `onClick` 핸들러를 살펴봅시다. `onDismiss()` 메서드는 화살표 함수입니다. 각 `item`의 `objectID` 프로퍼티로 삭제될 아이템을 식별합니다. 다른 방법은 `onClick` 핸들러 밖에서 함수를 정의한 후 이 함수를 핸들러에 전달하는 것입니다. 다음 장에서 핸들러에 대해 배울 것입니다. 
+`onDismiss()` 메서드는 아직 구현하지 않았습니다. 우선 버튼의 `onClick` 핸들러부터 살펴봅시다. `onDismiss()` 메서드는 화살표 함수입니다. 각 `item`의 `objectID` 프로퍼티로 삭제될 아이템을 식별합니다. 다른 방법은 `onClick` 핸들러 밖에서 함수를 정의한 후 이 함수를 핸들러에 전달하는 것입니다. 다음 장에서 핸들러에 대해 배울 것입니다. 
 
-button 요소는 한 줄이 아닌 여러 줄로 작성되었습니다. 여러 속성을 한 줄로 나열해 길게 코드를 작성하면 이해하기 어려워집니다. 들여 쓰기와 적절한 줄 바꿈으로 누가 봐도 코드가 읽기 쉽게 작성해야 합니다. 필수사항은 아니지만 권장하는 코드 작성법입니다. 
+button 요소의 코드는 한 줄이 아닌 여러 줄로 작성되었습니다. 여러 속성을 한 줄로 나열해 길게 코드를 작성하면 내용을 파악하기 어려워집니다. 들여 쓰기와 적절한 줄 바꿈으로 누가 봐도 코드가 읽기 쉽게 작성해야 합니다. 필수사항은 아니지만 권장하는 코드 작성법입니다. 
 
-`onDismiss()` 함수를 구현하겠습니다. 아이템을 식별하기 위해 ID가 필요합니다. 이 함수는 클래스에 바인딩되어있으므로 클래스 메서드입니다. 따라서 `onDismiss()`가 아니라 `this.onDismiss()`로 접근합니다. `this` 객체는 클래스 인스턴스입니다. `onDismiss()`를 클래스 메서드로 정의하기 위해서는 생성자에서 바인딩을 해야 합니다. 바인딩은 다음 장에서 알아보겠습니다.
+`onDismiss()` 함수 내용을 작성하겠습니다. 아이템을 식별하기 위해 ID가 필요합니다. 이 함수는 클래스에 바인딩되어있으므로 클래스 메서드입니다. 따라서 `onDismiss()`가 아니라 `this.onDismiss()`로 접근합니다. `this` 객체는 클래스 인스턴스입니다. `onDismiss()`를 클래스 메서드로 정의하기 위해서는 생성자에서 바인딩(binding)을 해야 합니다. 바인딩은 다음 장에서 알아보겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -255,7 +255,7 @@ class App extends Component {
 ~~~~~~~~
 
 
-이제 클래스 함수와 함수의 할 일을 정의합시다. 클래스 메서드는 아래와 같이 작성합니다.
+이제 클래스 함수와 함수의 할 일을 정의하겠습니다. 클래스 메서드는 아래와 같이 작성합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -355,7 +355,7 @@ onDismiss(id) {
 
 ### 읽어보기
 
-* [[리액트 공식문서] 리액트 상태와 생명주기](https://facebook.github.io/react/docs/state-and-lifecycle.html)
+* [[리액트 공식문서] 리액트 상태와 생명주기](https://reactjs.org/docs/state-and-lifecycle.html)
 
 ## 바인딩 Bindings
 
@@ -378,7 +378,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-왜 처음부터 바인딩을 했을까요? 클래스 메서드는 클래스 인스턴스에 자동으로 `this`를 바인딩하지 않기 때문에 일일이 바인딩해야 합니다. 아래 ES6 클래스 컴포넌트인 ExplainBindingsComponent를 예시로 들겠습니다.
+왜 처음부터 바인딩을 했을까요? 클래스 메서드는 클래스 인스턴스에 자동으로 `this`를 바인딩하지 않기 때문에 일일이 바인딩을 해줘야 합니다. 아래 ES6 클래스 컴포넌트인 ExplainBindingsComponent를 예시로 들겠습니다.
 
 {title="Code Playground",lang=javascript}
 ~~~~~~~~
@@ -432,7 +432,7 @@ class ExplainBindingsComponent extends Component {
 }
 ~~~~~~~~
 
-버튼 구현 시, 클래스 인스턴스를 구체적으로 지정하기 위해 `this` 객체를 정의한 후 `this.state`에 접근하거나, `this.props`를 사용해 접근해야 합니다.
+버튼를 만들 때, 클래스 인스턴스를 구체적으로 지정하기 위해 `this` 객체를 정의한 후 `this.state`에 접근하거나, `this.props`를 사용해 접근해야 합니다.
 
 클래스 메서드 바인딩은 어느 곳에서든지 사용할 수 있습니다. 클래스 메서드인 `render()`에서도 사용할 수 있습니다.
 
@@ -459,7 +459,7 @@ class ExplainBindingsComponent extends Component {
 ~~~~~~~~
 
 
-그러나 `render()` 메서드가 실행될 때마다 클래스 메서드를 바인드 하기 때문에, 컴포넌트가 업데이트될 때마다 실행되어 성능에 영향을 미칩니다. `render()` 메서드에서 바인딩하지 않는 편이 좋습니다. 생성자에서 클래스 메서드를 바인딩해 컴포넌트가 인스턴스화 될 때 처음에 한 번만 바인딩하는 것이 더 좋은 방법입니다. 
+그러나 `render()` 메서드가 실행될 때마다 클래스 메서드를 바인드 하기 때문에, 컴포넌트가 업데이트될 때마다 실행되어 성능에 영향을 미치게 됩니다. 그렇기 때문에 `render()` 메서드에서 바로 바인딩하지 않는 편이 좋습니다. 생성자에서 클래스 메서드를 바인딩해 컴포넌트가 인스턴스화 될 때 처음에 한 번만 바인딩하는 것이 더 좋은 방법입니다. 
 
 이외에 생성자에서 바로 클래스 메서드의 할 일을 정의할 수도 있습니다.
 
@@ -489,7 +489,7 @@ class ExplainBindingsComponent extends Component {
 }
 ~~~~~~~~
 
-이 방법 또한 앞으로 생성자에게 혼란을 줄 수 있기 때문에 사용하지 않는 것이 좋습니다. 생성자는 클래스의 모든 프로퍼티를 인스턴스 화하기 위해서 존재합니다. 따라서 클래스 메서드의 로직은 생성자 외부에서 정의합니다.
+이 방법 또한 앞으로 생성자에게 혼란을 줄 수 있기 때문에 사용하지 않는 것이 좋습니다. 생성자는 클래스의 모든 프로퍼티를 인스턴스 화하기 위해 존재합니다. 따라서 클래스 메서드의 로직은 생성자 외부에서 정의하는 것이 좋습니다.
 
 {title="Code Playground",lang=javascript}
 ~~~~~~~~
@@ -544,7 +544,7 @@ class ExplainBindingsComponent extends Component {
 
 ## 이벤트 핸들러 Event Handler
 
-이번 장에서는 이벤트 핸들러에 대해 알아봅시다. 각 아이템의 버튼을 클릭하면 해당 아이템을 삭제하는 기능을 구현해 볼 것입니다.
+이번 장에서는 이벤트 핸들러에 대해 알아봅시다. 이번 장에서는 각 아이템의 버튼을 클릭하면 해당 아이템을 삭제하는 기능을 만들어보겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -560,7 +560,7 @@ class ExplainBindingsComponent extends Component {
 ...
 ~~~~~~~~
 
-위 코드가 복잡하게 보일지도 모르겠습니다. 클래스 메서드 인자를 전달하기 때문에 화살표 함수로 래핑 했습니다. 일반적으로 `render()` 밖에서 이벤트 핸들러에 전달되는 함수를 만들어야 합니다. 애플리케이션이 구동되면 클래스 메서드가 즉시 실행되기 때문에 코드는 작동하지 않을 겁니다.
+위 코드가 복잡하게 보일지도 모르겠습니다. 클래스 메서드 인자를 전달하기 때문에 화살표 함수로 래핑 했습니다. 일반적으로 `render()` 밖에서 이벤트 핸들러에 전달되는 함수를 만들어야 합니다. 애플리케이션이 구동되면 클래스 메서드가 즉시 실행되기 때문에 코드는 작동하지 않을 것입니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -576,7 +576,7 @@ class ExplainBindingsComponent extends Component {
 ...
 ~~~~~~~~
 
-`onClick={doSomething()}`일 경우, `doSomething()` 함수는 그 즉시 실행됩니다. 핸들러 표현식이 평가되는데, 그 결과를 함수로 반환하지 않기 때문에 버튼을 클릭해도 아무 일도 일어나지 않습니다. 따라서 `onClick={doSomething}`으로 수정하면 실행됩니다. 이를 `onDismiss()`클래스 메서드에 적용해봅시다.
+`onClick={doSomething()}`일 경우, `doSomething()` 함수는 그 즉시 실행됩니다. 핸들러 표현식이 평가되는데, 그 결과를 함수로 반환하지 않기 때문에 버튼을 클릭해도 아무 일도 일어나지 않습니다. 따라서 `onClick={doSomething}`으로 수정하면 실행됩니다. 이를 `onDismiss()` 클래스 메서드에 적용해봅시다.
 
 `onClick={this.onDismiss}`로 고쳤겠지만 이 역시 문제가 있습니다. 삭제할 아이템을 식별하는 `item.objectID`가 빠져있습니다. 함수 인자를 추가합시다.
  
@@ -675,6 +675,7 @@ class App extends Component {
 위 코드에서는 브라우저에서 애플리케이션을 열었을 때 바로 실행되지만 버튼을 클릭하면 실행되지 않습니다. 
 
 다시 아래 코드로 수정해봅시다. 버튼을 클릭 할 때만 함수가 실행됩니다. 
+
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 ...
@@ -711,7 +712,7 @@ class App extends Component {
 ...
 ~~~~~~~~
 
-대부분 리액트 입문자들은 이벤트 핸들러 부분에서 함수 사용 방법에 큰 어려움을 겪기 때문에, 이 부분을 자세히 설명하고자 했습니다. 마지막으로 ES6 화살표 함수로 `item` 객체가 `objectID` 프로퍼티에 액세스 가능하게 만들어봅시다.
+대부분 리액트 입문자들은 이벤트 핸들러 부분에서 함수 사용 방법에 큰 어려움을 겪기 때문에, 이 부분을 자세히 설명했습니다. 마지막으로 ES6 화살표 함수로 `item` 객체가 `objectID` 프로퍼티에 액세스 가능하게 만들어봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -742,7 +743,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-이벤트 핸들러 내 화살표 함수 사용은 성능 문제와 연관됩니다. 그 예로, `onDismiss()` 내 `onClick` 핸들러는 식별자를 전달하고자 다른 화살표 함수로 메서드를 래핑 했습니다. 따라서 `render()`메서드가  실행될 때마다, 핸들러는 고차 함수인 화살표 함수를 인스턴스화 됩니다. 애플리케이션 성능에 영향을 미칠 수 있지만, 실제로 그 효과를 파악할 수 없습니다. 1000개의 아이템마다 이벤트 핸들러에 화살표 함수가 있다고 해봅시다. 성능에 영햐을 미치지 않도록 생성자에서 메서드를 바인딩하는 할 수 있을 겁니다. 하지만 리액트를 시작하는 단계에서 성능 최적화까지 생각하는 것은 시기상조입니다. 우리는 리액트를 배우는 그 자체에 일단 집중하도록 합시다.
+이벤트 핸들러 내 화살표 함수 사용은 성능 문제와 연관됩니다. 그 예로, `onDismiss()` 내 `onClick` 핸들러는 식별자를 전달하고자 다른 화살표 함수로 메서드를 래핑 했습니다. 따라서 `render()`메서드가  실행될 때마다, 핸들러는 고차 함수인 화살표 함수를 인스턴스화 됩니다. 애플리케이션 성능에 영향을 미칠 수 있지만, 실제로 그 효과를 파악할 수 없습니다. 1000개의 아이템마다 이벤트 핸들러에 화살표 함수가 있다고 가정해봅시다. 성능에 영향을 미치지 않게 생성자에서 메서드를 바인딩 할 수 있을 것입니다. 하지만 리액트를 이제 시작하는 단계에서 성능 최적화까지 고려하는 것은 시기상조입니다. 우리는 리액트를 배우는 본래 목적에만 집중하도록 합시다.
 
 ### 실습하기
 
@@ -752,7 +753,7 @@ class App extends Component {
 
 이번 장에서는 검색 기능을 구현해보면서 HTML 폼(Form)과 이벤트 인터렉션을 배워볼 것입니다. 입력된 검색어에 따라 리스트를 필터링하는 기능을 구현해 봅시다.
 
-첫 번째 단계로, JSX에 입력 필드가 있는 폼을 아래와 같이 정의합시다.
+첫 번째 단계로, JSX에 입력 필드가 있는 폼을 아래와 같이 정의하겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -928,7 +929,7 @@ class App extends Component {
 
 좀 더 다른 방법으로 `filter()` 메서드를 다뤄봅시다. 클래스 컴포넌트 외부에서 `filter()` 메서드에 전달되는 인자를 정의합시다. 컴포넌트 상태에 직접 접근할 수 없어 `searchTerm` 프로퍼티를 접근할 수도 없습니다. 따라서 새로운 함수가 필요합니다. `filter()`메서드에 `searchTerm`을 전달하고 조건을 확인하는 함수를 반환하는 함수를 만들어보겠습니다. 다른 말로 이 함수는 고차 함수(higher order function)라고 불립니다.
 
-이 책에서는 고차 함수를 다루지 않지만, 기본적인 내용을 아는 것이 좋습니다. 리액트는 고차원 컴포넌트(higher order components)를 다루기 때문에 고차 함수에 대해 알고 있어야 합니다. 아마 나중에 이 개념을 알게 될 것입니다. 이제 다시 `filter()` 메서드 부분을 봅시다. 제일 먼저 App 컴포넌트 외부에 고차 함수를 정의합니다.
+이 책에서는 고차 함수를 다루지 않지만, 기본적인 내용을 아는 것이 좋습니다. 리액트는 고차원 컴포넌트(higher order components)를 다루기 때문에 고차 함수에 대해 알고 있어야 합니다. 아마 나중에 이 개념을 알게 될 것입니다. 이제 다시 `filter()` 메서드를 봅시다. 제일 먼저 App 컴포넌트 외부에 고차 함수를 정의하겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -996,7 +997,7 @@ const isSearched = searchTerm => item =>
   item.title.toLowerCase().includes(searchTerm.toLowerCase());
 ~~~~~~~~
 
-ES5 함수작성법과 ES6 함수작성법 둘 중 어떤 것이 더 읽기 쉬운가요? 저는 둘중 ES6 화살표 함수를 선호합니다. 리액트는 함수형 프로그래밍과 함수를 반환하는 함수(고차 함수)를 많이 사용하기 때문에 되도록 화살표 함수를 사용하는 것이 좋습니다. 화살표 함수는 코드를 명확하게 표현하며 가독성을 높이기 때문입니다.
+ES5 함수작성법과 ES6 함수작성법 둘 중 어떤 것이 더 읽기 쉬운가요? 저는 ES6 화살표 함수를 선호합니다. 리액트는 함수형 프로그래밍과 함수를 반환하는 함수(고차 함수)를 많이 사용합니다. 화살표 함수는 코드를 명확하게 표현하여 가독성을 높여 줍니다.
 
 마지막으로 `isSearched()` 함수를 `filter()` 메서드에 추가해 리스트를 필터링하게 만들어 보겠습니다. `this.state.searchTerm`를 전달하면, 반환된 함수에서 조건에 `title`과 일치하는지 확인하여 리스트를 필터링합니다.
 
@@ -1030,7 +1031,7 @@ class App extends Component {
 
 ### 읽어보기
 
-* [[리액트 공식문서] 리액트 이벤트](https://facebook.github.io/react/docs/handling-events.html)
+* [[리액트 공식문서] 리액트 이벤트](https://reactjs.org/docs/handling-events.html)
 * [[위키피디아] 고차 함수(higher order functions)](https://en.wikipedia.org/wiki/Higher-order_function)
 
 ## ES6 구조해체 Destructuring
@@ -1163,7 +1164,7 @@ class App extends Component {
 
 ### 읽어보기
 
-*  [[리액트 공식문서] 폼(Form)](https://facebook.github.io/react/docs/forms.html)
+*  [[리액트 공식문서] 폼(Form)](https://reactjs.org/docs/forms.html)
 
 ## 컴포넌트 분리 Split Up Components
 
@@ -1354,7 +1355,7 @@ class Search extends Component {
 
 ### 읽어보기 
 
-* [[리액트 공식문서] 리액트 컴포지션 모델](https://facebook.github.io/react/docs/composition-vs-inheritance.html) 
+* [[리액트 공식문서] 리액트 컴포지션 모델](https://reactjs.org/docs/composition-vs-inheritance.html) 
 
 ## 재사용 가능한 컴포넌트 Reusable Components 
 
@@ -1420,7 +1421,8 @@ class Table extends Component {
 }
 ~~~~~~~~
 
-Button 컴포넌트는 props에 `className` 프로퍼티를 전달받습니다. `className`는 HTML 클래스에서 파생된 것으로 클래스 이름을 지칭합니다. 아직 우리는 `className`을 전달하지 않았습니다. 클래스 이름을 명확히 표현하기 위해 ES6 기능인 기본 매개 변수를 사용할 수 있습니다.
+Button 컴포넌트는 props에 `className` 프로퍼티를 전달받습니다. `className`는 HTML 클래스에서 파생된 것으로 클래스 이름을 지칭합니다. 아직 우리는 `className`을 전달하지 않았습니다. `className`이 선택 사항임을 명시하기 위해 객체 구조할당 내 기본 값을 할당할 수 있습니다.
+
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1441,10 +1443,6 @@ class Button extends Component {
 
 이제 Button 컴포넌트를 사용할 때, `className` 프로퍼티 값이 지정되지 않아도 `undefined` 가 표시되지 않고 빈 문자열로 표시됩니다.
 
-### 읽어보기
-
-* [[MDN] ES6 기본 매개변수](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters)
-
 ## 컴포넌트 선언 Component Declarations
 
 지금까지 4가지 ES6 클래스 컴포넌트를 만들어봤습니다. 이제 컴포넌트를 만드는데 자신감이 생겼길 바랍니다. 이번 장에서 비 상태 함수형 컴포넌트(Functional Stateless Components)를 만들어 보겠습니다. 다시 한번 앞에서 배운 리액트 컴포넌트 유형을 정리해봅시다. 
@@ -1453,7 +1451,7 @@ class Button extends Component {
 
 * **ES6 클래스 컴포넌트** 우리는 이미 ES6 클래스 컴포넌트를 사용해봤습니다. 클래스 정의 시, `extends Component`란 리액트 컴포넌트로 확장한다는 것을 뜻합니다. `extend`는 리액트 컴포넌트 API인 생명주기 메서드를 컴포넌트로 연결시킵니다. 때문에 `render()` 클래스 메서드를 사용할 수 있는 겁니다. 또한 `this.state`와 `this.setState()`메서드로 상태를 저장하고 조작합니다.
 
-* **React.createClass:** `React.createClas`은 리액트 구버전의 클래스 선언문으로 ES5 애플리케이션에서 사용합니다. 페이스북은 ES6을 사용함에 따라 [더 이상 `React.createClass`를 지원하지 않습니다.](https://facebook.github.io/react/blog/2015/03/10/react-v0.13.html) [리액트 15.5 버전에서 비추천 경고문구로](https://facebook.github.io/react/blog/2017/04/07/react-v15.5.0.html) 등록되었습니다. 이 책 역시사용하지 않습니다. 
+* **React.createClass:** `React.createClas`은 리액트 구버전의 클래스 선언문으로 ES5 애플리케이션에서 사용합니다. 페이스북은 ES6을 사용함에 따라 [더 이상 `React.createClass`를 지원하지 않습니다.](https://reactjs.org/blog/2015/03/10/react-v0.13.html) [리액트 15.5 버전에서 비추천 경고문구로](https://reactjs.org/blog/2017/04/07/react-v15.5.0.html) 등록되었습니다. 이 책 역시사용하지 않습니다. 
 
 따라서 `React.createClass`를 제외하고 비 상태 함수형 컴포넌트 또는 ES6 클래스 컴포넌트 사용해 컴포넌트를 선언합니다. 그렇다면 언제 비 상태 함수형 컴포넌트를 사용해야 할까요? 기본 원칙은 컴포넌트에 상태나 생명주기 메서드가 필요 없을 때 비 상태 함수형 컴포넌트를 사용합니다. 일반적으로 컴포넌트를 만들 때, 처음 비 상태 함수형 컴포넌트로 만들고 이후 state와 생명주기 메서드가 필요할 때 ES6 클래스로 리팩터링 합니다. 
 
@@ -1540,13 +1538,13 @@ const Search = ({ value, onChange, children }) => {
 * Table과 Button컴포넌트를 비 상태 함수 컴포넌트로 리팩토링합니다.
  
 ### 읽어보기
-* [[리액트 공식문서] ES6 클래스 컴포넌트와 비상태 함수 컴포넌트](https://facebook.github.io/react/docs/components-and-props.html)
+* [[리액트 공식문서] ES6 클래스 컴포넌트와 비상태 함수 컴포넌트](https://reactjs.org/docs/components-and-props.html)
 
 ## 컴포넌트 스타일링 Styling Components
 
 애플리케이션과 컴포넌트를 에쁘게 꾸며 봅시다. *src/App.css* 및 *src/index.css* 파일이 CSS 파일입니다. 이 파일은 *create-react-app*를 사용하여 부트스트랩 했기 때문에 이미 프로젝트 폴더에 있습니다. CSS 파일은 *src/App.js* 및 *src/index.js*로 가져와야 합니다. 아래 CSS 코드를 그대로 사용할 수 있지만 내가 원하는 데로 자유롭게 고칠 수 있습니다. 
 
-전반적인 애플리케이션의 스타일링을 수정합시다. *src/index.css* 파일을 열어 기존 코드를 지우고 아래 코드를 추가합니다. 
+전반적인 애플리케이션의 스타일링을 수정하겠습니다. *src/index.css* 파일을 열어 기존 코드를 지우고 아래 코드를 추가합니다. 
 
 {title="src/index.css",lang="css"}
 ~~~~~~~~
@@ -1778,8 +1776,7 @@ const Table = ({ list, pattern, onDismiss }) =>
   </div>
 ~~~~~~~~
 
-
-인라인 스타일을 적용해보았습니다. 다음으로 외부에 스타일 객체를 정의해 좀 더 코드를 깔끔하게 만듭시다.
+다음으로 외부에 스타일 객체를 정의해 좀 더 코드를 깔끔하게 만들어 봅시다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -1796,7 +1793,7 @@ const smallColumn = {
 };
 ~~~~~~~~
 
-그리고 각 열에 적용하면 됩니다. 가로 넓이가 10%인 `smallColumn` 객체에 해당되면 `<span style={smallColumn}>`이라고 수정합니다. 
+그리고 각 열에 적용하겠습니다. 가로 넓이가 10%인 `smallColumn` 객체에 해당되면 `<span style={smallColumn}>`이라고 수정합니다. 
 
 리액트 스타일링 방법은 매우 다양합니다. 지금은 순수한 CSS와 인라인 스타일로 스타일을 정의했습니다. 이 정도로도 충분합니다. 
 
@@ -1807,7 +1804,7 @@ const smallColumn = {
 
 {pagebreak} 
 
-마침내 기본적인 리액트 애플리케이션을 만들 수 있게 되었습니다! 지금까지 배운 내용을 정리해봅시다.
+이번 장에서는 기본적인 리액트 애플리케이션을 만들어 보았습니다. 지금까지 학습한 내용을 정리해봅시다.
 
 * 리액트
   * `this.state`와 `setState()`를 사용해 컴포넌트 내부 상태 관리
@@ -1826,6 +1823,6 @@ const smallColumn = {
   * 고차 함수
 
 
-잠시 휴식시간을 가집시다. 학습한 내용을 되새기고 적용해보며 이것저것 만들어보며 테스트해보길 바랍니다. [리액트 공식 문서](https://facebook.github.io/react/docs/installation.html)에서 리액트에 관한 자세한 내용을 읽어보길 바랍니다.
+잠시 휴식시간을 가집시다. 학습한 내용을 되새기고 적용해보며 이것저것 만들어보며 테스트해보길 바랍니다.
 
-실습 코드는 [공식 깃허브 리퍼지토리](https://github.com/the-road-to-learn-react/hackernews-client/tree/4.2)에서 확인할 수 있습니다.
+실습 코드는 [공식 깃허브 리퍼지토리](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.1)에서 확인할 수 있습니다.
