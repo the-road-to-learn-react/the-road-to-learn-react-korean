@@ -1,8 +1,8 @@
-# 코드 구성과 테스트 Code Organization and Testing
+# 코드 구성과 테스트 / Code Organization and Testing
 
 이번 장에서는 규모가 큰 애플리케이션에서 코드 유지와 관리하는 방법을 알아보겠습니다. 모범 예제를 통해 폴더와 파일 구성 방법과 조직화된 코드 작성법을 배우고, 마지막으로 테스트 코드 작성법에 대해 살펴보겠습니다. 소프트웨어 개발에 있어 코드 품질 향상은 매우 중요합니다. 이번 장에서 애플리케이션 구현은 잠시 뒤로 미루겠습니다.
 
-## ES6 모듈: Import/Export Modules: Import/Export
+## ES6 모듈(Modules): Import/Export 
 
 ES6에서는 모듈에서 기능을 가져오고(import) 내보냅니다(export). 이 기능은 변수를 지정할 수 있는 함수, 클래스 컴포넌트, 상수 등에 해당됩니다. 모듈은 단일 파일이거나, index 파일이 있는 폴더 전체가 될 수 있습니다.
 
@@ -128,7 +128,7 @@ export const lastname = 'wieruch';
 * [[MDN] ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
 * [[MDN] ES6 export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)
 
-## ES6 모듈로 코드 구성하기 Code Organization with ES6 Modules
+## ES6 모듈로 코드 구성하기 / Code Organization with ES6 Modules
 
 *src/App.js* 파일에서 코드 분할을 하지 않은 이유에 대해 궁금할 겁니다. 이 파일의 코드는 파일/폴더(모듈)로 구분할 수 있는 여러 컴포넌트가 있습니다. 처음 리액트를 배울 때는 모든 컴포넌트를 한 파일에 모으는 것이 좋습니다. 하지만 애플리케이션 규모가 커지면 컴포넌트를 모듈로 분할하는 것을 고려해야 합니다. 규모가 큰 애플리케이션에서 사용하도록 합니다.
 
@@ -310,7 +310,7 @@ import SubmitButton from '../Buttons/SubmitButton';
 
 * 책을 다 마친 후 *src/App.js*파일을 여러 파일로 나누어 컴포넌트 모듈로 만듭니다.
 
-## Jest 스냅샷테스트 Snapshot Tests with Jest
+## Jest 스냅샷테스트 / Snapshot Tests with Jest
 
 이 책에서 테스트를 깊게 다루지 않지만, '테스트'는 꼭 알아야할 주제입니다. 프로그래밍에서 테스트는 필수입니다. 테스트야 말로 코드의 품질을 높이고 모든 것이 문제없이 잘 작동하는 애플리케이션임을 보장하기 때문이지요. 
 
@@ -649,7 +649,7 @@ describe('Table', () => {
 
 * [enzyme과 API 렌더링](https://github.com/airbnb/enzyme)
 
-## PropTypes 컴포넌트 인터페이스 Component Interface with PropTypes
+## PropTypes 컴포넌트 인터페이스 / Component Interface with PropTypes
 
 자바스크립트 타입 인터페이스인 [타입스크립트(TypeScript)](https://www.typescriptlang.org/) 또는 [플로우(Flow)](https://flowtype.org/)에 대해 한 번쯤 들어보았을 겁니다. 프로그래밍 된 텍스트는 프로그램 텍스트를 기반으로 유효성을 검사하므로 입력 오류가 발생하기 쉽습니다. 프로그램이 실행되기 전 에디터와 유틸리티로 오류를 체크할 수 있습니다. 프로그램을 더 강력하게 만들어 줍니다. 
 

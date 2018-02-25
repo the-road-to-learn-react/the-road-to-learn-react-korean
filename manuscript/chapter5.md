@@ -1,8 +1,8 @@
-# 심화: 컴포넌트 Advanced React Components
+# 심화: 컴포넌트 / Advanced React Components
 
 이번 장에서는 리액트 컴포넌트 심화 내용을 다룹니다. 고차 컴포넌트(higher order components)를 학습한 후 실제 구현을 해볼 것입니다. 리액트 고급 주제와 복잡한 인터렉션도 함께 알아봅시다.
 
-## Ref와 DOM Refs and the DOM
+## Ref와 DOM / Refs and the DOM
 
 종종 리액트에서 DOM 노드를 다룰 일이 있습니다. `ref` 속성으로 DOM 노드를 접근할 수 있습니다. 리액트의 단방향 데이터 흐름과 선언 방식에 위배되기 때문에 안티 패턴(anti pattern)이라고도 합니다. 검색 입력 필드를 구현했을 때, 잠시 소개헀습니다. 리액트 공식 문서에는 세 가지 사용 사례가 소개되어있습니다.
 

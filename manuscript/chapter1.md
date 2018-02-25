@@ -743,7 +743,7 @@ Developer 클래스는 클래스 선언문일 뿐입니다. 클래스를 호출�
 ~~~~~~~~
 const robin = new Developer('Robin', 'Wieruch');
 console.log(robin.getName());
-// output: Robin Wieruch
+// 출력: Robin Wieruch
 ~~~~~~~~
 
 리액트는 ES6 클래스 컴포넌트에 자바스크립트 ES6 클래스를 사용합니다. 이미 하나의 ES6 클래스 컴포넌트를 사용했습니다.
