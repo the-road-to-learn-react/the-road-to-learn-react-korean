@@ -1,8 +1,8 @@
-# 리액트 입문 Introduction to React
+# 리액트 입문 / Introduction to React
 
 첫 장에서는 리액트 개발 시작 전 아주 기초적인 내용을 배웁니다. 아직도 리액트를 배워야 하는 이유를 모르겠다면 이번 장을 마칠 때쯤, 그 답을 찾을 수 있을 것이라 확신합니다. 리액트 애플리케이션 설치를 시작으로 리액트 세계에 첫 발을 내디뎌봅시다. 제일 먼저 JSX와 ReactDOM를 배우고 첫 번째 리액트 컴포넌트를 만들어 보겠습니다.
 
-## 왜 리액트인가? Why React?
+## 왜 리액트인가? / Why React?
 
 **왜 리액트를 배워야 할까요?** 최근 몇 년 간 단일 페이지 애플리케이션([SPA: Single Page Application](https://en.wikipedia.org/wiki/Single-page_application))이 각광받고 있습니다. 앵귤러(Angular), 엠버(Ember) 및 백본(Backbone) 등 자바스크립트 프레임워크의 등장은 바닐라 자바스크립트(Vanilla JavaScript: 타 라이브러리나 프레임워크 사용 없이 순수한 자바스크립트로 개발하는 것을 말함)와 제이쿼리(jQuery)를 사용하지 않고도 최신 웹 응용 프로그램을 구축할 수 있게 되었습니다. 이외에도 SPA 프레임워크의 종류는 매우 다양합니다. 앵귤러 2010, 백본 2010, 엠버 2011 등 배포된 대부분 SPA 프레임워크는 1세대입니다.
 
@@ -28,11 +28,11 @@ SPA 프레임 워크의 1세대는 이미 상용화 단계에 이르렀고 기�
 * [[저자 블로그] 프레임워크 학습 방법](https://www.robinwieruch.de/how-to-learn-framework/)
 
 
-## 준비사항 Requirements
+## 준비사항 / Requirements
 
 이미 SPA 프레임워크나 라이브러리 사용 경험이 있다면 어느 정도 웹 개발 기초 지식이 있을 것입니다. 이제 막 웹 개발에 입문했다면 리액트를 배우기 전에 HTML, CSS, 자바스크립트 ES5를 잘 다룰 수 있어야 합니다. 이 책은 자바스크립트 ES6를 사용합니다. [공식 슬랙 그룹](https://slack-the-road-to-learn-react.wieruch.com/)에 가입해 동료들을 만나고 서로에게 도움을 주길 바랍니다.
 
-### 코드에디터, 터미널
+### 코드에디터, 터미널 / Code Editor, Terminal 
 
 리액트 개발을 시작하기 전, 웹 개발 환경을 갖춰 봅시다. 코드에디터나 IDE(Integrated Development Environment, 통합개발환경), 터미널(terminal, 또는 커맨드 라인(command line)라고도 함)이 필요합니다. 자세한 방법은 저자의 [개발 환경 설정 가이드](https://www.robinwieruch.de/developer-setup/) 글을 참고하길 바랍니다. MacOS을 대상으로 작성했으나 타 운영체제에 적용하여도 무방합니다. 이미 개발 환경 설정 방법에 관한 수많은 가이드 문서가 있기 때문에 사용 중인 운영체제에 알맞은 가이드를 쉽게 찾을 수 있을 것입니다.
 
@@ -117,7 +117,7 @@ npm install --save-dev <package>
 
 * [npm 공식문서](https://docs.npmjs.com/)
 
-## 설치하기
+## 설치하기 / Installation 
 
 리액트는 CDN 또는 npm 명령어로 설치합니다.
 
@@ -151,7 +151,7 @@ npm install react react-dom
 
 * [[리액트 공식문서] 리액트 설치](https://reactjs.org/docs/try-react.html)
 
-## 제로 구성 설치 Zero-Configuration Setup
+## 제로 구성 설치 / Zero-Configuration Setup
 
 이 책에서는 [create-react-app](https://github.com/facebookincubator/create-react-app)으로 애플리케이션을 부트스트래핑합니다. 부트스트래핑(bootstrapping)이라는 뜻은 애플리케이션을 최초 생성하여 브라우저에서 실행하는 과정을 말합니다. *create-react-app*은 2016년 페이스북이 제안한 리액트 제로 구성 설치 스타터 킷(Zero-Configuration Setup Starter Kit)입니다. 트위터에서 진행한 한 [조사](https://twitter.com/dan_abramov/status/806985854099062785)에 따르면 96% 이상의 리액트 개발자들이 입문자의 경우 *create-react-app* 사용을 권장하고 있습니다.
 
@@ -246,8 +246,7 @@ npm run build
 ### 읽어보기
 * [create-react-app 깃헙 리퍼지토리](https://github.com/facebookincubator/create-react-app)
 
-
-## JSX 들어가기 Introduction to JSX
+## JSX 시작하기 / Introduction to JSX 
 
 리액트 JSX 문법에 대해 알아봅시다. *create-react-app*로 애플리케이션을 부트스트래핑 하면 리액트 애플리케이션이 이미 구현되어 있습니다. *src/App.js* 소스 코드를 열어 내용을 읽어보겠습니다.
 
@@ -453,13 +452,13 @@ ReactDOM.render(
 ### 읽어보기
 * [[리액트 공식문서] - 리액트 내 렌더링 되는 요소](https://reactjs.org/docs/dom-elements.html#all-supported-html-attributes)
 
-## 핫 모듈 리플레이스먼트 Hot Module Replacement
+## Hot Module Replacement
 
 더 나은 개발 환경을 위해 *src/index.js*에서 할 일이 하나 더 있습니다. 이는 필수가 아닌 옵션 사항으로 리액트 입문자가 꼭 해야 할 내용은 아닙니다.
 
 *create-react-app*은 소스 코드 변경 시, 자동으로 브라우저를 새로고침 합니다. *src/App.js* 파일 내 `helloWorld`를 다른 변수로 변경해보면 브라우저가 자동으로 새로고침 됩니다. 때문에 매번 수정할 때마다 새로고침을 하지 않아 편리합니다. 그러나 더 좋은 방법이 있습니다. 
 
-핫 모듈 리플레이스먼트(Hot Module Replacement)(이하 HMR)란 브라우저 내 애플리케이션을 재실행하는 도구입니다. *create-reaction-app*에서도 쉽게 사용할 수 있습니다. 이를 위해 *src/index.js*에서 아래와 같이 약간의 설정을 추가합시다.
+Hot Module Replacement(핫 모듈 리플레이스먼트, 이하 HMR)란 브라우저 내 애플리케이션을 재실행하는 도구입니다. *create-reaction-app*에서도 쉽게 사용할 수 있습니다. 이를 위해 *src/index.js*에서 아래와 같이 약간의 설정을 추가합시다.
 
 {title="src/index.js",lang=javascript}
 ~~~~~~~~
@@ -495,7 +494,7 @@ if (module.hot) {
 ### 영상보기
 * 댄 애브라몹(Dan Abramov)의 [리액트 라이브 : Hot Reloading으로 시간 여행 떠나기](https://www.youtube.com/watch?v=xsSnOQynTHs) 10분간 시청합니다.
 
-## JSX 내 복잡한 자바스크립트 작성 Complex JavaScript in JSX
+## JSX 내 복잡한 자바스크립트 / Complex JavaScript in JSX
 
 App 컴포넌트로 다시 돌아갑시다. 지금까지 JSX에서 초기 변수를 렌더링 했습니다. 이제 배열의 각 항목을 차례로 렌더링 해봅시다. 지금은 샘플 데이터를 사용하지만 앞으로 외부 [API](https://www.robinwieruch.de/what-is-an-api-javascript/)를 통해 데이터를 가져올 것입니다. 앞으로 점점 재밌고 흥미 있어질 거니 기대해도 좋습니다.
 
@@ -633,7 +632,7 @@ export default App;
 ### 실습하기
 * JSX 내 자바스크립트 표현식(expression)을 작성합니다.
 
-## ES6 화살표 함수 ES6 Arrow function
+## ES6 화살표 함수 / ES6 Arrow function
 
 자바스크립트 ES6에서 함수 표현식을 위해 새로운 문법인 화살표 함수가 도입되었습니다. 화살표 함수를 사용하면 기존 함수 표현식보다 코드가 간결해집니다.
 
@@ -711,7 +710,7 @@ item, key => { ... }
 
 * [[MDN] ES6 화살표 함수](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 
-## ES6 클래스 ES6 Class
+## ES6 클래스 / ES6 Class
 
 자바스크립트 ES6에서 클래스가 도입되었습니다. 클래스는 일반적으로 객체 지향 프로그래밍 언어에서 사용합니다. 자바스크립트는 융통성과 유연성이 뛰어난 프로그래밍 언어로 함수형 프로그래밍과 객체지향 프로그래밍으로 모두 작성할 수 있습니다.
 

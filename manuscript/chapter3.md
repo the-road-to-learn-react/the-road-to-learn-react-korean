@@ -72,7 +72,7 @@ state나 props가 변경 시, 업데이트 프로세스가 시작되고, 아래�
 * [[리액트 공식문서] 리액트 생명주기 메서드와 상태 관리](https://reactjs.org/docs/state-and-lifecycle.html)
 * [[리액트 공식문서] 컴포넌트 에러 핸들링](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
 
-## 데이터 가져오기 Fetching Data
+## 데이터 가져오기 / Fetching Data
 
 준비는 마쳤으니, 해커 뉴스 API로 데이터를 가져와봅시다. `componentDidMount()` 생명주기 메서드 안에 자바스크립트 네이티브 API인 `fetch()` 메서드를 사용해 외부 API를 호출합시다.
 
