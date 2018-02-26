@@ -1359,7 +1359,7 @@ class App extends Component {
 
 * 리액트
   * ES6 클래스 컴포넌트의 생명주기 메소드와 사용 사례
-  * componentDidMount() 메서드에서 API 호출
+  * `componentDidMount()` 메서드에서 API 호출
   * 조건부 렌더링
   * 폼 이벤트
   * 에러 핸들링
