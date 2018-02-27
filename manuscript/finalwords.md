@@ -8,9 +8,9 @@
 
 * **상태 관리** 지금까지 우리는 `this.setState()`와 `this.state`를 사용해 로컬 컴포넌트 상태를 관리했습니다. 처음에는 괜찮지만, 규모가 큰 애플리케이션에서는 [리액트 컴포넌트 내부 상태만으로 한계](https://www.robinwieruch.de/learn-react-before-using-redux/)가 있습니다. 때문에 [Redux 또는 MobX](https://www.robinwieruch.de/redux-mobx-confusion/)와 같은 상태 관리 라이브러리를 사용합니다. 저자의 온라인 강좌 사이트 [React to React](https://roadtoreact.com/)에서 "리액트 상태 다루기(Taming the State in React)"강좌 수강을 권장합니다. 이 강좌에서 리액트 state, Redux, Mobx를 다루며 전자책이 제공됩니다. 그 외 실습과 화상 채팅도 마련되어 있습니다.
 
-* **데이터베이스 및 인증** 리액트 애플리케이션이 커질 수록 결국에는 데이터를 저장할 공간이 필요할 것입니다. 데이터는 데이터베이스에 저장되어 브라우저 세션 후에도 유지되고 애플리케이션 내 사용자 간 공유될 수 있어야 합니다. 데이터베이스를 도입하는 가장 간단한 방법은 파이어베이스(Firebase)를 사용해 간단하게 데이터베이스를 연결할 수 있습니다. [파이어베이스 인증 완벽 튜토리얼](https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial/)에서 리액트와 파이어베이스 회원가입-로그인-로그아웃을 사용하는 방법을 설명했습니다. 그 외에도 파이어베이스로 실시간 데이터베이스를 사용해 사용자 기록을 저장할 수 있습니다. 이후 더 많은 용량의 데이터베이스가 필요할 수 있겠습니다만 각자 재량입니다.
+* **데이터베이스 및 인증** 리액트 애플리케이션 규모가 커질수록 결국에는 데이터를 저장할 공간이 필요합니다. 데이터는 데이터베이스에 저장되어 브라우저 세션 후에도 유지되고 애플리케이션 내 사용자 간 공유될 수 있어야 합니다. 가장 간단한 방법은 파이어베이스(Firebase)를 사용하는 것입니다. [파이어베이스 인증 완벽 튜토리얼](https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial/)에서 리액트와 파이어베이스 회원가입-로그인-로그아웃을 사용하는 방법을 설명했습니다. 그 외에도 파이어베이스로 실시간 데이터베이스를 사용해 사용자 기록을 저장할 수 있습니다. 이후 더 많은 용량의 데이터베이스가 필요할 수 있겠습니다만 각자의 판단에 맡기도록 하겠습니다.
 
-* **웹팩(Webpack)과 바벨(Babel) 사용** 이 책에서는 *create-react-app*로 애플리케이션을 부트스트래핑했습니다. 어느 정도 리액트에 익숙해지면 다른 툴들을 배우고 싶을 겁니다. 초기 설정을 *create-react-app* 대신 [Webpack과 Babel](https://www.robinwieruch.de/minimal-react-webpack-babel-setup/)을 사용할 수 있습니다. 이외 [ESLint](https://www.robinwieruch.de/react-eslint-webpack-babel/)로 코드 품질 관리를 할 수 있습니다.
+* **웹팩(Webpack)과 바벨(Babel) 사용** 이 책에서는 *create-react-app*로 애플리케이션을 부트스트래핑했습니다. 어느 정도 리액트에 익숙해지면 다른 툴들을 배우고 싶을 것입니다. 초기 설정을 *create-react-app* 대신 [웹팩과 바벨](https://www.robinwieruch.de/minimal-react-webpack-babel-setup/)을 사용할 수 있습니다. 이외 [ESLint](https://www.robinwieruch.de/react-eslint-webpack-babel/)로 코드 품질 관리를 할 수 있습니다.
 
 * **리액트 컴포넌트 문법** 리액트 컴포넌트 구현 및 구성 방법에 관한 우수 예제는 지속적으로 발전하고 있습니다. 특히 리액트 클래스 컴포넌트를 작성하는 방법과 관련하여 다양한 리소스를 찾을 수 있을 것입니다. [깃허브 리퍼지토리](https://github.com/rwieruch/react-alternative-class-component-syntax)에 리액트 클래스 컴포넌트를 작성할 수 있는 또다른 방법을 기술했습니다. 클래스 필드 선언을 사용하면, 나중에 코드를 더 간결하게 작성할 수 있습니다.
 
