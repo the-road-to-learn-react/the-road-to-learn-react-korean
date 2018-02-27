@@ -1,36 +1,31 @@
 # API 실제 사용 / Getting Real with an API
 
-이번 장에서는 외부 API로 데이터를 요청하고 응답받은 데이터 리스트 결과를 보여주는 방법을 배우고 구현해보겠습니다. 
+ 이번 장에서는 비동기 API를 호출하여 받은 데이터 결과를 보여주는 방법을 배워보겠습니다. 아직 API에 대해 잘 모르고 있다면, 저자가 쓴 ['아무도 나에게 API를 알려주지 않았다'](https://www.robinwieruch.de/what-is-an-api-javascript/) 글을 먼저 읽고 오길 바랍니다. 
 
-아직 API에 대해 잘 모른다면, 저자의 ['아무도 나에게 API를 알려주지 않았다'](https://www.robinwieruch.de/what-is-an-api-javascript/) 글을 먼저 읽고 오길 바랍니다. 
-
-[해커 뉴스(Hacker News)](https://news.ycombinator.com/)는 기술 주제 관련 우수 기사를 큐레이션하는 사이트입니다. 이번 장부터 해커 뉴스에서 제공하는 API를 사용해 인기 기사 리스트를 보여주는 사이트를 만들어 볼 것입니다. 해커 뉴스는 [데이터 조회 API](https://github.com/HackerNews/API)와 [검색 API](https://hn.algolia.com/api)를 제공하고 있습니다. 시작하기 전 해커 뉴스 API 명세서를 읽고 데이터 구조를 파악 해두길 바랍니다.
+[해커 뉴스(Hacker News)](https://news.ycombinator.com/)는 해외 유명 창업 교육 기관인 와이 콤비네이터(Y Combinator)가 운영하는 기술 분야 뉴스 큐레이션 플랫폼입니다. 해커 뉴스는 [데이터 조회 API](https://github.com/HackerNews/API)와 [검색 API](https://hn.algolia.com/api)를 제공합니다. 본격적으로 시작하기 전 해커 뉴스 API 명세서를 읽고 데이터 구조를 파악해두길 바랍니다.
 
 ## 생명주기 메서드 / Lifecycle Methods
 
-외부 API를 사용하기 전, 컴포넌트 생명주기 메서드(Lifecycle Methods)에 대해 알아보겠습니다. 생명주기 메서드는 ES6 클래스 컴포넌트에서 사용하지만 비 상태 컴포넌트에서는 사용할 수 없습니다. 
+API를 사용하기 전, 컴포넌트 생명주기 메서드(Lifecycle Methods)에 대해 알아보겠습니다. 생명주기 메서드는 ES6 클래스 컴포넌트에서 사용 가능하나 비 상태 컴포넌트에서는 사용할 수 없습니다. 
 
-이전 장에서 우리는 E6 클래스에 대해 배웠습니다. ES6 클래스 컴포넌트에서는 `render()` 외에도 다른 메서드가 있습니다. 바로 생명주기 메서드입니다.
+ES6 클래스 컴포넌트 메서드인 `constructor()`와 `render()` 메서드는 생명주기 메서드입니다. 두 메서드는 외에도 더 많은 생명주기 메서드가 있습니다.
 
-우리는 이미 ES6 클래스 컴포넌트의 생명주기 메서드인 `constructor()` 와 `render()` 메서드를 사용해보았기 때문에 친숙하게 느껴질 것입니다. 
+컴포넌트 인스턴스가 만들어져 DOM에 삽입될 때, 생성자인 `constructor()` 메서드가 호출됩니다. 즉 컴포넌트가 인스턴스화 되는데, 이 프로세스를 컴포넌트가 마운트(mount, 탑재)됐다고 표현합니다.
 
-컴포넌트 인스턴스가 만들어져 DOM에 삽입될 때 생성자가 호출됩니다. 즉 컴포넌트가 인스턴스화 되는데, 이 프로세스를 컴포넌트가 탑재됐다(mounting)고 말합니다.
+`render()` 메서드는 마운트 프로세스 중에도 호출되며, 컴포넌트가 업데이트될 때도 호출됩니다. 컴포넌트의 state와 props가 변경될 때마다 `render()` 메서드가 호출됩니다. 
 
-`render()` 메서드는 마운트 프로세스 중에도 호출되지만 컴포넌트가 업데이트될 때도 호출됩니다. 컴포넌트의 state와 props가 변경될 때마다 `render()` 메서드가 호출됩니다. 
+각 생명주기 메서드에 대해 자세히 알아봅시다.
 
-본격적으로 각 생명주기 메서드에 대해 자세히 알아보겠습니다.
+컴포넌트 마운트에는` componentWillMount()`와 `componentDidMount()` 두 메서드가 있습니다. `constructor()` 메서드가 호출되면, `componentWillMount()` 메서드가 호출되고, 그 후 `render()` 메서드가 호출되며, 마지막에 `componentDidMount()` 메서드가 호출됩니다. 
 
-컴포넌트 마운트에는` componentWillMount()`와`componentDidMount()` 두 메서드가 있습니다. `constructor()`메서드가 호출되면, `componentWillMount()`메서드가 호출되고, 그 후 `render()` 메서드가 호출되며, 마지막에 `componentDidMount()`메서드가 호출됩니다. 
-
-마운트 프로세스에서 생명주기 메서드는 아래 순서대로 호출됩니다.
+정리하자면 마운트 프로세스 생명주기 메서드는 아래 순서대로 호출됩니다.
 
 * `constructor()`
 * `componentWillMount()`
 * `render()`
 * `componentDidMount()`
 
-
-state나 props가 변경 시, 업데이트 프로세스가 시작되고, 아래와 같은 순서로 5개의 생명주기 메서드가 호출됩니다.
+state나 props가 변경 시, 업데이트 프로세스가 시작됩니다. 그리고 아래 순서대로 5개의 생명주기 메서드가 호출됩니다.
 
 * `componentWillReceiveProps()`
 * `shouldComponentUpdate()`
@@ -38,33 +33,33 @@ state나 props가 변경 시, 업데이트 프로세스가 시작되고, 아래�
 * `render()`
 * `componentDidUpdate()`
 
-마지막으로 컴포넌트 마운트 해제가 되기 전에, `componentWillUnmount()` 메서드가 호출됩니다.
+마지막으로 컴포넌트 마운트 해제 되기 전, `componentWillUnmount()` 메서드가 호출됩니다.
 
 * `componentWillUnmount()`
 
-처음부터 모든 생명주기 메서드를 사용하지 않아도 됩니다. 대규모 애플리케이션에도 `constructor()`과 `render()` 메서드만 사용하는 경우가 많습니다. 앞으로 점차 익숙해질 것입니다. 다음으로 생명주기 메서드를 언제 어떻게 사용해야 하는지 알아봅시다. 
+벌써부터 모든 생명주기 메서드를 사용하지 않아도 됩니다. 대규모 애플리케이션에도 `constructor()`과 `render()` 메서드만 사용하는 경우가 많습니다. 앞으로 점점 익숙해질 것이니 걱정하지 맙시다. 다음으로 생명주기 메서드를 언제 어떻게 사용해야 하는지 알아봅시다. 
 
 * **`constructor(props)`** 메서드는 컴포넌트 초기화 시 호출됩니다. 초기 컴포넌트 상태 및 클래스 메서드를 정의합니다. 
 
-* **`componentWillMount()`** 메서드는 `render()` 메서드 전에 호출됩니다. 컴포넌트의 두 번째 렌더링을 트리거하지 않아 컴포넌트 상태를 설정하기 적합합니다. `constructor()`을 사용해 초기 상태를 설정하는 것이 좋습니다. 
+* **`componentWillMount()`** 메서드는 `render()` 메서드 전에 호출됩니다. 컴포넌트의 두 번째 렌더링을 트리거하지 않아 이 메서드에서 컴포넌트 state를 설정할 수 있지만, `constructor()` 메서드에서 초기 state를 설정하는 것이 바람직합니다.
 
-* **`render()`** 메서드는 컴포넌트의 출력을 반환하기 때문에 반드시 사용해야 하는 메서드입니다. props 및 상태를 입력을 가져오고 요소를 반환합니다. 
+* **`render()`** 메서드는 컴포넌트 출력을 반환하기 때문에 반드시 필요합니다. props 및 state를 읽고 요소를 반환합니다. 
 
-* **`componentDidMount()`** 메서드는 컴포넌트가 마운트 될 때 한 번만 호출됩니다. 대부분 이 메서드 안에서 API를 통해 외부 데이터를 조회하고 가져오기 위한 비동기 요청을 보냅니다. 가져온 데이터는 내부 컴포넌트 상태에 저장되어 `render()` 메서드로 컴포넌트가 업데이트됩니다.
+* **`componentDidMount()`** 메서드는 컴포넌트가 마운트 될 때 한 번만 호출됩니다. 이 메서드에서 비동기 API를 사용합니다. 가져온 데이터는 내부 컴포넌트 상태에 저장되고 `render()` 메서드에서 컴포넌트가 업데이트됩니다.
 
-* **`componentWillReceiveProps(nextProps)`** 메서드는 업데이트 생명주기 동안 호출됩니다. `nextProps`는 다음 props를, `this.props`로 이전 props를 조회해 서로 차이를 비교합니다. `nextProps`를 컴포넌트의 state로 사용할 수 있습니다.
+* **`componentWillReceiveProps(nextProps)`** 메서드는 업데이트 생명주기 동안에 호출됩니다. 다음 props은 `nextProps`와 이전 props인 `this.props`의 차이를 비교합니다. `nextProps`를 컴포넌트 state로 사용할 수 있습니다.
  
-* **`shouldComponentUpdate(nextProps, nextState)`** 메서드는 props 또는 state가 변경되어 컴포넌트가 업데이트될 때 호출됩니다. 고도화된 리액트 애플리케이션에서 성능 최적화를 고려할 때 주로 사용됩니다. 이 메서드에서 반환하는 부울 값(boolean)에 따라 컴포넌트와 모든 자식이 업데이트 주기 동안 렌더링 되거나, 반대로 렌더링되지 않게 처리할 수 있습니다. 즉 문제가 되는 특정 컴포넌트의 생명주기 렌더링을 막을 수 있습니다.
+* **`shouldComponentUpdate(nextProps, nextState)`** 메서드는 props 또는 state가 변경되어 컴포넌트가 업데이트될 때 호출됩니다. 고도화된 리액트 애플리케이션에서 성능 최적화를 고려할 때 주로 사용합니다. 이 메서드에서 반환되는 부울 값(boolean)에 따라 컴포넌트와 모든 자식이 업데이트 주기 동안 렌더링 되거나, 반대로 렌더링되지 않게 처리할 수 있습니다. 문제가 되는 특정 컴포넌트의 생명주기 렌더링을 막을 수 있습니다.
 
-* **`componentWillUpdate(nextProps, nextState)`** 메서드는 `render()` 메서드 전에 바로 호출됩니다. `nextProps`는 다음 props를, `nextState`로 다음 state를 조회합니다. `render()` 메서드가 실행되기 전에 상태를 업데이트할 수 있는 마지막 기회입니다. `render()` 메서드가 실행된 이후에는 `setState()` 메서드를 더 이상 사용할 수 없습니다. nextProps를 state 값으로 사용하려면 `componentWillReceiveProps()` 메서드를 사용합니다. 
+* **`componentWillUpdate(nextProps, nextState)`** 메서드는 `render()` 메서드 전에 바로 호출됩니다. `nextProps`는 다음 props를, `nextState`로 다음 state를 조회합니다. `render()` 메서드가 실행되기 전, 상태를 업데이트할 수 있는 마지막 기회입니다. `render()` 메서드가 실행된 이후에는 `setState()` 메서드를 사용할 수 없습니다. `nextProps`를 state 값으로 사용하려면 `componentWillReceiveProps()` 메서드를 사용합니다. 
 
-* **`componentDidUpdate(prevProps, prevState)`** 메서드는 `render()` 메서드 후에 즉시 호출됩니다. DOM 조작을 하거나 추가 비동기 요청을 수행할 수 있습니다. 
+* **`componentDidUpdate(prevProps, prevState)`** 메서드는 `render()` 메서드 후에 즉시 호출됩니다. DOM 조작을 하거나 추가 비동기 요청을 수행할 수 있습니다.
 
-* **`componentWillUnmount()`** 메서드는 컴포넌트를 해체하기 전에 호출됩니다. 테스트에서 초기화 작업을 수행할 수 있습니다.
+* **`componentWillUnmount()`** 메서드는 컴포넌트 해체 전에 호출됩니다. 이 메서드로 컴포넌트를 초기화할 수 있습니다. 
 
-`constructor()`와 `render()` ES6 클래스 컴포넌트에서 가장 많이 사용되는 생명주기 메서드입니다. `render()` 메서드는 컴포넌트 인스턴스를 반환하기 때문에 반드시 사용해야 합니다.
+`constructor()`와 `render()` 메서드는 생명주기 메서드 중 가장 많이 사용됩니다. `render()` 메서드는 컴포넌트 인스턴스를 반환하기 때문에 반드시 사용해야 합니다.
 
-그 외 생명주기 메서드로 `componentDidCatch(error, info)`가 있습니다. 이 메서드는 [리액트 16](https://www.robinwieruch.de/what-is-new-in-react-16/)에서 처음 도입되었으며 컴포넌트 에러를 캐치합니다. 예를 들어 리스트를 보여주는 애플리케이션이 있다고 가정해봅시다. 외부 API 호출이 실패하여 state가 `null`로 표시되었습니다. 리스트가 비어있지 않고 값이 `null`이 때문에 filter과 map을 사용할 수 없습니다. 이 경우 오류가 발생하여 컴포넌트가 깨지고 전체 애플리케이션이 작동하지 않습니다. 이때, `componentDidCatch()`로 오류를 포착하고 오류 내용을 내부 상태에 저장하여 사용자에게 오류 메시지를 보여줄 수 있습니다.
+그 외 `componentDidCatch(error, info)` 메서드가 있습니다. [리액트 버전 16](https://www.robinwieruch.de/what-is-new-in-react-16/)에서 추가된 메서드로 컴포넌트 에러를 캐치합니다. 예를 들어 API 호출이 실패하여 리스트 상태 값이 `null`이 된 경우, `filter()`과 `map()` 메서드를 사용할 수가 없습니다. 따라서 오류가 발생하여 컴포넌트가 깨지고 애플리케이션 전체가 작동하지 않게 됩니다. 이때, `componentDidCatch()`로 오류를 포착하고 오류 내용을 내부 상태에 저장하여 사용자에게 오류 메시지를 보여줌으로써 문제를 해결할 수 있습니다.
 
 ### 읽어보기
 
@@ -74,9 +69,9 @@ state나 props가 변경 시, 업데이트 프로세스가 시작되고, 아래�
 
 ## 데이터 가져오기 / Fetching Data
 
-준비는 마쳤으니, 해커 뉴스 API로 데이터를 가져와봅시다. `componentDidMount()` 생명주기 메서드 안에 자바스크립트 네이티브 API인 `fetch()` 메서드를 사용해 외부 API를 호출합시다.
+이제 해커 뉴스 API로 외부 데이터를 가져와봅시다. `componentDidMount()` 생명주기 메서드 안에 자바스크립트 네이티브 API인 `fetch()` 메서드를 사용해 API를 호출하겠습니다.
 
-그전에 요청할 URL을 분절하여 상수(constants)와 기본 매개 변수(default parameters) 형태로 만들겠습니다.
+그전에 요청할 URL을 분절하여 상수(constants)와 기본 매개 변수(default parameters) 형태로 만들어봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -94,7 +89,7 @@ const PARAM_SEARCH = 'query=';
 ...
 ~~~~~~~~
 
-ES6에서는 [템플릿 문자열](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals)로 문자열과 문자열을 연결합니다. 우리는 템플릿 문자열로 구성한 URL을 API 엔드 포인트에 연결할 것입니다.
+ES6는 새로운 문자열 표기법인 [템플릿 리터럴(Template_literals)](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals)을 도입했습니다. 템플릿 리터럴을 사용하면 여러 줄로 이루어진 문자열을 쉽게 표현할 수 있습니다. 템플릿 리터럴로 URL 구성하여 API 엔드 포인트에 연결하겠습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -108,9 +103,9 @@ console.log(url);
 // 출력: https://hn.algolia.com/api/v1/search?query=redux
 ~~~~~~~~
 
-이렇게 하면 URL 구성 관리하기 편하다는 것을 알 수 있을 것입니다.
+이렇게 URL를 구성하면 관리가 쉬워집니다.
 
-API 요청을 보내볼 차례입니다. 전체 데이터를 한꺼번에 가져올 것인데, 각 단계는 아래에 설명하겠습니다.
+API 요청을 수행하겠습니다. 데이터를 한번에 모두 가져옵니다. 
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -154,18 +149,18 @@ class App extends Component {
 }
 ~~~~~~~~
 
-이 코드 속에 정말 많은 일들이 일어났습니다. 코드를 더 작은 조각으로 나눌까 싶었지만 그렇게 되면 각 조각 간 관계를 파악하기 어렵다고 판단했습니다. 이제 각 단계별로 일어난 일을 설명하겠습니다.
+이 코드 속에 정말 많은 일들이 일어났습니다. 이제 각 단계별로 일어난 일을 설명하겠습니다.
 
-첫째, 해커 뉴스 API의 데이터가 사용됨으로 이전의 샘플 데이터는 더 이상 필요없기 때문에 제거했습니다. 컴포넌트 초기 상태는 결과 `result`가 비어있고, 검색어 `searchTerm`는 디폴트 값(`DEFAULT_QUERY`)으로 설정되어 있습니다. searchTerm은 Search 컴포넌트의 입력필드와 첫 번째 요청 시 사용됩니다.                                                        
-둘째, 컴포넌트가 마운트된 이후에 데이터를 가져오기 위해 `componentDidMount()` 생명주기 메서드를 사용했습니다. 첫 번째 요청 시 로컬 상태의 기본 검색어가 사용됩니다. 기본 매개변수(`DEFAULT_QUERY`)값이 "redux"이기 때문에 "redux" 기사를 가져올 것입니다.
+첫째, 해커 뉴스 API를 사용하기 때문에 기존 샘플 데이터인 `list` 변수를 삭제했습니다. 컴포넌트 내부 초기 상태 `result`는 `null`로 값이 비어 있으며, 검색어 `searchTerm`는 `DEFAULT_QUERY`로 설정되어 있습니다. `searchTerm`은 첫 번째 API 요청과 Search 컴포넌트 내 입력 필드 기본 값 표시를 위해 사용됩니다.                                                         
+둘째, 컴포넌트가 마운트된 이후 데이터를 가져오기 위해 `componentDidMount()` 생명주기 메서드를 사용했습니다. 첫 번째 API 요청 시 검색어 초기 상태 값이 사용됩니다. 기본 매개변수인 `DEFAULT_QUERY` 값이 "redux"임으로, "redux" 기사를 가져옵니다.
 
-셋째, 자바스크립트 네이티브 fetch API를 사용했습니다. ES6 템플릿 문자열로 검색어인 `searchTerm` 변수와 함께 URL를 구성했습니다. 이 URL는 fetch API의 인자로 사용합니다. 응답받은 결과를 JSON 데이터 구조로 변환시키고, 마지막으로 컴포넌트 내부 상태 `result`에 저장됩니다. 요청 중 오류가 발생하면 `then()` 아닌 `catch()` 문이 실행됩니다. 오류 처리는 다음 장에서 배워볼 것입니다.
+셋째, fetch API를 사용했습니다. ES6 템플릿 리터럴로 `searchTerm`과 함께 URL를 구성했습니다. 구성된 URL는 fetch API의 인자로 전달됩니다. 응답 데이터는 반드시 JSON 데이터 구조로 변환시켜야 합니다. 마지막으로 이 데이터를 컴포넌트 내부 상태 `result`에 저장시킵니다. 요청 중 오류가 발생하면 `then()`이 아닌 `catch()`가 실행됩니다. 오류 처리는 다음 장에서 자세히 배워볼 것입니다.
 
-마지막으로 생성자에 컴포넌트 메서드인 `setSearchTopStories()` 를 바인딩 합니다.
+마지막으로 생성자에 컴포넌트 메서드인 `setSearchTopStories()` 를 바인딩 했습니다.
 
-이제 기존 샘플 데이터 대신 API로 가져온 외부 데이터를 사용할 수 있습니다. 데이터 리스트인 `result`는 [메타 정보와 인기 리스트가 같이 담겨 객체가 복잡하기 때문에](https://hn.algolia.com/api) 사용에 유의해야 합니다. `render()` 메서드 안에서 `console.log(this.state);`로 상태를 출력하여 개발자 도구에서 데이터 리스트를 확인 해보세요.
+이제 API로 가져온 외부 데이터 리스트가 표시됩니다. 컴포넌트 내부 상태 `result`는 [메타 정보와 인기 리스트가 같이 담겨 객체가 복잡합니다.](https://hn.algolia.com/api) `render()` 메서드 안에서 `console.log(this.state);`로 상태를 출력하고, 개발자 도구를 열어 디버깅 해보면 데이터를 확인해 볼 수 있습니다.
 
-다음으로 조건에 따라 `result`의 렌더링 여부를 처리합시다. 먼저 초기에 `result` 값이 없는 경우 `null`을 반환합니다. API 요청이 성공하면 결괏값이 내부 상태 값에 저장되고 업데이트된 App 컴포넌트가 다시 렌더링 됩니다.
+다음은 조건에 따라 `result`의 렌더링 여부를 처리하겠습니다. 먼저 컴포넌트 내부 상태 `result`의 값이 없는 경우 `null`을 반환하여 아무것도 렌더링되지 않게 하겠습니다. API 요청이 성공하면 응답 데이터가 컴포넌트 내부 상태에 저장되고 App 컴포넌트는 업데이트되어 다시 렌더링 됩니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -196,24 +191,23 @@ class App extends Component {
 }
 ~~~~~~~~
 
-컴포넌트 생명주기 동안 일어나는 일을 설명해보겠습니다. 컴포넌트는 생성자로 초기화된 후 렌더링 됩니다. 내부 상태 `result` 값이 `null` 이므로 이 컴포넌트에 아무것도 표시되지 않습니다. 이후 `componentDidMount()` 메서드가 실행됩니다. 이 메서드에서 해커 뉴스 API 요청에 따라 비동기로 데이터를 가져옵니다. 데이터가 도착하면 `setSearchTopStories()` 메서드에서 내부 컴포넌트 상태를 업데이트합니다. 그다음부터 업데이트 생명주기가 시작됩니다. 컴포넌트는 `render()` 메서드를 다시 실행하지만, 이번에는 내부 상태 `result`에 값이 있기 때문에 리스트가 표시됩니다. 즉 App 컴포넌트와 Table 컴포넌트가 렌더링 됩니다. 
+컴포넌트 생명주기 동안 어떤 일이 일어날까요? 컴포넌트는 생성자에서 초기화된 후 렌더링 됩니다. 내부 상태 `result` 값이 `null` 이므로 이 컴포넌트에 아무것도 표시되지 않습니다. 이후 `componentDidMount()` 메서드가 실행됩니다. 이 메서드에서 해커 뉴스 API 요청에 따라 비동기로 데이터를 가져옵니다. 응답 데이터가 도착하면 `setSearchTopStories()` 메서드에서 내부 컴포넌트 상태를 업데이트합니다. 그다음부터 업데이트 생명주기가 시작됩니다. 컴포넌트는 `render()` 메서드가 다시 실행되는데, 이번에는 내부 상태 `result`에 값이 있기 때문에 리스트가 표시됩니다. 즉 App 컴포넌트와 Table 컴포넌트가 렌더링 됩니다.
 
-우리는 대부분 브라우저가 지원하는 `fetch()`로 비동기 요청을 수행했습니다. *create-react-app*은 모든 브라우저를 지원합니다. `fetch()` 대신 노드 패키지인 [superagent](https://github.com/visionmedia/superagent) 또는 [axios](https://github.com/mzabriskie/axios)를 사용할 수 있습니다. 
+대부분의 브라우저는 `fetch()` 메서드를 지원하며, *create-react-app* 역시 모든 브라우저를 지원합니다. `fetch()` 대신 노드 패키지인 [superagent](https://github.com/visionmedia/superagent) 또는 [axios](https://github.com/mzabriskie/axios) 라이브러리를 도입할 수 있습니다.
 
-이 책은 자바스크립트 축약 표기법을 사용합니다. 이전 예제 코드 본 `if (!result)`는 `if (result === null)`과 같습니다. 예를 들어, `if (list.length === 0)` 대신 `if (!list.length)`을 사용을, `if (someString !== '')` 대신 `if (someString)`을 사용하겠습니다. 아직 축약 표기법에 대해 잘 모른다면 이 부분을 학습하고 돌아오길 바랍니다.
+이 책은 자바스크립트 불리언 연산에서 축약 표기법을 사용합니다. 이전 코드에서 본 `if (!result)`는 `if (result === null)`과 같습니다. 이후에도 `if (list.length === 0)` 대신 `if (!list.length)`을, `if (someString !== '')` 대신 `if (someString)`을 사용하겠습니다. 아직 축약 표기법에 대해 잘 모르고 있다면, 이 부분을 반드시 학습하고 돌아오길 바랍니다.
 
-다시 애플리케이션으로 돌아갑시다. 인기 글 리스트가 보일 겁니다. 두 가지 버그가 생겼습니다. 첫째, "dismiss" 버튼입니다. 이 버튼은 새로 받은 객체를 식별하지 못하기 때문에 작동하지 않습니다. 둘째, 초기에 서버에서 검색한 기사 리스트를 가져왔지만, 이후 다른 검색어를 요청하면 클라이언트에서 리스트를 필터링합니다. Search 컴포넌트에서 API로 `result` 객체를 가져오도록 수정해야 합니다. 다음 장에서 이 문제들을 해결하겠습니다.
-
+다시 애플리케이션으로 돌아가겠습니다. 기사 리스트가 보여야 됩니다. 그러나 두 가지 버그가 있습니다. 첫째, "Dismiss" 버튼이 작동하지 않습니다. 각 버튼에 해당되는 객체를 식별하지 못해 리스트가 변경되지 않습니다. 둘째, 초기 검색은 서버에서 데이터를 가져오지만, 이후에는 클라이언트에서 필터링된 리스트를 가져옵니다. Search 컴포넌트에서도 API 요청으로 서버에서 데이터를 가져오게 해야 합니다. 다음 장에서 차근차근 해결해보겠습니다.
 
 ### 읽어보기
 
-* [[MDN] ES6 템플릿 문자열](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals)
+* [[MDN] ES6 템플릿 리터럴](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals)
 * [[MDN] the native fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API)
 * [[저자 블로그] 리액트에서 데이터 호출하기](https://www.robinwieruch.de/react-fetching-data/)
 
 ## ES6 전개 연산자 / Spread Operators
 
-"dismiss" 버튼을 클릭하면 아무것도 작동하지 않을 것입니다. 버튼의 `onDismiss()` 메서드는 요청받은 데이터 객체를 식별하지 못하고 있기 때문입니다. 지금은 전체 글 리스트만 조회할 수 있습니다. 리스트 내 각 객체를 식별할 수 있게 `onDismiss()` 메서드를 고쳐보겠습니다.
+"dismiss" 버튼을 클릭하면 아무것도 작동하지 않습니다. 버튼의 `onDismiss()` 메서드는 해당 객체를 식별하지 못하고 있기 때문입니다. 리스트 내 각 객체를 식별할 수 있게 `onDismiss()` 메서드를 고쳐보겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -228,9 +222,9 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-`setState()` 메서드 부분부터 설명하겠습니다. 인기 기사 리스트를 조회하려면 `result` 객체 내 `hits` 프로퍼티를 가져와야 합니다. 선택된 아이템은 `result` 개체에서 제거되며 리스트만 업데이트되고 다른 프로퍼티는 그대로 유지됩니다. 
+`setState()` 메서드를 살펴봅시다. 내부 상태 `result`는 복잡한 객체입니다. 이 중 인기 기사 리스트는 `result` 객체 내 `hits` 프로퍼티에 해당합니다. 버튼을 클릭하면 `result` 객체에서 해당 아이템이 제거된 리스트가 업데이트되지만, 다른 프로퍼티는 그대로 유지됩니다.
 
-`result` 객체 내 `hits` 프로퍼티 값을 직접적으로 변경할 수 있겠지만, 이렇게 구현하지 않을 겁니다.
+일반적으로 `result` 객체 내 `hits` 프로퍼티 값을 직접적으로 변경할 수 있겠지만, 이렇게 사용하면 안됩니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -238,7 +232,7 @@ onDismiss(id) {
 this.state.result.hits = updatedHits;
 ~~~~~~~~
 
-리액트는 불변 데이터 구조가 원칙입니다. 객체를 변경하거나, 상태를 직접 변경해서는 안됩니다. 다른 방법은 새로운 객체를 생성해 어떤 객체도 변경하지 않아 불변 데이터 구조를 유지합니다. 항상 새 객체를 반환하고 객체를 변경하지 않도록 합니다. 
+리액트는 불변 데이터 구조가 원칙임으로 객체 또는 상태를 바로 변경할 수 없습니다. 올바른 접근법은 원 객체와 동일한 객체를 생성하여 그 어떤 객체도 변경하지 않고 그대로 유지하는 것입니다.   
 
 이를 위해 ES6 `Object.assign()` 메서드를 사용합니다. 첫 번째 인자는 타깃 객체이고, 나머지 인자는 소스 객체입니다. 이 객체를 병합해 타깃 객체에 병합합니다. 타깃 객체는 빈 객체가 될 수 있습니다. 소스 객체는 변경되지 않기 때문에 불변성 원칙을 고수합니다. 아래 코드를 작성해봅시다.
 
@@ -263,9 +257,9 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-문제는 해결되었지만, 앞에서 배운 전개 연산자로 더 간단한 코드로 작성할 수 있습니다. `...`은 배열 또는 객체의 모든 값을 복사합니다.
+문제는 해결되었지만, 앞에서 배운 전개 연산자로 더 간단한 코드로 작성할 수 있습니다. `...` 표시는 배열 또는 객체의 모든 값을 복사함을 뜻합니다.
 
-ES6 **배열** 스프레드 연산자를 사용하지 않아도 된다고 생각할 수 있습니다. 그러나 보다 명료하게 코드를 표현하기 위해 아래와 같이 작성할 수 있습니다.
+ES6 **배열** 스프레드 연산자가 아직 필요하지 않더라도 살펴 보겠습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -277,7 +271,7 @@ console.log(allUsers);
 // 출력: ['Robin', 'Andrew', 'Dan', 'Jordan']
 ~~~~~~~~
 
-`allUsers` 변수는 완전히 새로운 배열입니다. `userList` 변수와 `additionalUser`변수의 값은 그대로 유지됩니다. 이런 식으로 두 배열을 새 배열로 병합 할 수 있습니다.
+`allUsers` 변수는 새 배열입니다. `userList` 변수와 `additionalUser` 변수의 값은 그대로 유지됩니다. 이런 식으로 두 배열을 새 배열로 병합 할 수 있습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -289,9 +283,9 @@ console.log(allUsers);
 // 출력: ['Robin', 'Andrew', 'Dan', 'Jordan']
 ~~~~~~~~
 
-다음으로 객체 스프레드 연산자(object spread operator)를 알아봅시다. ES6이 아닌, 리액트 커뮤니티에서 이미 사용하고 있는 [객체 스프레드 연산자(Object Rest/Spread Properties)](https://github.com/sebmarkbage/ecmascript-rest-spread)을 말합니다. *create-react-app* 역시 객체 스프레드 연산자를 도입했습니다.
+이어서 객체 스프레드 연산자(object spread operator)를 살펴보겠습니다. [객체 스프레드 연산자](https://github.com/sebmarkbage/ecmascript-rest-spread)는 자바스크립트 ES6가 아니라 차기 자바스크립트 버전을 위해 제안된 기능입니다. 그러나 리액트에서 도입되어 사용 가능합니다. *create-react-app* 역시 객체 스프레드 연산자를 지원합니다.
 
-ES6 배열 전개 연산자와 같지만 객체가 있다는 것이 다릅니다. 각 키(key)-값(value) 쌍을 새 객체에 복사합니다.
+기본적으로 ES6 배열 전개 연산자(array spread operator)와 같지만 배열이 아닌, 객체라는 점이 다릅니다. 각 키(key)-값(value) 쌍을 새 객체에 복사합니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -303,7 +297,7 @@ console.log(user);
 // 출력: { firstname: 'Robin', lastname: 'Wieruch', age: 28 }
 ~~~~~~~~
 
-배열 전개 예제와 같이 여러 객체를 펼칠 수 있습니다.
+배열 전개와 같이 여러 객체를 펼칠 수 있습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -315,7 +309,7 @@ console.log(user);
 // 출력: { firstname: 'Robin', lastname: 'Wieruch', age: 28 }
 ~~~~~~~~
 
-따라서 `Object.assign()` 메서드를 대체해 사용할 수 있습니다.
+따라서 `Object.assign()` 메서드를 대체할 수 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -330,7 +324,7 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-`onDismiss()` 메서드가 잘 작동하는지 확인하세요. `onDismiss()` 메서드는 `hits` 리스트의 각 객체를 식별하여 해당 아이템을 제외된 리스트를 업데이트합니다.
+`onDismiss()` 메서드가 잘 작동하는지 확인합시다. `hits` 리스트의 각 객체를 식별하여 해당 아이템을 제외된 리스트가 업데이트되어야 합니다.
 
 ### 읽어보기
 
@@ -339,11 +333,11 @@ onDismiss(id) {
 
 ## 조건부 렌더링 / Conditional Rendering
 
-이전 장에서 조건부 렌더링에 대해 간략하게 설명했습니다. 조건부 렌더링은 하나 또는 여러 컴포넌트와 요소의 렌더링 여부를 결정합니다. 특정 요소를 렌더링 하거나 렌더링 하지 게 처리할 수 있습니다. 앞에서 `if-else` 문으로 간단하게 작성했습니다.
+이전 장에서 조건부 렌더링에 대해 간략히 설명했습니다. 조건부 렌더링은 하나 또는 여러 컴포넌트와 요소의 렌더링 여부를 결정합니다. 가장 기본적으로 `if-else` 문으로 조건부 렌더링을 작성합니다.
 
-컴포넌트 내부 상태 `result` 초기값은 `null` 입니다. App 컴포넌트에 API에서 `result`가 도착하지 않으면 아무것도 반환되지 않습니다. 이 것이 바로 조건부 렌더링입니다. `render()` 생명주기 메서드 전에 특정 조건에 따라 먼저 반환되었습니다. 따라서 App 컴포넌트는 아무것도 렌더링 되지 않다가, `result` 값이 업데이트 되면 렌더링 하게 됩니다. 
+컴포넌트 내부 상태 `result` 초기값은 `null` 입니다. App 컴포넌트에 API 응답 데이터가 도착하지 않으면 아무것도 반환되지 않습니다. `render()` 생명주기 메서드 전에 특정 조건에 따라 먼저 반환되었습니다. 따라서 App 컴포넌트는 아무것도 렌더링 되지 않다가, `result` 값이 업데이트 되면 다시 렌더링 하게 됩니다. 
 
-한 단계 더 나아가 봅시다. `result`에 의존하는 컴포넌트인 Table도 조건부 렌더링에 포함시키고, `result` 값이 없어도 모든 내용을 렌더링하게 처리하겠습니다. 이번에는 삼항 조건 연산자(ternary operator)를 사용해봅시다.
+한 단계 더 나아가 봅시다. 조건부 렌더링에 `result`에 의존하는  Table 컴포넌트를 포함시키겠습니다. `result` 값이 없어도 기본적으로 모든 내용이 표시되어야 합니다. 이번에는 `if-else` 문이 아닌 삼항 조건 연산자(ternary operator)로 작성해봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -381,7 +375,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-마지막으로 논리 연산자 `&&`를 사용해봅시다. 자바스크립트에서 `true &&'Hello World'` 경우 'Hello World'로 평가되고, `false && 'Hello World'`경우 항상 거짓으로 평가됩니다.
+마지막으로 논리 연산자 `&&`로 작성하겠습니다. 자바스크립트에서 `true &&'Hello World'` 경우 'Hello World'로 평가되고, `false && 'Hello World'`경우 거짓으로 평가됩니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -394,7 +388,7 @@ console.log(result);
 // 출력: false
 ~~~~~~~~
 
-마찬가지로 리액트에서도 논리 연산자를 사용할 수 있습니다. 조건이 참이면, `&&` 논리 연산자 뒷부분 내용이 출력됩니다. 조건이 거짓이면 리액트는 표현식을 무시하고 이를 건너뜁니다. Table 컴포넌트를 반환 또는 아무것도 반환하지 않게 조건부 렌더링을 작성하겠습니다.
+리액트에서도 적용해봅시다. 조건이 참이면, `&&` 논리 연산자 뒷부분 내용이 출력됩니다. 조건이 거짓이면 리액트는 표현식을 무시하고 이를 건너뜁니다. 이번에도 조건이 참이면 Table 컴포넌트를 반환하고 거짓이면 반환하지 않게 만들어봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -407,9 +401,9 @@ console.log(result);
 }
 ~~~~~~~~
 
-지금까지 조건부 렌더링 사용 방법에 대해 알아보았습니다. [저자의 블로그 글](https://www.robinwieruch.de/conditional-rendering-react/)에서 조건부 렌더링에 대한 더 많은 예제를 확인할 수 있습니다. 
+세 가지 방법 모두 리액트 조건부 렌더링입니다. 저자가 쓴 ["조건부 렌더링"](https://www.robinwieruch.de/conditional-rendering-react/) 글에서 더 많은 예제 코드를 확인할 수 있습니다.
 
-애플리케이션에서 페치한 데이터 리스트를 모두 볼 수 있을 것입니다. 데이터 페치가 보류 중일 때를 제외하고 모든 기사 리스트가 표시됩니다. 전달받은 데이터를 해석해 로컬 상태로 저장하면 `render()` 메서드가 다시 실행되고, 조건부 렌더링의 조건에 따라 Table 컴포넌트가 표시되게 구현해봤습니다.
+애플리케이션에서 가져온 데이터가 모두 표시되어야 합니다. 데이터 가져오기가 보류 중일 제외하고 모든 기사 리스트가 보일 것입니다. 요청 후 받은 응답 데이터를 로컬 상태로 저장하면 `render()` 메서드가 다시 실행되고, 조건부 렌더링의 조건에 따라 Table 컴포넌트가 표시됩니다.
 
 ### 읽어보기
 
@@ -418,9 +412,9 @@ console.log(result);
 
 ## Search 컴포넌트의 클라이언트와 서버 처리 / Client-/Server-side Search
 
-이번 장에서는 입력된 검색어에 따라 리스트가 정렬되게 만들어보겠습니다. 이 기능은 모두 클라이언트에서 처리됩니다. 첫 번째 API 요청은 `componentDidMount()` 메서드에서 기본 검색어 매개 변수를 사용해 요청을 보내겠습니다.
+현재 Search 컴포넌트에서 입력 필드는 클라이언트에서 리스트를 필터링합니다. `componentDidMount()` 메서에서 기본 검색 용어 매개 변수를 사용하여 얻은 첫 번째 API 응답 데이터 결괏값만 가지고 있습니다. 이번 장에서는 Search 컴포넌트가 해커 뉴스 API로 서버에서 검색하게 리팩터링하겠습니다.
 
-Search 컴포넌트에서 검색 제출 시, 해커 뉴스 API를 통해 데이터를 가져오게 하겠습니다. App 컴포넌트의 `onSearchSubmit()` 메서드를 아래와 같이 정의합시다. 
+Search 컴포넌트에서 검색 요청 시 해커뉴스 API 데이터를 가져오기 위해 App 컴포넌트의 `onSearchSubmit()` 메서드를 아래와 같이 정의합시다. 
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -455,7 +449,7 @@ class App extends Component {
 
 ~~~~~~~~
 
- `onSearchSubmit()` 메서드 역시 `componentDidMount()` 생명주기 메서드와 같이 API 페치 기능이 필요합니다. 차이점은 검색어 기본값이 아닌 수정된 입력 검색어를 사용한다는 것입니다. 따라서 이 기능을 떼어 재사용 가능한 메서드로 만들 수 있습니다. 이를 위해 `fetchSearchTopStories()` 메서드를 만들어 두 메서드 모두 사용할 수 있게 만듭시다. 
+ `onSearchSubmit()` 메서드는 `componentDidMount()` 메서드과 동일하게 검색 API 요청을 합니다. 차이점은 기본값이 아닌 수정된 입력 검색어을 사용한다는 것입니다. 따라서 이 기능을 떼어 재사용 가능한 메서드로 만들 수 있습니다. 이를 위해 새로 `fetchSearchTopStories()` 메서드를 만들겠습니다.
  
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -509,9 +503,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-다음으로 Search 컴포넌트에 'Search' 버튼을 추가하겠습니다. 이 버튼을 클릭해 검색 요청을 보내고 해커 뉴스 API에서 데이터를 가져와봅시다.
+다음으로 Search 컴포넌트에 "Search" 버튼을 추가하겠습니다. 이 버튼을 클릭해 검색 요청을 보내고 해커 뉴스 API에서 응답 데이터를 가져와봅시다.
 
-물론 입력 필드 값이 변경 될 때마다 해커 뉴스 API에서 데이터를 가져오게 할 수도 있습니다. 이를 위해 `onClick()` 핸들러가 아닌 `onChange()` 핸들러를 사용할 수 있겠지만 구현이 꽤 복잡하기 때문에 사용하지 않겠습니다. 각 단계별로 하나씩 따라해봅시다.
+물론 입력 필드 값이 변경될 때마다 해커 뉴스 API에서 데이터를 가져오게 할 수도 있습니다. 이 경우 `onChange()` 핸들러를 사용할 수 있겠지만 구현이 꽤 복잡하기 때문에 사용하지 않겠습니다. 이제 각 단계별로 하나씩 만들어봅시다.
 
 첫째, Search 컴포넌트에 `onSearchSubmit()` 메서드를 전달합니다.
 
@@ -549,7 +543,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-둘째, Search 컴포넌트에 버튼을 추가합니다. 버튼은 `type="submit"`을 가지고, 폼은 `onSubmit()` 메서드를 전달하기 위해 `onSubmit()` 속성을 사용합니다. 자식 프로퍼티는 버튼 내용으로 사용하겠습니다.
+둘째, Search 컴포넌트에 버튼을 추가합니다. 버튼은 `type="submit"`을 가지고, 폼은 `onSubmit()` 메서드를 전달합니다. 버튼 내용은 자식 프로퍼티 `children`를 사용합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -573,7 +567,7 @@ const Search = ({
 # leanpub-end-insert
 ~~~~~~~~
 
-Table 컴포넌트에서 클라이언트의 검색이 필요 없기 때문에 필터 기능을 제거하겠습니다. `isSearched()` 함수도 더 이상 사용하지 않기 때문에 제거합니다. 비로소 검색 버튼을 클릭하면 해커 뉴스 API를 통해 결괏값을 가져옵니다.
+이제 Table 컴포넌트에서 클라이언트 검색 기능이 필요없기 때문에 삭제하겠습니다. `isSearched()` 함수를 삭제합니다. 마침내 "Search" 버튼을 클릭하면 해커 뉴스 API 검색 결과를 가져올 것입니다. 
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -628,7 +622,7 @@ onSearchSubmit(event) {
 }
 ~~~~~~~~
 
-입력된 검색어로 해커 뉴스 기사를 검색할 수 있고 API가 완벽하게 작동하는지 확인해봅시다. 클라이언트 내 검색 처리가 없어야 합니다.
+이번 장에서는 검색어를 입력해 해커 뉴스 기사를 가져오는 기능을 구현해봤습니다.
 
 ### 읽어보기
 
@@ -640,9 +634,9 @@ onSearchSubmit(event) {
 
 ## 페이지 매김 데이터 가져오기 / Paginated Fetch
 
-반환되는 데이터 구조를 자세히 살펴보았나요? [해커 뉴스 API](https://hn.algolia.com/api)는 첫 번째 `hits` 리스트만 반환합니다. 처음 응답 시, `page` 프로퍼티 값은 `0`으로 페이지 번호를 말합니다. 이 프로퍼티 값으로 리스트을 가져옵니다. 검색어는 유지하고 다음 페이지 번호를 API에 전달하면 됩니다. 
+반환된 데이터 구조를 자세히 살펴보았나요? [해커 뉴스 API](https://hn.algolia.com/api)에서 더 많은 인기 기사 리스트를 가져올 수 있습니다. `page` 프로퍼티는 페이지 번호로 첫 장은 `0`입니다. 이후  프로퍼티 값으로 리더 많은 리스트을 가져올 수 있습니다. 검색어를 그대로 유지하고 다음 페이지 번호만 API에 전달하면 됩니다. 
 
-앞에서 만든 URL 수정하겠습니다 이번에도 URL을 구성 가능한 형태로 만들겠습니다. 페이지 매김 데이터를 처리할 수 있게 요청할 URL를 쪼개어 각 상수로 만듭니다.
+페이지 매김 데이터를 처리할 수 있게 조합 가능한 API 상수를 만듭시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -656,7 +650,7 @@ const PARAM_PAGE = 'page=';
 # leanpub-end-insert
 ~~~~~~~~
 
-그리고 이 상수들을 매개변수로 추가해 URL를 구성합니다.
+그리고 이 상수들을 매개 변수로 추가해 URL를 구성합니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -666,7 +660,7 @@ console.log(url);
 // 출력: https://hn.algolia.com/api/v1/search?query=redux&page=
 ~~~~~~~~
 
-`fetchSearchTopStories()` 메서드는 페이지 번호를 뜻하는 두 번째 인자를 추가하겠습니다. 두 번째 인자가 없으면 기본으로 `0` 값을 전달합니다. 따라서 `componentDidMount()` 메서드와 `onSearchSubmit()` 메서드는 최초 요청 시, 첫 번째 페이지를 가져옵니다. 추가 요청 시, 두 번째 인자를 통해 다음 페이지를 가져옵니다.
+`fetchSearchTopStories()` 메서드는 페이지 번호를 뜻하는 두 번째 인자를 추가하겠습니다. 두 번째 인자가 없으면 기본값인 `0` 을 전달합니다. 따라서 `componentDidMount()` 메서드와 `onSearchSubmit()` 메서드는 최초 요청 시, 첫 번째 페이지를 가져옵니다. 추가 요청 시, 두 번째 인자를 통해 다음 페이지를 가져옵니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -934,7 +928,7 @@ results: {
 }
 ~~~~~~~~
 
-아래 부분은 `searchKey`에 의해 업데이트된 `results`를 저장합니다. 값은 `hits`와 `page` 프로퍼티가 있는 객체입니다. `searchKey`는 검색어입니다. 이미 여러분은 `[searchKey]:...` 구문을 배웠습니다. ES6를 통해 계산된 프로퍼티 이름인데, 이를 가지고 객체에서 값을 동적으로 할당할 수 있습니다. 
+아래 부분은 `searchKey`에 의해 업데이트된 `results`를 저장합니다. 값은 `hits`와 `page` 프로퍼티가 있는 객체입니다. `searchKey`는 검색어입니다. 이미 여러분은 `[searchKey]:...` 구문을 배웠습니다. ES6를 통해 계산된 프로퍼티 이름인데, 이를 가지고 객체에서 값을 동적으로 할당합니다.
 
 윗부분은 객체 전개 연산자를 사용해 `searchKey`로 모든 `results`를 전파해야 합니다. 그렇지 않으면 이전에 저장한 모든 `results`가 손실됩니다. 
 
@@ -1021,7 +1015,7 @@ class App extends Component {
 
 "Dismiss" 버튼이 잘 동작하는지 확인하세요. 
 
-그러나 검색 요청 시, API 요청을 막는 장치가 없습니다. 이미 동일한 결과가 있을 때 API 요청을 방지하는 검사를 하지 않습니다. 따라서 캐시 기능은 아직 완벽하지 않습니다. `results`는 캐시에 저장되지만 이를 사용하지 않았습니다. 마지막으로 캐시에서 `results`를 사용할 수 있을 때, API 요청을 막도록 수정하겠습니다.
+하지만 문제가 하나 더 있습니다. 검색 요청 시, API 요청을 막는 장치가 없습니다. 이미 동일한 결과가 있을 때 API 요청을 방지하는 검사를 하지 않아 캐시 기능이 완벽하게 구현되지 않았습니다. `results`는 캐시에 저장되지만 이를 사용하지 않았습니다. 마지막으로 캐시에서 `results`를 사용할 수 있을 때, API 요청을 막도록 수정하겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1067,11 +1061,11 @@ class App extends Component {
 }
 ~~~~~~~~
 
-이제 클라이언트는 동일한 검색어를 두 번 검색하더라도, 최종적으로 API 요청은 한 번만 요청하게 됩니다. 각 결과의 마지막 페이지가 `results`에 저장하기 때문에 페이지 매김 데이터도 같은 방법으로 캐시됩니다.
+이제 클라이언트는 동일한 검색어를 두 번 검색하더라도, 단 한번 API 요청을 합니다. 각 결과의 마지막 페이지가 `results`에 저장하기 때문에 페이지 매김 데이터도 같은 방법으로 캐시됩니다.
 
 ## 오류 처리 / Error Handling
 
-해커 뉴스 API와 인터렉션을 위한 모든 준비가 끝났습니다. 앞 장에서 API 결과를 캐싱했으며 페이지 매김 된 리스트 기능을 구현해 API를 통해 더 많은 기사 리스트를 계속 가져왔습니다. 그러나 아직 할 일이 더 남아 있습니다. 프로그램을 만들다 보면 수없이 많은 오류를 만나게 됩니다. 하지만 대부분 애플리케이션을 개발하면서 오류 처리를 간과할 것입니다. 오류 처리를 무시하고 개발하는 것은 정말 쉽기 때문이지요.
+이전 장에서 API 결과를 캐싱하고 페이지 매김 된 리스트 기능을 구현해 더 많은 기사 리스트를 계속 가져오게 만들었습니다. 그러나 아직 할 일이 더 남아 있습니다. 프로그램을 만들다 보면 수없이 많은 오류를 만나게 됩니다. 하지만 대부분 애플리케이션을 개발하면서 오류 처리를 간과할 것입니다. 오류 처리를 무시하고 개발하는 것은 정말 쉽기 때문이지요.
 
 이번 장에서는 API 요청 시, 효과적인 오류 처리 방법에 대해 알아보겠습니다. 이전 장에서 로컬 상태와 조건부 렌더링으로 오류 처리하는 방법을 배웠습니다. 기본적으로 오류는 리액트에서 또 다른 상태라고 볼 수 있습니다. 오류가 발생하면 로컬 상태로 저장하고 컴포넌트의 조건부 렌더링을 통해 표시됩니다. App 컴포넌트에 오류를 처리하겠습니다. App 컴포넌트는 해커 뉴스 API로 데이터를 받는 곳이기 때문입니다. 그럼 이제 시작해봅시다.
 
@@ -1165,7 +1159,7 @@ class App extends Component {
 const PATH_BASE = 'https://hn.foo.bar.com/api/v1';
 ~~~~~~~~
 
-애플리케이션 대신, 오류 메시지가 나타납니다. 원하는 곳에 조건부 렌더링으로 오류 메시지를 표시하면 됩니다. 이 경우 전체 앱이 보이지 않습니다. 그렇다면 Table 컴포넌트 또는 오류 메시지 둘 중 하나를 표시하면 어떨까요? 오류가 발생해도 나머지 애플리케이션은 표시되기 때문에 사용자에게 혼란을 주지 않습니다.
+애플리케이션 대신, 오류 메시지가 표시됩니다. 원하는 곳에 조건부 렌더링으로 오류 메시지를 표시하면 됩니다. 이 경우 전체 앱이 보이지 않습니다. 그렇다면 Table 컴포넌트 또는 오류 메시지 둘 중 하나를 표시하면 어떨까요? 오류가 발생해도 나머지 애플리케이션은 표시되기 때문에 사용자에게 혼란을 주지 않습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
