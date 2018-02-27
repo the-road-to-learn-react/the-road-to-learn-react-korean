@@ -14,7 +14,7 @@
 
 ### 읽어보기
 
-* [[리액트 공식문서 ]eject](https://github.com/facebookincubator/create-react-app#converting-to-a-custom-setup)에 대해 읽어보세요.
+* [[리액트 공식문서] eject](https://github.com/facebookincubator/create-react-app#converting-to-a-custom-setup)
 
 ## 애플리케이션 배포
 
