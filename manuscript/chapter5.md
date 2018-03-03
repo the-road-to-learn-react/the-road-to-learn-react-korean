@@ -1,10 +1,10 @@
-# 심화: 컴포넌트 / Advanced React Components
+# 5. [심화] 리액트 컴포넌트 / Advanced React Components
 
 이번 장에서는 리액트 컴포넌트 심화 내용을 다룹니다. 고차 컴포넌트(higher order components)를 학습한 후 실제 구현을 해볼 것입니다. 리액트 고급 주제와 복잡한 인터렉션도 함께 알아봅시다.
 
-## Ref와 DOM / Refs and the DOM
+## 5.1 Ref와 DOM / Refs and the DOM
 
-종종 리액트에서 DOM 노드를 다룰 일이 있습니다. `ref` 속성으로 DOM 노드를 접근할 수 있습니다. 리액트의 단방향 데이터 흐름과 선언 방식에 위배되기 때문에 안티 패턴(anti pattern)이라고도 합니다. 검색 입력 필드를 구현했을 때, 잠시 언급했습니다. 리액트 공식문서에는 `ref`가 필요한 세 가지 경우를 소개합니다.
+종종 리액트에서 DOM 노드를 다룰 일이 있습니다. `ref` 속성으로 DOM 노드를 접근할 수 있습니다. 리액트의 단방향 데이터 흐름과 선언 방식에 위배되기 때문에 안티 패턴(anti pattern)이라고도 합니다. 검색 입력 필드를 구현했을 때, 잠시 언급했습니다. 리액트 공식 문서에는 `ref`가 필요한 세 가지 경우를 소개합니다.
 
 * DOM API (focus, media playback 등)을 사용하는 경우
 * 명령형 노드 애니메이션을 호출하하는 경우
@@ -153,10 +153,10 @@ const Search = ({
 
 ### 읽어보기
 
-* [[리액트 공식문서] the ref attribute in general in React](https://reactjs.org/docs/refs-and-the-dom.html)
-* [[리액트 공식문서] the usage of the ref attribute in React](https://www.robinwieruch.de/react-ref-attribute-dom-node/)
+* [[리액트 공식 문서] the ref attribute in general in React](https://reactjs.org/docs/refs-and-the-dom.html)
+* [[리액트 공식 문서] the usage of the ref attribute in React](https://www.robinwieruch.de/react-ref-attribute-dom-node/)
 
-## 로딩 컴포넌트 Loading Component
+## 5.2 로딩 컴포넌트 Loading Component
 
 애플리케이션으로 다시 돌아가 봅시다. 해커 뉴스 API로 검색 요청하는 동안 로딩 인디케이터를 보여주고 싶을 겁니다. 비동기 요청임으로 사용자에게 그동안 기다릴 것을 알려줘야 합니다. *src/App.js* 파일에서 재사용 가능한 Loading 컴포넌트를 만듭시다.
 
@@ -280,7 +280,7 @@ class App extends Component {
 
 * "Loading ..."  텍스트 대신 [Font Awesome](http://fontawesome.io/) 라이브러리를 사용해 로딩 아이콘을 보여줍니다.
 
-## 고차 컴포넌트 Higher Order Components
+## 5.3 고차 컴포넌트 Higher Order Components
   
 고차 컴포넌트(HOCs: Higher order components)는 리액트의 고급 주제입니다. HOCs는 고차 함수와 동일한 개념입니다. HOCs는 함수와 같이 입력, 선택적 인자를 받아 컴포넌트를 출력합니다. 반환된 컴포넌트는 입력된 컴포넌트로 JSX에서 사용됩니다. 
 
@@ -430,7 +430,7 @@ class App extends Component {
 * 그 외 더 많은 HOC 사용 사례를 생각해봅시다.
   * 직접 HOC를 구현해봅시다.
 
-## 심화: 정렬 Advance Sorting
+## 5.4 심화: 정렬 / Advance Sorting
 
 클라이언트와 서버 모두 검색 인터렉션을 다뤄봤습니다. Table 컴포넌트로 좀 더한층 심화된 인터렉션을 다뤄보겠습니다. Table 컴포넌트의 각 첫 행에 라벨을 추가하고 이를 활용해 정렬 기능을 만들어보겠습니다. 
 

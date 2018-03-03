@@ -59,9 +59,9 @@ state나 props가 변경 시, '업데이트 프로세스'가 시작됩니다. �
 
 ### 읽어보기
 
-* [[리액트 공식문서] 리액트 생명주기](https://reactjs.org/docs/react-component.html)
-* [[리액트 공식문서] 리액트 생명주기 메서드와 상태 관리](https://reactjs.org/docs/state-and-lifecycle.html)
-* [[리액트 공식문서] 컴포넌트 에러 핸들링](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
+* [[리액트 공식 문서] 리액트 생명주기](https://reactjs.org/docs/react-component.html)
+* [[리액트 공식 문서] 리액트 생명주기 메서드와 상태 관리](https://reactjs.org/docs/state-and-lifecycle.html)
+* [[리액트 공식 문서] 컴포넌트 에러 핸들링](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
 
 ## 3.2 데이터 가져오기 / Fetching Data
 
@@ -190,7 +190,7 @@ class App extends Component {
 
 컴포넌트 생명주기 동안 어떤 일이 일어날까요? 컴포넌트는 생성자에서 초기화된 후 렌더링 됩니다. 내부 상태 `result` 값이 `null` 이므로 아무것도 표시되지 않습니다. 이후 `componentDidMount()` 메서드가 실행됩니다. 이 메서드에서 해커 뉴스 API 요청에 따라 비동기로 데이터를 가져옵니다. 응답 데이터가 도착하면 `setSearchTopStories()` 메서드에서 내부 컴포넌트 상태를 업데이트합니다. 그다음부터 업데이트 생명주기가 시작됩니다. `render()` 메서드가 다시 실행되는데, 이번에는 내부 상태 `result`가 있기 때문에 리스트가 표시됩니다. App 컴포넌트와 Table 컴포넌트가 렌더링 됩니다.
 
-대부분의 브라우저와 *create-react-app*는 `fetch()` 메서드를  지원합니다. `fetch()` 대신 노드 패키지인 [superagent](https://github.com/visionmedia/superagent) 또는 [axios](https://github.com/mzabriskie/axios) 라이브러리를 도입할 수 있습니다.
+대부분의 브라우저와 *create-react-app*는 `fetch()` 메서드를  지원합니다. `fetch()` 대신 노드 패키지인 [superagent(수퍼에이전트)](https://github.com/visionmedia/superagent) 또는 [axios(액시오스)](https://github.com/mzabriskie/axios) 라이브러리를 도입할 수 있습니다.
 
 이 책은 자바스크립트 불리언 연산에서 축약 표기법을 사용합니다. `if (result === null)` 대신 축약 표기법인 `if (!result)`를 사용했습니다. 이후에도 `if (list.length === 0)` 대신 `if (!list.length)`을, `if (someString !== '')` 대신 `if (someString)`을 사용하겠습니다. 아직 축약 표기법에 대해 잘 모르고 있다면, 이 부분을 반드시 학습하고 돌아오길 바랍니다.
 
@@ -404,7 +404,7 @@ console.log(result);
 
 ### 읽어보기
 
-* [[리액트 공식문서] 리액트 조건 렌더링](https://reactjs.org/docs/conditional-rendering.html)
+* [[리액트 공식 문서] 리액트 조건 렌더링](https://reactjs.org/docs/conditional-rendering.html)
 * [[저자 블로그] 조건문 렌더링의 다양한 방법](https://www.robinwieruch.de/conditional-rendering-react/)
 
 ## 3.5 Search 컴포넌트 클라이언트 및 서버 처리 / Client-/Server-side Search
@@ -623,7 +623,7 @@ onSearchSubmit(event) {
 
 ### 읽어보기
 
-* [[리액트 공식문서] synthetic events in React](https://reactjs.org/docs/events.html)
+* [[리액트 공식 문서] synthetic events in React](https://reactjs.org/docs/events.html)
 
 ### 실습하기
 
@@ -1223,7 +1223,7 @@ const PATH_BASE = 'https://hn.algolia.com/api/v1';
 
 ### 읽어보기
 
-* [[리액트 공식문서] 리액트 컴포넌트 오류 처리](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
+* [[리액트 공식 문서] 리액트 컴포넌트 오류 처리](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
 
 {pagebreak}
 
