@@ -730,7 +730,7 @@ Button.propTypes = {
 };
 ~~~~~~~~
 
-`className`의 기본값이 빈 문자열임으로 필수 사항은 아닙니다. 이번에는 Table 컴포넌트의 PropType을 정의하겠습니다.
+`className`의 기본값이 빈 문자열임으로 필수 사항은 아닙니다. 이번에는 Table 컴포넌트 PropType을 정의하겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -742,7 +742,7 @@ Table.propTypes = {
 # leanpub-end-insert
 ~~~~~~~~
 
-`list` 내 각 프로퍼티의 PropType는 배열로 정의합니다. 
+Table 컴포넌트의 `list` props 객체 내 모든 프로퍼티를 정의하겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -760,9 +760,9 @@ Table.propTypes = {
 };
 ~~~~~~~~
 
-다른 프로퍼티 중 `objectID`의 PropTypes 정의는 필수입니다. 코드 일부가 `objectID`에 의존하기 때문입니다. 다른 프로퍼티는 애플리케이션에 표시만 때문에 필수 사항은 아닙니다. 해커 뉴스 API가 배열 내 각 객체에 대해 항상 정의된 프로퍼티를 가지고 있다고 단언할 수 없기 때문입니다.
+이중 `objectID` 프로퍼티의 PropTypes 정의는 필수입니다. `objectID`에 의존하는 코드가 있기 때문입니다. 다른 프로퍼티는 화면에 표시만 됨으로 반드시 필요하지 않습니다. 더욱이 해커 뉴스 API가 정의된 프로퍼티 타입이 항상 유지되는지 확신할 수 없기 때문입니다.
 
-지금까지 PropTypes에 대해 알아보았습니다. 그러나 한 가지가 더 남았습니다. 컴포넌트에 default prop를 정의할 수 있습니다. Button 컴포넌트를 다시 보겠습니다. `className` 프로퍼티는 컴포넌트 시그니처에 기본 매개변수를 가지고 있습니다.
+PropTypes 이외에 prop의 기본값을 정의하는 default props이 있습니다. Button 컴포넌트를 다시 보겠습니다. `className` 프로퍼티는 컴포넌트 시그니처 안에 ES6 기본 매개변수를 가지고 있습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -774,7 +774,7 @@ const Button = ({
   ...
 ~~~~~~~~
 
-기본 매개변수를 리액트 default prop으로 바꾸겠습니다.
+이 기본 매개변수를 default props으로 바꾸겠습니다.
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
@@ -799,14 +799,14 @@ Button.defaultProps = {
 # leanpub-end-insert
 ~~~~~~~~
 
-ES6 기본 매개변수(default parameter)와 동일하게, default prop은 부모 컴포넌트가 지정하지 않은 경우, 프로퍼티가 기본 값을 설정합니다. PropType 타입 검사는 default prop가 평가된 후에 수행됩니다.
+ES6 기본 매개변수와 동일하게, default prop은 부모 컴포넌트가 값을 지정하지 않은 경우, 프로퍼티 기본 값이 설정됩니다. default prop을 평가한 후 PropType 타입 검사를 시작합니다.
 
-테스트를 다시 실행해, 커맨드 라인에서 컴포넌트 PropType 오류가 있는지를 확인합니다. 테스트에서 PropType 정의는 필수입니다. 테스트는 통과되더라도 컴포넌트 내 모든 props가 정의되지 않으면 오류가 발생할 수 있기 때문입니다. 이와 같은 오류를 피하기 위해 컴포넌트에 필요한 모든 props를 전달할 수 있습니다.
+테스트를 다시 실행해 커맨드 라인에서 컴포넌트 PropType 오류가 있는지를 확인합니다. 테스트에서 PropType을 `isRequired`로 정의했으나, 컴포넌트 내 모든 props를 정의하지 않았을 때 오류가 발생할 수 있습니다. 테스트 자제는 통과됩니다. 오류를 피하기 위해 테스트에서 필수 props를 모두 전달하도록 합니다.
 
 ### 실습하기
 
 * Search 컴포넌트의 PropType를 정의합니다.
-* 다음 장에서 컴포넌트를 추가하거나 수정할 때 PropType도 함께 추가합니다.
+* 다음 장에서 컴포넌트를 추가, 수정할 때마다 PropType을 업데이트합니다.
 
 ### 읽어보기
 * [[리액트 공식 문서] 리액트 PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)
