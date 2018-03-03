@@ -1,8 +1,8 @@
-# 리액트 기본 다지기 / Introduction to React
+# 1. 리액트 기본 다지기 / Introduction to React
 
-이번 장에서는 리액트의 가장 기본적인 내용을 배워보겠습니다. 아직도 리액트를 배워야 하는 이유를 모르겠다면 이번 장을 마칠 때쯤, 그 답을 찾을 수 있을 것입니다. 리액트 애플리케이션 설치를 시작으로 리액트 세계에 첫 발을 내디뎌봅시다. 제일 먼저 JSX와 ReactDOM를 배우고 첫 번째 리액트 컴포넌트를 만들어 보겠습니다.
+첫 장에서는 리액트의 가장 기본적인 내용을 배웁니다. 아직도 리액트를 배워야 하는 이유를 모르겠다면 이번 장을 마칠 때쯤, 그 답을 찾을 수 있을 것입니다. 리액트 애플리케이션 설치를 시작으로 리액트 세계에 첫 발을 내디뎌봅시다. 제일 먼저 JSX와 ReactDOM를 배우고 첫 번째 리액트 컴포넌트를 만들어 보겠습니다.
 
-## 왜 리액트인가? / Why React?
+## 1.1 왜 리액트인가? / Why React?
 
 **왜 리액트를 배워야 할까요?** 최근 몇 년 간 단일 페이지 애플리케이션([SPA: Single Page Application](https://en.wikipedia.org/wiki/Single-page_application))이 각광받고 있습니다. 앵귤러(Angular), 엠버(Ember) 및 백본(Backbone) 등 자바스크립트 프레임워크의 등장은 바닐라 자바스크립트(Vanilla JavaScript: 타 라이브러리나 프레임워크 사용 없이 순수한 자바스크립트로 개발하는 것을 말함)와 제이쿼리(jQuery)를 사용하지 않고도 최신 웹 응용 프로그램을 구축할 수 있게 되었습니다. 이외에도 SPA 프레임워크의 종류는 매우 다양합니다. 앵귤러 2010, 백본 2010, 엠버 2011 등 배포된 대부분 SPA 프레임워크는 1세대입니다.
 
@@ -28,7 +28,7 @@ SPA 프레임 워크의 1세대는 상용화를 넘어 안정화 고도화 단�
 * [[저자 블로그] 프레임워크 학습 방법](https://www.robinwieruch.de/how-to-learn-framework/)
 
 
-## 준비사항 / Requirements
+## 1.2 준비사항 / Requirements
 
 이미 SPA 프레임워크나 라이브러리 사용 경험이 있다면 어느 정도 웹 개발 기초 지식이 있을 것입니다. 이제 막 웹 개발에 입문했다면 리액트를 배우기 전에 HTML, CSS, 자바스크립트 ES5를 잘 다룰 수 있어야 합니다. 이 책은 자바스크립트 ES6를 사용합니다. [공식 슬랙 그룹](https://slack-the-road-to-learn-react.wieruch.com/)에 가입해 동료들을 만나고 서로에게 도움을 주길 바랍니다.
 
@@ -115,7 +115,7 @@ npm install --save-dev <package>
 
 ### 읽어보기
 
-* [npm 공식문서](https://docs.npmjs.com/)
+* [npm 공식 문서](https://docs.npmjs.com/)
 
 ## 설치하기 / Installation 
 
@@ -149,9 +149,9 @@ npm install react react-dom
 
 ### 읽어보기
 
-* [[리액트 공식문서] 리액트 설치](https://reactjs.org/docs/try-react.html)
+* [[리액트 공식 문서] 리액트 설치](https://reactjs.org/docs/try-react.html)
 
-## 제로 구성 설치 / Zero-Configuration Setup
+## 1.3 제로 구성 설치 / Zero-Configuration Setup
 
 이 책에서는 [create-react-app](https://github.com/facebookincubator/create-react-app)으로 애플리케이션을 부트스트래핑합니다. 부트스트래핑(bootstrapping)이라는 뜻은 애플리케이션을 최초 생성하여 브라우저에서 실행하는 과정을 말합니다. *create-react-app*은 2016년 페이스북이 제안한 리액트 제로 구성 설치 스타터 킷(Zero-Configuration Setup Starter Kit)입니다. 트위터에서 진행한 한 [조사](https://twitter.com/dan_abramov/status/806985854099062785)에 따르면 96% 이상의 리액트 개발자들이 입문자의 경우 *create-react-app* 사용을 권장하고 있습니다.
 
@@ -246,7 +246,7 @@ npm run build
 ### 읽어보기
 * [create-react-app 깃헙 리퍼지토리](https://github.com/facebookincubator/create-react-app)
 
-## JSX 시작하기 / Introduction to JSX 
+## 1.4 JSX 시작하기 / Introduction to JSX 
 
 리액트 JSX 문법에 대해 알아봅시다. *create-react-app*로 애플리케이션을 부트스트래핑 하면 리액트 애플리케이션이 이미 구현되어 있습니다. *src/App.js* 소스 코드를 열어 내용을 읽어보겠습니다.
 
@@ -332,7 +332,7 @@ export default App;
 
 다시 `npm start` 명령어를 실행해 애플리케이션을 시작합니다. 
 
-아마 `className`가 속성(attribute) 임을 눈치챘을 겁니다. JSX의 `className`은 HTML 표준 `class`로부터 기인했습니다. 기술적인 이유로 JSX는 몇 가지 내부 HTML 속성을 바꿔야 했습니다. 자세한 내용은 리액트 공식문서 중 ['지원하는 HTML 속성'](https://reactjs.org/docs/dom-elements.html) 장에서 확인하길 바랍니다. HTML 속성은 카멜 케이스(camelCase) 표기법을 따릅니다. 앞으로 몇 가지 JSX 속성을 좀 더 다뤄볼 것입니다.
+아마 `className`가 속성(attribute) 임을 눈치챘을 겁니다. JSX의 `className`은 HTML 표준 `class`로부터 기인했습니다. 기술적인 이유로 JSX는 몇 가지 내부 HTML 속성을 바꿔야 했습니다. 자세한 내용은 리액트 공식 문서 중 ['지원하는 HTML 속성'](https://reactjs.org/docs/dom-elements.html) 장에서 확인하길 바랍니다. HTML 속성은 카멜 케이스(camelCase) 표기법을 따릅니다. 앞으로 몇 가지 JSX 속성을 좀 더 다뤄볼 것입니다.
 
 ### 실습하기
 
@@ -341,10 +341,10 @@ export default App;
   * `render()`메서드 안에 `user` 프로퍼티를 사용합니다. 
   
 ### 읽어보기  
-* [[리액트 공식문서] JSX](https://reactjs.org/docs/introducing-jsx.html)
-* [[리액트 공식문서] 리액트 컴포넌트, 요소, 인스턴스](https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html)
+* [[리액트 공식 문서] JSX](https://reactjs.org/docs/introducing-jsx.html)
+* [[리액트 공식 문서] 리액트 컴포넌트, 요소, 인스턴스](https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html)
 
-## ES6 const, let
+## 1.5 ES6 const, let
 
 이전 장에서 `var` 문을 사용해 변수 `helloWorld`를 선언했습니다. 자바스크립트 ES6에서 변수 선언은 `const` 또는 `let`을 사용합니다. ES6에서는 `var`를 사용하는 일은 거의 없습니다.
 
@@ -414,7 +414,7 @@ export default App;
   * 보편적인 프로그래밍에서 말하는 불변 데이터 구조란 무엇인지 알아봅시다.
   * 리액트와 그 생테계에서 불변 데이터 구조가 사용되는 이유에 대해 알아봅시다.
 
-## ReactDOM
+## 1.6 ReactDOM
 
 App 컴포넌트를 바꾸기 전에, 이 컴포넌트가 어디에서 사용되고 있는지 확인해보겠습니다. 리액트의 첫 진입점이라 할 수 있는 *src/index.js* 파일을 열어봅시다.
 
@@ -450,9 +450,9 @@ ReactDOM.render(
 * *public/index.html*을 열어 HTML 안에 리액트 애플리케이션 들어가는 곳을 찾아봅니다.
 
 ### 읽어보기
-* [[리액트 공식문서] - 리액트 내 렌더링 되는 요소](https://reactjs.org/docs/dom-elements.html#all-supported-html-attributes)
+* [[리액트 공식 문서] - 리액트 내 렌더링 되는 요소](https://reactjs.org/docs/dom-elements.html#all-supported-html-attributes)
 
-## Hot Module Replacement
+## 1.7 Hot Module Replacement
 
 더 나은 개발 환경을 위해 *src/index.js*에서 할 일이 하나 더 있습니다. 이는 필수가 아닌 옵션 사항으로 리액트 입문자가 꼭 해야 할 내용은 아닙니다.
 
@@ -494,7 +494,7 @@ if (module.hot) {
 ### 영상보기
 * 댄 애브라몹(Dan Abramov)의 [리액트 라이브 : Hot Reloading으로 시간 여행 떠나기](https://www.youtube.com/watch?v=xsSnOQynTHs) 10분간 시청합니다.
 
-## JSX 내 복잡한 자바스크립트 / Complex JavaScript in JSX
+## 1.8 JSX 내 복잡한 자바스크립트 / Complex JavaScript in JSX
 
 App 컴포넌트로 다시 돌아갑시다. 지금까지 JSX에서 초기 변수를 렌더링 했습니다. 이제 배열의 각 항목을 차례로 렌더링 해봅시다. 지금은 샘플 데이터를 사용하지만 앞으로 외부 [API](https://www.robinwieruch.de/what-is-an-api-javascript/)를 통해 데이터를 가져올 것입니다. 앞으로 점점 재밌고 흥미 있어질 거니 기대해도 좋습니다.
 
@@ -626,13 +626,13 @@ export default App;
 
 ### 읽어보기
 
-* [[리액트 공식문서] 리액트 리스트(lists)와 키(keys)](https://reactjs.org/docs/lists-and-keys.html)
+* [[리액트 공식 문서] 리액트 리스트(lists)와 키(keys)](https://reactjs.org/docs/lists-and-keys.html)
 * [[MND] 자바스크립트 map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
 ### 실습하기
 * JSX 내 자바스크립트 표현식(expression)을 작성합니다.
 
-## ES6 화살표 함수 / ES6 Arrow function
+## 1.9 ES6 화살표 함수 / ES6 Arrow function
 
 자바스크립트 ES6에서 함수 표현식을 위해 새로운 문법인 화살표 함수가 도입되었습니다. 화살표 함수를 사용하면 기존 함수 표현식보다 코드가 간결해집니다.
 
@@ -710,7 +710,7 @@ item, key => { ... }
 
 * [[MDN] ES6 화살표 함수](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 
-## ES6 클래스 / ES6 Class
+## 1.10 ES6 클래스 / ES6 Class
 
 자바스크립트 ES6에서 클래스가 도입되었습니다. 클래스는 일반적으로 객체 지향 프로그래밍 언어에서 사용합니다. 자바스크립트는 융통성과 유연성이 뛰어난 프로그래밍 언어로 함수형 프로그래밍과 객체지향 프로그래밍으로 모두 작성할 수 있습니다.
 

@@ -1,8 +1,8 @@
-# 리액트 기초 향상하기 / Basics in React
+# 2. 리액트 기초 향상하기 / Basics in React
 
-이번 장부터 본격적으로 리액트 개발을 시작하겠습니다. 정적인 컴포넌트보다 동적인 컴포넌트와 인터렉션을 구현해보면서 컴포넌트를 선언과 재사용이 가능한 컴포넌트를 배울 것입니다. 마지막으로 컴포넌트에 숨결을 불어넣어 생명체로 만들어 봅니다.
+이제 본격적으로 리액트 개발을 시작하겠습니다. 2장에서는 정적인 컴포넌트보다 동적인 컴포넌트와 인터렉션을 구현해보면서 컴포넌트를 선언과 재사용이 가능한 컴포넌트를 배웁니다. 마지막으로 컴포넌트에 숨결을 불어넣어 생명체로 만들어 봅니다.
 
-## 컴포넌트 내부 상태 / Internal component state
+## 2.1 컴포넌트 내부 상태 / Internal component state
 
 컴포넌트 내부 상태(Internal component state)는 컴포넌트에 저장된 상태(state)를 말하며, 다른 말로는 로컬 상태(local state)라고 합니다. 컴포넌트 상태는 프로퍼티로 그 값을 수정, 삭제, 저장합니다. ES6 클래스 생성자(class constructor)로 컴포넌트를 만들고 내부 컴포넌트 상태를 초기화하며, 생성자는 컴포넌트가 초기화될 때 한 번만 호출됩니다.
 
@@ -27,7 +27,7 @@ ES6 클래스 컴포넌트에 생성자가 있으면, 반드시 `super();`를 �
 
 생성자에서 `super(props);`을 호출할 수 있습니다. 생성자에서 `this.props`를 사용하려면 생성자에서 `this.props`를 설정해야 합니다. 그렇지 않으면, 생성자에서 `this.props`를 접근할 때, `undefined`로 출력됩니다. 이 부분은 props를 설명할 때 보다 자세히 알아보겠습니다.
 
-아래와 같이 `list` 배열을 만들고, 이를 컴포넌트 초기 state로 설정합시다.
+아래와 같이 `list` 배열을 만들고, 이를 컴포넌트 초기 state로 설정합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -102,7 +102,7 @@ class App extends Component {
 ### 읽어보기 
 * [[MDN] ES6 클래스 생성자](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor)
 
-## ES6 객체 초기자 / Object Initializer
+## 2.1 ES6 객체 초기자 / Object Initializer
 
 자바스크립트 ES6는 좀더 간결해진 문법으로 객체 초기자를 작성합니다. 기존에는 아래와 같이 객체 정의를 해왔을 것입니다.
 
@@ -186,7 +186,7 @@ const user = {
 * ES6 객체 초기자를 생성합니다.
 
 
-## 단방향 데이터 흐름 / Unidirectional Data Flow
+## 2.3 단방향 데이터 흐름 / Unidirectional Data Flow
 
 App 컴포넌트에 state가 있지만 그 값이 변동되지 않아 아직은 정적인 컴포넌트라 할 수 있습니다. state를 조작하여 동적인 컴포넌트를 만들어 봅시다.
 
@@ -336,7 +336,7 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-버튼을 클릭하면 각 아이템이 삭제되지만, `list` 상태로 업데이트되지 않았습니다. 마지막에 `setState()` 클래스 메서드로 `this.state.list`를 업데이트합시다.
+버튼을 클릭하면 각 아이템이 삭제되지만, `list` 상태로 업데이트되지 않았습니다. 마지막에 `setState()` 클래스 메서드로 `this.state.list`를 업데이트합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -355,9 +355,9 @@ onDismiss(id) {
 
 ### 읽어보기
 
-* [[리액트 공식문서] 리액트 상태와 생명주기](https://reactjs.org/docs/state-and-lifecycle.html)
+* [[리액트 공식 문서] 리액트 상태와 생명주기](https://reactjs.org/docs/state-and-lifecycle.html)
 
-## 바인딩 / Bindings
+## 2.4 바인딩 / Bindings
 
 리액트에서 ES6 클래스 컴포넌트를 사용할 때 자바스크립트 바인딩(binding) 개념을 잘 알고 있어야 합니다. 이전 장에서 생성자 안에 `onDismiss()` 클래스 메서드를 바인딩했습니다.
 
@@ -542,7 +542,7 @@ class ExplainBindingsComponent extends Component {
 * 여러가지 바인딩을 시도하며 콘솔에 `this`를 출력합니다.
 
 
-## 이벤트 핸들러 / Event Handler
+## 2.5 이벤트 핸들러 / Event Handler
 
 이번 절에서는 이벤트 핸들러에 대해 알아봅시다. 이번 절에서는 각 아이템의 버튼을 클릭하면 해당 아이템을 삭제하는 기능을 만들어보겠습니다.
 
@@ -578,7 +578,7 @@ class ExplainBindingsComponent extends Component {
 
 `onClick={doSomething()}`일 경우, `doSomething()` 함수는 그 즉시 실행됩니다. 핸들러 표현식이 평가되는데, 그 결과를 함수로 반환하지 않기 때문에 버튼을 클릭해도 아무 일도 일어나지 않습니다. 따라서 `onClick={doSomething}`으로 수정하면 실행됩니다. 이를 `onDismiss()` 클래스 메서드에 적용해봅시다.
 
-`onClick={this.onDismiss}`로 고쳤겠지만 이 역시 문제가 있습니다. 삭제할 아이템을 식별하는 `item.objectID`가 빠져있습니다. 함수 인자를 추가합시다.
+`onClick={this.onDismiss}`로 고쳤겠지만 이 역시 문제가 있습니다. 삭제할 아이템을 식별하는 `item.objectID`가 빠져있습니다. 함수 인자를 추가합니다.
  
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -594,7 +594,7 @@ class ExplainBindingsComponent extends Component {
 ...
 ~~~~~~~~
 
-`map()` 메서드로 각 아이템마다 액션을 실행하도록 아래 코드와 같이 수정합시다.
+`map()` 메서드로 각 아이템마다 액션을 실행하도록 아래 코드와 같이 수정합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -749,7 +749,7 @@ class App extends Component {
 
 * `onClick` 핸들러에서 여러가지 함수 사용법을 사용해봅니다.
 
-## 폼과 이벤트 상호 작용 / Interactions with Forms and Events
+## 2.6 폼과 이벤트 상호 작용 / Interactions with Forms and Events
 
 이번 절에서는 검색 기능을 구현해보면서 HTML 폼(Form)과 이벤트 인터렉션을 배워볼 것입니다. 입력된 검색어에 따라 리스트를 필터링하는 기능을 구현해 봅시다.
 
@@ -780,7 +780,7 @@ class App extends Component {
 
 검색어를 입력할 때마다 리스트를 필터링해야 합니다. 입력 필드 값이 컴포넌트 내부 상태 값에 저장되려면 어떻게 해야할까요? 리액트의  **통합적 이벤트(synthetic event)** 를 사용해 이벤트 페이로드에 접근할 수 있습니다.
 
-다음으로 입력 필드의 `onChange` 핸들러를 정의합시다.
+다음으로 입력 필드의 `onChange` 핸들러를 정의하겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -927,7 +927,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-좀 더 다른 방법으로 `filter()` 메서드를 다뤄봅시다. 클래스 컴포넌트 외부에서 `filter()` 메서드에 전달되는 인자를 정의합시다. 컴포넌트 상태에 직접 접근할 수 없어 `searchTerm` 프로퍼티를 접근할 수도 없습니다. 따라서 새로운 함수가 필요합니다. `filter()`메서드에 `searchTerm`을 전달하고 조건을 확인하는 함수를 반환하는 함수를 만들어보겠습니다. 다른 말로 이 함수는 고차 함수(higher order function)라고 불립니다.
+좀 더 다른 방법으로 `filter()` 메서드를 다뤄봅시다. 클래스 컴포넌트 외부에서 `filter()` 메서드에 전달되는 인자를 정의하겠습니다. 컴포넌트 상태에 직접 접근할 수 없어 `searchTerm` 프로퍼티를 접근할 수도 없습니다. 따라서 새로운 함수가 필요합니다. `filter()`메서드에 `searchTerm`을 전달하고 조건을 확인하는 함수를 반환하는 함수를 만들어보겠습니다. 다른 말로 이 함수는 고차 함수(higher order function)라고 불립니다.
 
 이 책은 고차 함수를 다루지 않지만, 리액트는 고차원 컴포넌트(higher order components)를 다루기 때문에 고차 함수에 대해 알고 있어야 합니다. 다시 `filter()` 메서드를 봅시다. 제일 먼저 App 컴포넌트 외부에 고차 함수를 정의하겠습니다.
 
@@ -1031,10 +1031,10 @@ class App extends Component {
 
 ### 읽어보기
 
-* [[리액트 공식문서] 리액트 이벤트](https://reactjs.org/docs/handling-events.html)
+* [[리액트 공식 문서] 리액트 이벤트](https://reactjs.org/docs/handling-events.html)
 * [[위키피디아] 고차 함수(higher order functions)](https://en.wikipedia.org/wiki/Higher-order_function)
 
-## ES6 구조해체 Destructuring
+## 2.7 ES6 구조해체 Destructuring
 
 ES6에서는 구조해체(destructing)로 객체와 배열의 프로퍼티에 쉽게 접근할 수 있습니다. ES5와 ES6 문법을 서로 비교해봅시다.
 
@@ -1124,7 +1124,7 @@ const { searchTerm, list } = this.state;
 
 *  [[MDN] ES6 객체구조](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
 
-## 제어되는 컴포넌트 / Controlled Components
+## 2.8 제어되는 컴포넌트 / Controlled Components
 
 앞에서 우리는 이미 단방향 데이터 흐름에 대해 배웠습니다. 앞에서 구현한 검색어 입력 필드 역시 단방향 데이터 흐름 규칙이 적용됩니다. 입력 필드는 리스트를 필터링하기 위해 `searchTerm`로 state를 업데이트합니다. state가 변경되면 `render()` 메서드가 재실행되고 `searchTerm`에 검색어가 있는지 리스트에서 확인 후 필터링합니다.
 
@@ -1164,9 +1164,9 @@ class App extends Component {
 
 ### 읽어보기
 
-*  [[리액트 공식문서] 폼(Form)](https://reactjs.org/docs/forms.html)
+*  [[리액트 공식 문서] 폼(Form)](https://reactjs.org/docs/forms.html)
 
-## 컴포넌트 분리 / Split Up Components
+## 2.9 컴포넌트 분리 / Split Up Components
 
 어느새 App 컴포넌트가 매우 커졌습니다. 계속해서 기능을 추가하고 개발하다보면 점점 규모가 커질 겁니다. 드디어 이 컴포넌트를 작은 컴포넌트 덩어리로 분리 작업을 시작할 때 입니다.
 
@@ -1221,7 +1221,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-App 컴포넌트 아래에 분리시킨 컴포넌트를 정의합시다. 이 컴포넌트 역시 ES6 컴포넌트로 작성합니다.
+App 컴포넌트 아래에 분리시킨 컴포넌트를 정의합니다. 이 컴포넌트 역시 ES6 컴포넌트로 작성합니다.
 
 제일 먼저 Search 컴포넌트를 작성하겠습니다.
 
@@ -1295,7 +1295,7 @@ class Table extends Component {
 * Search와 Table 컴포넌트로 분리한 것처럼 추가로 더 분리할 수 있는 컴포넌트 요소를 찾아봅니다.
   *  다음 장에서 실습 코드와 충돌이 생길 수 있으니 지금 바로 코딩을 하지 마세요.
 
-## 구성가능한 컴포넌트 / Composable Components
+## 2.10 구성가능한 컴포넌트 / Composable Components
 
 `prop` 객체 안을 접근할 수 있는 프로퍼티가 하나 더 있습니다. 바로 `children` prop입니다. `children` prop는 알 수 없는 데이터 구조가 자식 요소가 전달됨을 의미합니다. 컴포넌트에 텍스트(문자열)를 `children` props로 전달할 때 어떻게 보이는지 보겠습니다.
  
@@ -1328,7 +1328,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-이제 Search 컴포넌트는 props 객체에서 `children` 프로퍼티를 구조 해제할 수 있습니다. `children` props가 표시될 곳을 정합시다.
+이제 Search 컴포넌트는 props 객체에서 `children` 프로퍼티를 구조 해제할 수 있습니다. `children` props가 표시될 곳을 정합니다.
 
 ~~~~~~~~
 class Search extends Component {
@@ -1355,9 +1355,9 @@ class Search extends Component {
 
 ### 읽어보기 
 
-* [[리액트 공식문서] 리액트 컴포지션 모델](https://reactjs.org/docs/composition-vs-inheritance.html) 
+* [[리액트 공식 문서] 리액트 컴포지션 모델](https://reactjs.org/docs/composition-vs-inheritance.html) 
 
-## 재사용 가능한 컴포넌트 / Reusable Components 
+## 2.11 재사용 가능한 컴포넌트 / Reusable Components 
 
 재사용 가능한 컴포넌트와 구성 가능한 컴포넌트를 사용해 컴포넌트 간 계층을 만들 수 있습니다. 이 것이 바로 리액트 뷰 레이어의 기초입니다. 마지막 장에서 재사용성(reusability)에 대해 자세히 설명하겠습니다. 지금 만든 Table과 Search 컴포넌트도 재사용할 수 있습니다. 물론 App 컴포넌트도 재사용할 수 있습니다. 컴포넌트는 다른 곳에서 다시 인스턴스를 만들 수 있기 때문입니다. 
 
@@ -1443,7 +1443,7 @@ class Button extends Component {
 
 이제 Button 컴포넌트를 사용할 때, `className` 프로퍼티 값이 지정되지 않아도 `undefined` 가 표시되지 않고 빈 문자열로 표시됩니다.
 
-## 컴포넌트 선언 / Component Declarations
+## 2.11 컴포넌트 선언 / Component Declarations
 
 지금까지 4가지 ES6 클래스 컴포넌트를 만들어봤습니다. 이제 컴포넌트를 만드는데 자신감이 생겼길 바랍니다. 이번 절에서 비 상태 함수형 컴포넌트(Functional Stateless Components)를 만들어 보겠습니다. 다시 한번 앞에서 배운 리액트 컴포넌트 유형을 정리해봅시다. 
 
@@ -1538,9 +1538,9 @@ const Search = ({ value, onChange, children }) => {
 * Table과 Button컴포넌트를 비 상태 함수 컴포넌트로 리팩터링합니다.
  
 ### 읽어보기
-* [[리액트 공식문서] ES6 클래스 컴포넌트와 비상태 함수 컴포넌트](https://reactjs.org/docs/components-and-props.html)
+* [[리액트 공식 문서] ES6 클래스 컴포넌트와 비상태 함수 컴포넌트](https://reactjs.org/docs/components-and-props.html)
 
-## 컴포넌트 스타일링 / Styling Components
+## 2.12 컴포넌트 스타일링 / Styling Components
 
 애플리케이션과 컴포넌트를 에쁘게 꾸며 봅시다. *src/App.css* 및 *src/index.css* 파일이 CSS 파일입니다. 이 파일은 *create-react-app*를 사용하여 부트스트랩 했기 때문에 이미 프로젝트 폴더에 있습니다. CSS 파일은 *src/App.js* 및 *src/index.js*로 가져와야 합니다. 아래 CSS 코드를 그대로 사용할 수 있지만 내가 원하는 데로 자유롭게 고칠 수 있습니다. 
 
@@ -1594,7 +1594,7 @@ button:hover {
 }
 ~~~~~~~~
 
-이어서 *src/App.css*을 열어 App 컴포넌트 스타일을 수정합시다. 기존 코드를 모두 지우고 아래 코드를 추가합시다. 
+이어서 *src/App.css*을 열어 App 컴포넌트 스타일을 수정하겠습니다. 기존 코드를 모두 지우고 아래 코드를 추가합니다. 
 
 {title="src/App.css",lang="css"}
 ~~~~~~~~
@@ -1665,7 +1665,7 @@ button:hover {
 
 이제 컴포넌트에 스타일이 적용되었습니다. HTML 속성인 `class` 대신에 JSX에서는 `className`을 사용합니다.
 
-먼저 ES6 클래스 컴포넌트인 App 컴포넌트에 클래스 이름을 추가합시다.
+먼저 ES6 클래스 컴포넌트인 App 컴포넌트에 클래스 이름을 추가합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1702,7 +1702,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-이어서 비상태 함수형 컴포넌트인 Table 컴포넌트에도 클래스 이름을 추가합시다.
+이어서 비상태 함수형 컴포넌트인 Table 컴포넌트에도 클래스 이름을 추가합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~

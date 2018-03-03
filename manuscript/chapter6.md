@@ -1,8 +1,8 @@
-# 심화: 리액트 상태 관리 / State Management in React and beyond
+# 6. [심화] 리액트 상태 관리 / State Management in React and beyond
 
 여러분은 기본적인 리액트 상태를 관리하고 다룰 수 있습니다. 이번 장에서는 리액트 상태 관리의 모범 사례와 적용 방법, 관련 라이브러리를 통해 상태 관리의 심화 내용을 살펴보겠습니다.
 
-## 상태 끌어올리기 / Lifting State
+## 6.1 상태 끌어올리기 / Lifting State
 
 App 컴포넌트는 ES6 컴포넌트로 상태를 가지고 있으며, 클래스 메서드에서 상태와 로직을 처리합니다. Table 컴포넌트로 많은 프로퍼티를 props로 넘겼습니다. 이 props는 Table 컴포넌트에서만 사용합니다. 결론적으로 App 컴포넌트가 Table 컴포넌트가 사용하고 있는지 모릅니다. 
 
@@ -269,10 +269,10 @@ class Table extends Component {
 
 ### 읽어보기
 
-* [[리액트 공식문서] 리액트 상태 옮기기](https://reactjs.org/docs/lifting-state-up.html)
+* [[리액트 공식 문서] 리액트 상태 옮기기](https://reactjs.org/docs/lifting-state-up.html)
 * [[저자 블로그] Redux 사용 전 알아야 할 것들](https://www.robinwieruch.de/learn-react-before-using-redux/)
 
-## `setState()` 다시 살펴보기 / Revisited: `setState()`
+## 6.2 `setState()` 다시 살펴보기 / Revisited: `setState()`
 
 지금까지 `setState()` 메서드로 컴포넌트 내부 상태를 관리했습니다. 전체 상태 중 부분적으로 업데이트할 객체를 함수에 전달했습니다.
 
@@ -434,14 +434,14 @@ class App extends Component {
 
 ### 읽어보기
 
-* [[리액트 공식문서] 올바른 상태 사용법](https://reactjs.org/docs/state-and-lifecycle.html#using-state-correctly)
+* [[리액트 공식 문서] 올바른 상태 사용법](https://reactjs.org/docs/state-and-lifecycle.html#using-state-correctly)
 
 ### 실습하기
 * `setState()` 메서드에서 함수를 사용할 수 있게 리팩토링합니다.
   * 의존된 props 또는 state가 있는 경우에만
 * 테스트를 재실행하고 업데이트되었는지 확인합니다.
 
-## 상태 제어 / Taming the State
+## 6.3 상태 제어 / Taming the State
 
 규모가 큰 애플리케이션의 상태 관리는 매우 중요합니다. 리액트는 물론 많은 SPA 프레임워크가 상태 관리 문제가 있습니다. 최근 몇 년간 애플리케이션이 더 복잡해짐에 따라 상태 제어하는 문제가 대두되고 있습니다.
 

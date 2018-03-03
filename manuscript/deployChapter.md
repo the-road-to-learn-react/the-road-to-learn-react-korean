@@ -1,8 +1,8 @@
-# 배포하기
+# 7. 배포하기 / React deployment
 
-마지막 장에서는 애플리케이션을 프로덕션 환경에 배포하는 방법을 알아보겠습니다. 무료 호스팅 서비스인 헤로쿠(Heroku)에 애플리케이션을 배포할 것입니다. 배포 과정에서 *create-react-app*에 대해 자세히 알아봅시다.
+마지막 장에서는 리액트 애플리케이션을 프로덕션 환경에 배포하는 방법을 알아보겠습니다. 무료 호스팅 서비스인 헤로쿠(Heroku)에 애플리케이션을 배포할 것입니다. 배포 과정에서 *create-react-app*에 대해 자세히 알아봅시다.
 
-## Eject
+## 7.1 Eject
 
 애플리케이션 배포를 위해 'Eject'에 대해 알 필요는 없습니다. *create-react-app*은 확장을 유지하면서 벤더 종속을 방지하는 기능입니다. (벤더 종속(vendor lock-in)이란 어떤 회사의 제품에 대해 소비자가 종속되는 상황에 이르게 되는 현상을 말합니다. 소비자가 다른 회사의 상품으로 옮겨가고 싶어도 갈 수 없도록 만들어 놓은 상황에 이르게 됩니다. “비호환성”이 대표적인 예 입니다.)  벤더 종속은 특정 기술을 구매하여 도입할 때 문제시 됩니다. 특정 기술을 사용하게 되면 탈피할 수 있는 방법은 없습니다. 다행이도 *create-react-app*은 "eject(꺼내기)"로 벤더 종속을 탈피할 수 있습니다.
 
@@ -14,9 +14,9 @@
 
 ### 읽어보기
 
-* [[리액트 공식문서] eject](https://github.com/facebookincubator/create-react-app#converting-to-a-custom-setup)
+* [[리액트 공식 문서] eject](https://github.com/facebookincubator/create-react-app#converting-to-a-custom-setup)
 
-## 애플리케이션 배포
+## 7.2 애플리케이션 배포 / Deploy your App
 
 우리가 만든 애플리케이션을 헤로쿠(Heroku)에 배포해봅시다. 헤로쿠는 *create-react-app*의 제로 구성 설치 철학을 따르고 있습니다. 몇 분만에 *create-react-app* 앱을 배포할 수 있습니다. 
 
