@@ -74,11 +74,12 @@
 	2. [헤로쿠 배포](manuscript/deployChapter.md#72-%ED%97%A4%EB%A1%9C%EC%BF%A0-%EB%B0%B0%ED%8F%AC)
 
 8. [마치는 글](manuscript/foreword.md)
+---
 
 ## 지은이 · 옮긴이
 ### 지은이
 로빈 위워크(Robin Wieruch) @rwieruch
-* [website](https://www.robinwieruch.de/) · 햐[github](github.com/rwieruch) · [twitter](https://twitter.com/rwieruch)
+* [website](https://www.robinwieruch.de/) · [github](github.com/rwieruch) · [twitter](https://twitter.com/rwieruch)
 
 ## 옮긴이
 이수진(Sujin Lee) @sujinleeme
