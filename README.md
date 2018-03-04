@@ -10,7 +10,7 @@
 1. [리액트 기초 다지기](manuscript/chapter1.md#1-%EB%A6%AC%EC%95%A1%ED%8A%B8-%EA%B8%B0%EC%B4%88-%EB%8B%A4%EC%A7%80%EA%B8%B0) 
 	1. [리액트를 배워야 하는 이유](manuscript/chapter1.md#11-%EB%A6%AC%EC%95%A1%ED%8A%B8%EB%A5%BC-%EB%B0%B0%EC%9B%8C%EC%95%BC-%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0)
 	2. [준비 사항](manuscript/chapter1.md#12-%EC%A4%80%EB%B9%84-%EC%82%AC%ED%95%AD)
-		1. [코드에디터 · 터미널](manuscript/chapter1.md)
+		1. [코드에디터 · 터미널](manuscript/chapter1.md#121-%EC%BD%94%EB%93%9C%EC%97%90%EB%94%94%ED%84%B0--%ED%84%B0%EB%AF%B8%EB%84%90)
 		2. [node · npm](manuscript/chapter1.md#122-node--npm)
 	3. [node · npm](manuscript/chapter1.md#13-node--npm)
 	4. [리액트 설치](manuscript/chapter1.md#14-%EB%A6%AC%EC%95%A1%ED%8A%B8-%EC%84%A4%EC%B9%98)
@@ -78,8 +78,7 @@
 ## 지은이 · 옮긴이
 ### 지은이
 로빈 위워크(Robin Wieruch) @rwieruch
-* [website](https://www.robinwieruch.de/)
-* socials - [github](github.com/rwieruch) · [twitter](https://twitter.com/rwieruch)
+* [website](https://www.robinwieruch.de/) · 햐[github](github.com/rwieruch) · [twitter](https://twitter.com/rwieruch)
 
 ## 옮긴이
 이수진(Sujin Lee) @sujinleeme
