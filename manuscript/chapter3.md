@@ -1,10 +1,10 @@
-# 3. API 사용하기 / Getting Real with an API
+# 3. API 사용하기
 
  3장에서는 외부 API를 요청하고 응답받은 데이터 결과를 보여주는 방법을 배웁니다. API를 사용하기 앞서, 컴포넌트 생명주기 메서드(Lifecycle Methods)에 대해 알아봅니다. 아직 API에 대해 잘 모르고 있다면, 저자가 쓴 ["아무도 나에게 API를 알려주지 않았다"](https://www.robinwieruch.de/what-is-an-api-javascript/) 글을 먼저 읽고 오길 바랍니다. 
 
 [해커 뉴스(Hacker News)](https://news.ycombinator.com/)는 와이 콤비네이터(Y Combinator, 미국 실리콘밸리를 대표하는 글로벌 액셀러레이터)가 운영하는 기술 분야 뉴스 큐레이션 플랫폼입니다. 해커 뉴스는 [데이터 조회 API](https://github.com/HackerNews/API)와 [검색 API](https://hn.algolia.com/api)를 제공합니다. 시작하기 전 해커 뉴스 API 명세서를 읽고 데이터 구조를 파악해두길 바랍니다.
 
-## 3.1 생명주기 메서드 / Lifecycle Methods
+## 3.1 생명주기 메서드
  
 2장에서 사용한 ES6 클래스 컴포넌트 메서드 `constructor()`와 `render()`는 생명주기 메서드입니다. 생명주기 메서드(Lifecycle Methods)는 ES6 클래스 컴포넌트에서 사용할 수 있지만, 비 상태 컴포넌트에서는 사용할 수 없습니다.
 
@@ -39,7 +39,7 @@ state나 props가 변경 시, '업데이트 프로세스'가 시작됩니다. �
 
 * **`componentWillMount()`** 메서드는 `render()` 메서드 전에 호출됩니다. 컴포넌트 두 번째 렌더링을 일으키지 않기 때문에 이 메서드에서 컴포넌트 상태를 설정할 수 있지만, `constructor()` 메서드에서 초기 상태값을 설정하는 것이 바람직합니다.
 
-* **`render()`** 메서드는 props 및 state를 읽고 요소를 반환합니다. 컴포넌트 출력을 반환하기 때문에 반드시 사용해야 합니다.  
+* **`render()`** 메서드는 props 및 state를 읽고 엘레먼트를 반환합니다. 컴포넌트 출력을 반환하기 때문에 반드시 사용해야 합니다.  
 
 * **`componentDidMount()`** 메서드는 컴포넌트가 마운트 될 때 한 번만 호출됩니다. 일반적으로 이 메서드에서 비동기 API를 사용합니다. 응답받은 외부 데이터는 내부 컴포넌트 상태에 저장되어 컴포넌트가 업데이트 되면 `render()` 메서드가 실행됩니다.
 
@@ -63,7 +63,7 @@ state나 props가 변경 시, '업데이트 프로세스'가 시작됩니다. �
 * [[리액트 공식 문서] 리액트 생명주기 메서드와 상태 관리](https://reactjs.org/docs/state-and-lifecycle.html)
 * [[리액트 공식 문서] 컴포넌트 에러 핸들링](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
 
-## 3.2 데이터 가져오기 / Fetching Data
+## 3.2 데이터 호출
 
 이번 절에서는 해커 뉴스 API로 외부 데이터를 가져오기 위해 `componentDidMount()` 생명주기 메서드 안에 자바스크립트 네이티브 API `fetch()` 메서드를 사용하겠습니다.
 
@@ -202,7 +202,7 @@ class App extends Component {
 * [[MDN] the native fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API)
 * [[저자 블로그] 리액트에서 데이터 호출하기](https://www.robinwieruch.de/react-fetching-data/)
 
-## 3.3 ES6 전개 연산자 / Spread Operators
+## 3.3 ES6 전개 연산자
 
 "dismiss" 버튼을 클릭하면 아무것도 작동하지 않습니다. `onDismiss()` 메서드는 해당 객체를 식별하지 못하고 있기 때문입니다. 리스트 내 각 객체를 식별할 수 있게 `onDismiss()` 메서드를 고쳐봅시다.
 
@@ -328,9 +328,9 @@ onDismiss(id) {
 * [[MDN] ES6 Object.assign()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
 * [[MDN]ES6 배열 전개 연산자](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator)
 
-## 3.4 조건부 렌더링 / Conditional Rendering
+## 3.4 조건부 렌더링
 
-3.2 절에서 조건부 렌더링을 간략히 설명했습니다. 조건부 렌더링은 하나 또는 여러 컴포넌트와 요소의 렌더링 여부를 결정합니다. `if-else` 문 역시 가장 기본적인 조건부 렌더링 방법입니다.
+3.2 절에서 조건부 렌더링에 대해 간략히 설명했습니다. 조건부 렌더링은 하나 또는 여러 컴포넌트와 엘레먼트의 렌더링 여부를 결정합니다. `if-else` 문 역시 가장 기본적인 조건부 렌더링 방법입니다.
 
 컴포넌트 내부 상태 `result` 초기값은 `null` 입니다. App 컴포넌트에 API 응답 데이터가 도착하지 않으면 아무것도 반환되지 않습니다. `render()` 생명주기 메서드 실행 전에 조건에 따라 반환 여부가 결정됩니다. App 컴포넌트는 초기에 아무것도 렌더링 되지 않다가, `result` 값이 업데이트 되면 다시 렌더링 하게 됩니다. 
 
@@ -407,7 +407,7 @@ console.log(result);
 * [[리액트 공식 문서] 리액트 조건 렌더링](https://reactjs.org/docs/conditional-rendering.html)
 * [[저자 블로그] 조건문 렌더링의 다양한 방법](https://www.robinwieruch.de/conditional-rendering-react/)
 
-## 3.5 Search 컴포넌트 클라이언트 및 서버 처리 / Client-/Server-side Search
+## 3.5 Search 컴포넌트 클라이언트 · 서버 처리
 
 Search 컴포넌트의 입력 필드는 클라이언트에서 리스트를 필터링하고 있습니다. `componentDidMount()` 메서드에서 기본 검색 용어 매개 변수로 얻은 첫 번째 API 응답 데이터 결괏값만 가지고 있는 상태입니다. 이번 절에서는 Search 컴포넌트가 검색어를 클라이언트가 아닌 해커 뉴스 서버에서 전달하도록 리팩터링하겠습니다.
 
@@ -629,7 +629,7 @@ onSearchSubmit(event) {
 
 * [해커 뉴스 API](https://hn.algolia.com/api)로 이것저것 실험해봅니다.
 
-## 3.6 페이지 매김 데이터 가져오기 / Paginated Fetch
+## 3.6 페이지 매김 데이터 호출
 
 3.5 절에서 반환된 데이터 구조를 자세히 살펴보았나요? [해커 뉴스 API](https://hn.algolia.com/api)를 통해 더 많은 인기 기사 리스트를 가져올 수 있습니다. 결괏값의 `page` 프로퍼티는 페이지 번호를 뜻합니다. 프로퍼티 값은 `0`으로 첫 번째 장입니다. 이번 절에서는 페이지 프로퍼티 값을 통해 많은 리스트를 가져오겠습니다. 검색어를 그대로 유지된 상태로 다음 페이지 번호를 API에 전달하면 됩니다. 
 
@@ -789,7 +789,7 @@ fetchSearchTopStories(searchTerm, page = 0) {
 
 * [해커 뉴스 API](https://hn.algolia.com/api)의 매개변수를 바꿔 API를 요청해봅니다.
 
-## 3.7 클라이언트 캐시 / Client Cache
+## 3.7 클라이언트 캐시
 
 "Search" 버튼을 클릭하면 해커 뉴스 API에 요청을 보냅니다. 예를 들어 "redux"를 검색하고, 그다음 "react"를, 그리고 다시 "redux"를 입력해 검색 요청을 보냈다고 가정해봅시다. 총 세 번 검색 요청을 보냈습니다. 이 중 "redux"를 두 번 요청했는데, 두 번 모두 데이터를 가져오기 위해 비동기 왕복 여행(asynchronous roundtrip)을 거치게 됩니다. 이 경우 클라이언트 캐시(client-sided cache)를 도입하는 것이 좋습니다. 캐시(Cache)란 미리 만들어진 데이터를 임시로 저장하는 공간입니다. 우리가 구현할 내용은 다음과 같습니다. 새 API 요청을 받으면, 이전에 동일한 요청이 있는지 먼저 확인합니다. 이미 저장된 캐시가 있으면 이를 사용하고, 캐시가 없다면 새 데이터를 가져오기 위해 API를 요청합니다. 이제 시작해봅시다.
 
@@ -1065,9 +1065,9 @@ class App extends Component {
 
 이제 클라이언트는 동일한 검색어를 두 번 검색하더라도, 단 한번 API 요청을 보냅니다. 페이지 매김 데이터도 같은 방법으로 캐시됩니다. `result`에 항상 마지막 페이지가 저장되기 때문입니다. 
 
-## 3.8 오류 처리 / Error Handling
+## 3.8 오류 처리 
 
-이전 절에서 API 결과를 캐싱하고 페이지 매김 기능을 구현해 더 많은 기사 리스트를 계속 가져오게 만들었습니다. 그러나 제일 중요한 부분을 하지 않았습니다. 안타깝게도 많은 개발자들이 애플리케이션을 개발하면서 오류 처리를 간과하고 있습니다. 오류 처리를 무시한 채 개발하는 것은 정말 쉽기 때문이지요.
+이전 절에서 API 결과를 캐싱하고 페이지 매김 기능을 구현해 더 많은 기사 리스트를 계속 가져오게 만들었습니다. 그러나 제일 중요한 부분을 하지 않았습니다. 안타깝게도 많은 개발자들이 애플리케이션을 개발하면서 오류 처리(Error Handling)를 간과하고 있습니다. 오류 처리를 무시한 채 개발하는 것은 정말 쉽기 때문이지요.
 
 이번 절에서는 API 요청 시, 효과적인 오류 처리 방법에 대해 알아보겠습니다. 이전 절에서 로컬 상태와 조건부 렌더링으로 오류 처리하는 방법을 배웠습니다. 기본적으로 오류는 리액트에서 또 다른 "상태(state)"라고 볼 수 있습니다. 오류가 발생하면 로컬 상태로 저장하고 컴포넌트의 조건부 렌더링로 오류 메시지를 표시할 수 있습니다. 우리는 App 컴포넌트의 오류 처리를 다루겠습니다. App 컴포넌트는 해커 뉴스 API로 데이터를 받는 곳이기 주요 컴포넌트이기 때문입니다. 그럼 이제 시작해봅시다.
 
@@ -1227,7 +1227,7 @@ const PATH_BASE = 'https://hn.algolia.com/api/v1';
 
 {pagebreak}
 
-## 3.9 Fetch 대신 Axios 사용하기 / Axios instead of Fetch
+## 3.9 Axios 사용
 
 이전 절에서 fetch API로 해커 뉴스 데이터를 받아왔습니다. 하지만 모든 브라우저가 fetch API릴 지원하는 것은 아닙니다. 특히 오래된 브라우저는 fetch API를 지원하지 않으며, 헤드리스 브라우저(Headless Browser)에서 애플리케이션을 테스트할 때, fetch API와 관련된 문제가 발생할 수 있습니다. 헤드리스 브라우저는 실제 애플리케이션이 구동되는 브라우저가 아닌 테스트용으로 테스트 자동화에 사용되는 브라우저입니다. 물론 구버전 브라우저(폴리필, polyfill)와 테스트([isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch))에서도 fetch API를 사용할 수 있는 방법이 있지만, 이 책에서는 이 내용을 다루지 않겠습니다.
 
