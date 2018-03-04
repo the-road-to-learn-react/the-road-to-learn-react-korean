@@ -272,7 +272,7 @@ class Table extends Component {
 * [[리액트 공식 문서] 리액트 상태 옮기기](https://reactjs.org/docs/lifting-state-up.html)
 * [[저자 블로그] Redux 사용 전 알아야 할 것들](https://www.robinwieruch.de/learn-react-before-using-redux/)
 
-## 6.2 `setState()` 다시 살펴보기
+## 6.2 심화: `setState()`
 
 지금까지 `setState()` 메서드로 컴포넌트 내부 상태를 관리했습니다. 전체 상태 중 부분적으로 업데이트할 객체를 함수에 전달했습니다.
 

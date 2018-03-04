@@ -1,12 +1,12 @@
 # 3. API 사용하기
 
- 3장에서는 외부 API를 요청하고 응답받은 데이터 결과를 보여주는 방법을 배웁니다. API를 사용하기 앞서, 컴포넌트 생명주기 메서드(Lifecycle Methods)에 대해 알아봅니다. 아직 API에 대해 잘 모르고 있다면, 저자가 쓴 ["아무도 나에게 API를 알려주지 않았다"](https://www.robinwieruch.de/what-is-an-api-javascript/) 글을 먼저 읽고 오길 바랍니다. 
+ 3장에서는 외부 API를 요청하고 응답받은 데이터 결과를 보여주는 방법을 배웁니다. API(Application Programming Interface)를 사용하기 앞서, 컴포넌트 생명주기 메서드(Lifecycle Methods)에 대해 알아봅니다. 아직 API에 대해 잘 모르고 있다면, 저자가 쓴 ["아무도 나에게 API를 알려주지 않았다"](https://www.robinwieruch.de/what-is-an-api-javascript/) 글을 먼저 읽고 오길 바랍니다. 
 
 [해커 뉴스(Hacker News)](https://news.ycombinator.com/)는 와이 콤비네이터(Y Combinator, 미국 실리콘밸리를 대표하는 글로벌 액셀러레이터)가 운영하는 기술 분야 뉴스 큐레이션 플랫폼입니다. 해커 뉴스는 [데이터 조회 API](https://github.com/HackerNews/API)와 [검색 API](https://hn.algolia.com/api)를 제공합니다. 시작하기 전 해커 뉴스 API 명세서를 읽고 데이터 구조를 파악해두길 바랍니다.
 
 ## 3.1 생명주기 메서드
  
-2장에서 사용한 ES6 클래스 컴포넌트 메서드 `constructor()`와 `render()`는 생명주기 메서드입니다. 생명주기 메서드(Lifecycle Methods)는 ES6 클래스 컴포넌트에서 사용할 수 있지만, 비 상태 컴포넌트에서는 사용할 수 없습니다.
+2장에서 사용한 ES6 클래스 컴포넌트 메서드 `constructor()`와 `render()`는 생명주기 메서드((Lifecycle Methods))입니다. 생명주기 메서드는 ES6 클래스 컴포넌트에서 사용할 수 있지만, 비 상태 컴포넌트에서는 사용할 수 없습니다.
 
 컴포넌트 인스턴스가 만들어져 DOM에 삽입될 때, `constructor()` 생성자 메서드가 호출됩니다. 이 과정을 컴포넌트가 마운트(mount, 탑재)된다고 하여 '마운트 프로세스'라고 합니다.
 
@@ -63,7 +63,7 @@ state나 props가 변경 시, '업데이트 프로세스'가 시작됩니다. �
 * [[리액트 공식 문서] 리액트 생명주기 메서드와 상태 관리](https://reactjs.org/docs/state-and-lifecycle.html)
 * [[리액트 공식 문서] 컴포넌트 에러 핸들링](https://reactjs.org/blog/2017/07/26/error-handling-in-react-16.html)
 
-## 3.2 데이터 호출
+## 3.2 검색 결과 데이터 가져오기
 
 이번 절에서는 해커 뉴스 API로 외부 데이터를 가져오기 위해 `componentDidMount()` 생명주기 메서드 안에 자바스크립트 네이티브 API `fetch()` 메서드를 사용하겠습니다.
 
@@ -200,7 +200,7 @@ class App extends Component {
 
 * [[MDN] ES6 템플릿 리터럴](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals)
 * [[MDN] the native fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API)
-* [[저자 블로그] 리액트에서 데이터 호출하기](https://www.robinwieruch.de/react-fetching-data/)
+* [[저자 블로그] 리액트에서 데이터 가져오기](https://www.robinwieruch.de/react-fetching-data/)
 
 ## 3.3 ES6 전개 연산자
 
@@ -254,9 +254,9 @@ onDismiss(id) {
 }
 ~~~~~~~~
 
-문제는 해결되었지만, 앞에서 배운 전개 연산자를 활용해 더 간단한 코드로 만들 수 있습니다. `...` 표시는 배열 또는 객체의 모든 값을 복사함을 뜻합니다.
+문제는 해결되었지만, 앞에서 배운 ES6 전개 연산자(spread operator)를 활용해 더 간단한 코드로 만들 수 있습니다. `...` 표시는 배열 또는 객체의 모든 값을 복사함을 뜻합니다.
 
-ES6 **배열** 스프레드 연산자 예제 코드를 봅시다.
+아래 ES6 **배열** 스프레드 연산자(array spread operator) 예제 코드를 봅시다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -330,7 +330,7 @@ onDismiss(id) {
 
 ## 3.4 조건부 렌더링
 
-3.2 절에서 조건부 렌더링에 대해 간략히 설명했습니다. 조건부 렌더링은 하나 또는 여러 컴포넌트와 엘레먼트의 렌더링 여부를 결정합니다. `if-else` 문 역시 가장 기본적인 조건부 렌더링 방법입니다.
+조건부 렌더링(conditional rendering)은 하나 또는 여러 컴포넌트와 엘레먼트의 렌더링 여부를 결정합니다. `if-else` 문 역시 가장 기본적인 조건부 렌더링 방법입니다. 3.2 절에서 조건부 렌더링을 다뤘습니다.
 
 컴포넌트 내부 상태 `result` 초기값은 `null` 입니다. App 컴포넌트에 API 응답 데이터가 도착하지 않으면 아무것도 반환되지 않습니다. `render()` 생명주기 메서드 실행 전에 조건에 따라 반환 여부가 결정됩니다. App 컴포넌트는 초기에 아무것도 렌더링 되지 않다가, `result` 값이 업데이트 되면 다시 렌더링 하게 됩니다. 
 
@@ -629,7 +629,7 @@ onSearchSubmit(event) {
 
 * [해커 뉴스 API](https://hn.algolia.com/api)로 이것저것 실험해봅니다.
 
-## 3.6 페이지 매김 데이터 호출
+## 3.6 페이지 매김 데이터 가져오기
 
 3.5 절에서 반환된 데이터 구조를 자세히 살펴보았나요? [해커 뉴스 API](https://hn.algolia.com/api)를 통해 더 많은 인기 기사 리스트를 가져올 수 있습니다. 결괏값의 `page` 프로퍼티는 페이지 번호를 뜻합니다. 프로퍼티 값은 `0`으로 첫 번째 장입니다. 이번 절에서는 페이지 프로퍼티 값을 통해 많은 리스트를 가져오겠습니다. 검색어를 그대로 유지된 상태로 다음 페이지 번호를 API에 전달하면 됩니다. 
 
@@ -1227,9 +1227,9 @@ const PATH_BASE = 'https://hn.algolia.com/api/v1';
 
 {pagebreak}
 
-## 3.9 Axios 사용
+## 3.9 Axios 라이브러리 사용
 
-이전 절에서 fetch API로 해커 뉴스 데이터를 받아왔습니다. 하지만 모든 브라우저가 fetch API릴 지원하는 것은 아닙니다. 특히 오래된 브라우저는 fetch API를 지원하지 않으며, 헤드리스 브라우저(Headless Browser)에서 애플리케이션을 테스트할 때, fetch API와 관련된 문제가 발생할 수 있습니다. 헤드리스 브라우저는 실제 애플리케이션이 구동되는 브라우저가 아닌 테스트용으로 테스트 자동화에 사용되는 브라우저입니다. 물론 구버전 브라우저(폴리필, polyfill)와 테스트([isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch))에서도 fetch API를 사용할 수 있는 방법이 있지만, 이 책에서는 이 내용을 다루지 않겠습니다.
+이전 절에서 fetch API로 해커 뉴스 데이터를 받아왔습니다. 하지만 모든 브라우저가 fetch API를 지원하는 것은 아닙니다. 특히 오래된 브라우저는 fetch API를 지원하지 않으며, 헤드리스 브라우저(Headless Browser)에서 애플리케이션을 테스트할 때, fetch API와 관련된 문제가 발생할 수 있습니다. 헤드리스 브라우저는 실제 애플리케이션이 구동되는 브라우저가 아닌 테스트용으로 테스트 자동화에 사용되는 브라우저입니다. 물론 구버전 브라우저(폴리필, polyfill)와 테스트([isomorphic-fetch](https://github.com/matthew-andrews/isomorphic-fetch))에서도 fetch API를 사용할 수 있는 방법이 있지만, 이 책에서는 이 내용을 다루지 않겠습니다.
 
 이와 같이 브라우저 간 문제와 API의 한계를 해결하고자 기존 fetch API를 대체하는 라이브러리를 도입할 수 있습니다. 그 중 [axios](https://github.com/axios/axios)는 많은 리액트 개발자들이 사용하고 있는 비동기 API 라이브러리입니다. 이번 절에서는 axios 라이브러리 설치와 사용 방법, 웹 개발의 고질적인 문제점인 구버전 브라우저과 헤드리스 브라우저 테스트 해결 방법에 대해 알아보겠습니다.
 

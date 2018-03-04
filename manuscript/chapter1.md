@@ -2,9 +2,9 @@
 
 첫 장에서는 리액트의 가장 기본적인 내용을 배웁니다. 아직도 리액트를 배워야 하는 이유를 모르겠다면 이번 장을 마칠 때쯤, 그 답을 찾을 수 있을 것입니다. 리액트 애플리케이션 설치를 시작으로 리액트 세계에 첫 발을 내디뎌봅시다. 제일 먼저 JSX와 ReactDOM를 배우고 첫 번째 리액트 컴포넌트를 만들어 보겠습니다.
 
-## 1.1 리액트
+## 1.1 리액트를 배워야 하는 이유
 
-**왜 리액트를 배워야 할까요?** 최근 몇 년 간 단일 페이지 애플리케이션([SPA: Single Page Application](https://en.wikipedia.org/wiki/Single-page_application))이 각광받고 있습니다. 앵귤러(Angular), 엠버(Ember) 및 백본(Backbone) 등 자바스크립트 프레임워크의 등장은 바닐라 자바스크립트(Vanilla JavaScript: 타 라이브러리나 프레임워크 사용 없이 순수한 자바스크립트로 개발하는 것을 말함)와 제이쿼리(jQuery)를 사용하지 않고도 최신 웹 응용 프로그램을 구축할 수 있게 되었습니다. 이외에도 SPA 프레임워크의 종류는 매우 다양합니다. 앵귤러 2010, 백본 2010, 엠버 2011 등 배포된 대부분 SPA 프레임워크는 1세대입니다.
+최근 몇 년 간 단일 페이지 애플리케이션([SPA: Single Page Application](https://en.wikipedia.org/wiki/Single-page_application))이 각광받고 있습니다. 앵귤러(Angular), 엠버(Ember) 및 백본(Backbone) 등 자바스크립트 프레임워크의 등장은 바닐라 자바스크립트(Vanilla JavaScript: 타 라이브러리나 프레임워크 사용 없이 순수한 자바스크립트로 개발하는 것을 말함)와 제이쿼리(jQuery)를 사용하지 않고도 최신 웹 응용 프로그램을 구축할 수 있게 되었습니다. 이외에도 SPA 프레임워크의 종류는 매우 다양합니다. 앵귤러 2010, 백본 2010, 엠버 2011 등 배포된 대부분 SPA 프레임워크는 1세대입니다.
 
 리액트는 페이스북이 만든 라이브러리로 2013년 공개되었습니다. 리액트는 SPA 프레임워크가 아닌, 뷰 라이브러리(View Library)입니다. 여기서 뷰(View)란 [MVC 패턴](https://en.wikipedia.org/wiki/Model–view–controller) (Model–View–Controller Pattern)의 'V'를 말합니다. 뷰는 브라우저 내 특정 컴포넌트를 보여주는 역할을 하기 때문에, 리액트로 단일 페이지 애플리케이션을 개발할 수 있습니다.
 
@@ -38,7 +38,7 @@ SPA 프레임 워크의 1세대는 상용화를 넘어 안정화 고도화 단�
 
 책에서 실습한 내용을 깃허브 저장소에 지속적으로 커밋하면서 프로젝트를 진행할 수 있습니다. 자세한 내용은 [GIT 가이드](https://www.robinwieruch.de/git-essential-commands/)를 읽어보고 실습해보길 바랍니다. git 사용은 의무 사항이 아닙니다. 웹 개발 입문자일 경우 초보자는 git과 깃허브를 쓰지 말고 본문 내용에 집중하기 바랍니다. 모든 것을 한꺼번에 배우려고 하면 매우 부담될 수 있으니까요. 
 
-### 1.2.2 Node, NPM 
+### 1.2.2 node · npm 
 
 마지막으로 [노드(node) 및 npm](https://nodejs.org/en/) 설치가 필요합니다. 이 책에서는 npm(노드 패키지 관리자: node package manager)을 통해 외부 노드 패키지를 설치합니다. 노드 패키지는 라이브러리 또는 전체 프레임워크가 될 수 있습니다.
 
@@ -52,7 +52,7 @@ npm --version
 *v5.6.0
 ~~~~~~~~
 
-## 1.3 node, npm
+## 1.3 node · npm
 
 간혹 node와 npm이 충돌될 수 있습니다. 이미 패키지 설치와 관리가 익숙하다면 이 부분을 건너뛰어도 좋습니다. 
 
@@ -151,9 +151,9 @@ npm install react react-dom
 
 * [[리액트 공식 문서] 리액트 설치](https://reactjs.org/docs/try-react.html)
 
-## 1.5 create-react-app 설치
+## 1.5 create-react-app 
 
-이 책에서는 [create-react-app](https://github.com/facebookincubator/create-react-app)으로 애플리케이션을 부트스트래핑합니다. 부트스트래핑(bootstrapping)이라는 뜻은 애플리케이션을 최초 생성하여 브라우저에서 실행하는 과정을 말합니다. *create-react-app*은 2016년 페이스북이 제안한 리액트 제로 구성 설치 스타터 킷(Zero-Configuration Setup Starter Kit)입니다. 트위터에서 진행한 한 [조사](https://twitter.com/dan_abramov/status/806985854099062785)에 따르면 96% 이상의 리액트 개발자들이 입문자의 경우 *create-react-app* 사용을 권장하고 있습니다.
+이 책에서는 [*create-react-app*](https://github.com/facebookincubator/create-react-app)으로 애플리케이션을 부트스트래핑합니다. 부트스트래핑(bootstrapping)이라는 뜻은 애플리케이션을 최초 생성하여 브라우저에서 실행하는 과정을 말합니다. *create-react-app*은 2016년 페이스북이 제안한 리액트 제로 구성 설치 스타터 킷(Zero-Configuration Setup Starter Kit)입니다. 트위터에서 진행한 한 [조사](https://twitter.com/dan_abramov/status/806985854099062785)에 따르면 96% 이상의 리액트 개발자들이 입문자의 경우 *create-react-app* 사용을 권장하고 있습니다.
 
 *create-react-app*는 리액트 개발 도구와 환경 설정이 이미 세팅되어 있기 때문에, 우리는 오롯이 애플리케이션 구현에만 신경 쓰면 됩니다. 
 
@@ -244,7 +244,7 @@ npm run build
 * 파일 내용이 익숙해집니다.
 
 ### 읽어보기
-* [create-react-app 깃헙 리퍼지토리](https://github.com/facebookincubator/create-react-app)
+* [create-react-app 깃허브 리퍼지토리](https://github.com/facebookincubator/create-react-app)
 
 ## 1.6 JSX 기초
 
@@ -345,7 +345,7 @@ export default App;
 * [[리액트 공식 문서] JSX](https://reactjs.org/docs/introducing-jsx.html)
 * [[리액트 공식 문서] 리액트 컴포넌트, 엘레먼트, 인스턴스](https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html)
 
-## 1.7 ES6 const, let
+## 1.7 ES6 const · let
 
 이전 장에서 `var` 문을 사용해 변수 `helloWorld`를 선언했습니다. 자바스크립트 ES6에서 변수 선언은 `const` 또는 `let`을 사용합니다. ES6에서는 `var`를 사용하는 일은 거의 없습니다.
 
@@ -415,7 +415,7 @@ export default App;
   * 보편적인 프로그래밍에서 말하는 불변 데이터 구조란 무엇인지 알아봅시다.
   * 리액트와 그 생테계에서 불변 데이터 구조가 사용되는 이유에 대해 알아봅시다.
 
-## 1.7 ReactDOM
+## 1.8 ReactDOM
 
 App 컴포넌트를 바꾸기 전에, 이 컴포넌트가 어디에서 사용되고 있는지 확인해보겠습니다. 리액트의 첫 진입점이라 할 수 있는 *src/index.js* 파일을 열어봅시다.
 
@@ -453,7 +453,7 @@ ReactDOM.render(
 ### 읽어보기
 * [[리액트 공식 문서] - 리액트 내 렌더링 되는 엘레먼트](https://reactjs.org/docs/dom-elements.html#all-supported-html-attributes)
 
-## 1.8 Hot Module Replacement
+## 1.9 Hot Module Replacement
 
 더 나은 개발 환경을 위해 *src/index.js*에서 할 일이 하나 더 있습니다. 이는 필수가 아닌 옵션 사항으로 리액트 입문자가 꼭 해야 할 내용은 아닙니다.
 
@@ -493,9 +493,10 @@ if (module.hot) {
 * *src/App.js* 코드를 수정해 HMR이 어떻게 실행되는지 확인합니다.
 
 ### 영상보기
+
 * 댄 애브라몹(Dan Abramov)의 [리액트 라이브 : Hot Reloading으로 시간 여행 떠나기](https://www.youtube.com/watch?v=xsSnOQynTHs) 10분간 시청합니다.
 
-## 1.9 JSX와 자바스크립트
+## 1.10 JSX 내 자바스크립트 객체 처리
 
 App 컴포넌트로 다시 돌아갑시다. 지금까지 JSX에서 초기 변수를 렌더링 했습니다. 이제 배열의 각 항목을 차례로 렌더링 해봅시다. 지금은 샘플 데이터를 사용하지만 앞으로 외부 [API](https://www.robinwieruch.de/what-is-an-api-javascript/)를 통해 데이터를 가져올 것입니다. 앞으로 점점 재밌고 흥미 있어질 거니 기대해도 좋습니다.
 
@@ -711,7 +712,7 @@ item, key => { ... }
 
 * [[MDN] ES6 화살표 함수](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 
-## 1.11 ES6 클래스
+## 1.12 ES6 클래스
 
 자바스크립트 ES6에서 클래스(Class)가 도입되었습니다. 클래스는 일반적으로 객체 지향 프로그래밍 언어에서 사용합니다. 자바스크립트는 융통성과 유연성이 뛰어난 프로그래밍 언어로 함수형 프로그래밍과 객체지향 프로그래밍으로 모두 작성할 수 있습니다.
 
