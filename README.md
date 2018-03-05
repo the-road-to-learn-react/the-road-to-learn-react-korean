@@ -1,5 +1,5 @@
 # [튜토리얼] 리액트 도움닫기 
-[리액트 도움닫기(원제: The Road to learn React)](https://www.robinwieruch.de/the-road-to-learn-react/) 한국어 공식 깃허브 리퍼지토리입니다. 
+[**리액트 도움닫기(원제: The Road to learn React)**](https://www.robinwieruch.de/the-road-to-learn-react/) 한국어 공식 깃허브 리퍼지토리입니다. 
 
 * [해커 뉴스(HackerNews) 프로젝트 실습 코드](https://github.com/the-road-to-learn-react/hackernews-client)
 
@@ -73,7 +73,7 @@
 	1. [Eject](manuscript/deployChapter.md#71-eject)
 	2. [Heroku 배포](manuscript/deployChapter.md#72-heroku-%EB%B0%B0%ED%8F%AC)
 
-8. [마치는 글](manuscript/foreword.md)
+8. [**마치는 글**](manuscript/foreword.md)
 ---
 
 ## 지은이 · 옮긴이
@@ -81,25 +81,25 @@
 **로빈 위워크 (Robin Wieruch)**  [@rwieruch](https://github.com/rwieruch/)
 * [website](https://www.robinwieruch.de/) · [github](https://github.com/rwieruch/) · [twitter](https://twitter.com/rwieruch)
 
-## 옮긴이
+### 옮긴이
 **이수진 (Sujin Lee)** [@sujinleeme](https://github.com/sujinleeme/)
 * [website](https://www.sujinlee.me/) · [github](https://github.com/sujinleeme/) · [facebook](https://www.facebook.com/sujinlee.me) · [twitter](https://twitter.com/sujinleeme)  · [instagram](https://www.instagram.com/sujinlee.me/)
 * email: sujinlee.me@gmail.com
 ---
-
-## 후기쓰기
+## 참여 방법
+### 후기쓰기
 * [아마존](https://www.amazon.com/dp/B077HJFCQX?tag=21moves-20)과 [굿리드](https://www.goodreads.com/book/show/37503118-the-road-to-learn-react)에서 여러분의 서평과 후기를 남겨주세요.
 
-## 소식받기
+### 소식받기
 * 도서 수정 관련 소식은 [이메일](https://www.getrevue.co/profile/rwieruch)과 [트위터](https://twitter.com/rwieruch)를 통해 전하고 있습니다.
 
-## 도움받기
+### 도움받기
 * 이 책으로 리액트를 학습하는 도중 도움이 필요하거나, 다른 사람을 도와주고 싶다면 공식 [슬랙(Slack) 채널](https://slack-the-road-to-learn-react.wieruch.com/)에 들어오세요.
 
-## 후원하기
+### 후원하기
 * 이 책의 프로젝트 후원자가 되실 수 있습니다. [후원 방법](https://www.robinwieruch.de/about/)에서 자세한 내용을 확인하세요.
 
-## 참여하기
+### 기여하기
 깃허브 풀 리퀘스트(Pull Request :PR) 또는 이슈(Issues)를 통해 누구나 참여할 수 있습니다.
 
 본문 내 오탈자를 수정하거나, 추가 설명이 필요한 경우 풀 리퀘스트를 보내주세요. 
