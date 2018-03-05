@@ -15,7 +15,7 @@
 
 * [[리액트 공식 문서] eject](https://github.com/facebookincubator/create-react-app#converting-to-a-custom-setup)
 
-## 7.2 헤로쿠 배포
+## 7.2 Heroku 배포
 
 우리가 만든 애플리케이션을 헤로쿠(Heroku)에 배포해봅시다. 헤로쿠는 *create-react-app*의 제로 구성 설치 철학을 따르고 있습니다. 몇 분만에 *create-react-app* 앱을 배포할 수 있습니다. 
 
@@ -50,5 +50,5 @@ heroku open
 ### 읽어보기
 
 * [[저자 블로그] 깃과 깃허브 사용 기초 사용법](https://www.robinwieruch.de/git-essential-commands/)
-* [[저자 블로그] 제로 구성 설치로 리액트 배포하기](https://blog.heroku.com/deploying-react-with-zero-configuration)
 * [[저자 블로그] create-react-app를 위한 헤로쿠 빌드팩](https://github.com/mars/create-react-app-buildpack)
+* [[헤로쿠 공식 블로그] 제로 구성 설치로 리액트 배포하기](https://blog.heroku.com/deploying-react-with-zero-configuration)

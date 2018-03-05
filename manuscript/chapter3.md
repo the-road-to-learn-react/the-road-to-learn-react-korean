@@ -1,4 +1,4 @@
-# 3. API 사용하기
+# 3. 외부 API 사용하기
 
  3장에서는 외부 API를 요청하고 응답받은 데이터 결과를 보여주는 방법을 배웁니다. API(Application Programming Interface)를 사용하기 앞서, 컴포넌트 생명주기 메서드에 대해 알아봅니다. 아직 API에 대해 잘 모르고 있다면, 저자가 쓴 ["아무도 나에게 API를 알려주지 않았다"](https://www.robinwieruch.de/what-is-an-api-javascript/) 글을 먼저 읽고 오길 바랍니다. 
 
