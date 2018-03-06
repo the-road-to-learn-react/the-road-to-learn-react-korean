@@ -1,8 +1,8 @@
 # 3. 외부 API 사용하기
 
- 3장에서는 외부 API를 요청하고 응답받은 데이터 결과를 보여주는 방법을 배웁니다. API(Application Programming Interface)를 사용하기 앞서, 컴포넌트 생명주기 메서드에 대해 알아봅니다. 아직 API에 대해 잘 모르고 있다면, 저자가 쓴 ["아무도 나에게 API를 알려주지 않았다"](https://www.robinwieruch.de/what-is-an-api-javascript/) 글을 먼저 읽고 오길 바랍니다. 
+이번 장에서는 외부 API를 요청하고 응답받은 데이터 결과를 보여주는 방법을 배웁니다. API(Application Programming Interface)를 사용하기 앞서, 컴포넌트 생명주기 메서드에 대해 알아봅니다. 아직 API에 대해 잘 모르고 있다면, 저자가 쓴 ["아무도 나에게 API를 알려주지 않았다"](https://www.robinwieruch.de/what-is-an-api-javascript/) 글을 먼저 읽고 오길 바랍니다. 
 
-[해커 뉴스(Hacker News)](https://news.ycombinator.com/)는 와이 콤비네이터(Y Combinator, 미국 실리콘밸리를 대표하는 글로벌 액셀러레이터)가 운영하는 기술 분야 뉴스 큐레이션 플랫폼입니다. 해커 뉴스는 [데이터 조회 API](https://github.com/HackerNews/API)와 [검색 API](https://hn.algolia.com/api)를 제공합니다. 시작하기 전 해커 뉴스 API 명세서를 읽고 데이터 구조를 파악해두길 바랍니다.
+[해커 뉴스(Hacker News)](https://news.ycombinator.com/)는 와이 콤비네이터(Y Combinator, 미국 실리콘밸리를 대표하는 글로벌 액셀러레이터)가 운영하는 기술 분야 뉴스 큐레이션 플랫폼입니다. 해커 뉴스는 [데이터 조회 API](https://github.com/HackerNews/API)와 [검색 API](https://hn.algolia.com/api)를 제공합니다. 시작하기 전 해커 뉴스 API 명세서를 읽고 데이터 구조를 파악해둡시다.
 
 ## 3.1 생명주기 메서드
  
@@ -1352,7 +1352,7 @@ class App extends Component {
 * [[저자 블로그] 왜 프레임워크가 중요한가](https://www.robinwieruch.de/why-frameworks-matter/)
 * [[저자 리퍼지토리] 리액트 컴포넌트 대체 문법](https://github.com/rwieruch/react-alternative-class-component-syntax)
 
-이번 장에서는 외부 API를 사용하는 방법을 배웠습니다. 지금까지 학습한 내용을 정리해봅시다.
+3장에서는 외부 API를 사용하는 방법을 배웠습니다. 지금까지 학습한 내용을 정리해봅시다.
 
 * 리액트
   * ES6 클래스 컴포넌트의 생명주기 메소드와 사용 사례
