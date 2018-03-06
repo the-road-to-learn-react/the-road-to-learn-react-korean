@@ -1,10 +1,10 @@
-# 4. 코드 조직화 및 테스트 작성하기 / Code Organization and Testing
+# 4. 컴포넌트 모듈 구성 · 테스트
 
 이번 장은 규모가 큰 애플리케이션에서 코드 유지와 관리 방법을 알아보겠습니다. 예제를 통해 폴더와 파일 구성 방법과 조직화된 코드 작성법을 배우고, 마지막으로 테스트 코드 작성법을 살펴보겠습니다. 소프트웨어 개발에 있어 코드 품질 향상은 매우 중요합니다. 이번 장에서는 애플리케이션 개발은 잠시 중단합니다.
 
-## 4.1 ES6 모듈(Modules): Import/Export 
+## 4.1 ES6 Import · Export 
 
-ES6에서는 모듈에서 기능을 가져오고(import) 내보냅니다(export). 이 기능은 변수를 지정할 수 있는 함수, 클래스 컴포넌트, 상수 등에 해당됩니다. 모듈은 단일 파일이거나, index 파일이 있는 폴더 전체가 될 수 있습니다.
+ES6에서는 모듈(Modules)의 특정 기능을 가져오고(`import`) 내보낼 수 있습니다(`export`). 이 기능은 함수 표현식, 클래스 컴포넌트, 상수 등에 해당됩니다. 모듈은 단일 파일이거나, index 파일이 있는 폴더 전체가 될 수 있습니다.
 
 1장에서 *create-react-app*으로 부트스트래핑 한 후, 생성된 파일에 `import`과 `export`가 있는 것을 보았을 것입니다.
 
@@ -12,7 +12,7 @@ ES6에서는 모듈에서 기능을 가져오고(import) 내보냅니다(export)
 
 지금까지 계속해서 한 파일에서 모든 코드를 작성했습니다. `import`와 `export`으로 코드를 분할시켜 여러 파일을 만들면 코드 재사용과 유지 관리가 편해집니다. 
 
-객체 지향 프로그래밍의 캡슐화(encapsulation, 객체의 속성(data fields)과 행위(메서드, methods)를 하나로 묶고, 실제 구현 내용 일부를 외부에 감추어 은닉한다.) 개념을 생각하면 됩니다. 한 파일 내 모든 함수를 밖으로 내보내야 하는 것은 아닙니다. 여러 함수 중 일부를 정의해 사용하면 됩니다. API와 같이 모든 파일에서 사용 가능합니다. 하지만 밖으로 내보내진 함수만 다른 파일에서 가져올 수 있습니다.
+객체 지향 프로그래밍의 캡슐화(encapsulation, 객체의 속성(data fields)과 행위(메서드, methods)를 하나로 묶고, 실제 구현 내용 일부를 외부에 감추어 은닉합니다.) 개념을 생각하면 됩니다. 한 파일 내 모든 함수를 밖으로 내보내야 하는 것은 아닙니다. 여러 함수 중 일부를 정의해 사용하면 됩니다. API와 같이 모든 파일에서 사용 가능합니다. 하지만 밖으로 내보내진 함수만 다른 파일에서 가져올 수 있습니다.
 
 예제를 통해 `import`와 `export` 사용법에 대해 알아보겠습니다. *file1.js*와 *file2.js*은 변수를 서로 공유합니다. 이와 같이 여러 파일에서 `import`와 `export`로 변수를 공유할 수 있습니다. 
 
@@ -33,7 +33,7 @@ export { firstname, lastname };
 import { firstname, lastname } from './file1.js';
 
 console.log(firstname);
-// output: robin
+// 출력: robin
 ~~~~~~~~
 
 또한 내보낸 변수를 다른 파일에서 객체로 가져올 수 있습니다.
@@ -43,7 +43,7 @@ console.log(firstname);
 import * as person from './file1.js';
 
 console.log(person.firstname);
-// output: robin
+// 출력: robin
 ~~~~~~~~
 
 `import`한 모듈에 별명을 만들 수 있습니다. 보통 여러 파일에 함수 이름이 중복될 경우, 별명을 만들어 가져옵니다.
@@ -53,7 +53,7 @@ console.log(person.firstname);
 import { firstname as foo } from './file1.js';
 
 console.log(foo);
-// output: robin
+// 출력: robin
 ~~~~~~~~
 
 마지막으로 `default`의 아래와 같은 경우 사용됩니다.
@@ -81,7 +81,7 @@ export default robin;
 import developer from './file1.js';
 
 console.log(developer);
-// output: { firstname: 'robin', lastname: 'wieruch' }
+// 출력: { firstname: 'robin', lastname: 'wieruch' }
 ~~~~~~~~
 
 또한 `export`와 `export default`를 함께 사용할 수 있습니다.
@@ -109,9 +109,9 @@ export default person;
 import developer, { firstname, lastname } from './file1.js';
 
 console.log(developer);
-// output: { firstname: 'robin', lastname: 'wieruch' }
+// 출력: { firstname: 'robin', lastname: 'wieruch' }
 console.log(firstname, lastname);
-// output: robin wieruch
+// 출력: robin wieruch
 ~~~~~~~~
 
 `export`에서 바로 변수를 내보낼 수 있습니다.
@@ -129,7 +129,7 @@ export const lastname = 'wieruch';
 * [[MDN] ES6 import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
 * [[MDN] ES6 export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)
 
-## 4.2 ES6 모듈로 코드 구성하기 / Code Organization with ES6 Modules
+## 4.2 ES6 모듈 구성
 
 그동안 *src/App.js* 파일의 컴포넌트를 모듈로 만들지 않고 같은 파일에 코드를 계속 작성한 이유가 궁금할 것입니다. 처음 리액트를 시작할 때는 한 파일에서 모든 코드를 작성하는 것이 좋습니다. 리액트 개발이 익숙해지고 애플리케이션 규모가 커지면 그때 컴포넌트를 모듈로 분할해야 합니다.
 
@@ -308,7 +308,7 @@ import SubmitButton from '../Buttons/SubmitButton';
 
 * 책을 다 마친 후 *src/App.js* 을 리팩토링하여 컴포넌트 모듈로 만듭니다.
 
-## 4.3 Jest 스냅샷테스트 / Snapshot Tests with Jest
+## 4.3 Jest 스냅샷 테스트
 
 이 책에서는 테스트를 깊게 다루지 않습니다. 그러나 프로그래밍에서 테스트는 필수이기 때문에 꼭 알아야 합니다. 테스트야 말로 코드의 품질을 높이고 모든 것이 문제없이 잘 작동하는 애플리케이션임을 보장하기 때문이지요. 
 
@@ -559,7 +559,7 @@ describe('Table', () => {
 ### 읽어보기
 * [[리액트 공식 문서] Jest](https://facebook.github.io/jest/docs/tutorial-react.html)
 
-## 4.4 Enzyme 단위 테스트 / Unit Tests with Enzyme
+## 4.4 Enzyme 단위 테스트
 
 [Enzyme(엔자임)](https://github.com/airbnb/enzyme)는 에어비앤비가 만든 테스트 유틸리티로 리액트 컴포넌트를 확인, 조작, 통과시킵니다. Enzyme은 스냅샷 테스트를 보완하여 단위 테스트를 수행합니다.
 
@@ -590,7 +590,7 @@ Enzyme.configure({ adapter: new Adapter() });
 # leanpub-end-insert
 ~~~~~~~~
 
-Table 컴포넌트 "describe" 문에 첫 번째 단위 테스트를 작성하겠습니다. `shallow()` 메서드는 컴포넌트를 렌더링합니다. 리스트 내 아이템이 두 개임으로 Table 컴포넌트 내 요소가 두 개 있다고 가정하겠습니다. 이 검증문은 `table-row` 클래스에 두 요소가 있는지를 체크합니다. 
+Table 컴포넌트 "describe" 문에 첫 번째 단위 테스트를 작성하겠습니다. `shallow()` 메서드는 컴포넌트를 렌더링합니다. 리스트 내 아이템이 두 개임으로 Table 컴포넌트 내 엘레먼트가 두 개 있다고 가정하겠습니다. 이 검증문은 `table-row` 클래스에 두 엘레먼트가 있는지를 체크합니다. 
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -649,7 +649,7 @@ Enzyme API에는 세 가지 렌더링 메서드가 있습니다. `shallow()`  �
 
 * [enzyme과 API 렌더링](https://github.com/airbnb/enzyme)
 
-## 4.5 PropTypes 컴포넌트 인터페이스 / Component Interface with PropTypes
+## 4.5 PropTypes 컴포넌트 인터페이스
 
 자바스크립트 타입 인터페이스인 [타입스크립트(TypeScript)](https://www.typescriptlang.org/) 또는 [플로우(Flow)](https://flowtype.org/)에 대해 한번 쯤 들어본 적이 있을 것입니다. 프로그래밍에서는 텍스트 입력 오류가 발생하기 쉽기 때문에 텍스트를 기반으로 유효성을 검사합니다. 프로그램이 실행되기 전 에디터와 유틸리티로 텍스트 오류를 체크합니다. 이로써 프로그램 품질을 견고하게 만들어 줍니다.
 
@@ -708,7 +708,7 @@ Button.propTypes = {
 * PropTypes.object
 * PropTypes.string
 
-또한 렌더링 요소(노드, 문자열, 리액트 요소)를 정의하는 PropType는 다음과 같습니다.
+또한 렌더링 엘레먼트(노드, 문자열, 리액트 엘레먼트)를 정의하는 PropType는 다음과 같습니다.
 
 * PropTypes.node
 * PropTypes.element
@@ -809,11 +809,12 @@ ES6 기본 매개변수와 동일하게, default prop은 부모 컴포넌트가 
 * 다음 장에서 컴포넌트를 추가, 수정할 때마다 PropType을 업데이트합니다.
 
 ### 읽어보기
+
 * [[리액트 공식 문서] 리액트 PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)
 
 {pagebreak}
 
-이번 장에서는 코드 구성과 테스트 코드 작성법을 배웠습니다! 지금까지 배운 내용을 정리해봅시다.
+4장에서는 코드 구성과 테스트 코드 작성법을 배웠습니다. 지금까지 배운 내용을 정리해봅시다.
 
 * 리액트
   * PropTypes는 컴포넌트 타입을 정의합니다.
