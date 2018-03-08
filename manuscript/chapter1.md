@@ -795,4 +795,4 @@ App 클래스는 `Component` 클래스의 기능을 확장함으로, `Component`
 
 잠시 휴식 시간을 가집시다. 학습 내용을 되새기고 적용해보며 지금까지 작성한 코드와 배운 내용을 내 것으로 만듭시다. 이것저것 만들어보며 테스트해보길 바랍니다. 
 
-앞으로 만들어볼 해커 뉴스 애플리케이션이 궁금하다면 [깃허브 리퍼 지토리](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.1)를 확인하세요.
+앞으로 만들어볼 해커 뉴스 애플리케이션이 궁금하다면 [깃허브 리퍼지토리](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.1)를 확인하세요.
