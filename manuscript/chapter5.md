@@ -118,7 +118,7 @@ class Search extends Component {
 
 애플리케이션이 렌더링될 때 input 필드에 포커스를 주어야 합니다. 이를 위해 기본적으로 `ref` 속성을 사용합니다.
 
-그러나 `this` 객체가 없는 함수형 비상태 컴포넌트는 `ref`를 어떻게 접근할 수 있을까요? 아래 함수형 비상태 컴포넌트를 살펴보겠습니다.
+그러나 `this` 객체가 없는 함수형 비 상태 컴포넌트는 `ref`를 어떻게 접근할 수 있을까요? 아래 함수형 비 상태 컴포넌트를 살펴보겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -158,7 +158,7 @@ const Search = ({
 
 ## 5.2 Loading 컴포넌트
 
-애플리케이션으로 다시 돌아가 봅시다. 해커 뉴스 API로 검색 요청하는 동안 로딩 인디케이터를 보여주고 싶을 겁니다. 비동기 요청임으로 사용자에게 그동안 기다릴 것을 알려줘야 합니다. *src/App.js* 파일에서 재사용 가능한 Loading 컴포넌트를 만듭시다.
+애플리케이션으로 다시 돌아가 봅시다. 해커 뉴스 API로 검색 요청하는 동안 로딩 인디케이터를 보여주고 싶을 겁니다. 비동기 요청임으로 사용자에게 그동안 기다릴 것을 알려줘야 합니다. *src/App.js* 파일에서 재사용 가능한 Loading 컴포넌트를 만들겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -166,7 +166,7 @@ const Loading = () =>
   <div>Loading ...</div>
 ~~~~~~~~
 
-다음 로딩 상태를 저장하는 프로퍼티가 필요합니다. 로딩 상태에 따라 컴포넌트가 보여집니다.
+다음 로딩 상태를 저장하는 프로퍼티가 필요합니다. 로딩 상태에 따라 컴포넌트가 보여지게 됩니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -233,7 +233,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-마지막으로 App 컴포넌트 안에 Loading 컴포넌트를 사용하겠습니다. 조건부 렌더링으로 로딩 상태에 따라 Loading 컴포넌트 또는 Button 컴포넌트 둘 중 하나를 보여줍니다. Button 컴포넌트는 더 많은 데이터를 가져오는 버튼입니다.
+이제 App 컴포넌트 안에 Loading 컴포넌트를 사용하겠습니다. 조건부 렌더링으로 로딩 상태에 따라 Loading 컴포넌트 또는 Button 컴포넌트 둘 중 하나를 보여줍니다. Button 컴포넌트는 더 많은 데이터를 가져오는 버튼입니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -282,11 +282,11 @@ class App extends Component {
 
 ## 5.3 고차 컴포넌트
   
-고차 컴포넌트(HOCs: Higher order components)는 리액트의 고급 주제입니다. HOCs는 고차 함수와 동일한 개념입니다. HOCs는 함수와 같이 입력, 선택적 인자를 받아 컴포넌트를 출력합니다. 반환된 컴포넌트는 입력된 컴포넌트로 JSX에서 사용됩니다. 
+고차 컴포넌트(Higher order components, 이하 HOCs)는 리액트의 고급 주제입니다. HOCs는 고차 함수와 동일한 개념입니다. HOCs는 함수와 같이 입력과 선택적 인자를 받아 컴포넌트를 출력합니다. 반환된 컴포넌트는 입력된 컴포넌트로 JSX에서 사용됩니다. 
 
 HOCs는 여러 사용 사례가 있습니다. 프로퍼티 준비, 상태 관리, 컴포넌트 표시 변경을 할 수 있습니다. 또는 조건부 렌더링에서 HOCs를 헬퍼로 사용할 수 있습니다. 예를 들어 List 컴포넌트가 있는데, 이 컴포넌트는 리스트를 반환하거나 리스트가 없거나 null일 경우 아무것도 반환하지 않는다고 합니다. HOCs는 리스트가 없을 때 렌더링 하지 못하게 할 수 있습니다. 이렇게 하면 List 컴포넌트는 리스트가 없을 경우를 체크하지 않아도 됩니다. 그저 List 컴포넌트는 리스트를 렌더링 하는 역할에만 충실하면 됩니다. 
 
-컴포넌트를 입력으로 사용하고, 컴포넌트를 반환하는 간단한 HOC를 만들어봅시다. *src/App.js* 파일에서 작성하면 됩니다.
+컴포넌트를 입력으로 사용하고, 컴포넌트를 반환하는 간단한 HOCs를 만들어봅시다. *src/App.js* 파일에서 작성하면 됩니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -297,7 +297,7 @@ function withFoo(Component) {
 }
 ~~~~~~~~
 
-관례로 HOC 변수명 앞에 `with` 접두어를 붙입니다. ES6 화살표 함수로 HOC를 간결하게 작성합시다.
+관례로 HOCs 변수명 앞에 `with` 접두어를 붙입니다. ES6 화살표 함수로 HOCs를 간결하게 만들겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -305,7 +305,7 @@ const withFoo = (Component) => (props) =>
   <Component { ...props } />
 ~~~~~~~~
 
-이 예제에서 입력 컴포넌트는 출력 컴포넌트와 동일하게 유지됩니다. 아무 일도 일어나지 않습니다. 동일한 컴포넌트 인스턴스를 렌더링하고 모든 props를 출력 컴포넌트로 전달합니다. 그러나 유용하지 않습니다. 출력 컴포넌트를 개선해봅시다. 출력 컴포넌트는 로딩 상태가 true일 때 Loading 컴포넌트를 보여주고, 그렇지 않을 때 입력 컴포넌트를 보여줘야 합니다. 조건부 렌더링에서 HOC을 사용하는 것이 좋습니다.
+이 예제에서 입력 컴포넌트는 출력 컴포넌트와 동일하게 유지됩니다. 아무 일도 일어나지 않습니다. 동일한 컴포넌트 인스턴스를 렌더링하고 모든 props를 출력 컴포넌트로 전달합니다. 그러나 유용하지 않습니다. 출력 컴포넌트를 개선해봅시다. 출력 컴포넌트는 로딩 상태가 true일 때 Loading 컴포넌트를 보여주고, 그렇지 않을 때 입력 컴포넌트를 보여줘야 합니다. 조건부 렌더링에서 HOCs을 사용하는 것이 좋습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -331,7 +331,7 @@ const { foo, bar } = props;
 <SomeComponent { ...props } />
 ~~~~~~~~
 
-`isLoading`를 포함한 모든 props를 객체를 전개해서 입력 컴포넌트에 전달했습니다. 그러나 입력 컴포넌트는 `isLoading` 프로퍼티를 신경 쓰지 않습니다. 이를 피하기 위해 ES6 구조 해체를 사용합니다.
+`isLoading`를 포함한 모든 props 객체를 전개해서 입력 컴포넌트에 전달했습니다. 그러나 입력 컴포넌트는 `isLoading` 프로퍼티를 신경 쓰지 않습니다. 이를 피하기 위해 ES6 구조 해체를 사용합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -345,7 +345,7 @@ const withLoading = (Component) => ({ isLoading, ...rest }) =>
 
 객체에서 프로퍼티 하나를 가져오지만 나머지 객체는 유지됩니다. 또한 여러 프로퍼티와 함께 사용됩니다. 이미 여러분들은 [[MDN] 구조 해체 할당](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) 부분을 읽었을 겁니다.
 
-이제 JSX에서 HOC를 사용해봅시다. 우리는 "More" 버튼 또는 Loading 컴포넌트 둘 중 하나를 보여줄 겁니다. Loading 컴포넌트는 HOC에 캡슐화되어있지만 입력 컴포넌트는 빠져있습니다. 입력 컴포넌트를 Button 컴포넌트로, 출력 컴포넌트는 ButtonWithLoading 컴포넌트로 추가합시다.
+이제 JSX에서 HOCs를 사용해봅시다. 우리는 "More" 버튼 또는 Loading 컴포넌트 둘 중 하나를 보여줄 겁니다. Loading 컴포넌트는 HOCs에 캡슐화되어있지만 입력 컴포넌트는 빠져있습니다. 입력 컴포넌트를 Button 컴포넌트로, 출력 컴포넌트는 ButtonWithLoading 컴포넌트로 추가합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -371,7 +371,7 @@ const ButtonWithLoading = withLoading(Button);
 # leanpub-end-insert
 ~~~~~~~~
 
-마지막으로 ButtonWithLoading 컴포넌트가 loading 상태를 프로퍼티로 가져오게 만듭시다. HOC가 loading 프로퍼티를 사용하는 동안, 나머지 props 전체는 Button 컴포넌트로 전달됩니다.
+마지막으로 ButtonWithLoading 컴포넌트가 loading 상태를 프로퍼티로 가져오게 만듭시다. HOCs가 loading 프로퍼티를 사용하는 동안, 나머지 props 전체는 Button 컴포넌트로 전달됩니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -399,7 +399,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-테스트를 다시 실행하면, App 컴포넌트의 스냅샷 테스트가 실패함을 알 수 있습니다. 커맨드 라인에서 diff가 아래와 같이 보일 것입니다.
+`npm run test` 명령어로 테스트를 실행하면, App 컴포넌트의 스냅샷 테스트가 실패함을 알 수 있습니다. 커맨드 라인에서 diff가 아래와 같이 보일 것입니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -415,9 +415,9 @@ class App extends Component {
 +    </div>
 ~~~~~~~~
 
-잘못되었다고 판단되면 지금 바로 컴포넌트를 수정할 수 있습니다. 또는 스냅샷을 수락할 수 있습니다. Loading 컴포넌트를 만들었기 때문에 커맨드 라인에서 변경된 스냅샷 테스트를 수락할 수 있습니다. 
+잘못되었다고 판단되면 컴포넌트를 수정하거나, 스냅샷을 수락할 수 있습니다. Loading 컴포넌트를 만들었기 때문에 커맨드 라인에서 변경된 스냅샷 테스트를 수락할 수 있습니다. 
 
-고차 컴포넌트는 리액트에서 고급 테크닉입니다. 고차 컴포넌트는 컴포넌트의 재사용성 향상, 강화된 추상화, 컴포넌트의 조합과 props, 상태 및 뷰 조작 등 여러 목적을 가지고 있습니다. 지금 모든 것을 이해하지 못한다고 해도 걱정하지 않길 바랍니다. 익숙해지기까지 시간이 걸립니다. 
+고차 컴포넌트는 리액트 고급 테크닉입니다. 고차 컴포넌트는 컴포넌트의 재사용성 향상, 강화된 추상화, 컴포넌트의 조합과 props, 상태 및 뷰 조작 등 여러 목적을 가지고 있습니다. 지금 모든 것을 이해하지 못한다고 해도 걱정하지 않길 바랍니다. 익숙해지기까지 꽤 시간이 걸릴 것입니다. 
 
 저자가 쓴 [고차 컴포넌트 시작하기](https://www.robinwieruch.de/gentle-introduction-higher-order-components/) 글을 읽어보길 바랍니다. 고차 컴포넌트를 배우는 방법을 설명하고 함수형 프로그래밍과 조건부 렌더링 내 고차 컴포넌트 문제를 해결할 수 있는 방법을 소개했습니다.
 
@@ -426,15 +426,15 @@ class App extends Component {
 * [[저자 블로그] 고차 컴포넌트 시작하기](https://www.robinwieruch.de/gentle-introduction-higher-order-components/)
 
 ### 실습하기
-* HOC를 실험해봅니다.
-* 그 외 더 많은 HOC 사용 사례를 생각해봅시다.
-  * 직접 HOC를 구현해봅시다.
+* HOCs를 실험해봅니다.
+* 그 외 더 많은 HOCs 사용 사례를 생각해봅시다.
+  * 직접 HOCs를 구현해봅시다.
 
 ## 5.4 심화: 정렬
 
-클라이언트와 서버 모두 검색 인터렉션을 다뤄봤습니다. Table 컴포넌트로 좀 더한층 심화된 인터렉션을 다뤄보겠습니다. Table 컴포넌트의 각 첫 행에 라벨을 추가하고 이를 활용해 정렬 기능을 만들어보겠습니다. 
+지금까지 클라이언트와 서버 모두 검색 인터렉션을 다뤄봤습니다. 이번 절에서는 Table 컴포넌트로 한층 심화된 인터렉션을 다루겠습니다. Table 컴포넌트의 각 첫 행에 라벨을 추가하고 이를 활용해 정렬 기능을 만들어보겠습니다. 
 
-저는 정렬 기능 구현 시, 직접 함수를 만드는 것보다 유틸리티 라이브러리를 사용하는 것을 선호합니다. 그중 가장 대표적인 유틸리티 라이브러리인 [로대쉬(Lodash)](https://lodash.com/)이며 다른 라이브러리를 사용해도 좋습니다. 먼저 로대쉬를 설치합시다.
+저는 정렬 기능 구현 시, 직접 함수를 만드는 것보다 유틸리티 라이브러리를 사용하는 것을 선호합니다. 그중 가장 대표적인 유틸리티 라이브러리는 [로대쉬(Lodash)](https://lodash.com/)입니다. 물론 다른 라이브러리를 사용해도 괜찮습니다만 이 책에서는 로대쉬를 사용하겠습니다. 먼저 로대쉬를 설치합니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -446,7 +446,7 @@ npm install lodash
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 import React, { Component } from 'react';
-import fetch from 'isomorphic-fetch';
+import axios from 'axios';
 # leanpub-start-insert
 import { sortBy } from 'lodash';
 # leanpub-end-insert
