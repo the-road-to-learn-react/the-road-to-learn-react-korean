@@ -60,7 +60,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-state는 `this` 객체를 사용해 클래스에 바인딩됩니다. 따라서 전체 컴포넌트 내 로컬 상태에 접근할 수 있게 되고, `render()` 메서드에서 state를 사용할 수 있습니다. 우리는 컴포넌트 외부에 있는 `list`를 컴포넌트 내부 상태로 정의했습니다. 이 `list` state를 `render()` 메서드에 사용해봅시다.
+state는 `this` 객체를 사용해 클래스에 바인딩됩니다. 따라서 전체 컴포넌트 내 로컬 상태에 접근할 수 있게 되어, `render()` 메서드에서 state를 사용할 수 있습니다. 우리는 컴포넌트 외부에 있는 `list`를 컴포넌트 내부 상태로 정의했습니다. 이 `list` state를 `render()` 메서드에 사용해보겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -929,7 +929,7 @@ class App extends Component {
 
 좀 더 다른 방법으로 `filter()` 메서드를 다뤄봅시다. 클래스 컴포넌트 외부에서 `filter()` 메서드에 전달되는 인자를 정의하겠습니다. 컴포넌트 상태에 직접 접근할 수 없어 `searchTerm` 프로퍼티를 접근할 수도 없습니다. 따라서 새로운 함수가 필요합니다. `filter()`메서드에 `searchTerm`을 전달하고 조건을 확인하는 함수를 반환하는 함수를 만들어보겠습니다. 다른 말로 이 함수는 고차 함수(higher order function)라고 불립니다.
 
-이 책은 고차 함수를 다루지 않지만, 리액트는 고차원 컴포넌트(higher order components)를 다루기 때문에 고차 함수에 대해 알고 있어야 합니다. 다시 `filter()` 메서드를 봅시다. 제일 먼저 App 컴포넌트 외부에 고차 함수를 정의하겠습니다.
+이 책은 고차 함수를 다루지 않지만, 리액트는 고차 컴포넌트(higher order components)를 다루기 때문에 고차 함수에 대해 알고 있어야 합니다. 다시 `filter()` 메서드를 봅시다. 제일 먼저 App 컴포넌트 외부에 고차 함수를 정의하겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1776,7 +1776,7 @@ const Table = ({ list, pattern, onDismiss }) =>
   </div>
 ~~~~~~~~
 
-다음으로 외부에 스타일 객체를 정의해 좀 더 코드를 깔끔하게 만들어 봅시다.
+다음으로 외부에 스타일 객체를 정의해 좀 더 코드를 깔끔하게 만들겠습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -1793,7 +1793,7 @@ const smallColumn = {
 };
 ~~~~~~~~
 
-그리고 각 열에 적용하겠습니다. 가로 넓이가 10%인 `smallColumn` 객체는 `<span style={smallColumn}>`이라고 수정합니다. 
+이제 각 열에 적용하겠습니다. 가로 넓이가 10%인 `smallColumn` 객체는 `<span style={smallColumn}>`이라고 수정합니다. 
 
 리액트 스타일링 방법은 매우 다양합니다. 지금은 순수한 CSS와 인라인 스타일으로만 스타일을 정의했습니다. 지금은 이 정도로도 충분합니다. 
 
