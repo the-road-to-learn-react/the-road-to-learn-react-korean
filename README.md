@@ -73,7 +73,7 @@
 	1. [Eject](manuscript/deployChapter.md#71-eject)
 	2. [Heroku 배포](manuscript/deployChapter.md#72-heroku-%EB%B0%B0%ED%8F%AC)
 
-8. [**마치는 글**](manuscript/foreword.md)
+8. [**마치는 글**](manuscript/finalwords.md)
 ---
 
 ## 지은이 · 옮긴이
