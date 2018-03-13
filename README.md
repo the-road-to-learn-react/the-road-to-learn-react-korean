@@ -94,8 +94,8 @@
 * 도서 수정 관련 소식은 [이메일](https://www.getrevue.co/profile/rwieruch)과 [트위터](https://twitter.com/rwieruch)를 통해 전하고 있습니다.
 
 ### 도움받기
-* 학습 도중 도움이 필요하거나, 다른 사람을 도와주고 싶다면 공식 [슬랙(Slack)](https://slack-the-road-to-learn-react.wieruch.com/)에 들어오세요.
-* 한국어 사용자를 위한 채널이 열려있습니다. `#road-to-react-korean` 채널로 들어오세요.
+* 학습 도중 도움이 필요하거나, 다른 사람을 도와주고 싶다면 "The Road to learn React" 독자 커뮤니티 [슬랙](https://slack-the-road-to-learn-react.wieruch.com/)에 들어오세요.
+* 한국어 사용자를 위한 채널이 열려있습니다. `#road-to-react-korean` 채널에서 함께 공부할 수 있습니다.
 
 ### 후원하기
 * 이 책의 프로젝트 후원자가 되실 수 있습니다. [후원 방법](https://www.robinwieruch.de/about/)에서 자세한 내용을 확인하세요.
