@@ -399,7 +399,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-`npm run test` 명령어로 테스트를 실행하면, App 컴포넌트의 스냅샷 테스트가 실패함을 알 수 있습니다. 커맨드 라인에서 diff가 아래와 같이 보일 것입니다.
+테스트를 실행해봅시다. App 컴포넌트의 스냅샷 테스트가 실패함을 알 수 있습니다. 커맨드 라인에서 diff가 아래와 같이 보일 것입니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -434,14 +434,14 @@ class App extends Component {
 
 지금까지 클라이언트와 서버 모두 검색 인터렉션을 다뤄봤습니다. 이번 절에서는 Table 컴포넌트로 한층 심화된 인터렉션을 다루겠습니다. Table 컴포넌트의 각 첫 행에 라벨을 추가하고 이를 활용해 정렬 기능을 만들어보겠습니다. 
 
-저는 정렬 기능 구현 시, 직접 함수를 만드는 것보다 유틸리티 라이브러리를 사용하는 것을 선호합니다. 그중 가장 대표적인 유틸리티 라이브러리는 [로대쉬(Lodash)](https://lodash.com/)입니다. 물론 다른 라이브러리를 사용해도 괜찮습니다만 이 책에서는 로대쉬를 사용하겠습니다. 먼저 로대쉬를 설치합니다.
+직접 정렬 함수를 만들 수 있지만 라이브러리를 사용하면 편해집니다. 이번 절에서는 가장 대표적인 유틸리티 라이브러리인 [로대쉬(Lodash)](https://lodash.com/)를 사용하겠습니다. 물론 다른 라이브러리를 사용해도 괜찮습니다. 먼저 로대쉬를 설치하겠습니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm install lodash
 ~~~~~~~~
 
-그리고 *src/App.js* 파일에서 로대쉬의 정렬 함수를 가져옵니다.
+*src/App.js* 파일에서 로대쉬의 정렬 함수를 가져옵니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -475,11 +475,11 @@ class App extends Component {
 ...
 ~~~~~~~~
 
-두 개의 정렬 함수가 역순으로 나열되었습니다. 처음 리스트를 정렬할 때, 댓글 수와 점수가 높은 순으로 정렬됩니다. 
+SORTS 함수 중 `COMMENTS`와 `POINTS` 함수는 내림차순 배열입니다.  `COMMENTS` 함수는 댓글 수가 높은 순, `POINTS` 함수는 점수가 높은 순으로 정렬됩니다. 
 
-`SORTS`객체로 정렬 함수를 사용합니다.
+`SORTS` 객체로 정렬 함수를 사용합니다.
 
-App 컴포넌트는 정렬 상태를 저장합니다 초기 상태는 초기 정렬 함수이며, 정렬되지 않은 입력 리스트를 반환합니다.
+App 컴포넌트에 정렬 상태인 `sortKey`를 저장합니다. 초기 정렬 상태 값은 `'NONE'`이며, 정렬되지 않은 리스트를 반환합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -495,10 +495,9 @@ this.state = {
 };
 ~~~~~~~~
 
+`sortKey` 상태 값을 `'AUTHOR'`로 바꾸게 되면, `SORTS` 객체의 `AUTHOR` 함수를 통해 리스트를 정렬합니다.
 
-다른 `sortKey`로 `AUTHOR` 키를 선택해봅시다, `SORTS` 객체의 `AUTHOR` 함수를 통해 리스트를 정렬합니다.
-
-다음 App 컴포넌트에서 새로운 클래스 메서드를 만들어봅시다. 이 메서드는 `sortKey`로 정렬 함수를 찾아 리스트에 적용합니다.
+다음 App 컴포넌트에서 새로운 클래스 메서드를 만들겠습니다. 이 메서드는 `sortKey`로 정렬 함수를 찾아 리스트에 적용합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -530,7 +529,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-그리고 Table 컴포넌트에 메서드와 `sortKey`을 전달합시다.
+그리고 Table 컴포넌트에 메서드와 `sortKey`을 전달합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -570,7 +569,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Table 컴포넌트는 리스트 정렬을 담당합니다. `sortKey` 로 `SORT` 함수 중 하나를 취해 리스트를 입력으로 전달합니다. 정렬된 리스트는 유지됩니다.
+Table 컴포넌트는 리스트 정렬합니다. `sortKey` 로 `SORT` 함수 중 하나를 취해 리스트를 입력으로 전달하고, 정렬된 리스트를 반환합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -593,7 +592,7 @@ const Table = ({
   </div>
 ~~~~~~~~
 
-이론적으로 리스트는 특정 함수에 의해 정렬됩니다. 기본 정렬은 `NONE`이기 때문에 아직 정렬이 되지 않았습니다. `sortKey`를 바꾸기 위해 `onSort()` 메서드를 실행하지 않았습니다.  Sort 컴포넌트로 열 헤더를 기반으로 정렬할 수 있게 합시다. Table 안에 Sort 컴포넌트를 사용해 확장해봅시다.
+앞서 말했듯이 리스트는 특정 함수에 의해 정렬됩니다. 기본 정렬 값은 `'NONE'`이기 때문에 리스트는 정렬되지 않았습니다. 아직 `sortKey`를 바꿔주는 `onSort()` 메서드를 실행하지 않았습니다. 다음으로 Sort 컴포넌트를 만들어 열 헤더를 기반으로 정렬할 수 있게 만들겠습니다. 먼저 Table 안에 Sort 컴포넌트를 추가하겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -649,7 +648,7 @@ const Table = ({
   </div>
 ~~~~~~~~
 
-Sort 컴포넌트는 특정 `sortKey`와 `onSort()`메서드를 갖고 있습니다. 내부에서 특정 키를 설정하기 위해  `sortKey` 메서드를 호출합니다.
+다음으로 Sort 컴포넌트를 정의하겠습니다. Sort 컴포넌트는 특정 `sortKey`와 `onSort()`메서드를 갖고 있습니다. 내부에서 특정 키를 설정하기 위해  `sortKey` 메서드를 호출합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -676,7 +675,7 @@ const Sort = ({ sortKey, onSort, children }) =>
   </Button>
 ~~~~~~~~
 
-이제 멋지게 보입니다. 다음 목표는 역 정렬을 구현하는 것입니다. Sort 컴포넌트를 두 번 클릭하면 리스트가 역순으로 정렬 됩니다. 먼저 불리언 값을 사용해 `isSortReverse` 상태를 정의하겠습니다. `isSortReverse`가 `true`일 경우 역순으로 정렬되며, 반대로 `false`일 경우 정렬되지 않습니다.
+이제 멋지게 보이네요. 다음으로 내림차순 정렬을 구현하겠습니다. Sort 컴포넌트를 두 번 클릭하면 리스트가 내림차순으로 정렬됩니다. 먼저 불리언 값을 사용하는 `isSortReverse` 상태를 만들겠습니다. `isSortReverse`가 `true`일 경우 내림차순으로 정렬되며, 반대로 `false`일 경우 정렬되지 않습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -693,7 +692,7 @@ this.state = {
 };
 ~~~~~~~~
 
-`onSort()` 메서드에서 리스트가 역순으로 정렬되었는지 평가할 수 있습니다. `sortKey` 상태값이 입력된 `sortKey`와 같으며 반대 상태가 `true`로 설정되지 않을 경우 정렬하게 됩니다.
+`onSort()` 메서드에서 리스트가 내림차순으로 정렬되었는지 확인하도록 만들어보겠습니다. 조건문을 만들어 `sortKey` 상태값이 입력된 `sortKey`와 같으며 `isSortReverse`가 `true`로 설정되지 않을 경우 정렬하게 만들겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -705,7 +704,7 @@ onSort(sortKey) {
 }
 ~~~~~~~~
 
-다시 Table 컴포넌트에 역정렬된 props를 전달합니다.
+Table 컴포넌트에 isSortReverse props를 전달합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -747,7 +746,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-Table 컴포넌트에 데이터를 계산하는 화살표 함수 블록 본문이 있어야 합니다.
+다시 Table 컴포넌트에 데이터를 계산하도록 화살표 함수 블록을 추가하겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -782,11 +781,11 @@ const Table = ({
 # leanpub-end-insert
 ~~~~~~~~
 
-리스트가 역순으로 잘 정렬됩니다.
+헤더를 클릭해 리스트가 내림차순으로 잘 정렬되었는지 확인해보세요.
 
-마지막으로 사용자 경험 향상을 위해 개선할 사항이 남았습니다. 지금 어떤 열을 기준으로 정렬했는지 알 수가 없습니다. 사용자가 올바르게 인식하려면 어떻게 해야할까요? 바로 시각적인 효과를 줄 수 있습니다.
+마지막으로 사용자 경험 향상을 위해 개선할 사항이 남았습니다. 지금 어떤 열을 기준으로 정렬했는지 알 수가 없습니다. 시각적인 효과를 추가해보겠습니다.
 
-각 Sort 컴포넌트는 특정 `sortKey`를 가져옵니다. 이 키로 현재 선택된 정렬을 식별하는 사용할 수 있습니다. 컴포넌트 내부 상태의 `sortKey`를 선택된 정렬 키로 Sort 컴포넌트로 전달합시다.
+각 Sort 컴포넌트는 특정 `sortKey`를 가져옵니다. 이 키로 현재 선택된 정렬을 식별하는 사용할 수 있습니다. 컴포넌트 내부 상태 `sortKey`를 선택된 정렬 키로 Sort 컴포넌트로 전달하겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -861,7 +860,7 @@ const Table = ({
 }
 ~~~~~~~~
 
-이제 Sort 컴포넌트에서 `sortKey`와 `activeSortKey`를 근거로 정렬이 활성화되었는지 알 수 있습니다. 시각적인 효과를 주기 위해 Sort 컴포넌트에 `className` 속성을 지정합시다.
+이제 Sort 컴포넌트에서 `sortKey`와 `activeSortKey`를 근거로 정렬이 활성화되었는지 알 수 있습니다. 시각적인 효과를 주기 위해 Sort 컴포넌트에 `className` 속성을 지정합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -890,21 +889,21 @@ const Sort = ({
 # leanpub-end-insert
 ~~~~~~~~
 
-`sortClass`를 정의하는 방법이 꽤 좋아보이지 않습니다. classnames 라이브러리를 사용해서 이를 해결해보겠습니다.
+`sortClass`를 정의하는 방법이 꽤 좋아보이지 않습니다. classnames 라이브러리로 이를 해결해보겠습니다.
 
-classnames 라이브러리를 설치합시다.
+classnames 라이브러리를 설치합니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
 npm install classnames
 ~~~~~~~~
 
-이어서 *src/App.js* 파일에서 라이브러리를 선언해 가져옵니다.
+그리고 *src/App.js* 파일에서 라이브러리를 가져옵니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 import React, { Component } from 'react';
-import fetch from 'isomorphic-fetch';
+import axios from 'axios';
 import { sortBy } from 'lodash';
 # leanpub-start-insert
 import classNames from 'classnames';
@@ -912,7 +911,7 @@ import classNames from 'classnames';
 import './App.css';
 ~~~~~~~~
 
-classname 라이브러리를 사용해 `className` 컴포넌트를 조건부 클래스로 정의합시다.
+classname 라이브러리를 사용해 `className` 컴포넌트를 조건부 클래스로 정의하겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -942,7 +941,7 @@ const Sort = ({
 }
 ~~~~~~~~
 
-테스트를 실행하면 스냅샷 테스트 뿐만 아니라 Table 컴포넌트의 유닛 테스트가 실패한 것도 확인해야 합니다. 컴포넌트를 다시 변경했기 때문에, 스냅샷 테스트를 수락할 수 있습니다만, 유닛 테스트를 수정해야 합니다. *src/App.test.js* 파일에서 아래와 같이 Table 컴포넌트 부분에 `sortKey`과 `isSortReverse` 불리언을 추가합시다.
+다시 테스트를 실행해봅시다. 스냅샷 테스트 뿐만 아니라 Table 컴포넌트 단위 테스트가 실패했는지를 확인합시다. 컴포넌트를 다시 변경했기 때문에, 스냅샷 테스트를 수락할 수 있습니다만, 단위 테스트도 수정해야 합니다. *src/App.test.js* 파일에서 아래와 같이 Table 컴포넌트 부분에 `sortKey`과 `isSortReverse` 불리언을 추가합니다.
 
 {title="src/App.test.js",lang=javascript}
 ~~~~~~~~
@@ -988,6 +987,6 @@ Table 컴포넌트에 확장된 prop가 있기 때문에 한번 더 Table 컴포
   * 리액트에서 어려운 인터렉션을 구현했습니다.
   * 조건부 클래스명을 위해 `classnames` 라이브러리를 사용했습니다.
 * ES6
-  * 객체와 배열을 분리하기 위해 구조 해체를 했습니다.
+  * 구조 해체로 객체와 배열을 분리했습니다.
   
 실습 코드는 [공식 깃허브 리퍼지토리](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.1)에서 확인할 수 있습니다.
