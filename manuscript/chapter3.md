@@ -85,7 +85,7 @@ const PARAM_SEARCH = 'query=';
 ...
 ~~~~~~~~
 
-ES6는 새로운 문자열 표기법인 [템플릿 리터럴(Template_literals)](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals)을 도입했습니다. 템플릿 리터럴을 사용하면 여러 줄로 이루어진 문자열을 쉽게 표현할 수 있습니다. 템플릿 리터럴로 URL 구성하여 API 엔드 포인트에 연결합니다.
+ES6는 새로운 문자열 표기법인 [템플릿 리터럴(template literals)](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals)을 도입했습니다. 템플릿 리터럴을 사용하면 여러 줄로 이루어진 문자열을 쉽게 표현할 수 있습니다. 템플릿 리터럴로 URL 구성하여 API 엔드 포인트에 연결합니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
