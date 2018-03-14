@@ -780,11 +780,16 @@ const Button = ({
 ~~~~~~~~
 # leanpub-start-insert
 const Button = ({
+# leanpub-start-insert
   onClick,
+# leanpub-start-insert
   className,
+# leanpub-start-insert  
   children
+# leanpub-start-insert
 }) =>
 # leanpub-end-insert
+
   <button
     onClick={onClick}
     className={className}
@@ -795,7 +800,9 @@ const Button = ({
 
 # leanpub-start-insert
 Button.defaultProps = {
+# leanpub-start-insert
   className: '',
+# leanpub-start-insert
 };
 # leanpub-end-insert
 ~~~~~~~~
