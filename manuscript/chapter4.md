@@ -775,6 +775,7 @@ const Button = ({
 ~~~~~~~~
 
 이 기본 매개변수를 default props으로 바꾸겠습니다.
+
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 # leanpub-start-insert
@@ -799,7 +800,7 @@ Button.defaultProps = {
 # leanpub-end-insert
 ~~~~~~~~
 
-ES6 기본 매개변수와 동일하게, default prop은 부모 컴포넌트가 값을 지정하지 않은 경우, 프로퍼티 기본 값이 설정됩니다. default prop을 평가한 후 PropType 타입 검사를 시작합니다.
+ES6 기본 매개변수와 동일하게 default prop은 부모 컴포넌트가 값을 지정하지 않은 경우, 프로퍼티 기본 값이 설정됩니다. default prop을 평가한 후 PropType 타입 검사를 시작합니다.
 
 테스트를 다시 실행해 커맨드 라인에서 컴포넌트 PropType 오류가 있는지를 확인합니다. 테스트에서 PropType을 `isRequired`로 정의했으나, 컴포넌트 내 모든 props를 정의하지 않았을 때 오류가 발생할 수 있습니다. 테스트 자체는 통과됩니다. 오류를 피하기 위해 테스트에서 필수 props를 모두 전달하도록 합니다.
 
