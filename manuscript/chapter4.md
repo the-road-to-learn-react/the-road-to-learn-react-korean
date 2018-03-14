@@ -778,18 +778,11 @@ const Button = ({
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
-# leanpub-start-insert
 const Button = ({
-# leanpub-start-insert
   onClick,
-# leanpub-start-insert
   className,
-# leanpub-start-insert  
   children
-# leanpub-start-insert
 }) =>
-# leanpub-end-insert
-
   <button
     onClick={onClick}
     className={className}
@@ -798,13 +791,9 @@ const Button = ({
     {children}
   </button>
 
-# leanpub-start-insert
 Button.defaultProps = {
-# leanpub-start-insert
   className: '',
-# leanpub-start-insert
 };
-# leanpub-end-insert
 ~~~~~~~~
 
 ES6 기본 매개변수와 동일하게 default prop은 부모 컴포넌트가 값을 지정하지 않은 경우, 프로퍼티 기본 값이 설정됩니다. default prop을 평가한 후 PropType 타입 검사를 시작합니다.
