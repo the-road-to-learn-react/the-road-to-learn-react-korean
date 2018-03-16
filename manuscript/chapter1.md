@@ -110,7 +110,7 @@ npm install --save-dev <package>
   * `mkdir <folder_name>`를 입력해 새 폴더를 생성합니다.
   * `cd <folder_name>` 생성한 폴더 내로 들어갑니다.
   * `npm init -y` 또는 `npm init` 을 실행합니다.
-  * `npm install react`를 입력해 리액트를 전역 패키지로 설치합니다.
+  * `npm install react`를 입력해 리액트를 지역 패키지로 설치합니다.
   * *package.json* 파일과 *node_modules/* 폴더가 생성되었는지 확인합니다.
   * *react* 노드 패키지를 제거하고 다시 설치하는 방법을 스스로 찾아봅니다.
 
