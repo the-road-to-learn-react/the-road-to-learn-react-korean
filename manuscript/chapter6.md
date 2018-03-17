@@ -290,7 +290,7 @@ this.setState((prevState, props) => {
 });
 ~~~~~~~~
 
-왜 이렇게 해야 할까요? 단일 객체가 아닌 함수를 사용할 때 문제가 되기 때문입니다. 바로 이전 상태 또는 props에 따라 상태를 업데이트하는 경우가 있습니다. 이때 함수를 사용하지 않으면 내부 상태로 인해 버그가 발생합니다. `setState()` 메서드는 비동기입니다. 리액트는 `setState()` 메서드를 호출하고 이를 실행합니다. `setState()` 메서드가 호출될 때, 이전 state나 props를 변경할 수 있습니다.
+왜 이렇게 해야 할까요? 단일 객체가 아닌 함수를 사용할 때 문제가 되기 때문입니다. 바로 이전 상태 또는 props에 따라 상태를 업데이트하는 경우가 있습니다. 이때 함수를 사용하지 않으면 내부 상태로 인해 버그가 발생합니다. `setState()` 메서드는 비동기입니다. 리액트는 `setState()` 메서드를 호출하고 이를 실행합니다. `setState()` 메서드가 호출될 때, 이전 state 또는 props를 변경할 수 있습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -299,7 +299,7 @@ const { barCount } = this.props;
 this.setState({ count: fooCount + barCount });
 ~~~~~~~~
 
-`fooCount`과 `barCount`가 있다고 가정해봅시다. 그리고 `setState()` 메서드를 호출할 때 state나 props에 따라 어떤 곳이 변경된다고 합시다. 애플리케이션 규모가 커지면서 한 개 이상의 `setState()`가 호출해야 하는 일이 생깁니다. `setState()`는 비동기적으로 실행되기 때문에, 이전 상태 값을 의존할 수 있습니다. 
+`fooCount`과 `barCount`가 있다고 가정해봅시다. 그리고 `setState()` 메서드를 호출할 때 state 또는 props에 따라 어떤 곳이 변경된다고 합시다. 애플리케이션 규모가 커지면서 한 개 이상의 `setState()`가 호출해야 하는 일이 생깁니다. `setState()`는 비동기적으로 실행되기 때문에, 이전 상태 값을 의존할 수 있습니다. 
 
 `setState()` 메서드는 state와 props를 처리하는 비동기 콜백 함수입니다. `setState()` 메서드는 비동기로 실행될 때 이전 state와 props를 변경합니다.
 
