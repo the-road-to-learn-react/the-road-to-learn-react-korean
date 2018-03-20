@@ -1352,6 +1352,10 @@ class App extends Component {
 * [[저자 블로그] 왜 프레임워크가 중요한가](https://www.robinwieruch.de/why-frameworks-matter/)
 * [[저자 리퍼지토리] 리액트 컴포넌트 대체 문법](https://github.com/rwieruch/react-alternative-class-component-syntax)
 
+{pagebreak}
+
+## 3.10 정리하면
+
 3장에서는 외부 API를 사용하는 방법을 배웠습니다. 지금까지 학습한 내용을 정리해봅시다.
 
 * 리액트
