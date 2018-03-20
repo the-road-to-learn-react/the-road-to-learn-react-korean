@@ -460,6 +460,8 @@ class App extends Component {
 
 {pagebreak}
 
+## 6.4 정리하면
+
 6장에서는 심화 수준의 리액트 상태 관리를 배웠습니다. 지금까지 학습한 내용을 정리해봅시다.
 
 * 리액트
