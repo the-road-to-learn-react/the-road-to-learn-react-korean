@@ -165,7 +165,7 @@ npm install react react-dom
 npm install -g create-react-app
 ~~~~~~~~
 
-*create-reaction-app* 버전을 확인해, 성공적으로 패키지가 설치되었는지 확인합시다.
+*create-react-app* 버전을 확인해, 성공적으로 패키지가 설치되었는지 확인합시다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -220,7 +220,7 @@ hackernews/
 
 이외에 테스트를 위한 *src/App.test.js* 파일과 리액트의 진입점인 *src/index.js* 파일이 보일 겁니다. 다음 장에서 두 파일에 대해 알게 될 것입니다. 또한 애플리케이션과 컴포넌트 스타일을 지정하는 *src/index.css* 및 *src/App.css* 파일이 있습니다. 현재는 기본 스타일만 적용되어 있습니다.
 
-* *create-reaction-app* 애플리케이션은 npm 프로젝트입니다. npm을 사용하여 프로젝트에 노드 패키지를 설치하고 제거할 수 있습니다.
+* *create-react-app* 애플리케이션은 npm 프로젝트입니다. npm을 사용하여 프로젝트에 노드 패키지를 설치하고 제거할 수 있습니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -534,7 +534,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-`list`는 객체로 이루어진 배열입니다. 각 프로퍼티에는 제목(title), url, 작성사(author), 식별자(objectID), 기사의 인기도를 나타내는 점수(point), 댓글 수(num_comments)가 있습니다.
+`list`는 객체로 이루어진 배열입니다. 각 프로퍼티에는 제목(title), url, 작성자(author), 식별자(objectID), 기사의 인기도를 나타내는 점수(point), 댓글 수(num_comments)가 있습니다.
 
 이제 JSX에서 자바스크립트 반복 메서드인 `map()`을 사용해 배열의 모든 데이터를 출력해봅시다. JSX는 자바스크립트 표현식을 캡슐화하기 위해 중괄호(`{}`)를 사용합니다.
 
