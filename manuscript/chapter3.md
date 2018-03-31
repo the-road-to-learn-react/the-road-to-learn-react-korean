@@ -1123,8 +1123,7 @@ class App extends Component {
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
-class App extends Component {
-
+  
   ...
 
   render() {
