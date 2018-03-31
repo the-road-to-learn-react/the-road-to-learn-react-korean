@@ -256,7 +256,7 @@ onDismiss(id) {
 
 문제는 해결되었지만, 앞에서 배운 ES6 전개 연산자(spread operator)를 활용해 더 간단한 코드로 만들 수 있습니다. `...` 표시는 배열 또는 객체의 모든 값을 복사함을 뜻합니다.
 
-아래 ES6 **배열** 스프레드 연산자(array spread operator) 예제 코드를 봅시다.
+아래 ES6 배열 스프레드 연산자(array spread operator) 예제 코드를 봅시다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
