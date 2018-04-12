@@ -33,7 +33,7 @@ state나 props가 변경 시, '업데이트 프로세스'가 시작됩니다. �
 
 * `componentWillUnmount()`
 
-처음부터 모든 생명주기 메서드를 한꺼번에 사용하지 않아도 됩니다. 대규모 애플리케이션에도 `constructor()`과 `render()` 메서드만 사용하는 경우가 많습니다. 앞으로 점점 생명주기 메서드에 익숙해질테니 걱정하지 맙시다. 다음으로 생명주기 메서드를 언제 어떻게 사용해야 하는지 알아봅시다. 
+처음부터 모든 생명주기 메서드를 한꺼번에 사용하지 않아도 됩니다. 대규모 애플리케이션에도 `constructor()`와 `render()` 메서드만 사용하는 경우가 많습니다. 앞으로 점점 생명주기 메서드에 익숙해질테니 걱정하지 맙시다. 다음으로 생명주기 메서드를 언제 어떻게 사용해야 하는지 알아봅시다. 
 
 * **`constructor(props)`** 메서드는 컴포넌트 초기화 시 호출됩니다. 초기 컴포넌트 상태 및 클래스 메서드를 정의합니다. 
 
@@ -153,7 +153,7 @@ class App extends Component {
 
 셋째, fetch API를 사용했습니다. ES6 템플릿 리터럴로 `searchTerm`과 함께 URL를 구성했습니다. 구성된 URL는 fetch API의 인자로 전달됩니다. 응답 데이터는 반드시 JSON 데이터 구조로 변환시켜야 합니다. 마지막으로 이 데이터를 컴포넌트 내부 상태 `result`에 저장합니다. 요청 중 오류가 발생하면 `then()`이 아닌 `catch()`가 실행됩니다. 다음 장에서 오류 처리를 다룹니다.
 
-마지막으로 생성자에 컴포넌트 메서드인 `setSearchTopStories()` 를 바인딩 했습니다.
+마지막으로 생성자에 컴포넌트 메서드인 `setSearchTopStories()`를 바인딩 했습니다.
 
 이제 API로 가져온 외부 데이터 리스트가 표시됩니다. 컴포넌트 내부 상태 `result`는 [메타 정보와 인기 리스트가 같이 담겨 객체가 복잡합니다.](https://hn.algolia.com/api) `render()` 메서드 안에서 `console.log(this.state);`로 상태를 출력하고, 개발자 도구를 열어 디버깅 해보면 데이터를 확인해 볼 수 있습니다.
 
@@ -400,7 +400,7 @@ console.log(result);
 
 이번 절에서는 리액트 조건부 렌더링 세 가지 방법을 배웠습니다. 저자가 쓴 ["조건부 렌더링"](https://www.robinwieruch.de/conditional-rendering-react/) 글에서 더 많은 예제 코드를 확인할 수 있습니다.
 
-애플리케이션에서 가져온 데이터가 잘 보이는지 확인하세요. 요청 보류 중일 떄를 제외하고 모든 기사 리스트가 보일 것입니다. 요청 후 받은 응답 데이터를 로컬 상태로 저장하면 `render()` 메서드가 다시 실행되고, 조건부 렌더링의 조건에 따라 Table 컴포넌트가 표시됩니다.
+애플리케이션에서 가져온 데이터가 잘 보이는지 확인하세요. 요청 보류 중일 때를 제외하고 모든 기사 리스트가 보일 것입니다. 요청 후 받은 응답 데이터를 로컬 상태로 저장하면 `render()` 메서드가 다시 실행되고, 조건부 렌더링의 조건에 따라 Table 컴포넌트가 표시됩니다.
 
 ### 읽어보기
 
@@ -809,7 +809,7 @@ result: {
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
-results: {123
+results: {
   redux: {
     hits: [ ... ],
     page: 2,
@@ -825,7 +825,7 @@ results: {123
 
 이제 `setState()` 메서드로 클라이언트 캐시를 구현해봅시다. 
 
-첫째, 컴포넌트 내부 상태의 `result` 객체를 `results`로 변경합니다. 둘째, `searchKey`를 정의합니다. `searchKey`는 임시  키(key)로서 `result`를 저장하는데 쓰입니다.
+첫째, 컴포넌트 내부 상태의 `result` 객체를 `results`로 변경합니다. 둘째, `searchKey`를 정의합니다. `searchKey`는 임시 키(key)로서 `result`를 저장하는데 쓰입니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -987,7 +987,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-`searchKey`에 해당하는 결괏값을 찾지 못할 때, `list`는 비어있습니다. 이렇게 만들면 Table 컴포넌트를 조건부 렌더링으로 처리할 수 있습니다. "More" 버튼에 `searchTerm`를 `searchKey`로 수정했습니다. 이렇게 하지 않으면  `searchTerm`이 변경될 때마다  페이지 매김 데이터를 가져오게 됩니다. Search 컴포넌트 내 입력 필드 값이 변경될 때 마다 `searchTerm`에 저장됨을 잊지 마세요.
+`searchKey`에 해당하는 결괏값을 찾지 못할 때, `list`는 비어있습니다. 이렇게 만들면 Table 컴포넌트를 조건부 렌더링으로 처리할 수 있습니다. "More" 버튼에 `searchTerm`를 `searchKey`로 수정했습니다. 이렇게 하지 않으면  `searchTerm`이 변경될 때마다 페이지 매김 데이터를 가져오게 됩니다. Search 컴포넌트 내 입력 필드 값이 변경될 때 마다 `searchTerm`에 저장됨을 잊지 마세요.
 
 검색 기능이 잘 작동하는지, 해커 뉴스 API에서 받은 데이터가 잘 저장되는지 확인하세요.
 
