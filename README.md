@@ -85,6 +85,9 @@
 **이수진 (Sujin Lee)** [@sujinleeme](https://github.com/sujinleeme/)
 * [website](https://www.sujinlee.me/) · [github](https://github.com/sujinleeme/) · [facebook](https://www.facebook.com/sujinlee.me) · [twitter](https://twitter.com/sujinleeme)  · [instagram](https://www.instagram.com/sujinlee.me/)
 * email: sujinlee.me@gmail.com
+
+### 도움주신 분
+*  조수현(한빛미디어), [정재필](https://github.com/J2P), [박성택](https://github.com/SeongTaekPark)
 ---
 ## 참여 방법
 ### 후기쓰기
