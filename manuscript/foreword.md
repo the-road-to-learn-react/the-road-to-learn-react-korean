@@ -33,6 +33,9 @@
 
 {pagebreak}
 
+## 도움주신 분
+조수현(한빛미디어), [정재필](https://github.com/J2P), [박성택](https://github.com/SeongTaekPark) 님께서 리뷰 과정 중 띄어쓰기, 오탈자, 맞춤법 등을 수정해주셨습니다.
+
 # 추천사
 
 [로드 투 리액트(Road to React)](https://roadtoreact.com/), [굿리드](https://www.goodreads.com/book/show/37503118-the-road-to-learn-react), [아마존](https://www.amazon.com/dp/B077HJFCQX)에서 많은 독자들이 추천사를 작성해주셨습니다.
