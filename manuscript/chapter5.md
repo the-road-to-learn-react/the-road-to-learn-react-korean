@@ -79,7 +79,7 @@ class Search extends Component {
 }
 ~~~~~~~~
 
-이제 input 필드에 포커스를 주었고 마운트된 컴포넌트에 `this` 객체, 생명주기 메소드와 DOM API를 사용할 수 있습니다.
+이제 `this` 객체, 생명주기 메소드와 DOM API를 사용해서 컴포넌트가 마운트 됐을 때 input 필드에 포커스를 줄 수 있습니다.
 
 
 {title="src/App.js",lang=javascript}
