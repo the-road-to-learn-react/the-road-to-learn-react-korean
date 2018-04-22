@@ -87,7 +87,7 @@
 * email: sujinlee.me@gmail.com
 
 ### 도움주신 분
-*  조수현(한빛미디어), [정재필](https://github.com/J2P), [박성택](https://github.com/SeongTaekPark)
+*  조수현(한빛미디어), [정재필](https://github.com/J2P), [박성택](https://github.com/SeongTaekPark), [정해균](https://github.com/haeguri)
 ---
 ## 참여 방법
 ### 후기쓰기
