@@ -1297,7 +1297,7 @@ class Table extends Component {
 
 ## 2.10 구성 가능한 컴포넌트
 
-`prop` 객체 안을 접근할 수 있는 프로퍼티가 하나 더 있습니다. 바로 `children` prop입니다. `children` prop는 알 수 없는 데이터 구조가 자식 엘레먼트가 전달됨을 의미합니다. 컴포넌트에 텍스트(문자열)를 `children` props로 전달할 때 어떻게 보이는지 보겠습니다.
+`prop` 객체 안을 접근할 수 있는 프로퍼티가 하나 더 있습니다. 바로 `children` prop입니다. `children` prop는 알 수 없는 데이터 구조가 자식 엘레먼트에 전달됨을 의미합니다. 컴포넌트에 텍스트(문자열)를 `children` props로 전달할 때 어떻게 보이는지 보겠습니다.
  
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
