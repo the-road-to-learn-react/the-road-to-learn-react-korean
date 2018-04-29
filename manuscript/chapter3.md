@@ -934,7 +934,7 @@ results: {
 
 `  ...results,` 부분은 객체 전개 연산자를 사용해 `searchKey`에 따른 모든 `results`를 전파합니다. 그렇지 않으면 이전에 저장된 모든 `results`가 손실됩니다. 
 
-이제 모든 결과를 검색어로 저장하겠습니다. 먼저 캐시를 활성화 합니다. 그리고 고정값인 `searchKey`에 따라 `results`를 검색합니다. `searchKey`를 사용하지 않으면 Search 컴포넌트를 사용할 때 그 값이 계속 변경됩니다. 따라서 변동값인 `searchTerm`를 사용할 경우 검색이 중단되는 문제가 발생합니다.
+이제 모든 결과를 검색어로 저장하겠습니다. 먼저 캐시를 활성화합니다. 그리고 고정값인 `searchKey`에 따라 `results`를 검색합니다. `searchKey`를 사용하지 않으면 Search 컴포넌트를 사용할 때 그 값이 계속 변경됩니다. 따라서 변동값인 `searchTerm`를 사용할 경우 검색이 중단되는 문제가 발생합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
