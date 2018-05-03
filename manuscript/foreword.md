@@ -34,7 +34,7 @@
 {pagebreak}
 
 ## 도움주신 분
-조수현(한빛미디어), [정재필](https://github.com/J2P), [박성택](https://github.com/SeongTaekPark), [정해균](https://github.com/haeguri) 님께서 리뷰 과정 중 띄어쓰기, 오탈자, 맞춤법 등을 수정해주셨습니다.
+조수현(한빛미디어), [정재필](https://github.com/J2P), [박성택](https://github.com/SeongTaekPark),  [박준모](https://github.com/jmpark6846), [정해균](https://github.com/haeguri) 님께서 리뷰 과정 중 띄어쓰기, 오탈자, 맞춤법 등을 수정해주셨습니다.
 
 # 추천사
 
