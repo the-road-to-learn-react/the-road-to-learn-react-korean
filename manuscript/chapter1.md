@@ -170,7 +170,7 @@ npm install -g create-react-app
 {title="Command Line",lang="text"}
 ~~~~~~~~
 create-react-app --version
-*v1.5.2
+*v1.5.1
 ~~~~~~~~
 
 여러분의 첫 번째 리액트 애플리케이션을 시작해보겠습니다. 앞으로 새로운 리액트 애플리케이션을 부트스트랩 할 때마다 `create-react-app <name>` 명령어를 입력하면 됩니다.
