@@ -242,7 +242,7 @@ npm run build
 * `npm test`를 실행합니다.
 * *public/* 폴더 내 어떤 내용이 있는지 확인하고, `npm run build` 스크립트를 실행해 폴더에 어떤 파일이 추가되었는지 확인합니다. (추가된 파일은 프로젝트에 영향을 주지 않으므로 제거해도 됩니다.)
 * 폴더 구조에 익숙해집니다.
-* 파일 내용이 익숙해집니다.
+* 파일 내용에 익숙해집니다.
 
 ### 읽어보기
 * [create-react-app 깃허브 리퍼지토리](https://github.com/facebookincubator/create-react-app)
