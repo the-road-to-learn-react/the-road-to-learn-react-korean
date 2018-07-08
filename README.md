@@ -1,4 +1,7 @@
 # [튜토리얼] 리액트 도움닫기 
+
+[![Slack](https://slack-the-road-to-learn-react.wieruch.com/badge.svg)](https://slack-the-road-to-learn-react.wieruch.com/)
+
 [**리액트 도움닫기(원제: The Road to learn React)**](https://www.robinwieruch.de/the-road-to-learn-react/) 한국어 공식 깃허브 리퍼지토리입니다. 
 
 * [해커 뉴스(HackerNews) 프로젝트 실습 코드](https://github.com/the-road-to-learn-react/hackernews-client)
@@ -107,8 +110,3 @@
 ### 기여하기
 * 본문 내 오탈자를 수정하거나, 추가 설명이 필요한 경우 [풀 리퀘스트(Pull Request)](https://github.com/the-road-to-learn-react/the-road-to-learn-react-korean/pulls)를 보내주세요. 
 * 실습 도중 문제가 생기면 [이슈(Issues)](https://github.com/the-road-to-learn-react/the-road-to-learn-react-korean/issues)에 등록해주세요. 이슈를 게시할 때, 문제가 발생한 부분의 오류 로그 메시지, 스크린 샷, 책 페이지, 노드 버전를 함께 명시해주세요. 여러분들의 리뷰와 이슈는 콘텐츠를 개선하는데 큰 도움이 될 것입니다.
-
----
-도와주신 여러분들에게 감사드립니다.
-
-로빈(Robin)
