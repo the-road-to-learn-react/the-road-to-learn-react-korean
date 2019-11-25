@@ -426,7 +426,7 @@ export default App;
 
 ## 1.8 ReactDOM
 
-App 컴포넌트를 바꾸기 전에, 이 컴포넌트가 어디에서 사용되고 있는지 확인해봅시다. 리액트의 첫 진입점이라 할 수 있는 *src/index.js* 파일에 App 컴포넌트가 있습니다.
+App 컴포넌트는 리액트 세계로의 진입점인 *src/index.js*에서 사용됩니다.
 
 {title="src/index.js",lang=javascript}
 ~~~~~~~~
@@ -441,11 +441,9 @@ ReactDOM.render(
 );
 ~~~~~~~~
 
-`ReactDOM.render()` 메서드는 HTML의 DOM 노드를 JSX로 대체하는 일을 합니다. 때문에 타 애플리케이션에서도 리액트가 쉽게 통합될 수 있습니다. 애플리케이션 내 `ReactDOM.render()` 메서드를 여러 번 사용할 수 있습니다. JSX 구문, 단일 리액트 컴포넌트, 다중 리액트 컴포넌트, 또는 전체 응용 프로그램을 부트스트랩 할 수 있습니다. 그러나 관용적으로 리액트 애플리케이션은 전체 컴포넌트 트리를 부트스트랩 하기 위해 `ReactDOM.render()` 메서드를 한 번만 사용합니다. 
+`ReactDOM.render()` 메서드는 HTML의 DOM 노드를 JSX로 바꿔줍니다. 이 기능을 이용하면 기존 애플리케이션에도 리액트를 쉽게 통합할 수 있습니다. `ReactDOM.render()`는 애플리케이션 내에서 여러 번 사용할 수 있습니다. JSX 구문이나 한 개 혹은 여러 개의 리액트 컴포넌트, 또는 전체 애플리케이션을 삽입할 때 사용 할 수 있습니다. 보통의 리액트 애플리케이션에서는 컴포넌트 트리를 불러오기 위해 한 번만 호출합니다. 
 
-`ReactDOM.render()` 메서드는 두 개의 인자가 필요합니다. 첫 번째 인자는 렌더링 된 JSX, 두 번째 인자는 리액트 애플리케이션이 HTML에 들어갈 위치입니다. `id`가 `root`인 엘레먼트에 들어가게 됩니다. *public/index.html* 파일을 열어 id 속성을 확인해봅시다.
-
-`ReactDOM.render()` 메서드가 실행되어 이미 App 컴포넌트를 사용하고 있습니다. 되도록 애플리케이션 전체를 컴포넌트를 만들어 전달하는 것이 좋습니다. 이 파일에서 컴포넌트를 인스턴스화하지 않아도 됩니다.
+`ReactDOM.render()`에는 두 개의 인자가 필요합니다. 첫 번째 인자는 화면에 표시할 JSX, 두 번째 인자는 리액트 애플리케이션이 들어갈 HTML상의 위치입니다. 예제에서는 `id`가 `root`인 엘레먼트에 넣으려 하는데, *public/index.html* 파일에 해당 엘레먼트가 있습니다.
 
 {title="Code Playground",lang=javascript}
 ~~~~~~~~
@@ -455,12 +453,12 @@ ReactDOM.render(
 );
 ~~~~~~~~
 
+앞선 구현에서는 `ReactDOM.render()`에 App 컴포넌트를 전달했지만, 위의 코드와 같이 간단한 JSX를 인자로 줄 수도 있습니다. 반드시 컴포넌트의 인스턴스를 주어야 하는 것은 아닙니다.
+
 ### 실습하기
 
-* *public/index.html* 파일을 열어 HTML 안에 리액트 애플리케이션 들어가는 곳을 찾아봅니다.
-
-### 읽어보기
-* [[리액트 공식 문서] - 리액트 내 렌더링 되는 엘레먼트](https://reactjs.org/docs/dom-elements.html#all-supported-html-attributes)
+* *public/index.html* 파일을 열어 리액트 애플리케이션이 삽입될 HTML상의 위치를 찾아봅니다.
+* [리액트에서 엘레먼트 렌더링하기](https://reactjs.org/docs/rendering-elements.html) 읽어보기
 
 ## 1.9 Hot Module Replacement
 
