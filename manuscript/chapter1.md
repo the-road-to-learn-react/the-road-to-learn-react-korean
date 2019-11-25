@@ -354,11 +354,9 @@ export default App;
 * [[리액트 공식 문서] JSX](https://reactjs.org/docs/introducing-jsx.html)
 * [[리액트 공식 문서] 리액트 컴포넌트, 엘레먼트, 인스턴스](https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html)
 
-## 1.7 ES6 const · let
+## 1.7 ES6의 const와 let
 
-이전 장에서 `var` 문을 사용해 변수 `helloWorld`를 선언했습니다. 자바스크립트 ES6에서 변수 선언은 `const` 또는 `let`을 사용합니다. ES6에서는 `var`를 사용하는 일은 거의 없습니다.
-
-`const`로 선언된 변수는 다시 할당하거나 선언할 수 없습니다. 불변 데이터 구조(immutable data structures)이기 때문에 한 번 데이터 구조가 정의된 이후, 다시 변경할 수 없습니다.
+앞에서 `var` 문을 사용해 변수 `helloWorld`를 선언했습니다. 자바스크립트 ES6에서 변수를 선언할 때는 `const`와 `let`을 사용할 수도 있습니다. ES6에서는 `var`를 거의 사용하지 않습니다. `const`로 선언된 변수는 다시 할당하거나 선언할 수 없고, 값을 변경할 수도 없습니다. 한 번 값이 정해지면 바꿀 수 없게됩니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -367,7 +365,7 @@ const helloWorld = '리액트에 오신 여러분을 환영합니다';
 helloWorld = '안녕 리액트';
 ~~~~~~~~
 
-반면 `let`은 변경 가능합니다. 아래와 같이 변수를 다시 할당할 수 있습니다.
+반면 `let`으로 선언한 변수의 값은 수정할 수 있습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -376,7 +374,9 @@ let helloWorld = '리액트에 오신 여러분을 환영합니다';
 helloWorld = '안녕 리액트';
 ~~~~~~~~
 
-기본적으로 `const`로 선언된 변수는 변경할 수 없습니다. 그러나 변수가 배열이나 객체 타입일 경우 변경 가능합니다.
+**팁** : 나중에 변수의 값을 변경하길 원한다면 `let`으로 선언하세요.
+
+`const`로 선언된 변수는 변경할 수 없다는 점을 기억해야합니다. 그러나 변수가 배열이나 객체일 경우, 객체나 배열의 내부는 변경 가능합니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~~
@@ -387,11 +387,8 @@ const helloWorld = {
 helloWorld.text = '안녕 리액트';
 ~~~~~~~~
 
-그렇다면 언제 `let` 또는 `const`를 사용해야 할까요? 정해진 법칙은 없지만, 가능하면 기본적으로 `const`를 사용하는 것이 좋습니다. `const`를 사용함은 객체와 배열의 값이 변경되더라도 데이터 구조를 변경되지 않음을 뜻하기 때문입니다. 반대로 변경되는 변수는 `let`을 사용합니다.
+그렇다면 언제 *let* 또는 *const*를 사용해야 할까요? 정해진 법칙은 없지만, 저는 데이터 구조가 변하지 않는 경우에 `const`를 사용할 것을 권합니다. 그래야 그 안의 값에만 집중할 수 있습니다. 리액트 생태계에서는 불변성이 중요합니다.  변수를 정의할 때도, 꼭 불변성이라기보다 그저 한번만 할당되는 변수도 기본적으로 `const`로 선언하는 것이 좋습니다. 이로써 변수를 수정(재할당)하지 않을 것이라는 점을 강조할 수 있습니다. 비록 객체나 배열 내부의 값은 바뀔 수 있겠지만요.
 
-리액트 생태계는 **불변성 원칙**을 준수하기 때문에, 변수를 정의할 때 `let`보다 `const` 사용을 우선시 합니다. 복잡한 객체에서 내부 값을 수정해야 되는 경우도 있으니 `const` 사용에 주의합시다. 
-
-이 책은 `var` 대신 `const`을 사용합니다. `var`을 `const`로 바꿉니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -414,15 +411,18 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-### 읽어보기
+이 책에서는 `var` 대신 `const`와 `let`을 사용합니다.
 
-* [[MDN] ES6 const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
-* [[MDN] ES6 let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
+### 실습하기
 
-### 찾아보기
-* 불변 데이터 구조에 대해 더 알아봅시다.
-  * 보편적인 프로그래밍에서 말하는 불변 데이터 구조란 무엇인지 알아봅시다.
-  * 리액트와 그 생태계에서 불변 데이터 구조가 사용되는 이유에 대해 알아봅시다.
+* [지난 섹션의 코드](http://bit.ly/2H9AqH2)를 확인합니다.
+  * [이번 섹션에서 변경된 코드](http://bit.ly/2H61Vkw)를 확인합니다.
+  
+* [ES6 const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)을 읽어봅니다.
+* [ES6 let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)을 읽어봅니다.
+* 불변 데이터 구조에 대해 더 알아봅니다.
+  * 왜 불변성이 프로그래밍에서 중요한가?
+  * 리액트와 그 생태계에서 불변 데이터 구조가 사용되는 이유는 무엇인가?
 
 ## 1.8 ReactDOM
 
