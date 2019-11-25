@@ -144,7 +144,7 @@ CDN으로 리액트를 사용하려면 HTML 파일 내에 `<script>`  태그로 
 
 ### 1.4.2 npm
 
-노드 프로젝트로 초기화해서 리액트를 사용할 수 도 있습니다. 애플리케이션 내 *package.json* 파일이 있다면, npm 명령어로 *react*와 *react-dom*을 설치할 수 있습니다. 제일 먼저 *npm init -y* 명령어를 입력해 *package.json*을 초기화합니다. 그 다음 npm 명령어 한 줄로 여러 노드 패키지를 한 번에 설치합니다.
+노드 프로젝트로 초기화해서 리액트를 사용할 수도 있습니다. 애플리케이션 내 *package.json* 파일이 있다면, npm 명령어로 *react*와 *react-dom*을 설치할 수 있습니다. 제일 먼저 *npm init -y* 명령어를 입력해 *package.json*을 초기화합니다. 그 다음 npm 명령어 한 줄로 여러 노드 패키지를 한 번에 설치합니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
