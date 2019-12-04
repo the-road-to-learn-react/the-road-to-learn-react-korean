@@ -507,9 +507,9 @@ if (module.hot) {
 
 ## 1.10 JSX 내 자바스크립트 객체 처리
 
-App 컴포넌트로 다시 돌아갑시다. 지금까지 JSX에서 초기 변수를 렌더링 했습니다. 이제 배열의 각 항목을 차례로 렌더링 해봅시다. 지금은 샘플 데이터를 사용하지만 앞으로 외부 [API](https://www.robinwieruch.de/what-is-an-api-javascript/)를 통해 데이터를 가져올 것입니다. 앞으로 점점 재밌고 흥미 있어질 거니 기대해도 좋습니다.
+지금까지는 단순한 변수만 렌더링 해봤습니다. 이번에는 리스트를 렌더링 해봅시다. 지금은 샘플 데이터를 사용하지만 나중에는 외부 API를 통해 데이터를 가져올 것입니다.
 
-먼저 아래와 같이 `list`를 정의합시다.
+먼저 리스트를 만듭시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -528,7 +528,7 @@ const list = [
   },
   {
     title: 'Redux',
-    url: 'https://github.com/reactjs/redux',
+    url: 'https://redux.js.org/',
     author: 'Dan Abramov, Andrew Clark',
     num_comments: 2,
     points: 5,
@@ -542,9 +542,9 @@ class App extends Component {
 }
 ~~~~~~~~
 
-`list`는 객체로 이루어진 배열입니다. 각 프로퍼티에는 제목(title), url, 작성자(author), 식별자(objectID), 기사의 인기도를 나타내는 점수(point), 댓글 수(num_comments)가 있습니다.
+이 샘플데이터는 나중에 API로 가져올 데이터와 비슷합니다. 리스트의 요소들에는 제목(title), url, 작성자(author), 식별자(objectID), 글의 인기도를 나타내는 점수(point), 댓글 수(num_comments)가 있습니다.
 
-이제 JSX에서 자바스크립트 반복 메서드인 `map()`을 사용해 배열의 모든 데이터를 출력해봅시다. JSX는 자바스크립트 표현식을 캡슐화하기 위해 중괄호(`{}`)를 사용합니다.
+이제 JSX안에서 [자바스크립트의 반복 메서드인 `map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)을 사용해 배열의 내용을 출력해봅시다. JSX는 자바스크립트 표현식을 캡슐화하기 위해 중괄호(`{}`)를 사용합니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -565,11 +565,22 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-JSX는 HTML과 자바스크립트를 함께 사용합니다. `map()`를 사용해 HTML 태그와 섞어 엘레먼트를 출력해보겠습니다.
+JSX에서 HTML과 자바스크립트를 섞어쓰는 것은 아주 강력한 기능입니다. 다음 작업을 하기 전에 `map`에 조금더 익숙해지도록 합시다. 
 
-현재는 `title` 프로퍼티 값만 출력됩니다. 이제 모든 프로퍼티 값을 보여줍시다.
+{title="Code Playground",lang="javascript"}
+~~~~~~~~
+const array = [1, 4, 9, 16];
 
-{title="src/App.js",lang=javascript}
+// 함수를 map에 전달합니다.
+const newArray = array.map(function (x) { return x * 2; });
+
+console.log(newArray);
+// 결과 : Array [2, 8, 18, 32]
+~~~~~~~~
+
+앞에서는 `title` 프로퍼티 값만 출력됩니다. 이제 모든 프로퍼티 값을 보여줍시다.
+
+{title="src/App.js",lang="javascript"}
 ~~~~~~~~
 class App extends Component {
   render() {
@@ -597,9 +608,9 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-JSX와 `map()` 메서드로 반복문을 작성했습니다. 각 프로퍼티를 HTML `<span>` 태그로 감싸고, url은 a 태그의 href 속성과 함께 사용했습니다.
+JSX 안에 `map` 함수가 들어가있는 부분을 보아주세요. 아이템의 프로퍼티들을 `<span>` 태그로 감싸고, url은 anchor 태그의 href 속성에 사용했습니다.
 
-그러나 아직 한 가지가 남았습니다. 바로 각 엘레먼트마다 `key` 속성을 추가해야 합니다. 리액트는 `key`로 배열의 수정 및 제거된 항목을 식별합니다. 우리는 `objectID` 프로퍼티를 `key`로 지정하겠습니다.
+React가 앞의 코드를 잘 렌더링 해줄것이지만, 리액트의 기능을 충분히 활용하려면 아직 해야할 일이 남아있습니다. 각 엘레먼트마다 `key` 속성을 추가해주는 것입니다. 이를 통해 리액트는 수정된 항목을 알아낼 수 있습니다. 샘플 리스트의 식별자를 사용해봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -619,7 +630,7 @@ JSX와 `map()` 메서드로 반복문을 작성했습니다. 각 프로퍼티를
 })}
 ~~~~~~~~
 
-`key` 값은 고윳값으로 식별 가능해야 합니다. 배열의 인덱스 값은 고정값이 아니기 때문에 사용하지 말아야 합니다. 배열의 순서가 변경되면, 리액트가 각 항목을 식별할 수 없기 때문입니다.
+`key` 값에는 아이템 식별자를 써야 합니다. 배열의 인덱스 값은 고정값이 아니기 때문에 사용하면 안됩니다. 배열의 순서가 변경되면, 리액트가 각 항목을 식별할 수 없기 때문입니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -633,15 +644,15 @@ JSX와 `map()` 메서드로 반복문을 작성했습니다. 각 프로퍼티를
 })}
 ~~~~~~~~
 
-이제 두 배열의 모든 항목이 보입니다. 브라우저를 열어 변경 내용을 확인합시다.
-
-### 읽어보기
-
-* [[리액트 공식 문서] 리액트 리스트(lists)와 키(keys)](https://reactjs.org/docs/lists-and-keys.html)
-* [[MND] 자바스크립트 map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+이제 브라우저를 열어보면 리스트에 들어있는 두개의 아이템이 모두 보일 것입니다.
 
 ### 실습하기
-* JSX 내 자바스크립트 표현식(expression)을 작성합니다.
+
+* [이번 섹션의 코드](http://bit.ly/2H7jMHT)
+  * [이번 섹션에서 변경된 내용](http://bit.ly/2H6LKnb) 확인하기
+* [[리액트 공식 문서] 리액트 리스트(lists)와 키(keys)](https://reactjs.org/docs/lists-and-keys.html)
+* [자바스크립트 배열 함수](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/) 와 [사용 예제](https://www.robinwieruch.de/javascript-map-array/) 보기
+* JSX 내 자바스크립트 표현식(expression)을 사용해봅니다.
 
 ## 1.11 ES6 화살표 함수
 
