@@ -1,17 +1,27 @@
 {frontmatter}
 
-foreword.md
+intro.md
 
 {mainmatter}
 
-chapter1.md
-chapter2.md
-chapter3.md
-chapter4.md
-chapter5.md
-chapter6.md
-deployChapter.md
+react-modern.md
+react-legacy.md
+
+react-styling/css.md
+react-styling/css-modules.md
+react-styling/styled-components.md
+react-styling/svg.md
+
+react-maintenance/performance.md
+react-maintenance/typescript.md
+react-maintenance/testing.md
+react-maintenance/project-structure.md
+
+react-modern-advanced.md
+
+react-deploy/build.md
+react-deploy/firebase.md
 
 {backmatter}
 
-finalwords.md
+outline.md
