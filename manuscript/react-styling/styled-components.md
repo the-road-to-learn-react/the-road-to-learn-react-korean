@@ -244,7 +244,7 @@ const StyledInput = styled.input`
 
 ### 실습하기
 
-* [마지막 섹션의 소스 코드](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Styled-Components-in-React)를 확인하세요.
-  * [마지막 섹션의 변경 사항](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/Styled-Components-in-React?expand=1)을 확인하세요.
+* [마지막 장의 소스 코드](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Styled-Components-in-React)를 확인하세요.
+  * [마지막 장의 변경 사항](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/Styled-Components-in-React?expand=1)을 확인하세요.
 * 리액트의 [Styled Components](https://www.robinwieruch.de/react-styled-components)에 대해 자세히 알아보세요.
   * Styled Components를 사용할 때, 보통 전역 스타일에 대한 *src/index.css* 파일이 없습니다. Styled Components에서 전역 스타일을 사용하는 방법을 알아보세요.
