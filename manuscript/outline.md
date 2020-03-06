@@ -1,35 +1,33 @@
-# Outline
+# 마치는 글
 
-We've reached the end of the road to React, and I hope you enjoyed reading it, and that it helped you gain some traction in React. If you liked the book, share it with your friends who are interested in learning more about React. Also, a review on [Amazon](https://amzn.to/2JHlP42) or [Goodreads](https://www.goodreads.com/book/show/37503118-the-road-to-learn-react) would help me provide better content in the future based on your feedback.
+리액트 도움닫기를 모두 끝냈습니다. 여러분이 이 책을 즐겁게 읽고 리액트에 대한 관심이 커졌길 바랍니다. 이 책이 마음에 들었다면 리액트에를 더 공부하고 싶어하는 친구들에게 공유해주세요. [아마존](https://amzn.to/2JHlP42)이나 [굿리드](https://www.goodreads.com/book/show/37503118-the-road-to-learn-react)에 리뷰를 남겨주시는 것도 더 좋은 콘텐츠를 만드는 데 도움이 됩니다.
 
-From here, I recommend you extend the application to create your own React projects before engaging another book, course or tutorial. Try it for a week, take it to production by deploying it, and reach out to me or others to showcase it. I am always interested in seeing what my readers built, and learning how I can help them along.
+이제 다른 책이나 코스, 튜토리얼을 새로 시작하기 전에 애플리케이션을 발전시켜 여러분만의 리액트 프로젝트로 만들어보길 추천합니다. 한 주 정도 개발해서 배포한 제품을 다른 사람들에게 보여주세요. 항상 저의 독자분들이 어떤 걸 만들었는지 보고 제가 또 어떻게 도와줄 수 있을지 배우고 싶습니다.
 
-If you're looking for extensions for your application, I recommend several learning paths after you've mastered the basics:
+직접 만든 애플리케이션을 더 발전시키고 싶다면 기초 학습을 마친 뒤 다양한 학습 과정을 거쳐보시길 추천합니다.
 
-* **Connecting to a Database and/or Authentication:** Growing React applications will eventually require persistent data. The data should be stored in a database so that keeps it intact after browser sessions, to be shared with different users. Firebase is one of the simplest ways to introduce a database without writing a backend application. In my book titled ["The Road to Firebase"](https://www.roadtofirebase.com/), you will find a step-by-step guide on how to use Firebase authentication and database in React.
+- **데이터베이스 연결:** 규모가 커지는 리액트 애플리케이션은 결국 영속적인 데이터를 필요로 합니다. 데이터는 데이터베이스에 저장되어, 브라우저의 세션이 종료된 후에도 온전히 남아있어 사용자간 공유될 수 있어야 합니다. Firebase는 백엔드 애플리케이션 없이도 데이터베이스를 도입할 수 있는 가장 간단한 방법 중 하나입니다. 저의 책 ["The Road to Firebase"](https://www.roadtofirebase.com/)에서, 리액트에서 Firebase를 이용해 어떻게 인증하고 데이터베이스를 사용할 수 있는지 단계별 가이드를 보실 수 있습니다.
 
-* **Connecting to a Backend:** React handles frontend applications, and we've only requested data from a third-party backend's API thus far. You can also introduce an API with a backend application that connects to a database and manages authentication/authorization. In  ["The Road to GraphQL"](https://www.roadtographql.com/), I teach you how to use GraphQL for client-server communication. You'll learn how to connect your backend to a database, how to manage user sessions, and how to talk from a frontend to your backend application via a GraphQL API.
+- **백엔드와 연결:** 지금까지 우리는 리액트로 프론트엔드 애플리케이션을 만들고, 데이터는 써드 파티 백엔드 API로 요청해 받았습니다. 다른 방법으로 데이터베이스에 연결된 백엔드 어플리케이션의 API를 도입해 인증과 권한 설정을 할 수도 있습니다. ["The Road to GraphQL"](https://www.roadtographql.com/)에서 어떻게 GraphQL을 활용해 클라이언트와 서버간 통신할 수 있는지 알려드립니다. GraphQL API를 활용해 어떻게 백엔드 애플리케이션을 데이터베이스와 연결하고, 사용자 세션을 관리하며, 프론트엔드 애플리케이션에서 백엔드 애플리케이션으로 접근할 수 있는지 배울 수 있습니다.
 
-* **State Management:** You have used React to manage local component state exclusively in this learning experience. It's a good start for most applications, but there are also external state management solutions for React. I explore the most popular one in my book ["The Road to Redux"](https://www.roadtoredux.com/).
+- **상태 관리:** 이 책에서는 리액트만을 사용해 컴포넌트 상태를 관리했습니다. 처음 리액트를 배우는 단계에서는 내부 상태 관리 정도로만 충분하지만, 외부 상태 관리 방법에 대해서 아는 것이 중요합니다. ["리덕스 도움닫기"](https://www.roadtoredux.com/)에서 가장 많이 사용되는 외부 상태 관리 도구인 리덕스를 다룹니다.
 
-* **Tooling with Webpack and Babel:** We used *create-react-app* to set up the application in this book. At some point you may want to learn the tooling around it, to create projects without *create-react-app*. I recommend a minimal setup with [Webpack](https://www.robinwieruch.de/minimal-react-webpack-babel-setup/), after which you can apply additional tooling.
+* **웹팩(Webpack)과 바벨(Babel) 사용:** 이 책에서는 create-react-app을 사용해 애플리케이션을 설치했습니다. 어느 정도 리액트에 익숙해지면 create-react-app을 사용하지 않고 프로젝트를 다루고 싶을 것입니다. 처음에는 [웹팩](https://www.robinwieruch.de/minimal-react-webpack-babel-setup/)을 사용해 최소한의 세팅으로 시작하고, 그 후에 다른 툴들을 추가해나가길 추천합니다.
 
-* **Code Organization:** Recall the chapter about code organization and apply these changes, if you haven't already. It will help organize your components into structured files and folders, and it will help you understand the principles of code splitting, reusability, maintainability, and module API design. Your application will grow and need structured modules eventually; so it's better to start now.
+- **코드 구성:** 코드 모듈 구성 방법을 다룬 챕터를 떠올려보고 이를 적용해보세요. 아직 해보지 않았다면 지금 해보길 바랍니다. 컴포넌트를 구조화된 파일 및 폴더(모듈)로 구성하는 데 도움이 됩니다. 또, 코드 분할, 재사용 가능성, 유지 보수성, 모듈 API 설계 원칙을 이해할 수 있습니다. 애플리케이션은 커지기 마련이고 결국 구조적인 모듈이 필요하게 됩니다. 그러니 지금 시작해보는 게 좋습니다.
 
-* **Testing:** We only scratched the surface of testing. If you are unfamiliar with testing web applications, [dive deeper into unit testing and integration testing](https://www.robinwieruch.de/react-testing-tutorial), especially with React applications. [Cypress](https://www.robinwieruch.de/react-testing-cypress) is a useful tool to explore for end-to-end testing in React.
+- **테스트** 이 책에서 테스트 맛만 보여줬습니다. 웹 애플리케이션 테스트, 특히 리액트 애플리케이션 테스트에 익숙하지 않다면, [유닛 테스트와 테스트 통합을 더 깊게 공부해보세요.](https://www.robinwieruch.de/react-testing-tutorial)를 참고해보세요. [Cypress](https://www.robinwieruch.de/react-testing-cypress)도 리액트를 처음부터 끝까지 테스트할 수 있는 유용한 툴입니다.
 
-* **Type Checking:** Earlier we used TypeScript in React, which is good practice to prevent bugs and improve developer experience. Dive deeper into this topic to make your JavaScript applications more robust. Maybe you end up using TypeScript instead of JavaScript all along.
+* **타입 검사:** 이 책에서 리액트의 타입스크립트를 사용했습니다. 이는 버그를 방지하고 개발자의 작업을 한층 수월하게 만듭니다. 타입스크립트를 깊이 들여다보고 적용하면 자바스크립트 애플리케이션을 더욱 탄탄하게 만들 수 있습니다. 어쩌면 자바스크립트 대신 계속 타입스크립트를 쓰게될 수도 있습니다.
 
-* **UI Components:** Many beginners introduce UI component libraries like Bootstrap too early in their projects. It is more practical to use a dropdown, checkbox, or dialog in React with standard HTML elements. Most of these components will manage their own local state. A checkbox has to know whether it is checked or unchecked, so you should implement them as controlled components. After you cover the basic implementations of these crucial UI component, introducing a UI component library should be easier.
+- **UI 컴포넌트:** 많은 초심자들이 프로젝트에 너무 빨리 부트스트랩과 같은 UI 컴포넌트 라이브러리를 도입합니다. 순수한 표준 HTML 요소와 리액트만으로 드롭다운 메뉴, 체크박스, 다이얼로그 등을 구현하는 방법에 익숙해지는 것이 더 중요합니다. 이들 컴포넌트의 대부분은 자체적으로 로컬 상태를 관리합니다. 예를 들어 체크 박스는 체크 여부를 로컬 상태를 통해 확인하기 때문에 제어된 컴포넌트로 구현해야 합니다. 가장 기본적인 UI 컴퍼넌트들을 직접 구현해본다면 UI 컴포넌트 라이브러리 도입이 더 쉬울 것입니다.
 
-* **Routing:** You can implement routing for your application with [react-router](https://github.com/ReactTraining/react-router). There is only one page in the application we've created, but that will grow. React Router helps manage multiple pages across multiple URLs. When you introduce routing to your application, no requests are made to the web server for the next page. The router handles this client-side.
+- **라우팅:** [리액트 라우터](https://github.com/ReactTraining/react-router)를 사용해 리액트 애플리케이션의 라우팅을 구현할 수 있습니다. 우리는 단일 페이지 애플리케이션만 만들었지만 이는 확장될 것입니다. 리액트 라우터로 각 URL마다 페이지를 만들 수 있습니다. 애플리케이션에 라우팅을 도입하면 웹 서버에 다음 페이지를 요청하지 않아도 됩니다. 라우터는 클라이언트에서 모든 것을 처리합니다.
 
-* **React Native:** [React Native](https://facebook.github.io/react-native/) brings your application to mobile devices like iOS and Android. Once you've mastered React, the learning curve for React Native shouldn't be that steep, as they share the same principles. The only difference with mobile devices are the layout components, the build tools, and the APIs of your mobile device.
+- **리액트 네이티브:** [리액트 네이티브](https://facebook.github.io/react-native/)로 기존의 애플리케이션을 iOS와 안드로이드와 같은 모바일 기기용 애플리케이션으로 만들 수 있습니다. 리액트에 대해 이미 잘 알고 있다면 리액트 네이티브는 쉽게 시작할 수 있습니다. 리액트와 리액트 네이티브의 기본적인 내용은 같습니다. 모바일 기기를 위한 레이아웃 컴퍼넌트, 빌드 툴, API 정도만 차이가 있습니다.
 
-I invite you to visit my [website](https://www.robinwieruch.de) to find more interesting topics about web development and software engineering. You can also [subscribe to my Newsletter](https://www.getrevue.co/profile/rwieruch) or [Twitter page](https://twitter.com/rwieruch) to get updates about articles, books, and courses.
+저의 [웹사이트][website](https://www.robinwieruch.de)를 방문해 웹 개발과 소프트웨어 엔지니어링에 대한 재밌는 글들을 읽어보세요. 뉴스레터를 구독할 수도 있고 [트위터](https://twitter.com/rwieruch) 에서 새로운 기사, 책, 강좌에 대한 소식을 받을 수 있습니다.
 
-Thank you for reading the Road to React.
+리액트 도움닫기를 읽어주셔서 감사드립니다.
 
-Regards,
-
-Robin Wieruch
+로빈 올림
