@@ -1,7 +1,7 @@
-# Styling in React
+# 리액트와 스타일링
 
 There are many ways to style a React application, and there are lengthy debates about the best **styling strategy** and **styling approach**. We'll go over a few of these approaches without giving them too much weight. There will be some pro and con arguments, but it's mostly a matter of what fits best for developers and teams.
-리액트 어플리케이션을 스타일링하는 데에는 여러 방법이 있고, 어떤 **방식**이 가장 적절한지, 어떤 **접근**이 가장 효율적인지 등에는 여러 의견이 있습니다. 본문에서는 다양한 접근을 가볍게 한 번 다뤄보도록 하겠습니다. 찬성 의견도 있을 수 있고, 반대 의견도 있을 수 있겠지만, 각 개발자와 팀에게 무엇이 가장 잘 맞는지가 가장 중요합니다.
+리액트 어플리케이션을 스타일링하는 데에는 여러 방법이 있고, 어떤 **스타일링 방식**이 가장 적절한지, 어떤 **접근**이 가장 효율적인지 등에는 여러 의견이 있습니다. 본문에서는 다양한 접근을 가볍게 한 번 다뤄보도록 하겠습니다. 찬성 의견도 있을 수 있고, 반대 의견도 있을 수 있겠지만, 각 개발자와 팀에게 무엇이 가장 잘 맞는지가 가장 중요합니다.
 
 We will begin React styling with common CSS in React, but then explore two alternatives for more advanced **CSS-in-CSS** (**CSS Modules**) and **CSS-in-JS** (**Styled Components**) strategies. CSS Modules and Styled Components are only two approaches out of many in both groups of strategies. We'll also cover how to include scalable vector graphics (SVGs), such as a logo or icons, in our React application.
 리액트 스타일링은 우선 기본적인 CSS를 다루는 것으로 시작하겠으나, 조금 더 나아가서는 CSS-in-CSS (CSS 모듈)과 CSS-in-JS (Styled Components) 방식을 다룰 예정입니다. CSS 모듈과 Styled Components는 각 접근 방식들 중의 두 가지 예시일 뿐입니다. 이에 더불어, 로고나 아이콘 등에 사용되는 SVG를 우리의 리액트 어플리케이션에 포함하는 방식도 다룰 예정입니다.
@@ -10,9 +10,9 @@ If you don't want to build common UI components (e.g. button, dialog, dropdown) 
 만약 버튼이나 대화창, 드롭다운 등의 일반적인 UI 컴포넌트를 직접 만들고 싶지 않다면, 이런 컴포넌트를 기본으로 제공하는 [UI 라이브러리](https://www.robinwieruch.de/react-libraries)를 사용하는 것도 좋은 방법입니다. 그러나, 리액트를 배우는 데에는 이런 솔루션을 활용하는 것보다는 직접 컴포넌트를 만들어보는 것이 더 도움이 됩니다. 이에, 우리도 이와 같은 라이브러리를 사용하지 않겠습니다.
 
 The following styling approaches and SVGs are pre-configured in `create-react-app`. If you're in control of the build tools (e.g. Webpack), they might need to be configured to import CSS or SVG files. Since we are using create-react-app, we can use these files as assets right away.
-후술할 스타일링 방법론과 SVG들은 `create-react-app`에 미리 설정되어 있습니다. 만약 Webpack 등의 빌드 툴을 활용하고 있다면, CSS나 SVG 파일을 불러오기 위해서 따로 설정을 해 줘야 할 수도 있습니다. 우리는 create-react-app을 활용할 것이므로, 만들어진 파일들을 그대로 활용할 수 있습니다.
+후술할 스타일링 방법론과 SVG들은 `create-react-app`에 미리 설정되어 있습니다. 만약 Webpack 등의 빌드 툴을 활용하고 있다면, CSS나 SVG 파일을 불러오기 위해서 따로 설정을 해 줘야 할 수도 있습니다. 우리는 create-react-app을 사용할 것이기 때문에, 기존에 있던 파일들을 쓸 수 있습니다.
 
-## CSS in React
+## 리액트에서의 CSS
 
 Common CSS in React is similar to the standard CSS you may have already learned. Each web application gives HTML elements a `class` (in React it's `className`) attribute that is styled in a CSS file later.
 리액트에서 CSS를 사용하는 방법은 여러분이 이미 알고 있을 수도 있는, 기본 CSS 용법과 유사합니다. 각각의 웹 애플리케이션은 HTML 요소에 클래스 `class` 속성을 부여하고(리액트에서는 `className` 이라고 부릅니다), 별도의 CSS 파일에서 스타일링을 진행합니다.
@@ -257,10 +257,11 @@ For simplicity, we styled elements like label and input individually in the *src
 This is the basic CSS most of us have already learned, written with an inline style that is more dynamic. Without CSS extensions like Sass (Syntactically Awesome Style Sheets) inline styles can become burdensome, though, because features like CSS nesting are not available in native CSS.
 지금까지 본 것은 우리가 대부분 이미 알고 있는 기본적인 CSS이고, 조금 더 동적인 활용을 위해서는 inline style을 사용합니다. 다만 Sass(Syntactically Awesome Style Sheets: 신택스가 멋진 스타일시트)와 같은 CSS 확장 기능을 활용하지 않는다면, 네이티브 CSS에서는 상속과 같은 기능을 제공하지 않으므로 inline style을 다루기는 번거로워질 수 있습니다.
 
-### Exercises:
+### 실습하기
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/CSS-in-React).
-  * Confirm the [changes from the last section](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/CSS-in-React?expand=1).
-* Read more about [CSS stylesheets in create-react-app](https://create-react-app.dev/docs/adding-a-stylesheet).
-* Read more about [Sass in create-react-app](https://create-react-app.dev/docs/adding-a-sass-stylesheet) for taking advantage of more advanced CSS features like nesting.
-* Try to pass `className` prop from App to SearchForm component, either with the value `button_small` or `button_large` and use this as `className` for the button element.
+* [마지막 섹션의 소스 코드](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/CSS-in-React)를 확인하세요.
+  * [마지막 섹션의 변경 사항](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/CSS-in-React?expand=1)을 확인하세요.
+* [create-react-app에서의 CSS 스타일시트 활용](https://create-react-app.dev/docs/adding-a-stylesheet)에 대해 더 자세히 알아보세요.
+* 상속과 같은 고급 CSS 기능을 활용하기 위해서는 [create-react-app에서의 Sass 활용](https://create-react-app.dev/docs/adding-a-sass-stylesheet)에 대해 더 자세히 알아보세요.
+
+* App 컴포넌트에서 SearchForm 컴포넌트로 `className` prop을 전달해보세요. 값은 `button_small` 혹은 `button_large`로 설정하고, 이것은 버튼 요소의 `className`으로 지정해 주세요.
