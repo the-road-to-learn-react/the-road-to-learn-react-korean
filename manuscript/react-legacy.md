@@ -1,14 +1,14 @@
-# React's Legacy
+# 리액트 레거시
 
-React has changed a lot since 2013. The iterations of its library, how React applications are written, and especially its components have all changed drastically. However, many React applications were built over the last few years, so not everything was created with the current status quo in mind. This section of the book covers React's legacy.
+리액트는 2013년 이후 많은 변화를 겪었습니다. 리액트의 여러 버전, 리액트 애플리케이션을 작성하는 방식과 특히 리액트의 컴포넌트 모두 급격하게 변화했습니다. 하지만 많은 리액트 애플리케이션이 지난 몇 년간 개발되었기 때문에 모든 애플리케이션을 현 상황을 염두에 두고 만든 것은 아닙니다. 이번 장에서는 리액트 레거시를 다룹니다.
 
-I won't cover all that's considered legacy in React, because some features have been revamped more than once. You may see the previous iteration of the feature in older React applications, but will probably be different than the current.
+리액트에서 레거시로 여겨지는 모든 것을 다루지는 않을 것입니다. 일부 기능은 여러 번 수정되었기 때문입니다. 과거에 작성된 리액트 애플리케이션에서 이전 버전의 기능을 봤을지도 모릅니다. 하지만 아마 지금 버전과는 차이가 있을 것입니다.
 
-Throughout this section we will compare a [modern React application](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/react-modern-final) to its [legacy version](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/react-legacy). We'll discover that most differences between modern and legacy React are due to class components versus function components.
+이번 장에서는 [모던 리액트 애플리케이션](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/react-modern-final)과 이것의 [레거시 버전](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/react-legacy)을 비교합니다. 모던 리액트와 레거시 리액트의 가장 큰 차이점은 클래스 컴포넌트와 함수형 컴포넌트의 차이에서 비롯된다는 것을 알게 될 것입니다.
 
-## React Class Components
+## 리액트 클래스 컴포넌트
 
-React components have undergone many changes, from **createClass components** over **class components**, to **function components**. Going through a React application today, it's likely that we'll see class components next to the modern function components.
+리액트 컴포넌트는 **createClass** 메서드로 만들어진 **클래스 컴포넌트**에서부터 **함수형 컴포넌트**까지 많은 변화를 겪어왔습니다. 오늘날의 리액트 애플리케이션에서는 클래스 컴포넌트보다 모던 함수형 컴포넌트를 먼저 보게 될 가능성이 큽니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~
@@ -38,9 +38,9 @@ class InputWithLabel extends React.Component {
 }
 ~~~~~~~
 
-A typical class component is a JavaScript class with a mandatory **render method** that returns the JSX. The class extends from a `React.Component` to inherit ([class inheritance](https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming))) all React's component features (e.g. state management for state, lifecycle methods for side-effects). React props are accessed via the class instance (`this`).
+일반적으로 클래스 컴포넌트는 JSX를 반환하는 **render 메서드**를 필수적으로 가진 자바스크립트 클래스입니다. 이 클래스는 리액트 컴포넌트의 모든 기능(예: 상태 관리, 사이드 이펙트에 대한 생명주기 메서드)을 물려받기 위해 `React.Component`를 상속받습니다 ([클래스 상속](https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming))). 클래스 인스턴스(`this`)를 통해 리액트 props에 접근할 수 있습니다.
 
-For a while class components were the popular choice for writing React applications. Eventually, function components were added, and both co-existed with their distinct purposes side by side:
+한동안 클래스 컴포넌트는 리액트 애플리케이션을 작성하기 위한 일반적인 방법이었습니다. 마침내 함수형 컴포넌트가 추가되었고 이후 두 컴포넌트는 각자의 분명한 목적을 갖고 공존했습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~
@@ -64,21 +64,23 @@ const InputWithLabel = ({
 );
 ~~~~~~~
 
-If no side-effects and no state were used in legacy apps, we'd use a function component instead of a class component. Before 2018--before React Hooks were introduced--React's function components couldn't handle side-effects (`useEffect` hooks) or state (`useState`/`useReducer` hooks). As a result, these components were known as **functional stateless components**,  there only to input props and output JSX. To use state or side-effects, it was necessary to refactor from a function component to a class component. When neither state nor side-effects were used, we used class components or the more lightweight function component.
+만약 레거시 애플리케이션에서 사이드 이펙트나 상태를 사용하지 않았다면 클래스 컴포넌트 대신에 함수형 컴포넌트를 사용했을 것입니다. 리액트 훅(React Hooks)이 도입된 2018년 이전까지만 해도 리액트의 함수형 컴포넌트는 사이드 이펙트(`useEffect` 훅)나 상태(`useState`/`useReducer` 훅)를 다룰 수 없었습니다. 이로 인해 이 컴포넌트는 **비 상태 함수형 컴포넌트** 로 불렸고, props을 입력으로 넣어 JSX를 출력하는 일만 담당했습니다. 상태나 사이드 이펙트를 사용하기 위해서는 반드시 함수형 컴포넌트를 클래스 컴포넌트로 리팩토링 해야 했습니다. 상태나 사이드 이펙트 모두 사용하지 않을 땐 클래스 컴포넌트도 사용했지만 가벼운 함수형 컴포넌트를 더 많이 사용했습니다.
 
-With the addition of React Hooks, function components worked the same as class components, with state and side-effects. And since there was no longer any practical difference between them, the community chose function components since they are more lightweight.
+리액트 훅의 등장과 함께 함수형 컴포넌트는 클래스 컴포넌트처럼 상태와 사이드 이펙트를 갖게 되었습니다. 그리고 두 컴포넌트 사이에 실질적인 차이점이 더 존재하지 않게 되자 리액트 커뮤니티는 더욱더 가벼운 함수형 컴포넌트를 선택했습니다.
 
-### Exercises:
+### 읽어보기
 
-* Read more about [JavaScript Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes).
-* Read more about [how to refactor from a class component to a function component](https://www.robinwieruch.de/react-hooks-migration).
-* Learn more about a different [class component syntax](https://github.com/the-road-to-learn-react/react-alternative-class-component-syntax) which wasn't popular but more effective.
-* Read more about [class components in depth](https://reactjs.org/docs/react-component.html).
-* Read more about [other legacy and modern component types in React](https://www.robinwieruch.de/react-component-types).
+* [자바스크립트 클래스](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
+* [클래스 컴포넌트를 함수형 컴포넌트로 리팩토링 하는 방법](https://www.robinwieruch.de/react-hooks-migration)
+* [클래스 컴포넌트에 대해 자세히 알아보기](https://reactjs.org/docs/react-component.html)
+* [리액트의 다른 레거시 컴포넌트 타입과 모던 컴포넌트 타입](https://www.robinwieruch.de/react-component-types)
 
-## React Class Components: State
+### 실습하기
+* 많이 사용되진 않았지만, 더 효율적인 [클래스 컴포넌트 문법](https://github.com/the-road-to-learn-react/react-alternative-class-component-syntax) 에 대해 알아봅시다.
 
-Before React Hooks, class components were superior to function components because they could be stateful. With a class constructor, we can set an initial state for the component. Also, the component's instance (`this`) gives access to the current state (`this.state`) and the component's state updater method (`this.setState`):
+## 리액트 클래스 컴포넌트: State
+
+리액트 훅이 등장하기 전에 클래스 컴포넌트는 상태를 가질 수 있다는 이유로 함수형 컴포넌트보다 더 우월하게 여겨졌습니다. 클래스 생성자로 클래스 컴포넌트의 초기 상태를 할당할 수 있습니다. 또한 컴포넌트의 인스턴스(`this`)는 최신 상태(`this.state`)와 컴포넌트의 상태 업데이트 메서드(`this.setState`)에 접근할 수 있습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~
@@ -116,24 +118,24 @@ class App extends React.Component {
 }
 ~~~~~~~
 
-If the state has more than one property in its state object, the `setState` method performs only a shallow update. Only the properties passed to `setState` are overwritten, and all other properties in the state object stay intact. Since state management is important for frontend applications, there was no way around class components without hooks for function components.
+만약 state 객체 안에 하나 이상의 프로퍼티가 있다면 `setState` 메서드는 얕은 업데이트만 수행합니다. `setState` 에 전달된 프로퍼티만 업데이트되고 state 객체에 있는 다른 프로퍼티들은 모두 그대로 유지됩니다. 프런트엔드 애플리케이션에서 상태 관리는 중요하기 때문에 함수형 컴포넌트의 훅이 등장하기 전 클래스 컴포넌트를 사용하는 것밖에는 방법이 없었습니다.
 
-In a React class component, there are two dedicated APIs (`this.state` and `this.setState`) to manage a component's state. In a function component, React's useState and useReducer hooks handle this. Related items are packed into one state hook, while a class component must use a general state API. This was one of the major reasons to introduce React Hooks, and move away from class components.
+리액트 클래스 컴포넌트에는 컴포넌트의 상태를 관리하기 위한 두 개의 오래된(deprecated) API(`this.state` 와 `this.setState`)가 있습니다. 함수형 컴포넌트에서 useState 와 useReducer 훅이 이 일을 담당합니다. 클래스 컴포넌트는 일반적인 상태 API를 무조건 사용해야 하지만 함수형 컴포넌트에서는 관련된 상태 항목(상태 객체와 상태 업데이트 메서드)이 하나의 상태 훅으로 묶여집니다. 이것이 바로 리액트 훅을 도입한 주된 이유 중 하나였습니다. 이제 클래스 컴포넌트에서 벗어납시다.
 
-### Exercises:
+### 실습하기
 
-* Write a stateful class component (e.g. Input).
+* 상태를 가진 클래스 컴포넌트(예: Input)를 작성합니다.
 
-## Imperative React
+## 명령형 리액트
 
-In a React function component, React's useRef Hook is used mostly for imperative programming. Throughout React's history, the *ref* and its usage had a few versions:
+함수형 컴포넌트에서 useRef 훅은 주로 명령형 프로그래밍에 사용됩니다. 리액트의 역사 속에서 *ref*와 ref의 사용법은 여러 번 바뀌었습니다.
 
-* String Refs (deprecated)
+* String Refs (더 이상 사용되지 않음(deprecated))
 * Callback Refs
-* createRef Refs (exclusive for Class Components)
-* useRef Hook Refs (exclusive for Function Components)
+* createRef Refs (클래스 컴포넌트에만 사용)
+* useRef Hook Refs (함수형 컴포넌트에만 사용)
 
-Recently, the React team introduced **React's createRef** as the  latest equivalent to a function component's useRef hook:
+최근에 리액트 팀은 함수형 컴포넌트의 useRef 훅과 동등한 역할을 하는 가장 최신 버전의 ref인 **createRef**를 도입했습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~
@@ -175,10 +177,10 @@ class InputWithLabel extends React.Component {
 }
 ~~~~~~~
 
-With the helper function, the ref is created in the class' constructor, applied in the JSX for the `ref` attributed, and here used in a lifecycle method. The ref can also be used elsewhere, like focusing the input field on a button click.
+헬퍼 함수들과 함께 ref는 클래스의 생성자 안에서 만들어지며, JSX에서는 `ref` 속성에 할당되고, 이 예제에서는 생애주기 메서드에 사용되었습니다. ref는 버튼을 클릭했을 때 입력 필드에 포커스를 주는 등 다른 상황에서도 사용될 수 있습니다.
 
-Where createRef is used in React's class components, React's useRef Hook is used in React function components. As React shifts towards function components, today its common practice to use the useRef hook exclusively to manage refs and apply imperative programming principles.
+클래스 컴포넌트에서 createRef가 사용되는 곳이 바로 함수형 컴포넌트에서 useRef 훅이 사용되는 곳입니다. 리액트가 함수형 컴포넌트로 변화하고 있기에 ref를 관리하고 명령형 프로그래밍 원리를 적용하기 위해서만 useRef 훅을 사용하는 것이 일반적입니다.
 
-### Exercises:
+### 읽어보기
 
-* Read more about [the different ref techniques in React](https://reactjs.org/docs/refs-and-the-dom.html).
+* [리액트의 다양한 ref 기술들](https://reactjs.org/docs/refs-and-the-dom.html).
