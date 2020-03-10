@@ -1,39 +1,39 @@
-# Deploying a React Application
+# 리액트 애플리케이션 배포
 
-Now it's time to get out into the world with your React application. There are many ways to deploy a React application to production, and many competing providers that offer this service. We'll keep it simple here by narrowing it down on one provider, after which you'll be equipped to check out other hosting providers on your own.
+이제 리액트 애플리케이션과 세상에 나갈 시간입니다. 리액트 애플리케이션을 프로덕션에 배포하는 방법은 여러 가지가 있으며, 이러한 서비스를 제공하는 경쟁 사업자도 많습니다. 여기서는 간단히 하나의 서비스 제공자를 소개하니 이를 바탕으로 다른 호스팅 공급 업체도 직접 확인해 보세요.
 
-## Build Process
+## 빌드 과정
 
-So far, everything we've done has been the *development stage* of the application, when the development server handles everything: packaging all files to one application and serving it on localhost on your local machine. As a result, our code isn't available for anyone else.
+지금까지 배운 모든 과정은 애플리케이션 **개발 단계**에 해당합니다. 개발 단계에서는 개발 서버가 모든 파일을 하나의 애플리케이션으로 패키징하고 로컬 머신의 로컬 호스트에 서빙하기까지의 모든 과정을 처리합니다. 그 결과 다른 사람이 코드를 사용할 수 없습니다.
 
-The next step is to take your application to the *production stage* by hosting it on a remote server, called deployment, making it accessible for users of your application. Before an application can go public, it needs to be packaged as one essential application. Redundant code, testing code, and duplications are removed. There is also a process called minification at work which reduces the code size once more.
+다음은 애플리케이션을 원격 서버에 호스팅함으로써 사용자가 이용 가능하게 하는 **프로덕션 단계**, 즉 배포입니다. 애플리케이션을 공개하기 전에 하나의 핵심 애플리케이션으로 패키징해야 합니다. 불필요한 코드, 테스트 코드와 중복은 제거합니다. 코드 크기를 한 번 더 줄이는 코드 경량화(minification) 과정도 있습니다.
 
-Fortunately, optimizations and packaging, also called bundling, comes with the build tools in create-react-app. First, build your application on the command line:
+다행히도, 번들링이라고도 불리는 최적화와 패키징은 create-react-app의 빌드 도구에 포함되어 있습니다. 다음과 같이 애플리케이션을 빌드하세요.
 
 {title="Command Line",lang="text"}
 ~~~~~~~
 npm run build
 ~~~~~~~
 
-This creates a new *build/* folder in your project with the bundled application. You could take this folder and deploy it on a hosting provider now, but we'll use a local server to mimic this process before engaging in the real thing. First, install an HTTP server on your machine:
+이 명령어를 실행하면 번들링된 애플리케이션인 **build/**라는 폴더가 생성됩니다. 이 폴더를 바로 호스팅해 배포할 수 있지만, 그 전에 먼저 로컬 서버에서 확인해보겠습니다. 로컬 머신에 HTTP 서버를 설치하세요.
 
 {title="Command Line",lang="text"}
 ~~~~~~~
 npm install -g http-server
 ~~~~~~~
 
-Next, serve your application with this local HTTP server:
+다음으로 애플리케이션을 이 로컬 HTTP 서버로 호스팅하세요.
 
 {title="Command Line",lang="text"}
 ~~~~~~~
 http-server build/
 ~~~~~~~
 
-The process can also be done on demand with a single command:
+명령어 하나로 실행할 수 있습니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~
 npx http-server build/
 ~~~~~~~
 
-After entering one of the commands, a URL is presented that provides access to your optimized, packaged and hosted application. It's sent through a local IP address that can be made available over your local network, meaning we're hosting the application on our local machine.
+명령어를 입력하면 최적화, 패키징 및 호스팅된 애플리케이션에 접근 가능한 URL이 생성됩니다. 로컬 사용 가능한 로컬 IP 주소를 통해 전송된 것으로, 로컬에서 애플리케이션을 호스팅되고 있음을 의미합니다.
