@@ -151,7 +151,7 @@ const Item = ({ item, onRemoveItem }) => (
 }
 ~~~~~~~
 
-여기서는 css 섹션 에서의 `button_small` 및 `button_large`와 달리 BEM 명명 규칙으로의 전환이 있습니다. 만약 이전 명명 규칙이 유지 된다면 JavaScript에서 객체에 밑줄 사용시 제한이 있기에  `styles['button_small']`을 사용하는 스타일에만 접근할 수 있습니다. 대시(`-`)로 정의된 클래스에 대해서도 동일한 단점이 적용됩니다. 대신 우리는 `styles.buttonSmall`를 사용할 수 있습니다.(아래 파일을 참조하세요.):
+여기서는 css 섹션 에서의 `button_small` 및 `button_large`와 달리 BEM(Block Element Modifier) 네이밍 컨벤션으로의 전환이 있습니다. 만약 이전 네이밍 컨벤션이 유지 된다면 자바스크립트에서 객체에 밑줄 사용시 제한이 있기에  `styles['button_small']`을 사용하는 스타일에만 접근할 수 있습니다. 대시(`-`)로 정의된 클래스에 대해서도 동일한 단점이 적용됩니다. 우리는 `styles.buttonSmall`를 사용할 수 있습니다.(아래 파일을 참조하세요.).
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -246,7 +246,7 @@ const InputWithLabel = ({ ... }) => {
 
 마지막 섹션과 동일한 주의사항이 있습니다: `input` 및 `label`과 같은 일부 스타일은 CSS 모듈보다 전역 *src/index.css* 파일에 작성하는게 더 효율적일 수 있습니다.
 
-또한, CSS 모듈은 다른 CSS-in-CSS와 마찬가지로 중첩과 같은 고급 CSS 기능에 Sass를 사용할 수 있습니다. CSS 모듈의 장점은 스타일이 정의되지 않을 때마다 JavaScript에서 오류가 발생한다는 것입니다. 기존의 표준 CSS 접근 방식에서는 JavaScript 및 CSS 파일의 스타일이 일치하지 않을 수 있습니다.
+CSS 모듈은 다른 .css파일 안에 작성한 CSS와 마찬가지로 중첩과 같은 고급 CSS 기능에 Sass를 사용할 수 있습니다. CSS 모듈의 장점은 스타일이 정의되지 않을 때마다 자바스크립트에서 오류가 발생한다는 것입니다. 기존의 표준 CSS 접근 방식에서는 자바스크립트 및 CSS 파일의 스타일이 일치하지 않을 수 있습니다.
 
 ### Exercises:
 
