@@ -1,4 +1,4 @@
-## 리액트 CSS 모듈
+## 리액트와 CSS 모듈
 
 CSS 모듈은 고급 **CSS-in-CSS**(.css파일에 작성한 CSS) 접근 방식입니다. CSS 파일은 그대로 유지되며  Sass와 같은 CSS 확장에도 적용할 수도 있습니다. 하지만 이것은 리액트 컴포넌트 안에서는 다르게 사용됩니다. CSS 모듈을 create-react-app에서 사용하기 위해서는 *src/App.css* 파일명을 *src/App.module.css*로 변경해야 합니다. 이 작업은 프로젝트 디렉토리의 command line에서 이루어 집니다:
 
@@ -250,6 +250,6 @@ CSS 모듈은 다른 .css파일 안에 작성한 CSS와 마찬가지로 중첩�
 
 ### Exercises:
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/CSS-Modules-in-React).
-  * Confirm the [changes from the last section](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/CSS-Modules-in-React?expand=1).
-* Read more about [CSS Modules in create-react-app](https://create-react-app.dev/docs/adding-a-css-modules-stylesheet).
+* [마지막 섹션의 소스 코드](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/CSS-Modules-in-React)를 확인하세요.
+  * [마지막 섹션의 변경 사항](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/CSS-Modules-in-React?expand=1)을 확인하세요.
+* [create-react-app에서의 CSS 모듈](https://create-react-app.dev/docs/adding-a-css-modules-stylesheet)에 대해 자세히 알아보세요.
