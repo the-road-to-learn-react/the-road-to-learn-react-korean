@@ -1,26 +1,26 @@
-# Fundamentals of React
+# 리액트 기초 다지기
 
-In the first part of this learning experience, we'll cover the fundamentals of React, after which we'll create our first React project. Then we'll explore new aspects of React by implementing real features, the same as developing an actual web application. By the end we'll have a working React application with features like client and server-side searching, remote data fetching, and advanced state management.
+첫 장에서는 리액트의 기본적인 내용에 대해 배우고, 첫 번째 리액트 프로젝트를 만듭니다. 그런 다음 실제 웹 애플리케이션과 같은 기능을 구현함으로써 리액트의 새로운 측면을 살펴보겠습니다. 이 과정이 끝날 무렵이면 우리는 클라이언트 및 서버사이드 검색, 원격 데이터 가져오기 및 고급 상태 관리와 같은 기능을 갖춘 리액트 애플리케이션을 갖게 될 것입니다.
 
-## Hello React
+## 리액트 시작하기
 
-Single-page applications ([SPA](https://en.wikipedia.org/wiki/Single-page_application)) have become increasingly popular with first generation SPA frameworks like Angular (by Google), Ember, Knockout, and Backbone. Using these frameworks made it easier to build web applications which advanced beyond vanilla JavaScript and jQuery. React, yet another solution for SPAs, was released by Facebook later in 2013. All of them are used to create entire web applications in JavaScript.
+최근 몇 년 사이에 단일 페이지 애플리케이션([SPA, Single Page Application](https://en.wikipedia.org/wiki/Single-page_application))이 주목을 받고 있습니다. Angular, Ember, Knockout, Backbone과 같은 프레임워크를 사용함으로써 자바스크립트(Vanilla JavaScript, 타 라이브러리나 프레임워크 사용 없이 순수한 자바스크립트로 개발하는 것을 말함)와 제이쿼리(jQuery)를 사용하지 않고도 최신 웹 애플리케이션을 구축할 수 있게 되었습니다. SPA 프레임워크 중 하나인 리액트는 페이스북이 만든 라이브러리로, 2013년에 공개되었습니다. 이들은 모두 자바스크립트로 웹 애플리케이션을 만드는 데에 사용됩니다.
 
-For a moment, let's go back in time before SPAs existed: In the past, websites and web applications were rendered from the server. A user visits a URL in a browser and requests one HTML file and all its associated HTML, CSS, and JavaScript files from a web server. After some network delay, the user sees the rendered HTML in the browser (client) and starts to interact with it. Every additional page transition (meaning: visiting another URL) would initiate this chain of events again. In this version from the past, essentially everything crucial is done by the server, whereas the client plays a minimal role by just rendering page by page. While barebones HTML and CSS was used to structure the application, just a little bit of JavaScript was thrown into the mix to make interactions (e.g. toggling a dropdown) or advanced styling (e.g. positioning a tooltip) possible. A popular JavaScript library for this kind of work was jQuery.
+잠시 SPA가 존재하기 이전의 시간으로 돌아가 봅시다. 과거에는 웹 사이트와 웹 애플리케이션이 서버에서 렌더링 되었습니다. 사용자는 브라우저에서 URL에 접속하여 웹 서버에서 하나의 HTML 파일과 모든 관련 HTML, CSS 및 자바스크립트 파일을 요청합니다. 약간의 네트워크 지연을 겪고 나면, 사용자는 브라우저(클라이언트)에서 렌더링 된 HTML을 보고 상호작용을 시작합니다. 추가적인 페이지 전환(다른 URL을 방문하는 것)은 이 과정을 다시 불러일으킵니다. 과거에는 본질적으로 중요한 모든 작업이 서버에서 수행되었던 반면, 클라이언트는 단지 한 페이지씩 렌더링을 함으로써 최소한의 역할만 수행했습니다. HTML과 CSS가 애플리케이션의 구조를 만들고, 약간의 자바스크립트가 상호작용(예: 토글, 드롭다운) 또는 고급 스타일링(예: 툴팁 배치)을 가능하게 했습니다. 이런 종류의 작업에 널리 사용되는 자바스크립트 라이브러리는 jQuery 였습니다.
 
-In contrast, modern JavaScript shifted the focus from the server to the client. The most extreme version of it: A user visits a URL and requests one *minimal HTML file* and *one associated JavaScript file*. After some network delay, the user sees the *by JavaScript rendered HTML* in the browser and starts to interact with it. Every additional page transition *wouldn't* request more files from the web server, but would use the initially requested JavaScript to render the new page. Also every additional interaction by the user is handled on the client too. In this modern version, the server delivers mainly JavaScript across the wire with one minimal HTML file. The HTML file then executes all the linked JavaScript on the client-side to render the entire application with HTML and JavaScript for its interactions.
+이와는 반대로, 최신 버전의 자바스크립트는 초점을 서버에서 클라이언트로 옮겼습니다. 극단적으로 이야기하자면, 사용자는 URL을 방문해서 최소한의 HTML 파일과 하나의 자바스크립트 파일만 요청합니다. 약간의 네트워크 지연을 겪고 나면, 사용자는 브라우저에서 자바스크립트에 의해 렌더링 된 HTML을 보고 상호작용을 시작합니다. 추가적인 페이지 전환을 할 때마다 웹 서버에 더 많은 파일을 요청하지는 않지만, 처음에 요청했던 자바스크립트를 사용하여 새로운 페이지를 렌더링할 수 있습니다. 또한, 사용자에 의한 모든 추가적인 작업도 클라이언트에서 처리됩니다. 이러한 최신 버전에서는 서버가 주로 최소한의 HTML 파일에 연결된 자바스크립트만을 제공합니다. HTML 파일은 연결된 모든 자바스크립트를 클라이언트 측에서 실행하여 애플리케이션에서 이루어질 상호작용을 위한 HTML 및 자바스크립트를 렌더링합니다.
 
-React, among the other SPA solutions, makes this possible. Essentially a SPA is one bulk of JavaScript, which is neatly organized in folders and files, to create a whole application whereas the SPA framework gives you all the tools to architect it. This JavaScript focused application is delivered once over the network to your browser when a user visits the URL for your web application. From there, React, or any other SPA framework, takes over for rendering everything in the browser and for dealing with user interactions.
+여러 SPA 프레임워크 중에서도 리액트는 이를 가능하게 합니다. 기본적으로 SPA는 전체 애플리케이션을 만들기 위해 폴더와 파일로 깔끔하게 정리된 하나의 자바스크립트이며,  SPA 프레임워크는 이를 설계하기 위한 모든 도구를 제공합니다. 이러한 자바스크립트 중심의 애플리케이션은 사용자가 웹 애플리케이션의 URL을 방문하면 네트워크를 통해 브라우저로 한 번만 전달됩니다. 여기서부터 리액트 또는 다른 SPA 프레임워크가 브라우저의 모든 것을 렌더링하고 사용자의 작업을 처리합니다.
 
-With the rise of React, the concept of components became popular. Every component defines its look and feel with HTML, CSS and JavaScript. Once a component is defined, it can be used in a hierarchy of components for creating an entire application. Even though React has a strong focus on components as a library, the surrounding ecosystem makes it a flexible framework. React has a slim API, a stable yet thriving ecosystem, and a welcoming community. We are happy to welcome you :-)
+리액트의 등장으로 컴포넌트의 개념이 대중화되기 시작했습니다. 모든 컴포넌트는 HTML, CSS, 자바스크립트와 유사하게 정의됩니다. 컴포넌트가 한 번 정의되면, 계층구조로 사용하여 전체 애플리케이션을 구성할 수 있습니다. 리액트는 라이브러리로서 컴포넌트에 중점을 두고 있지만, 주변 생태계에서 이를 좀 더 유연한 프레임워크로 만들고 있습니다. 리액트는 간결한 API, 놀라운 생태계, 훌륭한 커뮤니티를 갖추고 있습니다. 리액트의 세계로 온 걸 환영합니다!
 
-### Exercises
+### 읽어보기
 
-* Read more about [why I moved from Angular to React](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/).
-* Read more about [how to learn a framework](https://www.robinwieruch.de/how-to-learn-framework/).
-* Read more about [how to learn React](https://www.robinwieruch.de/learn-react-js).
-* Read more about [why framworks matter](https://www.robinwieruch.de/why-frameworks-matter).
-* Scan through [JavaScript fundamentals needed for React](https://www.robinwieruch.de/javascript-fundamentals-react-requirements) -- without worrying too much about the React -- to test yourself about several JavaScript features used in React.
+* [왜 나는 앵귤러에서 리액트로 옮겼는가](https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/)
+* [프레임워크 학습 방법](https://www.robinwieruch.de/how-to-learn-framework/)
+* [리액트를 배우는 방법](https://www.robinwieruch.de/learn-react-js)
+* [프레임워크가 중요한 이유](https://www.robinwieruch.de/why-frameworks-matter).
+* [리액트에 필요한 자바스크립트 기초](https://www.robinwieruch.de/javascript-fundamentals-react-requirements) - 리액트에 대해 너무 걱정하지 말고, 리액트에 사용되는 여러 자바스크립트 기능을 스스로 학습해보세요.
 
 ## Requirements
 
