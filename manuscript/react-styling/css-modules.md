@@ -248,8 +248,8 @@ const InputWithLabel = ({ ... }) => {
 
 CSS 모듈은 다른 .css파일 안에 작성한 CSS와 마찬가지로 중첩과 같은 고급 CSS 기능에 Sass를 사용할 수 있습니다. CSS 모듈의 장점은 스타일이 정의되지 않을 때마다 자바스크립트에서 오류가 발생한다는 것입니다. 기존의 표준 CSS 접근 방식에서는 자바스크립트 및 CSS 파일의 스타일이 일치하지 않을 수 있습니다.
 
-### Exercises:
+### 실습하기:
 
-* [마지막 섹션의 소스 코드](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/CSS-Modules-in-React)를 확인하세요.
-  * [마지막 섹션의 변경 사항](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/CSS-Modules-in-React?expand=1)을 확인하세요.
+* [마지막 장의 소스 코드](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/CSS-Modules-in-React)를 확인하세요.
+  * [마지막 장의 변경 사항](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/CSS-Modules-in-React?expand=1)을 확인하세요.
 * [create-react-app에서의 CSS 모듈](https://create-react-app.dev/docs/adding-a-css-modules-stylesheet)에 대해 자세히 알아보세요.
