@@ -22,25 +22,25 @@
 * [프레임워크가 중요한 이유](https://www.robinwieruch.de/why-frameworks-matter).
 * [리액트에 필요한 자바스크립트 기초](https://www.robinwieruch.de/javascript-fundamentals-react-requirements) - 리액트에 대해 너무 걱정하지 말고, 리액트에 사용되는 여러 자바스크립트 기능을 스스로 학습해보세요.
 
-## Requirements
+## 준비사항
 
-To follow this book you'll need to be familiar with the basics of web development, i.e how to use HTML, CSS, and JavaScript. It also helps to understand [APIs](https://www.robinwieruch.de/what-is-an-api-javascript/), as they will be covered thoroughly.
+이 책을 따라가려면 웹 개발의 기본, 즉 HTML, CSS, 자바스크립트를 사용하는 방법을 숙지해야 합니다. 또한 [APIs](https://www.robinwieruch.de/what-is-an-api-javascript/)를 이해한다면 도움이 될 것입니다.
 
-### Editor and Terminal
+###  코드 에디터와 터미널
 
-I have provided [a setup guide](https://www.robinwieruch.de/developer-setup/) to get you started with general web development. For this learning experience, you will need a text editor (e.g. Sublime Text) and a command line tool (e.g. iTerm) or an IDE (e.g. Visual Studio Code). I recommend Visual Studio Code (also called VS Code) for beginners, as it's an all-in-one solution that provides an advanced editor with an integrated command line tool, and because it's a popular choice among web developers.
+웹 개발 환경을 갖춰 봅시다. 텍스트 에디터(예: Sublime Text)나 커맨드 라인(Command line, 터미널(terminal)이라고도 함)(예: iTerm), 또는 IDE(Integrated Development Environment, 통합 개발 환경)(예: Visual Studio Code)가 필요합니다. 자세한 방법은 [개발 환경 설정 가이드](https://www.robinwieruch.de/developer-setup/)를 참고하길 바랍니다. 초보자에게는 Visual Studio Code(VS Code)를 추천합니다. VS Code는 커맨드 라인을 갖춘 고급 편집기를 제공하며, 웹 개발자들 사이에서도 널리 사용됩니다.
 
-Throughout this learning experience I will use the term *command line*, which will be used synonymously for the terms *command line tool*, *terminal*, and *integrated terminal*. The same applies for the terms *editor*, *text editor*, and *IDE*, depending on what you decided to use for your setup.
+이번 실습에서는 *커맨드 라인(command line)*을 사용할 것입니다. *커맨드 라인 도구(command line tool)*, *터미널(terminal)*, *통합 터미널(integrated terminal)*과 같은 용어로도 불립니다. *에디터*, *텍스트 에디터*, *IDE(Integrated Development Environment, 통합 개발 환경)*와도 동일하며, 어떤 도구를 선택해도 비슷합니다.
 
-Optionally, I recommend managing projects in GitHub while we conduct the exercises in this book, and I've provided a [short guide](https://www.robinwieruch.de/git-essential-commands/) on how to use these tools. Github has excellent version control, so you can see what changes were made if you make a mistake or just want a more direct way to follow along. It's also a great way to share your code later with other people.
+추가적으로, 이 책의 예제를 실습하면서 프로젝트를 GitHub으로 관리하는 것을 추천합니다. 어떻게 사용하는지는 [짧은 가이드](https://www.robinwieruch.de/git-essential-commands/)를 참고하세요. GitHub은 뛰어난 버전 관리 기능을 제공하여 어떤 변화가 일어났는지를 추적할 수 있습니다. 또한 나중에 다른 사람들과 코드를 공유하기에도 좋습니다.
 
-If you don't want to set up the editor/terminal combination or IDE on your local machine, [CodeSandbox](https://codesandbox.io/), an online editor, is also a viable alternative. While CodeSandbox is a great tool for sharing code online, a local machine setup is a better tool for learning the different ways to create a web application. Also, if you want to develop applications professionally, a local setup will be required.
+로컬 환경에서 코드 에디터/터미널 또는 IDE를 설정하고 싶지 않다면 온라인 코드 에디터인 [CodeSandbox](https://codesandbox.io/)를 사용할 수 있습니다. CodeSandbox는 온라인으로 코드를 공유하는 데에 유용한 도구이지만, 로컬 환경에 설정하는 것이 웹 애플리케이션을 만드는 다양한 방법을 배우기에는 더 좋습니다. 또한 전문적으로 애플리케이션을 개발하려면 로컬 설정이 필요합니다.
 
-### Node and NPM
+### Node와 NPM
 
-Before we can begin, we'll need to have [node and npm](https://nodejs.org/en/) installed. Both are used to manage libraries (node packages) you will need along the way. These node packages can be libraries or whole frameworks. We'll install external node packages via npm (node package manager).
+시작하기 전에, [node(노드)와 npm](https://nodejs.org/en/)을 설치해야 합니다. 둘 다 앞으로 필요한 라이브러리(노드 패키지)를 관리하는 데 사용됩니다. 이러한 노드 패키지는 라이브러리가 될 수도 있고, 전체 프레임워크일 수도 있습니다. 여기서는 npm(node package manager, 노드 패키지 관리자 명령어)을 통해 외부 노드 패키지를 설치합니다.
 
-You can verify node and npm versions in the command line using the `node --version` command. If you don't receive output in the terminal indicating which version is installed, you need to install node and npm:
+`node --version`을 사용하여 현재 노드 및 npm 버전을 확인할 수 있습니다. 화면에 버전이 표시되지 않으면 노드 및 npm을 설치해야 합니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~
@@ -50,7 +50,7 @@ npm --version
 *vXX.YY.ZZ
 ~~~~~~~
 
-If you have already installed Node and npm, make sure that your installation is the most recent version. If you're new to npm or need a refresher, this [npm crash course](https://www.robinwieruch.de/npm-crash-course) I created will get you up to speed.
+노드와 npm을 이미 설치한 경우, 최신 버전인지 확인하세요. npm을 처음 사용하거나 다시 설치할 경우, [npm crash course](https://www.robinwieruch.de/npm-crash-course)를 통해 속도를 높일 수 있습니다.
 
 ## Setting up a React Project
 
