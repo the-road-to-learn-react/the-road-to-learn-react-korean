@@ -149,9 +149,9 @@ npm run build
 	* `npm run build` 스크립트를 실행해 *build/* 폴더에 어떤 파일이 추가되었는지 확인합니다(이 폴더는 나중에 직접 삭제할 수도 있습니다). 빌드된 폴더는 나중에 [앱을 배포할 때](https://www.robinwieruch.de/deploy-applications-digital-ocean/)에도 사용할 수 있습니다.
 * 코드를 수정하면 브라우저에서 적용이 잘 되었는지 확인하도록 합니다.
 
-## Meet the React Component
+## 리액트 컴포넌트 기초
 
-Our first React component is in the *src/App.js* file, which should look similar to the example below. The file might differ slightly, because create-react-app will sometimes update the default component's structure.
+우리의 첫 리액트 컴포넌트는 *src/App.js* 파일입니다. 대부분은 아래 코드와 비슷하게 생겼을 겁니다. 아래의 코드가 여러분의 코드와 조금씩 다를 수 있음을 주의하세요. create-react-app 키트가 조금씩 컴포넌트의 구조를 바꿀 수도 있기 때문입니다.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -183,7 +183,7 @@ function App() {
 export default App;
 ~~~~~~~
 
-This file will be our focus throughout this tutorial, unless otherwise specified. Let's start by reducing the component to a more lightweight version for getting you started without too much boilerplate code from create-react-app.
+이 파일은 달리 명시되지 않는 한, 우리 프로젝트에서 기본적인 컴포넌트로 사용합니다. 이제 컴포넌트에서 요소들을 조금씩 제거하면서 더 가벼운 버전의 create-react-app을 만들어봅시다.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -202,9 +202,9 @@ export default App;
 # leanpub-end-insert
 ~~~~~~~
 
-First, this React component, called App component, is just a JavaScript function. It's commonly called **function component**, because there are other variations of React components  (see **component types** later). Second, the App component doesn't receive any parameters in its function signature yet (see **props** later). And third, the App component returns code that resembles HTML which is called JSX (see **JSX** later).
+이 리액트 컴포넌트는 App 컴포넌트라는 자바스크립트 함수입니다. 일반적으로 **함수 컴포넌트**라고 불리며, 이외의 다른 종류의 컴포넌트는 뒤에서 다시 다룰 예정입니다(나중에 **컴포넌트 종류**를 참조하세요). 또한, App 컴포넌트는 별도의 매개변수를 받지 않습니다(나중에 **props**를 참조하세요). 마지막으로 App 컴포넌트는 JSX라고 하는 HTML과 유사한 코드를 반환합니다(나중에 **JSX**를 참조하세요).
 
-The function component possess implementation details like any other JavaScript function. You will see this in practice in action throughout your React journey:
+함수 컴포넌트에도 자바스크립트 함수처럼 구현 세부 사항이 있습니다. 이제 실제로 개발을 하면서 하나씩 살펴봅시다.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -225,7 +225,7 @@ function App() {
 export default App;
 ~~~~~~~
 
-Variables defined in the function's body will be re-defined each time this function runs, like all JavaScript functions:
+함수 본문(body)에서 정의된 변수는 함수가 실행될 때마다 매번 재정의될 것입니다. 자바스크립트 함수처럼요.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -246,7 +246,7 @@ function App() {
 export default App;
 ~~~~~~~
 
-Since we don't need anything from within the App component used for this variable -- e.g. parameters coming from the function signature -- we can define the variable outside of the App component as well:
+현재 App 컴포넌트 안에는 이 변수에 사용되는 요소(예: 함수 시그니처에서 나오는 매개변수)가 없기 때문에, 우리는 App 컴포넌트 밖에서 변수를 정의할 수 있습니다.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -267,15 +267,15 @@ function App() {
 export default App;
 ~~~~~~~
 
-Let's use this variable in the next section.
+이제 변수를 사용하는 방법을 살펴봅시다.
 
-### Exercises:
+### 읽어보기
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Meet-the-React-Component).
-* If you are unsure when to use `const`, `let` or `var` in JavaScript (or React) for variable declarations, make sure to [read more about their differences](https://www.robinwieruch.de/const-let-var).
-  * Read more about [const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const).
-  * Read more about [let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let).
-* Think about ways to display the `title` variable in your App component's returned HTML. In the next section, we'll put this variable to use.
+* [지난 장에서 사용한 코드](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/Meet-the-React-Component)를 확인하세요.
+* 자바스크립트(혹은 리액트)의 `const`, `let` 또는 `var` 를 사용하여 변수를 정의하는 게 익숙하지 않다면,  [이들의 차이점](https://www.robinwieruch.de/const-let-var)에 대해 읽어보세요.
+	* [const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
+	* [let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
+* App 컴포넌트가 HTML로 반환되었을 때, `title` 변수를 표시할 방법을 생각해보세요. 다음 장에서 이 변수를 사용합니다.
 
 ## React JSX
 
