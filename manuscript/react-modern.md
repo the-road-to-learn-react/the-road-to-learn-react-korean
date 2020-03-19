@@ -52,25 +52,25 @@ npm --version
 
 노드와 npm을 이미 설치한 경우, 최신 버전인지 확인하세요. npm을 처음 사용하거나 다시 설치할 경우, [npm crash course](https://www.robinwieruch.de/npm-crash-course)를 통해 속도를 높일 수 있습니다.
 
-## Setting up a React Project
+## 리액트 프로젝트 설정하기
 
-In the Road to React, we'll use [create-react-app](https://github.com/facebook/create-react-app) to bootstrap your application. It's an opinionated yet zero-configuration starter kit for React introduced by Facebook in 2016, which is [recommended for beginners by 96% of React users](https://twitter.com/dan_abramov/status/806985854099062785). In *create-react-app*, the tools and configurations evolve in the background, while the focus remains on the application's implementation.
+이 책에서는 [create-react-app](https://github.com/facebook/create-react-app)를 사용하여 애플리케이션을 부트스트래핑합니다. 부트스트래핑(bootstrapping)이라는 뜻은 애플리케이션을 최초 생성하여 브라우저에서 실행하는 과정을 말합니다.  *create-react-app*은 2016년 페이스북이 제안한 리액트 제로 구성 설치 스타터 킷(Zero-Configuration Setup Starter Kit)입니다. 트위터에서 진행한 한 [조사](https://twitter.com/dan_abramov/status/806985854099062785)에 따르면 96% 이상의 리액트 개발자들이 입문자의 경우 create-react-app 사용을 권장하고 있습니다. create-react-app은 리액트 개발 도구와 환경 설정이 이미 세팅되어 있기 때문에, 우리는 오롯이 애플리케이션 구현에만 신경 쓰면 됩니다.
 
-After installing Node and npm, use the command line to type the following command in a dedicated folder for your project. We'll refer to this project as *hacker-stories*, but you may choose any name you like:
+노드와 npm을 설치한 후 터미널을 사용하여 프로젝트 폴더에 다음 명령어를 입력하세요. 이 프로젝트를 *hacker stories*라고 하겠습니다. 물론 다른 이름을 사용해도 괜찮습니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~
 npx create-react-app hacker-stories
 ~~~~~~~
 
-Navigate into your new folder after the setup has finished:
+설치가 완료되면 생성된 폴더 안으로 들어갑니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~
 cd hacker-stories
 ~~~~~~~
 
-Now we can open the application in an editor or IDE. For Visual Studio Code, you can simply type `code .` on the command line. The following folder structure, or a variation of it depending on the *create-react-app* version, should be presented:
+코드 에디터에서 애플리케이션을 열어 봅시다. Visual Studio Code의 경우, 터미널에 `code .`를 입력하면 됩니다. 디렉터리에 아래와 같은 *create-react-app* 구조가 보일 것입니다.
 
 {title="Project Structure",lang="text"}
 ~~~~~~~
@@ -90,20 +90,20 @@ hacker-stories/
 --README.md
 ~~~~~~~
 
-This is a breakdown of the most important folders and files:
+각 파일과 폴더 단위가 무엇을 지칭하는지 알아보겠습니다.
 
-* **README.md:** The *.md* extension indicates the file is a markdown file. Markdown is a lightweight markup language with plain text formatting syntax. Many source code projects come with a *README*.md file that gives instructions and useful information about the project. When we push projects to platforms like GitHub, the *README.md* file usually displays information about the content contained in its repositories. Because you used create-react-app, your *README.md* should be the same as the official [create-react-app GitHub repository](https://github.com/facebook/create-react-app).
-* **node_modules/:** This folder contains all node packages that have been installed via npm. Since we used create-react-app, a couple of node modules are already installed. We'll not touch this folder, since node packages are usually installed and uninstalled with npm via the command line.
-* **package.json:** This file shows you a list of node package dependencies and other project configurations.
-* **package-lock.json:** This file indicates npm how to break down all node package versions. We'll not touch this file.
-* **.gitignore:** This file displays all files and folders that shouldn't be added to your git repository when using git, as such files and folders should be located only in your local project. The *node_modules/* folder is one example. It is enough to share the *package.json* file with others, so they can install dependencies on their end with `npm install` without your entire dependency folder.
-* **public/:** This folder holds development files, such as *public/index.html*. The index file is displayed on *localhost:3000* when the app is in development or on a domain that is hosted elsewhere. The default setup handles relating this *index.html* with all the JavaScript from *src/*.
+* **README.md:** *.md* 확장자는 마크다운(markdown) 파일입니다. 일반 텍스트와 함께 간단한 마크업 언어로 작성합니다. 대부분 프로젝트에는 *README.md* 파일에 프로젝트 설명 및 설치 방법 등 안내 사항을 작성합니다. 깃허브 리퍼지토리 페이지의 첫 화면에 *README.md* 파일을 보았을 겁니다. *create-react-app* 을 설치한 후 바로 깃허브에 프로젝트를 올린다면 *README.md* 파일 내용은 [create-react-app 공식 깃허브 리퍼지토리](https://github.com/facebookincubator/create-react-app)와 내용이 동일할 것입니다.
+* **node_modules/:** 이 폴더에는 npm으로 설치되었던 모든 노드 패키지를 포함합니다. 이미 create-react-app으로 리액트 애플리케이션을 부트스트래핑 했기 때문에 여러 모듈이 설치되어 있습니다. 이 폴더는 절대로 건드리지 말아야 합니다. `npm` 명령어를 사용해 패키지를 설치 또는 제거합니다.
+* **package.json:** 노드 패키지 의존성 및 기타 프로젝트 구성 목록을 포함합니다.
+* **package-lock.json:** 프로젝트에 사용하는 모든 노드 패키지 버전을 표시합니다. 이 파일 또한 건드리지 않습니다.
+* **.gitignore:** git을 사용할 때, 원격 git 리퍼지토리에 제외시킬 모든 파일과 폴더 목록이 나열되어 있습니다. 예를 들어 *node_module*은 로컬에만 있어야 합니다. 의존성 폴더 전체를 올리지 않고도 공유된 *package.json* 파일만으로 의존성 패키지를 설치할 수 있습니다.
+* **public/:** *public/index.html* 와 같이 배포를 위해 필요한 파일을 말합니다. 앱이 개발 중이거나 다른 곳에서 호스팅 된 도메인에 있을 때, 인덱스 파일은 *localhost:3000*에 표시됩니다. 프로젝트를 빌드할 때, *src/* 폴더 내 모든 코드는 몇 개의 파일로 묶여 *public* 폴더에 배치됩니다. 기본적으로 *index.html*와 *src/*에 있는 모든 자바스크립트를 처리합니다.
 
-In the beginning, everything you need is located in the *src/* folder. The main focus lies on the *src/App.js* file which is used to implement React components. It will be used to implement your application, but later you might want to split up your components into multiple files, where each file maintains one or more components on its own.
+우리가 필요한 모든 파일은 *src/* 폴더에 들어있습니다. 제일 중요한 파일은 *src/App.js* 파일로, 리액트 컴포넌트를 생성하는 역할을 합니다. 지금은 이 파일이 전체 애플리케이션을 이루고 있지만, 나중에 리액트 컴포넌트를 여러 파일로 분절하여 나눠 관리할 수 있습니다.
 
-Additionally, you will find a *src/App.test.js* file for your tests, and a *src/index.js* as an entry point to the React world. You will get to know both files intimately in later sections. There is also a *src/index.css* and a *src/App.css* file to style your general application and components, which comes with the default style when you open them. You will modify them later as well.
+이외에 테스트를 위한 *src/App.test.js* 파일과 리액트의 진입점인 *src/index.js* 파일이 보일 겁니다. 다음 장에서 두 파일에 대해 알게 될 것입니다. 또한 애플리케이션과 컴포넌트 스타일을 지정하는 *src/index.css* 및 *src/App.css* 파일이 있습니다. 현재는 기본 스타일만 적용되어 있으며, 나중에 수정할 수 있습니다.
 
-After you have learned about the folder and file structure of your React project, let's go through the available commands to get it started. All your project specific commands can be found in your *package.json* under the *scripts* property. They may look similar to these:
+리액트 프로젝트의 폴더와 파일 구조에 대해 알게 되었으니, 명령어를 통해 프로젝트를 시작해봅시다. 모든 프로젝트별 명령은 *package.json*의 *scripts* 속성에서 찾을 수 있습니다. 아래와 비슷한 형태일 것입니다.
 
 {title="package.json",lang="javascript"}
 ~~~~~~~
@@ -120,34 +120,34 @@ After you have learned about the folder and file structure of your React project
 }
 ~~~~~~~
 
-These scripts are executed with the `npm run <script>` command in an IDE-integrated terminal or command line tool. The `run` can be omitted for the `start` and `test` scripts. The commands are as follows:
+이러한 스크립트는 IDE의 내장 터미널이나  `npm run <script>` 명령어를 통해 실행됩니다. `start` 나 `test` 스크립트에서 `run`은 생략할 수 있습니다. 아래와 같이 명령어를 실행합니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~
-# Runs the application in http://localhost:3000
+# http://localhost:3000 에서 애플리케이션 실행
 npm start
 
-# Runs the tests
+# 테스트 실행
 npm test
 
-# Builds the application for production
+# 배포를 위한 애플리케이션 빌드
 npm run build
 ~~~~~~~
 
-Another command from the previous npm scripts called `eject` shouldn't be used for this learning experience. It's a one way operation. Once you eject, you can't go back. Essentially this command is only there to make all the build tool and configuration from create-react-app accessible if you are not satisfied with the choices or if you want to change something. Here we will keep all the defaults though.
+이전 npm 스크립트 중에는 `eject`도 있었으나, 여기서는 다루지 않습니다. 한 번 eject를 수행하게 되면 이전 상태로 되돌아 갈 수 없기 때문입니다. 이 명령어는 create-react-app의 설정이 만족스럽지 않아 직접 설정을 바꾸고 싶을 때 사용합니다. 여기서 우리는 모든 기본 설정값을 유지합니다.
 
-### Exercises:
+### 읽어보기
 
-* Read a bit more through React's [create-react-app documentation](https://github.com/facebook/create-react-app) and [getting started guide](https://create-react-app.dev/docs/getting-started).
-  * Read more about [the supported JavaScript features in create-react-app](https://create-react-app.dev/docs/supported-browsers-features).
-* Read more about [the folder structure in create-react-app](https://create-react-app.dev/docs/folder-structure).
-  * Go through all of your React project's folders and files one by one.
-* Read more about [the scripts in create-react-app](https://create-react-app.dev/docs/available-scripts).
-  * Start your React application with `npm start` on the command line and check it out in the browser.
-    * Exit the command on the command line by pressing `Control + C`.
-  * Run the `npm test` script.
-  * Run the `npm run build` script and verify that a *build/* folder was added to your project (you can remove it afterward). Note that the build folder can be used later on to [deploy your application](https://www.robinwieruch.de/deploy-applications-digital-ocean/).
-* Every time we change something in our code throughout the coming learning experience, make sure to check the output in your browser for getting visual feedback.
+* [create-react-app 공식 문서](https://github.com/facebook/create-react-app) 또는 [시작 가이드](https://create-react-app.dev/docs/getting-started)
+  * [create-ract-app에서 지원하는 JavaScript 기능](https://create-react-app.dev/docs/supported-browsers-features)
+* [create-react-app의 폴더 구조](https://create-react-app.dev/docs/folder-structure)
+	* 리액트 프로젝트의 폴더와 파일을 하나씩 살펴보세요.
+* [create-react-app의 스크립트](https://create-react-app.dev/docs/available-scripts)
+	* `npm start`을 실행해 브라우저에서 애플리케이션을 확인합니다.
+		* `Control + C`를 눌러 터미널에서 명령어 실행을 중지시킵니다.
+	* `npm test`를 실행합니다.
+	* `npm run build` 스크립트를 실행해 *build/* 폴더에 어떤 파일이 추가되었는지 확인합니다(이 폴더는 나중에 직접 삭제할 수도 있습니다). 빌드된 폴더는 나중에 [앱을 배포할 때](https://www.robinwieruch.de/deploy-applications-digital-ocean/)에도 사용할 수 있습니다.
+* 코드를 수정하면 브라우저에서 적용이 잘 되었는지 확인하도록 합니다.
 
 ## Meet the React Component
 
