@@ -1,8 +1,8 @@
-## TypeScript in React
+## 리액트에서의 타입스크립트
 
-TypeScript for JavaScript and React have many benefits for developing robust applications. Instead of getting type errors on runtime in the command line or browser, TypeScript integration presents them during compile time inside the IDE. It shortens the feedback loop of JavaScript development. While it improves the developer experience, the code also becomes more self-documenting and readable, because every variable is defined with a type. Also moving code blocks or performing a larger refactoring of a code base becomes much more efficient. Statically typed languages like TypeScript are trending because of their benefits over dynamically typed languages like JavaScript. It's useful to learn more [about Typescript](https://www.typescriptlang.org/index.html) whenever possible.
+자바스크립트와 리액트에서 타입스크립트를 활용하면 애플리케이션 개발에 좋은 점이 많습니다. 타입스크립트는 커맨드 라인이나 브라우저의 런타임이 아닌 IDE에서 컴파일할 때 타입(type) 오류가 발생합니다. 이는 자바스크립트 개발의 피드백 루프를 단축합니다. 개발 경험이 향상됨과 동시에, 모든 변수의 타입을 정의하므로 코드는 코드 자체로 문서화(self-documenting)가 되고 이해하기 쉬워집니다. 또한 코드 블록을 이동하거나 코드 베이스의 더 큰 리팩토링을 수행하기 훨씬 더 효율적입니다. 타입스크립트와 같은 정적 타입 언어(statically typed languages)는 자바스크립트처럼 동적 타입 언어(dynamically typed languages)보다 장점이 많아 유행하고 있습니다. [타입스크립트에 대해](https://www.typescriptlang.org/index.html) 더 알아보세요.
 
-To use TypeScript in React, install TypeScript and its dependencies into your application using the command line. If you run into obstacles, follow the official TypeScript installation instructions for [create-react-app](https://create-react-app.dev/docs/adding-typescript/):
+리액트에서 타입스크립트를 사용하기 위해, 커맨드 라인에서 애플리케이션에 타입스크립트와 해당 의존성(dependencies)을 설치하세요. 설치 과정에서 막히면 [create-react-app](https://create-react-app.dev/docs/adding-typescript/)의 공식 타입스크립트 설치 지침을 따르세요.
 
 {title="Command Line",lang="text"}
 ~~~~~~~
@@ -10,7 +10,7 @@ npm install --save typescript @types/node @types/react
 npm install --save typescript @types/react-dom @types/jest
 ~~~~~~~
 
-Next, rename all JavaScript files (*.js*) to TypeScript files (*.tsx*).
+그리고 모든 자바스크립트 파일(*.js*)을 타입스크립트 파일(*.tsx*)로 바꿉니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~
@@ -18,7 +18,7 @@ mv src/index.js src/index.tsx
 mv src/App.js src/App.tsx
 ~~~~~~~
 
-Restart your development server in the command line. You may encounter compile errors in the browser and IDE. If the latter doesn't work, try installing a TypeScript plugin for your editor, or extension for your IDE. After the initial TypeScript in React setup, we'll add type safety for the entire *src/App.tsx* file, starting with typing the arguments of the custom hook:
+커맨드 라인에서 개발 서버를 다시 시작하세요. 브라우저와 IDE에서 컴파일 오류가 발생할 수 있습니다. 동작하지 않는다면 에디터에 타입스크립트 플러그인이나 IDE의 확장 기능을 설치해보세요. 리액트에서 타입스크립트를 설정한 뒤, 사용자 정의 훅(custom hook)의 인수(arguments)에 타입을 지정하여 전체 *src/App.tsx* 파일에 대한 타입 안전성(type safety)을 높입니다.
 
 {title="src/App.tsx",lang="javascript"}
 ~~~~~~~
@@ -40,7 +40,7 @@ const useSemiPersistentState = (
 };
 ~~~~~~~
 
-Adding types to the function's arguments is more about Javascript than React. We are telling the function to expect two arguments, which are JavaScript string primitives. Also, we can tell the function to return an array (`[]`) with a `string` (state), and tell functions like `state updater function` that take a `value` to return nothing (`void`):
+함수의 인수에 타입을 추가하는 것은 리액트보다는 자바스크립트와 관련한 것입니다. 함수에 자바스크립트의 문자열 원시 타입(primitives)인 인수 두 개를 전달하도록 지정합니다. 또한 함수가 `문자열`(상태)로 배열(`[]`)을 반환하게 하고, `상태 업데이트 함수`처럼 `값`을 사용해서 아무것도 반환하지 않도록 할 수도(`void`) 있습니다.
 
 {title="src/App.tsx",lang="javascript"}
 ~~~~~~~
@@ -62,7 +62,7 @@ const useSemiPersistentState = (
 };
 ~~~~~~~
 
-Related to React though, considering the previous type safety improvements for the custom hook, we hadn't to add types to the internal React hooks in the function's body. That's because **type inference** works most of the time for React hooks out of the box. If the *initial state* of a React useState Hook is a JavaScript string primitive, then the returned *current state* will be inferred as a string and the returned *state updater function* will only take a string as argument and return nothing:
+사용자 정의 훅의 타입 안정성을 높이기 위해서 함수 본문의 내부 리액트 훅에 타입을 정의하지는 않았습니다. 대부분 기본적으로 리액트 훅에 **타입 추론**(type inference)이 적용되기 때문입니다. 리액트 useState 훅의 *초기 상태*가 자바스크립트의 문자열 원시 타입이라면, 반환된 *현재 상태*는 문자열로 추론됩니다. 반환된 *상태 업데이트 함수*는 문자열을 인수로 사용하며 아무 것도 반환하지 않습니다.
 
 {title="Code Playground",lang="javascript"}
 ~~~~~~~
@@ -71,7 +71,7 @@ const [value, setValue] = React.useState('React');
 // setValue only takes a string as argument
 ~~~~~~~
 
-If adding type safety becomes an aftermath for a React application and its components, there are multiple ways on how to approach it. We will start with the props and state for the leaf components of our application. For instance, the Item component receives a story (here `item`) and a callback handler function (here `onRemoveItem`). Starting out very verbose, we could add the inlined types for both function arguments as we did before:
+리액트 애플리케이션과 컴포넌트의 타입 안정성을 높이는 방법에는 여러 가지가 있습니다. 애플리케이션에서 리프(leaf) 컴포넌트의 prop과 상태(state)를 봅시다. 다음 예시에서 Item 컴포넌트는 prop으로 스토리 `item`과 콜백 핸들러 함수 `onRemoveItem`를 전달받습니다. 굳이 장황하게 코드를 써보면, 이전처럼 함수의 두 인수에 인라인으로 타입을 정의할 수 있습니다.
 
 {title="src/App.tsx",lang="javascript"}
 ~~~~~~~
@@ -104,7 +104,7 @@ const Item = ({
 );
 ~~~~~~~
 
-There are two problems: the code is verbose, and it has duplications. Let's get rid of both problems by defining a custom `Story` type outside the component, at the top of *src/App.js*:
+코드에는 두 가지 문제가 있습니다. 장황하고 중복된 내용이지요. *src/App.js* 상단 컴포넌트 외부에 사용자 정의의 `Story` 타입을 정의하여 두 문제를 모두 해결해 봅시다.
 
 {title="src/App.tsx",lang="javascript"}
 ~~~~~~~
@@ -136,7 +136,7 @@ const Item = ({
 );
 ~~~~~~~
 
-The `item` is of type `Story`; the `onRemoveItem` function takes an `item` of type `Story` as an argument and returns nothing. Next, clean up the code by defining the props of Item component outside:
+`item`은 `Story` 타입입니다. `onRemoveItem` 함수는 `Story` 타입의 `item`을 인수로 취하고 아무것도 반환하지 않습니다. 그다음 외부에서 Item 컴포넌트의 props를 정의하여 코드를 정리하세요.
 
 {title="src/App.tsx",lang="javascript"}
 ~~~~~~~
@@ -156,7 +156,7 @@ const Item = ({ item, onRemoveItem }: ItemProps) => (
 );
 ~~~~~~~
 
-That's the most popular way to type React component's props with TypeScript. From here, we can navigate up the component tree into the List component and apply the same type definitions for the props:
+지금까지 타입스크립트로 리액트 컴포넌트의 prop 타입을 정의하는 가장 보편적인 방법을 알아보았습니다. 이제 List 컴포넌트에서 prop에 동일한 방식으로 타입을 정의합니다.
 
 {title="src/App.tsx",lang="javascript"}
 ~~~~~~~
@@ -189,9 +189,9 @@ const List = ({ list, onRemoveItem }: ListProps) =>
   ));
 ~~~~~~~
 
-The `onRemoveItem` function is typed twice for the `ItemProps` and `ListProps`. To be more accurate, you *could* extract this to a standalone defined `OnRemoveItem` TypeScript type and reuse it for both `onRemoveItem` prop type definitions. Note, however, that development becomes increasingly difficult as components are split up into different files. That's why we will keep the duplication here.
+`onRemoveItem` 함수는 `ItemProps`와 `ListProps`에서 두 번 타입이 선언되었습니다. 좀 더 확실하게 한다면 `OnRemoveItem`를 타입스크립트 타입으로 뽑아내어 독립적으로 정의하고, `onRemoveItem` prop 타입을 정의하는 두 부분에 재사용*할 수도* 있습니다. 그러나 컴포넌트를 다른 파일에 분할할수록 개발이 점점 어려워집니다. 그래서 이 부분에서는 중복을 유지합니다.
 
-Since we already have the `Story` and `Stories` types, we can repurpose them for other components. Add the `Story` type to the callback handler in the `App` component:
+이미 `Story`와 `Stories` 타입이 있으므로 다른 컴포넌트에 맞춰 용도를 변경할 수 있습니다. `App` 컴포넌트의 콜백 핸들러에 `Story` 타입을 추가하세요.
 
 {title="src/App.tsx",lang="javascript"}
 ~~~~~~~
@@ -211,7 +211,7 @@ const App = () => {
 };
 ~~~~~~~
 
-The reducer function manages the `Story` type as well, except without looking into the `state` and `action` types. As the application's developer, we know both objects and their shapes passed to this reducer function:
+리듀서(reducer) 함수는 `state`와 `action` 타입을 관찰하는 것 외에도 `Story` 타입을 관리합니다. 객체와 객체의 형태 모두 리듀서 함수에 전달된 것을 알 수 있습니다.
 
 {title="src/App.tsx",lang="javascript"}
 ~~~~~~~
@@ -240,7 +240,7 @@ const storiesReducer = (
 };
 ~~~~~~~
 
-The `Action` type with its `string` and `any` (TypeScript **wildcard**) type definitions are still too broad; and we gain no real type safety through it, because actions are not distinguishable. We can do better by specifying each action TypeScript type as an **interface**, and using a **union type** (here `StoriesAction`) for the final type safety:
+`string`과 `any`(타입스크립트 **와일드카드**) 타입으로 정의한 `Action` 타입은 여전히 너무 광범위합니다. 액션을 구별할 수 없기 때문에 실제 타입의 안전성을 얻을 수 없습니다. 각 액션의 타입스크립트 타입을 **인터페이스**(interface)로 지정하고, 예시의 `StoriesAction`처럼 **유니온 타입**(union type)을 사용하는 것이 더 좋습니다.
 
 {title="src/App.tsx",lang="javascript"}
 ~~~~~~~
@@ -286,9 +286,9 @@ const storiesReducer = (
 };
 ~~~~~~~
 
-The stories state, the current state, and the action are types; the return new state (inferred) are type safe now. For instance, if you would dispatch an action to the reducer with an action type that's not defined, you would get an type error. Or if you would pass something else than a story to the action which removes a story, you would get a type error as well.
+스토리 상태와 현재 상태, 액션은 타입입니다. 이제 반환된 새로운 상태(추론된)의 타입은 안전합니다. 예를 들어 정의되지 않은 액션 타입을 가진 리듀서에게 액션을 보내면 타입 오류가 발생합니다. 또 스토리를 삭제하는 액션에 스토리가 아닌 것을 전달해도 타입 오류가 발생합니다.
 
-There is still a type safety issue in the App component's return statement for the returned List component. It can be fixed by giving the List component a wrapping HTML `div` element or a React fragment:
+반환된 List 컴포넌트에 대해서 App 컴포넌트의 반환문에 여전히 타입 안전성 문제가 있습니다. List 컴포넌트에 HTML을 감싸는 `div` 요소 또는 리액트 fragment를 사용하여 수정할 수 있습니다.
 
 {title="src/App.tsx",lang="javascript"}
 ~~~~~~~
@@ -309,9 +309,9 @@ const List = ({ list, onRemoveItem }: ListProps) => (
 );
 ~~~~~~~
 
-According to a TypeScript with React issue on GitHub: *"This is because due to limitations in the compiler, function components cannot return anything other than a JSX expression or null, otherwise it complains with a cryptic error message saying that the other type is not assignable to Element."*
+깃허브의 리액트에서의 타입스크립트 이슈에 따르면 이렇습니다. *"컴파일러의 한계로 함수 컴포넌트가 JSX 표현식이나 null 이외의 것을 반환할 수 없기 때문에 엘리먼트에 다른 타입을 지정할 수 없다는 난해한 오류 메시지가 표시됩니다."*
 
-Let's shift our focus to the SearchForm component, which has callback handlers with events:
+이제 이벤트와 콜백 핸들러가 있는 SearchForm 컴포넌트를 살펴봅시다.
 
 {title="src/App.tsx",lang="javascript"}
 ~~~~~~~
@@ -334,7 +334,7 @@ const SearchForm = ({
 );
 ~~~~~~~
 
-Often using `React.SyntheticEvent` instead of `React.ChangeEvent<HTMLInputElement>` or `React.FormEvent<HTMLFormElement>` is usually enough. Going up to the App component again, we apply the same type for the callback handler there:
+보통 `React.ChangeEvent <HTMLInputElement>` 또는 `React.FormEvent <HTMLFormElement>` 대신 `React.SyntheticEvent`를 사용합니다. 다시 App 컴포넌트로 돌아가서 콜백 핸들러에 같은 타입을 적용합니다.
 
 {title="src/App.tsx",lang="javascript"}
 ~~~~~~~
@@ -363,7 +363,7 @@ const App = () => {
 };
 ~~~~~~~
 
-All that's left is the InputWithLabel component. Before handling this component's props, let's take a look at the `ref` from React's useRef Hook. Unfortunately, the return value isn't inferred:
+InputWithLabel 컴포넌트만 남았습니다. 이 컴포넌트의 prop을 다루기 전에 리액트 useRef 훅의 `ref`를 살펴봅시다. 안타깝게도 반환 값은 추론되지 않습니다.
 
 {title="src/App.tsx",lang="javascript"}
 ~~~~~~~
@@ -379,9 +379,9 @@ const InputWithLabel = ({ ... }) => {
   }, [isFocused]);
 ~~~~~~~
 
-We made the returned `ref` type safe, and typed it as read-only because we only execute the `focus` method on it (read). React takes over for us there, setting the DOM element to the `current` property.
+반환된 `ref` 타입을 안전하게 만들었고, `focus` 메소드를 실행(읽기)만 하기 때문에 읽기 전용으로 타입을 지정했습니다. 리액트는 DOM 요소를 `current` 속성으로 설정합니다.
 
-Lastly, we will apply type safety checks for the InputWithLabel component's props. Note the`children` prop with its React specific type and the **optional types**  signaled with a question mark:
+마지막으로 InputWithLabel 컴포넌트 prop의 타입 안전성을 확인합니다. 리액트의 특정 타입으로 `children` prop을 지정하고, 물음표로 **선택적 타입**임을 표시합니다.
 
 {title="src/App.tsx",lang="javascript"}
 ~~~~~~~
@@ -410,13 +410,13 @@ const InputWithLabel = ({
 };
 ~~~~~~~
 
-Both the `type` and `isFocused` properties are optional. Using TypeScript, you can tell the compiler these don't need to be passed to the component as props. The `children` prop has a lot of TypeScript type definitions that could be applicable to this concept, the most universal of which is `React.ReactNode` from the React library.
+`type`과 `isFocused` 속성은 모두 선택 사항입니다. 타입스크립트를 사용하면 이 속성들은 prop으로 전달하지 않아도 된다는 것을 컴파일러에 알릴 수 있습니다. `children` prop에 적용할 수 있는 타입스크립트 타입 정의 방법에는 여러 가지가 있으며, 그 중 리액트 라이브러리의 `React.ReactNode`가 가장 보편적입니다.
 
-Our entire React application is finally typed by TypeScript, making it easy to spot type errors on compile time. When adding TypeScript to your React application, start by adding type definitions to your function's arguments. These functions can be vanilla JavaScript functions, custom React hooks, or React function components. Only when using React is it important to know specific types for form elements, events, and JSX.
+드디어 전체 리액트 애플리케이션에 타입스크립트를 적용했습니다. 이제 컴파일할 때에 타입 오류를 쉽게 찾을 수 있습니다. 리액트 애플리케이션에 타입스크립트를 활용할 때 함수의 인수에 타입을 정의하는 것부터 시작하세요. 이러한 함수는 바닐라 자바스크립트 함수, 사용자 정의 리액트 훅이나 리액트 함수 컴포넌트일 수 있습니다. 리액트를 사용할 때는 폼 엘리먼트와 이벤트, JSX의 특정 타입을 이해하는 것이 중요합니다.
 
-### Exercises:
+### 실습하기
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/TypeScript-in-React).
-  * Confirm the [changes from the last section](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/TypeScript-in-React?expand=1).
-* Dig into the [React + TypeScript Cheatsheet](https://github.com/typescript-cheatsheets/react-typescript-cheatsheet#reacttypescript-cheatsheets), because most common use cases we faced in this section are covered there as well. There is no need to know everything from the top off your head.
-* While you continue with the learning experience in the following sections, remove or keep your types with TypeScript. If you do the latter, add new types whenever you get a compile error.
+* [마지막 장의 소스 코드](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/TypeScript-in-React)를 확인하세요.
+  * [마지막 장의 변경 사항](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/TypeScript-in-React?expand=1)을 확인하세요.
+* [React + TypeScript Cheatsheet](https://github.com/typescript-cheatsheets/react-typescript-cheatsheet#reacttypescript-cheatsheets)를 살펴보세요. 이 장에서 보았던 가장 일반적인 사용 예시도 다룹니다. 당장 이해하지 못해도 상관 습니다.
+* 계속해서 다음 장을 공부하면서 타입스크립트를 사용하여 타입을 없애거나 유지해보세요. 타입을 유지하는 경우, 컴파일 오류가 발생할 때마다 새 타입을 추가하세요.
