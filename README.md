@@ -1,3 +1,9 @@
+⛔️ **Deprecated** 
+
+최신 리액트 Hooks 버전으로 개정판 <더 로드 투 리액트(2020)>가 출간되어, 본 리액트 도움닫기 (2018) 저장소는 더 이상 업데이트 되지 않습니다. 리액트 클래스 컴포넌트와 Hooks가 도입되기 이전 버전입니다. [다음 링크에서 최신 개정판을 확인하세요.](https://github.com/the-road-to-learn-react/the-road-to-react-korean)
+
+-----
+
 # [튜토리얼] 리액트 도움닫기 
 
 [![Slack](https://slack-the-road-to-learn-react.wieruch.com/badge.svg)](https://slack-the-road-to-learn-react.wieruch.com/)
