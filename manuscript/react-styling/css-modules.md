@@ -1,13 +1,14 @@
-## CSS Modules in React
+## 리액트와 CSS 모듈
 
-CSS Modules are an advanced **CSS-in-CSS** approach. The CSS file stays the same, where you could apply CSS extensions like Sass, but its use in React components changes. To enable CSS modules in create-react-app, rename the *src/App.css* file to *src/App.module.css*. This action is performed in the command line from your project's directory:
+CSS 모듈은 고급 **CSS-in-CSS**(.css파일에 작성한 CSS) 접근 방식입니다. CSS 파일은 그대로 유지되며  Sass와 같은 CSS 확장에도 적용할 수도 있습니다. 하지만 이것은 리액트 컴포넌트 안에서는 다르게 사용됩니다. CSS 모듈을 create-react-app에서 사용하기 위해서는 *src/App.css* 파일명을 *src/App.module.css*로 변경해야 합니다. 이 작업은 프로젝트 디렉토리의 command line에서 이루어 집니다:
 
 {title="Command Line",lang="text"}
 ~~~~~~~
 mv src/App.css src/App.module.css
 ~~~~~~~
 
-In the renamed *src/App.module.css*, start with the first CSS class definitions, as before:
+이름이 변경된 *src/App.module.css*에서도 이전과 같이 첫 번째 CSS 클래스 정의로 시작합니다:
+
 
 {title="src/App.module.css",lang="css"}
 ~~~~~~~
@@ -28,7 +29,7 @@ In the renamed *src/App.module.css*, start with the first CSS class definitions,
 }
 ~~~~~~~
 
-Import the *src/App.module.css* file with a relative path again. This time, import it as a JavaScript object where the name of the object (here `styles`) is up to you:
+상대 경로를 사용하여 *src/App.module.css* 파일을 다시 가져옵니다. 이번에는 사용자에게 있는 이름(여기서는 `styles`)을 자바스크립트 객체로 가져오시면 됩니다.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -40,7 +41,7 @@ import styles from './App.module.css';
 # leanpub-end-insert
 ~~~~~~~
 
-Instead of defining the `className` as a string mapped to a CSS file, access the CSS class directly from the `styles` object, and assigns it with a JavaScript in JSX expression to your elements.
+`className`을 CSS 파일에 매핑 된 문자열로 정의하는 대신 `styles` 객체에서 직접 CSS 클래스에 액세스하여 JSX 표현식의 자바스크립트를 사용하여 엘리먼트에 할당합니다.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -71,7 +72,7 @@ const App = () => {
 };
 ~~~~~~~
 
-There are various ways to add multiple CSS classes via the `styles` object to the element's single `className` attribute. Here, we use JavaScript template literals:
+`styles` 객체를 통해 여러 CSS 클래스를 element의 단일 `className` 속성에 추가하는 방법은 다양합니다. 여기서는 JavaScript 템플릿 리터럴을 사용합니다:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -102,7 +103,7 @@ const Item = ({ item, onRemoveItem }) => (
 );
 ~~~~~~~
 
-We can also add inline styles as more dynamic styles in JSX again. It's also possible to add a CSS extension like Sass to enable advanced features like CSS nesting. We will stick to native CSS features though:
+우리는 또한 JSX에서 인라인 스타일을 더 동적인 스타일로 다시 추가 할 수 있습니다. CSS 중첩과 같은 고급 기능을 사용하기 위해 Sass와 같은 CSS 확장을 추가할 수도 있습니다. 하지만 우리는 CSS의 기존 특징들을 고수할 것입니다.
 
 {title="src/App.module.css",lang="css"}
 ~~~~~~~
@@ -124,8 +125,6 @@ We can also add inline styles as more dynamic styles in JSX again. It's also pos
   color: inherit;
 }
 ~~~~~~~
-
-Then the button CSS classes in the *src/App.module.css* file:
 
 {title="src/App.module.css",lang="css"}
 ~~~~~~~
@@ -152,7 +151,7 @@ Then the button CSS classes in the *src/App.module.css* file:
 }
 ~~~~~~~
 
-There is a shift toward pseudo BEM naming conventions here, in contrast to `button_small` and `button_large` from the previous section. If the previous naming convention holds true, we can only access the style with `styles['button_small']` which makes it more verbose because of  JavaScript's limitation with object underscores. The same shortcomings would apply for classes defined with a dash (`-`). In contrast, now we can use `styles.buttonSmall` instead (see: Item component):
+여기서는 css 섹션 에서의 `button_small` 및 `button_large`와 달리 BEM(Block Element Modifier) 네이밍 컨벤션으로의 전환이 있습니다. 만약 이전 네이밍 컨벤션이 유지 된다면 자바스크립트에서 객체에 밑줄 사용시 제한이 있기에  `styles['button_small']`을 사용하는 스타일에만 접근할 수 있습니다. 대시(`-`)로 정의된 클래스에 대해서도 동일한 단점이 적용됩니다. 우리는 `styles.buttonSmall`를 사용할 수 있습니다.(아래 파일을 참조하세요.).
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -176,8 +175,8 @@ const SearchForm = ({ ... }) => (
   </form>
 );
 ~~~~~~~
-
-The SearchForm component receives the styles as well. It has to use string interpolation for using two styles in one element via JavaScript's template literals. One alternative way is the [classnames](https://github.com/JedWatson/classnames) library, which is installed via the command line as project dependency:
+트
+SearchForm 컴포넌도 스타일을 받습니다. JavaScript의 템플릿 리터럴을 통해 한 요소에 두 가지 스타일을 사용하기 위해서는 문자열을 사용해야 합니다. 한 가지 다른 방법은 커맨트 라인을 통해 프로젝트에 [classnames](https://github.com/JedWatson/classnames) 라이브러리를 설치하는 것입니다:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -189,7 +188,7 @@ import cs from 'classnames';
 className={cs(styles.button, styles.buttonLarge)}
 ~~~~~~~
 
-The library offers conditional stylings as well. Finally, continue with the InputWithLabel component:
+[classnames](https://github.com/JedWatson/classnames) 라이브러리는 조건부 스타일도 제공합니다. 마침내 InputWithLabel 컴포넌트도 작성할 수 있게 되었습니다:
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -219,7 +218,7 @@ const InputWithLabel = ({ ... }) => {
 };
 ~~~~~~~
 
-And finish up the remaining style in the *src/App.module.css* file:
+이제 *src/App.module.css* 파일에서 나머지 스타일을 완성하십시오:
 
 {title="src/App.module.css",lang="css"}
 ~~~~~~~
@@ -245,12 +244,12 @@ And finish up the remaining style in the *src/App.module.css* file:
 }
 ~~~~~~~
 
-The same caution applies as  the last section: some of these styles like `input` and `label` might be more efficient in a global *src/index.css* file without CSS modules.
+마지막 섹션과 동일한 주의사항이 있습니다: `input` 및 `label`과 같은 일부 스타일은 CSS 모듈보다 전역 *src/index.css* 파일에 작성하는게 더 효율적일 수 있습니다.
 
-Again, CSS Modules--like any other CSS-in-CSS approach--can use Sass for more advanced CSS features like nesting. The advantage of CSS modules is that we receive an error in the  JavaScript each time a style isn't defined. In the standard CSS approach, unmatched styles in the JavaScript and CSS files might go unnoticed.
+CSS 모듈은 다른 .css파일 안에 작성한 CSS와 마찬가지로 중첩과 같은 고급 CSS 기능에 Sass를 사용할 수 있습니다. CSS 모듈의 장점은 스타일이 정의되지 않을 때마다 자바스크립트에서 오류가 발생한다는 것입니다. 기존의 표준 CSS 접근 방식에서는 자바스크립트 및 CSS 파일의 스타일이 일치하지 않을 수 있습니다.
 
-### Exercises:
+### 실습하기:
 
-* Confirm your [source code for the last section](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/CSS-Modules-in-React).
-  * Confirm the [changes from the last section](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/CSS-Modules-in-React?expand=1).
-* Read more about [CSS Modules in create-react-app](https://create-react-app.dev/docs/adding-a-css-modules-stylesheet).
+* [마지막 장의 소스 코드](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/CSS-Modules-in-React)를 확인하세요.
+  * [마지막 장의 변경 사항](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/CSS-Modules-in-React?expand=1)을 확인하세요.
+* [create-react-app에서의 CSS 모듈](https://create-react-app.dev/docs/adding-a-css-modules-stylesheet)에 대해 자세히 알아보세요.
