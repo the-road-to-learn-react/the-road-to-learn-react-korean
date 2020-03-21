@@ -68,10 +68,7 @@ npm install -g <패키지 이름>
 npm install react
 ~~~~~~~~
 
-
-패키지는 자동 생성된 *node_modules/* 폴더에 저장되고 이미 설치된 다른 패키지들과 함께 *package.json*에 기록됩니다.
-
-프로젝트를 위해 *node_modules/* 폴더와 *package.json* 파일을 초기화 하려면 아래의 `npm` 명령을 실행합니다. 그후에 `npm`을 이용해 새 지역 패키지를 설치할 수 있게됩니다.
+*package.json* 파일이 있어야만 `npm` 명령어로 *node_modules/* 폴더를 초기화할 수 있습니다. 아래 명령어로 새 지역 패키지를 설치합니다.
  
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -146,11 +143,9 @@ JSX(리액트 문법)와 자바스크립트 ES6로 만든 애플리케이션은 
 
 ## 1.5 create-react-app 
 
-이 책에서는 [*create-react-app*](https://github.com/facebookincubator/create-react-app)으로 애플리케이션을 부트스트래핑합니다. 부트스트래핑(bootstrapping)이라는 뜻은 애플리케이션을 최초 생성하여 브라우저에서 실행하는 과정을 말합니다. *create-react-app*은 2016년 페이스북이 제안한 리액트 제로 구성 설치 스타터 킷(Zero-Configuration Setup Starter Kit)입니다. 트위터에서 진행한 한 [조사](https://twitter.com/dan_abramov/status/806985854099062785)에 따르면 96% 이상의 리액트 개발자들이 입문자의 경우 *create-react-app* 사용을 권장하고 있습니다.
+이 책에서는 [*create-react-app*](https://github.com/facebookincubator/create-react-app)으로 애플리케이션 작성을 시작합니다. *create-react-app*은 2016년 페이스북이 발표한 설정없는 시작 도구(Zero-Configuration Setup Starter Kit)입니다. 어떤 [조사](https://twitter.com/dan_abramov/status/806985854099062785)에 따르면 96% 이상의 리액트 개발자들이 입문자에게 추천하는 도구라고 합니다. *create-react-app*의 개발자들이 안보이는 곳에서 도구와 설정을 계속 발전시키고 있기 때문에, 우리는 오롯이 애플리케이션 구현에만 신경 쓰면 됩니다. 
 
-*create-react-app*는 리액트 개발 도구와 환경 설정이 이미 세팅되어 있기 때문에, 우리는 오롯이 애플리케이션 구현에만 신경 쓰면 됩니다. 
-
-이제 전역 노드 패키지에 *create-react-app* 패키지를 설치하겠습니다.
+전역 노드 패키지에 *create-react-app* 패키지를 설치해야 커맨드라인에서 리액트 애플리케이션 작성을 시작할 수 있습니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -162,12 +157,10 @@ npm install -g create-react-app
 {title="Command Line",lang="text"}
 ~~~~~~~~
 create-react-app --version
-*v1.5.1
+*v2.0.2
 ~~~~~~~~
 
-여러분의 첫 번째 리액트 애플리케이션을 시작해보겠습니다. 앞으로 새로운 리액트 애플리케이션을 부트스트랩 할 때마다 `create-react-app <name>` 명령어를 입력하면 됩니다.
-
-우리가 만들 애플리케이션은 해커 뉴스 플랫폼이므로 프로젝트 이름을 *hackernews*라 하겠습니다. 물론 다른 이름을 사용해도 괜찮습니다. 몇 초 후에 부트스트래핑이 완료될 것입니다. 설치가 완료되면 생성된 폴더 안으로 들어갑니다.
+이제 여러분의 첫 번째 리액트 애플리케이션 작성을 시작해보겠습니다. 이름은 *hackernews*라고 하겠습니다. 물론 다른 이름을 사용해도 괜찮습니다. 생성 후에는 폴더안에 들어가보겠습니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -175,7 +168,7 @@ create-react-app hackernews
 cd hackernews
 ~~~~~~~~
 
-코드에디터에서 애플리케이션을 열어 봅시다. 디렉터리에 아래와 같은 *create-react-app* 구조가 보일 것입니다.
+코드 에디터에서 애플리케이션을 열어 봅시다. *create-react-app*의 버전에 따라 조금 다를 수도 있지만, 아래와 같은 폴더 구조가 보일 것입니다.
 
 {title="Folder Structure",lang="text"}
 ~~~~~~~~
@@ -195,30 +188,30 @@ hackernews/
     index.css
     index.js
     logo.svg
-    registerServiceWorker.js
+    serviceWorker.js
 ~~~~~~~~
 
-각 파일과 폴더 단위가 무엇을 지칭하는지 알아보겠습니다. 처음부터 모든 것을 이해하지 않아도 됩니다.
+각 파일과 폴더에 대해 알아보겠습니다.
 
-* **README.md:** *.md* 확장자는 마크다운(markdown) 파일입니다. 일반 텍스트와 함께 간단한 마크업 언어로 작성합니다. 대부분 프로젝트에는 *README.md* 파일에 프로젝트 설명 및 설치 방법 등 안내 사항을 작성합니다. 깃허브 리퍼지토리 페이지의 첫 화면에 *README.md* 파일을 보았을 겁니다. *create-react-app* 을 설치한 후 바로 깃허브에 프로젝트를 올린다면 *README.md* 파일 내용은 [create-react-app 공식 깃허브 리퍼지토리](https://github.com/facebookincubator/create-react-app)와 내용이 동일할 것입니다.
+* **README.md**: *.md* 확장자는 마크다운(markdown) 파일이라는 의미입니다. 일반 텍스트와 함께 간단한 마크업 언어로 작성합니다. 대부분의 프로젝트는 *README.md* 파일에 프로젝트 설명 및 설치 방법 등 안내 사항을 작성합니다. 깃허브의 프로젝트에서 *README.md* 파일의 내용이 표시된 것을 본 적이 있을 겁니다. *create-react-app* 을 설치한 후 바로 깃허브에 프로젝트를 올린다면 *README.md* 파일 내용은 [create-react-app 공식 깃허브 리퍼지토리](https://github.com/facebookincubator/create-react-app)와 내용이 동일할 것입니다.
 
-* **node_modules/** 이 폴더에는 npm으로 설치되었던 모든 노드 패키지를 포함합니다. 이미 *create-react-app* 으로 리액트 애플리케이션을 부트스트래핑 했기 때문에 여러 모듈이 설치되어 있습니다. 이 폴더는 절대로 건드리지 말아야 합니다. `npm` 명령어를 사용해 패키지를 설치 또는 제거합니다.
+* **node_modules/**: 이 폴더에는 npm으로 설치된 모든 노드 패키지가 들어있습니다. *create-react-app* 으로 리액트 애플리케이션의 뼈대를 만들었기 때문에 이미 여러 모듈이 설치되어 있습니다. 이 폴더는 절대로 건드리지 말아야 합니다. 패키지를 설치하거나 제거할 때는 `npm` 명령어를 사용하도록 합니다.
 
-* **package.json** 노드 패키지 의존성 및 기타 프로젝트 구성 목록을 포함합니다.
+* **package.json**: 애플리케이션이 사용하는 노드 패키지 목록 및 기타 프로젝트 설정이 저장됩니다.
 
-* **.gitignore** git을 사용할 때, 원격 git 리퍼지토리에 제외시킬 모든 파일과 폴더 목록이 나열되어 있습니다. 예를 들어 *node_module*은 로컬에만 있어야 합니다. 의존성 폴더 전체를 올리지 않고도 공유된 *package.json* 파일만으로 의존성 패키지를 설치할 수 있습니다.
+* **.gitignore**: git 사용시, 원격 리퍼지토리에 공유하지 않을 모든 파일과 폴더가 나열되어 있습니다. 예를 들어 *node_module*은 로컬에만 있어야 합니다. 해당 폴더를 공유하지 않아도 *package.json* 파일만 공유하면 `npm install` 명령으로 필요한 패키지들을 설치할 수 있기 때문입니다.
 
-* **public/** 배포를 위해 프로젝트 빌드 시 필요한 모든 파일을 말합니다. 프로젝트를 빌드할 때, *src/* 폴더 내 모든 코드는 몇 개의 파일로 묶여 *public* 폴더에 배치됩니다.
+* **public/**: 이 폴더에는 *public/index.html* 처럼 개발에 필요한 파일이 들어있습니다. *index.html*은 개발중에 localhost:3000 에 접속했을때 표시되는 파일입니다. 자동 생성된 파일들이 이 *index.html*과 *src/* 폴더 안의 스크립트들을 알아서 연결해줍니다.
 
-* **build/** 프로덕션 빌드 시 생성되는 폴더입니다. 빌드 시 *src/*와 *public* 폴더에 있는 파일들이 번들되어 *build* 폴더에 저장됩니다.
+* **build/**: 프로덕션 빌드 시 생성되는 폴더입니다. 빌드 시 *src/*와 *public/* 폴더에 있는 파일들이 배포용으로 묶여서 *build* 폴더에 저장됩니다.
 
-* **manifest.json** 및 **registerServiceWorker.js** 지금 단계에서는 무시해도 됩니다. 프로젝트에서 사용하지 않은 파일입니다.
+* **manifest.json** 및 **serviceWorker.js**: 지금 단계에서는 무시해도 됩니다. 이 프로젝트에서는 사용하지 않은 파일입니다.
 
-위에서 언급된 파일 및 폴더를 건드릴 필요가 없습니다. 우리가 필요한 모든 것은 *src/* 폴더 안에 있습니다. 제일 중요한 파일은 *src/App.js*로 이 파일에 리액트 컴포넌트가 있습니다. 현재 이 파일이 전체 애플리케이션을 이루고 있지만, 나중에 리액트 컴포넌트를 여러 파일로 분절하여 나눠 관리할 수 있습니다.
+지금 단계에서 우리에게 필요한 파일들은 모두 *src/* 폴더 안에 있습니다. 제일 중요한 파일은 *src/App.js*로써 리액트 컴포넌트 생성에 사용됩니다. 지금은 이 파일이 전체 애플리케이션을 이루고 있지만, 나중에 컴포넌트 별로 파일을 나눠 관리할 수 있습니다.
 
-이외에 테스트를 위한 *src/App.test.js* 파일과 리액트의 진입점인 *src/index.js* 파일이 보일 겁니다. 다음 장에서 두 파일에 대해 알게 될 것입니다. 또한 애플리케이션과 컴포넌트 스타일을 지정하는 *src/index.css* 및 *src/App.css* 파일이 있습니다. 현재는 기본 스타일만 적용되어 있습니다.
+이외에 테스트를 위한 *src/App.test.js*와 리액트의 진입점인 *src/index.js*가 보일 겁니다. 다음 장에서 두 파일에 대해 설명합니다. 또한 애플리케이션과 컴포넌트의 스타일을 지정하는 *src/index.css* 및 *src/App.css*가 있습니다. 현재는 기본 스타일만 적용되어 있습니다.
 
-* *create-react-app* 애플리케이션은 npm 프로젝트입니다. npm을 사용하여 프로젝트에 노드 패키지를 설치하고 제거할 수 있습니다.
+*create-react-app* 애플리케이션은 npm 프로젝트로써 노드 패키지를 설치하고 제거할 수 있습니다. 그리고 커맨드라인에서 사용할 수 있는 아래와 같은 npm 스크립트를 제공합니다.
 
 {title="Command Line",lang="text"}
 ~~~~~~~~
@@ -232,18 +225,16 @@ npm test
 npm run build
 ~~~~~~~~
 
-*package.json*에 스크립트 명령어를 정의합니다. 이제 브라우저를 열어 리액트 애플리케이션이 구동되는지 확인해봅시다.
+이 스크립트들은 *package.json*에 정의되어있습니다. 이것으로 리액트 애플리케이션 작성이 시작되었습니다. 이제 브라우저를 열어 리액트 애플리케이션이 구동되는지 확인해봅시다.
 
 ### 실습하기
 
-* `npm start`을 실행해 브라우저에서 애플리케이션을 확인합니다.
+* 소스코드가 [생성 후 상태](http://bit.ly/2Tt3Vd8)와 동일한지 확인합니다.
+* `npm start`을 실행해 브라우저에서 애플리케이션을 확인합니다. (끝내려면 Control+C를 누릅니다.)
 * `npm test`를 실행합니다.
-* *public/* 폴더 내 어떤 내용이 있는지 확인하고, `npm run build` 스크립트를 실행해 폴더에 어떤 파일이 추가되었는지 확인합니다. (추가된 파일은 프로젝트에 영향을 주지 않으므로 제거해도 됩니다.)
-* 폴더 구조에 익숙해집니다.
-* 파일 내용에 익숙해집니다.
-
-### 읽어보기
-* [create-react-app 깃허브 리퍼지토리](https://github.com/facebookincubator/create-react-app)
+* `npm run build` 스크립트를 실행하고 *build/* 폴더가 추가되었는지 확인합니다. (폴더는 삭제해도 됩니다. 나중에 [배포](https://www.robinwieruch.de/deploy-applications-digital-ocean/)할 때 사용된다는 것만 기억하세요.)
+* 파일들의 내용에 익숙해집니다.
+* [npm 스크립트와 create-react-app](https://github.com/facebookincubator/create-react-app)를 읽어봅니다.
 
 ## 1.6 JSX 기초
 
@@ -795,3 +786,4 @@ App 클래스는 `Component` 클래스의 기능을 확장함으로, `Component`
 잠시 휴식 시간을 가집시다. 학습 내용을 되새기고 적용해보며 지금까지 작성한 코드와 배운 내용을 내 것으로 만듭시다. 이것저것 만들어보며 테스트해보길 바랍니다. 
 
 앞으로 만들어볼 해커 뉴스 애플리케이션이 궁금하다면 [깃허브 리퍼지토리](https://github.com/the-road-to-learn-react/hackernews-client/tree/5.1)를 확인하세요.
+
