@@ -68,6 +68,8 @@ npm install -g <패키지 이름>
 npm install react
 ~~~~~~~~
 
+패키지는 생성된 *node_modules/* 폴더에 저장되고 의존성 파일인 *package.json*에 패키지 리스트가 나열됩니다.
+
 *package.json* 파일이 있어야만 `npm` 명령어로 *node_modules/* 폴더를 초기화할 수 있습니다. 아래 명령어로 새 지역 패키지를 설치합니다.
  
 {title="Command Line",lang="text"}
@@ -103,7 +105,6 @@ npm install --save-dev <package>
 * [yarn 패키지 매니저](https://yarnpkg.com/en/docs/)에대해 읽어봅니다.
 
 ## 1.4 리액트 설치
-
 
 ### 1.4.1 CDN
 리액트 애플리케이션을 시작하는 방법에는 여러가지가 있습니다. 첫번째로 CDN([Content Delivery Network: 콘텐츠 전송 네트워크](https://en.wikipedia.org/wiki/Content_delivery_network)의 약자)을 이용하는 방법을 알아보겠습니다. CDN이 무엇인지는 지금 중요하지 않습니다. 우리는 이 책에서 CDN을 사용하지 않을 것입니다. 하지만 짧게 설명하는 정도는 괜찮겠지요. 많은 기업들이 고객에게 파일을 제공하기 위해 CDN을 사용합니다. 이런 파일중에는 리액트와 같은 라이브러리도 있습니다. 배포용으로 포장된 리액트 라이브러리는 *react.js*라는 자바스크립트 파일이기 때문입니다.
@@ -238,7 +239,7 @@ npm run build
 
 ## 1.6 JSX 기초
 
-리액트 JSX 문법에 대해 알아봅시다. *create-react-app*로 애플리케이션을 부트스트래핑 하면 리액트 애플리케이션이 이미 구현되어 있습니다. *src/App.js* 소스 코드를 열어 내용을 읽어봅시다.
+리액트의 JSX 문법에 대해 알아봅시다. *create-react-app*으로 애플리케이션의 뼈대를 생성하면 모든 파일들이 기본적인 동작을 수행할 수 있는 상태로 만들어집니다. 우리는 *src/App.js* 파일 만을 수정하도록 하겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -252,11 +253,18 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <p>
+            Edit <code>src/App.js</code> and save to reload.
+          </p>
+          <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn React
+          </a>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
       </div>
     );
   }
@@ -265,17 +273,27 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-자바스크립트 ES6 기능인 `import`과 `export`, 클래스(class) 문법을 벌써부터 공부하려고 조급해할 필요가 없습니다. 앞으로 차근차근 배워볼 것입니다.
+`import`과 `export` 혹은 클래스(class) 문법을 모른다고 걱정할 필요는 없습니다. 자바스크립트 ES6의 기능인데 잠시후에 설명하겠습니다.
 
-`App.js` 파일에 **리액트 ES6 클래스 컴포넌트(React ES6 Class Component)** 를 볼 수 있습니다. 이 파일에서 컴포넌트를 선언했습니다. 
+`App.js` 파일에는 App이라는 이름의 **리액트 ES6 클래스 컴포넌트(React ES6 Class Component)**가 있습니다. 이렇게 컴포넌트를 선언하고 나면, 애플리케이션의 요소로써 어디서든 사용할 수 있습니다. 컴포넌트를 사용하면 컴포넌트의 인스턴스가 만들어지는데, 다른 말로는 컴포넌트의 인스턴스화 라고도 합니다.
 
-리액트 컴포넌트는, HTML 엘레먼트(element)와 같이 애플리케이션의 어느 곳이든지 재사용될 수 있습니다. 컴포넌트가 인스턴스화 되었기 때문입니다. 다른 말로 컴포넌트의 인스턴스를 사용한다고 말합니다.
+{title="Code Playground",lang="javascript"}
+~~~~~~~~
+// 컴포넌트 선언
+class App extends Component {
+  ...
+}
 
-`render()` 메서드에서 **엘레먼트(element)** 가 반환(return)됩니다. 여러 엘레먼트가 모여 컴포넌트 전체를 구성합니다. 컴포넌트(component), 인스턴스(instance), 엘레먼트(element) 간의 용어와 각 쓰임의 차이를 알고 있다면 이해가 쉬울 것입니다. 
+// 컴포넌트 사용 (클래스의 인스턴스화라고도 한다.)
+// 컴포넌트의 인스턴스를 생성한다.
+<App />
+~~~~~~~~
 
-이제 `App` 컴포넌트가 인스턴스화 된 것을 볼 수 있습니다. 인스턴스화 되지 않았다면, 브라우저에서 렌더링 된 결과를 볼 수 없습니다. App 컴포넌트가 선언되었지만 다른 곳에 재사용되지 않았습니다. JSX문법인 `<App/>`를 사용하면 어느 컴포넌트에서나 인스턴스 화하여 재사용할 수 있습니다. 
+`render()` 메서드는 **엘레먼트(element)**를 돌려줍니다. 앞서 인스턴스를 만들었던 컴포넌트는 여러 엘레먼트가 모여서 만듭니다. 따라서 컴포넌트(component), 컴포넌트의 인스턴스(instance), 엘레먼트(element) 간의 차이를 이해하는 것이 중요합니다. 
 
-`render()` 블록 안 내용은 HTML과 비슷해 보이지만, JSX 문법으로 작성되었습니다. HTML과 자바스크립트를 결합해 JSX 문법을 작성합니다. 지금까지 HTML과 자바스크립트를 따로 사용해 개발해왔다면 새로운 문법이 꽤 혼란스러울 것입니다. 먼저 JSX에서 기본적인 HTML 엘레먼트를 작성하겠습니다. 먼저 `App` 컴포넌트의 모든 내용을 지우고 아래와 같이 작성합니다.
+`App` 컴포넌트가 인스턴스화 된 것을 볼 수 있는데, 만약 인스턴스화 되지 않았다면 브라우저에서 렌더링 된 결과를 볼 수 없었을 것입니다. App 컴포넌트는 선언일 뿐이고, 사용된 것은 아닙니다. JSX 문법으로 `<App/>`라고 적으면 인스턴스화 하는 것입니다. 잠시후에 사용하는 장면을 보여드리겠습니다.
+
+`render()` 블록 안 내용은 HTML과 비슷해 보이지만, JSX 문법으로 작성되었습니다. JSX 문법은 HTML과 자바스크립트를 섞어 쓸수 있게 해줍니다. 강력한 문법이지만, 지금까지 HTML과 자바스크립트를 따로 분리해서 사용해왔다면 꽤 혼란스러울 것입니다. 먼저 JSX에서 기본적인 HTML 엘레먼트를 작성해보겠습니다. `App.js`의 모든 내용을 지우고 아래와 같이 바꿔봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -286,7 +304,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h2>리액트에 오신 여러분을 환영합니다</h2>
+        <h2>리액트 도움닫기에 오신 여러분을 환영합니다</h2>
       </div>
     );
   }
@@ -295,7 +313,7 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-자바스크립트 없이 `render()` 메서드로 HTML를 반환했습니다. 새 변수를 만들어 "리액트에 오신 여러분을 환영합니다"라는 값을 주고, 이 변수를 JSX 문법인 중괄호(`{}`) 안에 넣습니다.
+이 코드의 `render()` 메서드는 자바스크립트가 없는 HTML만을 반환했습니다. 이제 변수를 만들어 "리액트 도움닫기에 오신 여러분을 환영합니다"라는 값을 주고, 이 변수를 JSX 문법인 중괄호(`{}`) 안에 넣어봅시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -305,7 +323,7 @@ import './App.css';
 class App extends Component {
   render() {
 # leanpub-start-insert
-    var helloWorld = '리액트에 오신 여러분을 환영합니다';
+    var helloWorld = '리액트 도움닫기에 오신 여러분을 환영합니다';
 # leanpub-end-insert
     return (
       <div className="App">
@@ -320,20 +338,21 @@ class App extends Component {
 export default App;
 ~~~~~~~~
 
-다시 `npm start` 명령어를 실행해 애플리케이션을 시작합니다. 
+다시 `npm start` 명령으로 애플리케이션을 실행해서 수정 사항이 반영되었는지 확인합니다.
 
-아마 `className`가 속성(attribute) 임을 눈치챘을 겁니다. JSX의 `className`은 HTML 표준 `class`로부터 기인했습니다. 기술적인 이유로 JSX는 몇 가지 내부 HTML 속성을 바꿔야 했습니다. 자세한 내용은 리액트 공식 문서 중 ['지원하는 HTML 속성'](https://reactjs.org/docs/dom-elements.html) 장에서 확인하길 바랍니다. HTML 속성은 카멜 케이스(camelCase) 표기법을 따릅니다. 앞으로 몇 가지 JSX 속성을 좀 더 다뤄볼 것입니다.
+아마 `className` 속성(attribute)이 눈에 띌 것 같습니다. `className`은 표준 HTML의 `class`로부터  왔습니다. JSX는 몇 가지 HTML 내부 속성을 바꿔야 했는데, [리액트의 HTML 속성 지원](https://reactjs.org/docs/dom-elements.html#all-supported-html-attributes)에 목록이 있습니다. 바뀐 이름들은 모두 카멜 케이스(camelCase) 표기법을 따릅니다. 앞으로 JSX 속성 몇개를 더 만나게 될 것입니다.
 
 ### 실습하기
 
+* [지난 섹션의 코드](http://bit.ly/2H8H14h)를 확인합니다.
+  * [이번 섹션에서 변경된 코드](http://bit.ly/2H9KwHA)를 확인합니다.
+
 * JSX 안에 새 변수를 만들고 렌더링 합니다.
   * `user` 객체를 만들고 JSX 문법으로 `firstname`과 `lastname`을 표시합니다.
-  * `render()`메서드 안에 `user` 프로퍼티를 사용합니다. 
+  * `render()`메서드 안에서 `user` 프로퍼티를 사용합니다. 
   
-### 읽어보기  
-
-* [[리액트 공식 문서] JSX](https://reactjs.org/docs/introducing-jsx.html)
-* [[리액트 공식 문서] 리액트 컴포넌트, 엘레먼트, 인스턴스](https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html)
+* [[리액트 공식 문서] JSX](https://reactjs.org/docs/introducing-jsx.html)를 읽어봅니다.
+* [[리액트 공식 문서] 리액트 컴포넌트, 엘레먼트, 인스턴스](https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html)를 읽어봅니다.
 
 ## 1.7 ES6 const · let
 
@@ -401,6 +420,7 @@ export default App;
 * [[MDN] ES6 let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
 
 ### 찾아보기
+
 * 불변 데이터 구조에 대해 더 알아봅시다.
   * 보편적인 프로그래밍에서 말하는 불변 데이터 구조란 무엇인지 알아봅시다.
   * 리액트와 그 생태계에서 불변 데이터 구조가 사용되는 이유에 대해 알아봅시다.
