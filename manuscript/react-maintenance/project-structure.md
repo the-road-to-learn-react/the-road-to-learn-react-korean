@@ -14,7 +14,7 @@ cd src
 touch List.js InputWithLabel.js SearchForm.js
 ~~~~~~~
 
-*src/List.js* 파일과 공유하는 Item 컴포넌트를 제외한  *src/App.js*에 있던 모든 컴포넌트를 각 파일로 분리합니다. 이후 모든 파일에 리액트를 import 하고 다른 파일에서 사용되는 컴포넌트는 export해야 합니다. 예를 들어, 아래의 *src/List.js* 파일이 있습니다.
+*src/List.js* 파일과 공유하는 Item 컴포넌트를 제외한  *src/App.js*에 있던 모든 컴포넌트를 각 파일로 분리합니다. 이후 모든 파일에 import 구문으로 리액트를 불러오고, 만든 컴포넌트는 export 구문으로 내보내야합니다. 예를 들어, 아래의 *src/List.js* 파일이 있습니다.
 
 {title="src/List.js",lang="javascript"}
 ~~~~~~~
@@ -52,7 +52,7 @@ export default List;
 # leanpub-end-insert
 ~~~~~~~
 
-List 컴포넌트만 Item 컴포넌트를 사용하기 때문에, Item 컴포넌트와 List 컴포넌트는 같은 파일에 보관해도 됩니다. 만약 다른 컴포넌트도 Item 컴포넌트를 사용하면 Item 컴포넌트 전용 파일을 따로 만드는 것이 좋습니다. *src/SearchForm.js* 파일의 SearchForm 컴포넌트는 반드시 InputWithLabel 컴포넌트를 import 해야 합니다. Item 컴포넌트처럼 InputWithLabel 컴포넌트와 SearchForm을 같은 파일에 두어도 됩니다. 그러나 InputWithLabel 컴포넌트를 재사용하는 것이 목표이기 때문에 두 컴포넌트를 분리합니다. 이제 InputWithLabel 컴포넌트를 import해 사용할 수 있습니다.
+List 컴포넌트만 Item 컴포넌트를 사용하기 때문에, Item 컴포넌트와 List 컴포넌트는 같은 파일에 보관해도 됩니다. 만약 다른 컴포넌트도 Item 컴포넌트를 사용하면 Item 컴포넌트 전용 파일을 따로 만드는 것이 좋습니다. *src/SearchForm.js* 파일의 SearchForm 컴포넌트는 반드시 InputWithLabel 컴포넌트를 import 구문으로 불러와야 합니다. Item 컴포넌트처럼 InputWithLabel 컴포넌트와 SearchForm을 같은 파일에 두어도 됩니다. 그러나 InputWithLabel 컴포넌트를 재사용하는 것이 목표이기 때문에 두 컴포넌트를 분리합니다. 이제 InputWithLabel 컴포넌트를 import 구문으로 불러와 사용할 수 있습니다.
 
 {title="src/SearchForm.js",lang="javascript"}
 ~~~~~~~
@@ -90,7 +90,7 @@ export default SearchForm;
 # leanpub-end-insert
 ~~~~~~~
 
-App 컴포넌트는 render 함수에서 사용되는 컴포넌트들을 모두 import해야 합니다. InputWithLabel 컴포넌트는 SearchForm 컴포넌트에서만 사용되기 때문에 App 컴포넌트에서는 import하지 않아도 됩니다.
+App 컴포넌트는 render 함수에서 사용되는 컴포넌트를 모두 import 구문으로 불러와야 합니다. InputWithLabel 컴포넌트는 SearchForm 컴포넌트에서만 사용되기 때문에 App 컴포넌트에서는 import하지 않아도 됩니다.
 
 {title="src/App.js",lang="javascript"}
 ~~~~~~~
@@ -193,5 +193,5 @@ export default App;
 
 * [지난 장의 소스코드](https://codesandbox.io/s/github/the-road-to-learn-react/hacker-stories/tree/hs/React-Folder-Structure) 확인하기
   * [지난 장과 달라진 점](https://github.com/the-road-to-learn-react/hacker-stories/compare/hs/react-modern-final...hs/React-Folder-Structure?expand=1) 알아보기
-* [자바스크립트 import/export 구문](https://www.robinwieruch.de/javascript-import-export)에 대해 더 읽어보기
+* [자바스크립트 import 및 export 구문](https://www.robinwieruch.de/javascript-import-export)에 대해 더 읽어보기
 * 현재 폴더 구조가 괜찮으면 그대로 두어도 괜찮습니다. 다음 섹션에서는 폴더 구조는 건드리지 않고 *src/App.js* 파일만 사용한 실습을 합니다.
